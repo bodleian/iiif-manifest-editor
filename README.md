@@ -8,7 +8,7 @@ The web application allows you to import, view, update and export metadata using
 ### Prerequisites ###
 
 * Install npm globally: https://github.com/npm/npm
-* Install nvm (Node Version Manager): https://www.npmjs.com/package/nvm
+* Install nvm (Node Version Manager) globally: https://github.com/creationix/nvm
 
 ### How to set up the application ###
 
