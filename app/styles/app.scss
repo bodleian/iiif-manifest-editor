@@ -2,3 +2,7 @@
 @import "base/bootstrap-settings";
 $bootstrap-sass-asset-helper: true;
 @import "bootstrap";
+@import "./components/main";
+@import "./components/home";
+@import "./components/new-manifest";
+@import "./components/open-manifest";

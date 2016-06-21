@@ -23,6 +23,10 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
+      Main: 'app/components/Main.jsx',
+      Home: 'app/components/Home.jsx',
+      OpenManifest: 'app/components/OpenManifest.jsx',
+      NewManifest: 'app/components/NewManifest.jsx',
       applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', '.jsx']
