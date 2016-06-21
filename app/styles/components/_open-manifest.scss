@@ -1,3 +1,32 @@
 .open-manifest-container {
   text-align: center;
+
+  .open-manifest-form-container {
+    margin-top: 50px;
+    border: 1px solid $gray-light;
+    border-radius: 5px;
+
+    .open-manifest-form-header {
+      font-size: 1.6rem;
+      border-bottom: 1px solid $gray-light;
+    }
+    h3 {
+      font-size: 1.6rem;
+      margin-top: 7px;
+    }
+    .drop-manifest-container {
+      margin: 20px;
+      height: 100px;
+      border:1px solid $gray-light;
+      background-color: $gray-lighter;
+      border-radius: 5px;
+      p {
+        margin-top:40px;
+        color: $gray;
+      }
+    }
+  }
+  .cancel-button-container {
+    margin:20px auto;
+  }
 }

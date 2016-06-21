@@ -1,5 +1,5 @@
 var React = require('react');
-var {Link, IndexLink} = require('react-router');
+var {Link} = require('react-router');
 
 var Home = (props) => {
   return(
