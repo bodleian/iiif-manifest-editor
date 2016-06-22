@@ -26,7 +26,10 @@ module.exports = {
       Main: 'app/components/Main.jsx',
       Home: 'app/components/Home.jsx',
       OpenManifest: 'app/components/OpenManifest.jsx',
+      OpenLocalManifestForm: 'app/components/OpenLocalManifestForm.jsx',
+      OpenRemoteManifestForm: 'app/components/OpenRemoteManifestForm.jsx',
       NewManifest: 'app/components/NewManifest.jsx',
+      EditManifest: 'app/components/EditManifest.jsx',
       applicationStyles: 'app/styles/app.scss'
     },
     extensions: ['', '.js', '.jsx']

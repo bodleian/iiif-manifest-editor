@@ -5,7 +5,7 @@ var Main = require('Main');
 var Home = require('Home');
 var OpenManifest = require('OpenManifest');
 var NewManifest = require('NewManifest');
-
+var EditManifest = require('EditManifest');
 
 require('style!css?sourceMap!sass!applicationStyles');
 
@@ -14,7 +14,7 @@ ReactDOM.render(
     <Route path="/" component={Main}>
       <Route path="open" component={OpenManifest} />
       <Route path="new" component={NewManifest} />
-
+      <Route path="edit" component={EditManifest} />
       <IndexRoute component={Home}/>
     </Route>
   </Router>,

@@ -1,25 +1,27 @@
 var React = require('react');
 var {Link} = require('react-router');
+var OpenLocalManifestForm = require('OpenLocalManifestForm');
+var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
-  componentWillUnmount: function() {
-    this.serverRequest.abort();
-  },
-  onLocalManifestFileSubmit: function(e) {
-    e.preventDefault();
-  },
-  onRemoteManifestUrlSubmit: function(e) {
-    e.preventDefault();
-    var remoteManifestUrl = this.refs.remoteManifestUrl.value;
-    if(remoteManifestUrl.length > 0) {
-      this.refs.remoteManifestUrl.value = '';
-      console.log(remoteManifestUrl);
-      this.serverRequest = $.get(remoteManifestUrl, function(result){
-        console.log(result);
-      });
-
+  getInitialState: function() {
+    return {
+      manifestData: null
     }
   },
+  setManifestData: function(data) {
+    console.log(data);
+    this.setState({
+      manifestData: data
+    });
+
+    // TODO: set the state of the Main component with the manifest data so it can be used across all components
+
+    // TODO: load the edit manifest component and pass the manifestData into it
+
+    window.location.hash = '#/edit';
+  },
+  // TODO: create a handler function to set the state of the manifestData returned from the openLocalManifestForm
   render: function() {
     return(
       <div className="open-manifest-container">
@@ -27,32 +29,15 @@ var OpenManifest = React.createClass({
           <div className="open-manifest-form-header">
             <h3>Open Manifest</h3>
           </div>
+
           <div className="drop-manifest-container">
             <p>Drag and drop manifest here</p>
           </div>
-          <form className="form-horizontal" role="form" onSubmit={this.onLocalManifestFileSubmit}>
-            <div className="form-group">
-              <label htmlFor="localManifestFile" className="col-sm-2 control-label">From Computer</label>
-              <div className="col-sm-8">
-                <input type="file" className="form-control" id="localManifestFile" placeholder="Select manifest to open" ref="localManifestFile" />
-              </div>
-              <div className="col-sm-2">
-                <button type="submit" className="btn btn-default">Open Manifest</button>
-              </div>
-            </div>
-          </form>
 
-          <form className="form-horizontal" role="form" onSubmit={this.onRemoteManifestUrlSubmit}>
-            <div className="form-group">
-              <label htmlFor="remoteManifestUrl" className="col-sm-2 control-label">From URL</label>
-              <div className="col-sm-8">
-                <input type="text" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" />
-              </div>
-              <div className="col-sm-2">
-                <button type="submit" className="btn btn-default">Load Manifest</button>
-              </div>
-            </div>
-          </form>
+          <OpenLocalManifestForm/>
+
+          <OpenRemoteManifestForm onOpenRemoteManifest={this.setManifestData}/>
+
           <div className="row cancel-button-container">
             <div className="col-md-12">
               <Link to="/" className="btn btn-default">Cancel</Link>
