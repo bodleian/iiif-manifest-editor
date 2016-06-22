@@ -2,29 +2,33 @@
   "name": "iiif-manifest-editor",
   "version": "0.1.0",
   "description": "An online editor to generate IIIF manifests",
-  "keywords": [ "iiif", "manifest", "editor" ],
+  "keywords": [
+    "iiif",
+    "manifest",
+    "editor"
+  ],
   "author": "The Bodleian Libraries of the University of Oxford",
   "contributors": [
     {
-      "name": "Rafael Schwemmer", 
-      "email": "rafael.schwemmer@textandbytes.com", 
-      "url": "http://www.textandbytes.com" 
+      "name": "Rafael Schwemmer",
+      "email": "rafael.schwemmer@textandbytes.com",
+      "url": "http://www.textandbytes.com"
     },
     {
-      "name": "Douglas Kim", 
+      "name": "Douglas Kim",
       "email": "dougkim@15solutions.com"
     }
   ],
   "license": "MIT",
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "https://github.com/bodleian/iiif-manifest-editor"
   },
   "bugs": {
     "url": "https://github.com/bodleian/iiif-manifest-editor/issues"
   },
-  "engines" : { 
-    "node" : ">=6.1.0" 
+  "engines": {
+    "node": ">=6.1.0"
   },
   "main": "index.js",
   "scripts": {
@@ -45,6 +49,7 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
     "bootstrap-sass": "^3.3.6",
     "css-loader": "^0.23.1",
     "expect": "^1.14.0",
@@ -58,6 +63,7 @@
     "mocha": "^2.4.5",
     "node-sass": "^3.7.0",
     "react-addons-test-utils": "^0.14.7",
+    "redux": "^3.5.2",
     "sass-loader": "^3.2.0",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
