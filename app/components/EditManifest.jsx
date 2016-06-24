@@ -1,5 +1,7 @@
 var React = require('react');
-var store = require('ReduxStore');
+
+var actions = require('./../actions/index');
+var store = require('./../store/configureStore').configure();
 
 var EditManifest = React.createClass({
   componentWillMount: function() {

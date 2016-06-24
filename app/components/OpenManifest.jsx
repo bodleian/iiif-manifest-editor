@@ -2,17 +2,9 @@ var React = require('react');
 var {Link} = require('react-router');
 var OpenLocalManifestForm = require('OpenLocalManifestForm');
 var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
-var store = require('ReduxStore');
 
 var OpenManifest = React.createClass({
-  setManifestData: function(data) {
-    // save the manifest data in the store so it can be used across all components
-    store.dispatch({
-      type: 'SET_MANIFEST_DATA',
-      manifestData: data
-    });
-
-    // redirect to the edit page
+  redirectToEditManifest: function() {
     window.location.hash = '#/edit';
   },
   render: function() {
@@ -28,7 +20,7 @@ var OpenManifest = React.createClass({
           </div>
 
           <OpenLocalManifestForm/>
-          <OpenRemoteManifestForm onOpenRemoteManifest={this.setManifestData}/>
+          <OpenRemoteManifestForm onSuccess={this.redirectToEditManifest}/>
 
           <div className="row cancel-button-container">
             <div className="col-md-12">

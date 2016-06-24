@@ -1,12 +1,30 @@
 var React = require('react');
+var axios = require('axios');
+
+var actions = require('./../actions/index');
+var store = require('./../store/configureStore').configure();
+
+// Subscribe to changes
+var unsubscribe = store.subscribe(() => {
+  var state = store.getState();
+
+  if (state.manifest.isFetching) {
+    document.getElementById('loadRemoteManifestButton').innerHTML = 'Loading...';
+  } else if (state.manifest.manifestData) {
+    // TODO: redirect to /edit
+  }
+});
 
 var OpenRemoteManifestForm = React.createClass({
-  requestManifestFromUrl: function(url) {
+  fetchManifest: function(remoteManifestUrl) {
+    store.dispatch(actions.startManifestFetch());
     var that = this;
-    $.get(url, function(data) {
-      // pass the manifest data to the parent component
-      that.props.onOpenRemoteManifest(data);
+    axios.get(remoteManifestUrl).then(function (res) {
+      store.dispatch(actions.completeManifestFetch(remoteManifestUrl));
+      store.dispatch(actions.setManifestData(res));
+      that.props.onSuccess();
     });
+    // TODO: display error messages on form
   },
   onFormSubmit: function(e) {
     e.preventDefault();
@@ -20,7 +38,7 @@ var OpenRemoteManifestForm = React.createClass({
       this.refs.remoteManifestUrl.value = '';
 
       // request the manifest data from the remote url
-      this.requestManifestFromUrl(remoteManifestUrl);
+      this.fetchManifest(remoteManifestUrl);
     }
   },
   render: function() {
@@ -32,7 +50,7 @@ var OpenRemoteManifestForm = React.createClass({
             <input type="text" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl"/>
           </div>
           <div className="col-sm-2">
-            <button type="submit" className="btn btn-default">Load Manifest</button>
+            <button id="loadRemoteManifestButton" type="submit" className="btn btn-default">Load Manifest</button>
           </div>
         </div>
       </form>
