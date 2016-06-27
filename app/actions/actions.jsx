@@ -17,3 +17,9 @@ export var setManifestData = (manifestData) => {
     manifestData
   }
 };
+
+export var setLoadRemoteManifestError = () => {
+  return {
+    type: 'SET_LOAD_REMOTE_MANIFEST_ERROR'
+  }
+};

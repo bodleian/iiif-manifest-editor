@@ -1,17 +1,18 @@
 var React = require('react');
-
-var actions = require('./../actions/index');
-var store = require('./../store/configureStore').configure();
+var {connect} = require('react-redux');
+var actions = require('actions');
 
 var EditManifest = React.createClass({
   componentWillMount: function() {
-    if(store.getState().manifestData === null) {
+    var {manifestData} = this.props;
+    if(manifestData === undefined) {
       window.location.hash = '#/';
     }
   },
-  parseManifestData: function(data) {
-    if(store.getState().manifestData !== null) {
-      var jsonData = JSON.parse(data);
+  parseManifestData: function() {
+    var {manifestData} = this.props;
+    if(manifestData !== undefined) {
+      var jsonData = JSON.parse(manifestData);
       return jsonData.label;
     }
   },
@@ -19,10 +20,16 @@ var EditManifest = React.createClass({
     return (
       <div>
         <h2>Manifest Data</h2>
-        <p>{this.parseManifestData(store.getState().manifestData)}</p>
+        <p>{this.parseManifestData()}</p>
       </div>
     );
   }
 });
 
-module.exports = EditManifest;
+module.exports = connect(
+  (state) => {
+    return {
+      manifestData: state.manifestData
+    };
+  }
+)(EditManifest);

@@ -23,14 +23,17 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
+      applicationStyles: 'app/styles/app.scss',
+      actions: 'app/actions/actions.jsx',
+      reducers: 'app/reducers/reducers.jsx',
+      configureStore: 'app/store/configureStore.jsx',
       Main: 'app/components/Main.jsx',
       Home: 'app/components/Home.jsx',
       OpenManifest: 'app/components/OpenManifest.jsx',
       OpenLocalManifestForm: 'app/components/OpenLocalManifestForm.jsx',
       OpenRemoteManifestForm: 'app/components/OpenRemoteManifestForm.jsx',
       NewManifest: 'app/components/NewManifest.jsx',
-      EditManifest: 'app/components/EditManifest.jsx',
-      applicationStyles: 'app/styles/app.scss'
+      EditManifest: 'app/components/EditManifest.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

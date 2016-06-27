@@ -4,9 +4,6 @@ var OpenLocalManifestForm = require('OpenLocalManifestForm');
 var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
-  redirectToEditManifest: function() {
-    window.location.hash = '#/edit';
-  },
   render: function() {
     return(
       <div className="open-manifest-container">
@@ -20,7 +17,7 @@ var OpenManifest = React.createClass({
           </div>
 
           <OpenLocalManifestForm/>
-          <OpenRemoteManifestForm onSuccess={this.redirectToEditManifest}/>
+          <OpenRemoteManifestForm/>
 
           <div className="row cancel-button-container">
             <div className="col-md-12">
