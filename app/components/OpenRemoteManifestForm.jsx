@@ -11,8 +11,9 @@ var OpenRemoteManifestForm = React.createClass({
       .then(function(response) {
         dispatch(actions.completeManifestFetch(remoteManifestUrl));
         dispatch(actions.setManifestData(response));
+
         // TODO: replace hard redirect with soft redirect to retain state of store
-        window.location.hash = '#/edit';  // redirect to edit manifest on success
+        // window.location.hash = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
         console.log(error);

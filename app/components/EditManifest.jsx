@@ -5,15 +5,14 @@ var actions = require('actions');
 var EditManifest = React.createClass({
   componentWillMount: function() {
     var {manifestData} = this.props;
-    if(manifestData === undefined) {
+    if(manifestData.data === undefined) {
       window.location.hash = '#/';
     }
   },
   parseManifestData: function() {
     var {manifestData} = this.props;
-    if(manifestData !== undefined) {
-      var jsonData = JSON.parse(manifestData);
-      return jsonData.label;
+    if(manifestData.data !== undefined) {
+      return manifestData.data.label;
     }
   },
   render: function() {
@@ -29,7 +28,7 @@ var EditManifest = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      manifestData: state.manifestData
+      manifestData: state.manifestReducer.manifestData
     };
   }
 )(EditManifest);

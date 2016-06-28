@@ -3,7 +3,7 @@ var {manifestReducer} = require('reducers');
 
 export var configure = () => {
   var reducer = redux.combineReducers({
-    manifest: manifestReducer
+    manifestReducer: manifestReducer
   });
 
   var store = redux.createStore(reducer, redux.compose(
