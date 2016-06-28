@@ -33,7 +33,16 @@ module.exports = {
       OpenLocalManifestForm: 'app/components/OpenLocalManifestForm.jsx',
       OpenRemoteManifestForm: 'app/components/OpenRemoteManifestForm.jsx',
       NewManifest: 'app/components/NewManifest.jsx',
-      EditManifest: 'app/components/EditManifest.jsx'
+      EditManifest: 'app/components/EditManifest.jsx',
+      Viewer: 'app/components/Viewer.jsx',
+      ThumbnailStrip: 'app/components/ThumbnailStrip.jsx',
+      MetadataSidebar: 'app/components/MetadataSidebar.jsx',
+      MetadataSidebarButtons: 'app/components/MetadataSidebarButtons.jsx',
+      MetadataAccordion: 'app/components/MetadataAccordion.jsx',
+      ManifestMetadataPanel: 'app/components/ManifestMetadataPanel.jsx',
+      SequenceMetadataPanel: 'app/components/SequenceMetadataPanel.jsx',
+      CanvasMetadataPanel: 'app/components/CanvasMetadataPanel.jsx',
+      BulkActionsPanel: 'app/components/BulkActionsPanel.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

@@ -1,0 +1,25 @@
+.metadata-sidebar-container {
+  border: 2px solid $gray-light;
+  height: 100vh;
+
+  .metadata-sidebar-buttons {
+    padding: 15px;
+
+    .metadata-sidebar-button {
+      margin-right: 20px;
+    }
+  }
+
+  #metadata-accordion {
+    .metadata-sidebar-panel {
+      height: 65vh;
+
+      .metadata-field-label {
+        font-weight: bold;
+      }
+
+      .metadata-field-value {
+      }
+    }
+  }
+}

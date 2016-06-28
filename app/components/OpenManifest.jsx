@@ -19,7 +19,7 @@ var OpenManifest = React.createClass({
   },
   render: function() {
     return(
-      <div className="open-manifest-container">
+      <div className="container open-manifest-container">
         <div className="open-manifest-form-container">
           <div className="open-manifest-form-header">
             <h3>Open Manifest</h3>

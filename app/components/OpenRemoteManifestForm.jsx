@@ -40,7 +40,7 @@ var OpenRemoteManifestForm = React.createClass({
           <div className="form-group">
             <label htmlFor="remoteManifestUrl" className="col-sm-2 control-label">From URL</label>
             <div className="col-sm-8">
-              <input type="text" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" defaultValue="http://www.laksjdhglkjadgjlkadgljkadsljkagkjh.com"/>
+              <input type="text" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" defaultValue="http://www.e-codices.unifr.ch/metadata/iiif/kba-MurF0031a/manifest.json"/>
             </div>
             <div className="col-sm-2">
               <button id="loadRemoteManifestButton" type="submit" className="btn btn-default">{isFetching ? 'Loading...' : 'Load Manifest'}</button>

@@ -1,6 +1,8 @@
 var React = require('react');
 var {connect} = require('react-redux');
-var actions = require('actions');
+var Viewer = require('Viewer');
+var MetadataSidebar = require('MetadataSidebar');
+var ThumbnailStrip = require('ThumbnailStrip');
 
 var EditManifest = React.createClass({
   componentWillMount: function() {
@@ -9,17 +11,16 @@ var EditManifest = React.createClass({
       window.location.hash = '#/';
     }
   },
-  parseManifestData: function() {
-    var {manifestData} = this.props;
-    if(manifestData.data !== undefined) {
-      return manifestData.data.label;
-    }
-  },
   render: function() {
     return (
-      <div>
-        <h2>Manifest Data</h2>
-        <p>{this.parseManifestData()}</p>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-8">
+            <Viewer/>
+            <ThumbnailStrip/>
+          </div>
+          <MetadataSidebar/>
+        </div>
       </div>
     );
   }
