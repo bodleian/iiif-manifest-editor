@@ -22,27 +22,15 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
+    modulesDirectories: [
+      'node_modules',
+      './app/components'
+    ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx',
-      Main: 'app/components/Main.jsx',
-      Home: 'app/components/Home.jsx',
-      OpenManifest: 'app/components/OpenManifest.jsx',
-      OpenLocalManifestForm: 'app/components/OpenLocalManifestForm.jsx',
-      OpenRemoteManifestForm: 'app/components/OpenRemoteManifestForm.jsx',
-      NewManifest: 'app/components/NewManifest.jsx',
-      EditManifest: 'app/components/EditManifest.jsx',
-      Viewer: 'app/components/Viewer.jsx',
-      ThumbnailStrip: 'app/components/ThumbnailStrip.jsx',
-      MetadataSidebar: 'app/components/MetadataSidebar.jsx',
-      MetadataSidebarButtons: 'app/components/MetadataSidebarButtons.jsx',
-      MetadataAccordion: 'app/components/MetadataAccordion.jsx',
-      ManifestMetadataPanel: 'app/components/ManifestMetadataPanel.jsx',
-      SequenceMetadataPanel: 'app/components/SequenceMetadataPanel.jsx',
-      CanvasMetadataPanel: 'app/components/CanvasMetadataPanel.jsx',
-      BulkActionsPanel: 'app/components/BulkActionsPanel.jsx'
+      configureStore: 'app/store/configureStore.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
