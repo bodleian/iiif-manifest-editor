@@ -1,4 +1,12 @@
-export var manifestReducer = (state = {isFetching: false, url: undefined, manifestData: undefined, fetchRemoteManifestError: false}, action) => {
+
+var stateDefaults = {
+  isFetching: false,
+  url: undefined,
+  manifestData: undefined,
+  didFailOnFetchingRemoteManifest: false
+}
+
+export var manifestReducer = (state = stateDefaults, action) => {
   switch (action.type) {
     case 'START_MANIFEST_FETCH':
       return {
@@ -17,7 +25,7 @@ export var manifestReducer = (state = {isFetching: false, url: undefined, manife
       };
     case 'SET_LOAD_REMOTE_MANIFEST_ERROR':
       return {
-        fetchRemoteManifestError: true,
+        didFailOnFetchingRemoteManifest: true,
         url: undefined,
         manifestData: undefined
       }

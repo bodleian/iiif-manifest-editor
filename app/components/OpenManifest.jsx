@@ -5,6 +5,18 @@ var OpenLocalManifestForm = require('OpenLocalManifestForm');
 var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
+  displayManifestFetchErrors: function() {
+    var {didFailOnFetchingRemoteManifest} = this.props;
+    if(didFailOnFetchingRemoteManifest) {
+      return (
+        <div className="alert alert-danger">
+          Error loading remote manifest. Please provide a valid manifest URL.
+        </div>
+      );
+    } else {
+      return '';
+    }
+  },
   render: function() {
     return(
       <div className="open-manifest-container">
@@ -12,6 +24,8 @@ var OpenManifest = React.createClass({
           <div className="open-manifest-form-header">
             <h3>Open Manifest</h3>
           </div>
+
+          {this.displayManifestFetchErrors()}
 
           <div className="drop-manifest-container">
             <p>Drag and drop manifest here</p>
@@ -31,4 +45,10 @@ var OpenManifest = React.createClass({
   }
 });
 
-module.exports = OpenManifest;
+module.exports = connect(
+  (state) => {
+    return {
+      didFailOnFetchingRemoteManifest: state.manifestReducer.didFailOnFetchingRemoteManifest
+    };
+  }
+)(OpenManifest);
