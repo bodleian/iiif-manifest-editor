@@ -1,4 +1,10 @@
 .thumbnail-strip-container {
   border: 2px solid $gray-light;
   height: 25vh;
+  display: flex;
+
+  .thumbnail-strip-canvas {
+    border: 1px solid $gray-light;
+    width: 150px;
+  }
 }
