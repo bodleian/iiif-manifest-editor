@@ -27,7 +27,6 @@ var OpenRemoteManifestForm = React.createClass({
     // on success, pass the manifest data to the parent component
 
     if(remoteManifestUrl.length > 0) {
-      this.refs.remoteManifestUrl.value = '';
       // request the manifest data from the remote url
       this.fetchManifest(remoteManifestUrl);
     }
