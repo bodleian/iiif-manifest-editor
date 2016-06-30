@@ -3,6 +3,7 @@ var stateDefaults = {
   isFetching: false,
   url: undefined,
   manifestData: undefined,
+  didFailOnUploadingLocalManifest: false,
   didFailOnFetchingRemoteManifest: false
 }
 
@@ -28,7 +29,13 @@ export var manifestReducer = (state = stateDefaults, action) => {
         didFailOnFetchingRemoteManifest: true,
         url: undefined,
         manifestData: undefined
-      }
+      };
+    case 'SET_UPLOAD_LOCAL_MANIFEST_ERROR':
+      return {
+        didFailOnUploadingLocalManifest: true,
+        url: undefined,
+        manifestData: undefined
+      };
     default:
       return state;
   }

@@ -15,7 +15,7 @@ var OpenLocalManifestForm = React.createClass({
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setLoadRemoteManifestError());
+        dispatch(actions.setUploadLocalManifestError());
       });
   },
   onFormSubmit: function(e) {
