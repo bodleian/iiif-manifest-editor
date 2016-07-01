@@ -8,9 +8,10 @@ var OpenLocalManifestForm = React.createClass({
     var {dispatch} = this.props;
     var formData = new FormData();
     formData.append('localManifestFile', localManifestFile);
+    dispatch(actions.startManifestFetch());
     axios.put('/manifestUpload', formData)
       .then(function(response) {
-        dispatch(actions.completeManifestFetch(remoteManifestUrl));
+        dispatch(actions.completeManifestFetch(localManifestFile));
         dispatch(actions.setManifestData(response));
         window.location = '#/edit';  // redirect to edit manifest on success
       })

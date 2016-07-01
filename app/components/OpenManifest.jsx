@@ -6,20 +6,13 @@ var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
   displayManifestFetchErrors: function() {
-    var {didErrorOccur, errorMessage} = this.props;
+    var {errorMessage} = this.props;
+    if(errorMessage !== undefined) {
       return (
         <div className="alert alert-danger">
           {errorMessage}
         </div>
       );
-    } else if(didFailOnUploadingLocalManifest) {
-      return (
-        <div className="alert alert-danger">
-          
-        </div>
-      );
-    } else {
-      return '';
     }
   },
   render: function() {
@@ -53,8 +46,7 @@ var OpenManifest = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      didFailOnUploadingLocalManifest: state.manifestReducer.didFailOnUploadingLocalManifest,
-      didFailOnFetchingRemoteManifest: state.manifestReducer.didFailOnFetchingRemoteManifest
+      errorMessage: state.manifestReducer.errorMessage
     };
   }
 )(OpenManifest);

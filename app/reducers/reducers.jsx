@@ -3,7 +3,7 @@ var stateDefaults = {
   isFetching: false,
   url: undefined,
   manifestData: undefined,
-  errorMessage: null
+  errorMessage: undefined
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
@@ -13,7 +13,7 @@ export var manifestReducer = (state = stateDefaults, action) => {
         isFetching: true,
         url: undefined,
         manifestData: undefined,
-        errorMessage: null
+        errorMessage: undefined
       };
     case 'COMPLETE_MANIFEST_FETCH':
       return {

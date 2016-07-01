@@ -29,7 +29,7 @@ var ManifestMetadataPanel = React.createClass({
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.label} callback={this.saveManifestMetadataField('label')}/>
+          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.label}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Attribution:</div>
