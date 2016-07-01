@@ -2,6 +2,7 @@
   border: 2px solid $gray-light;
   height: 25vh;
   display: flex;
+  overflow-x: scroll;
 
   .thumbnail-strip-canvas {
     border: 1px solid $gray-light;
