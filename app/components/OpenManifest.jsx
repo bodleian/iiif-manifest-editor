@@ -6,17 +6,16 @@ var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
   displayManifestFetchErrors: function() {
-    var {didFailOnUploadingLocalManifest, didFailOnFetchingRemoteManifest} = this.props;
-    if(didFailOnFetchingRemoteManifest) {
+    var {didErrorOccur, errorMessage} = this.props;
       return (
         <div className="alert alert-danger">
-          Error loading remote manifest. Please provide a valid manifest URL.
+          {errorMessage}
         </div>
       );
     } else if(didFailOnUploadingLocalManifest) {
       return (
         <div className="alert alert-danger">
-          Error loading local manifest. Please select a valid manifest file.
+          
         </div>
       );
     } else {

@@ -3,8 +3,7 @@ var stateDefaults = {
   isFetching: false,
   url: undefined,
   manifestData: undefined,
-  didFailOnUploadingLocalManifest: false,
-  didFailOnFetchingRemoteManifest: false
+  errorMessage: null
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
@@ -13,7 +12,8 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return {
         isFetching: true,
         url: undefined,
-        manifestData: undefined
+        manifestData: undefined,
+        errorMessage: null
       };
     case 'COMPLETE_MANIFEST_FETCH':
       return {
@@ -24,17 +24,9 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return {
         manifestData: action.manifestData
       };
-    case 'SET_LOAD_REMOTE_MANIFEST_ERROR':
+    case 'SET_ERROR_MESSAGE':
       return {
-        didFailOnFetchingRemoteManifest: true,
-        url: undefined,
-        manifestData: undefined
-      };
-    case 'SET_UPLOAD_LOCAL_MANIFEST_ERROR':
-      return {
-        didFailOnUploadingLocalManifest: true,
-        url: undefined,
-        manifestData: undefined
+        errorMessage: action.errorMessage
       };
     default:
       return state;
