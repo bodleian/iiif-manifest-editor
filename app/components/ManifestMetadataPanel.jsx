@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var EditableLabel = require('EditableLabel');
 
 var ManifestMetadataPanel = React.createClass({
   getDescriptionForLanguageCode: function(descriptions, languageCode) {
@@ -28,19 +29,19 @@ var ManifestMetadataPanel = React.createClass({
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Label:</div>
-          <div className="col-md-9 metadata-field-value">{metadata.label}</div>
+          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.label} callback={this.saveManifestMetadataField('label')}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Attribution:</div>
-          <div className="col-md-9 metadata-field-value">{metadata.attribution}</div>
+          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.attribution}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Description:</div>
-          <div className="col-md-9 metadata-field-value">{metadata.description}</div>
+          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.description}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">License:</div>
-          <div className="col-md-9 metadata-field-value">{metadata.license}</div>
+          <EditableLabel classNames="col-md-9 metadata-field-value" value={metadata.license}/>
         </div>
       </div>
     );
