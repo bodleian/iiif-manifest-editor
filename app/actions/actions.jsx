@@ -25,3 +25,10 @@ export var setErrorMessage = (errorMessage) => {
   }
 };
 
+export var saveMetadataField = (fieldName, fieldValue) => {
+  return {
+    type: 'SAVE_METADATA_FIELD',
+    fieldName,
+    fieldValue
+  }
+};

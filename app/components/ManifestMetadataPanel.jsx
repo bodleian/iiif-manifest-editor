@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var EditableTextArea = require('EditableTextArea');
+var actions = require('actions');
 
 var ManifestMetadataPanel = React.createClass({
   getDescriptionForLanguageCode: function(descriptions, languageCode) {
@@ -24,6 +25,8 @@ var ManifestMetadataPanel = React.createClass({
     }
   },
   saveMetadataFieldToStore: function(fieldName, fieldValue) {
+    var {dispatch} = this.props;
+    dispatch(actions.saveMetadataField(fieldName, fieldValue));
   },
   render: function() {
     var metadata = this.extractManifestMetadata();
