@@ -18,14 +18,10 @@ export var setManifestData = (manifestData) => {
   }
 };
 
-export var setUploadLocalManifestError = () => {
+export var setErrorMessage = (errorMessage) => {
   return {
-    type: 'SET_UPLOAD_LOCAL_MANIFEST_ERROR'
+    type: 'SET_ERROR_MESSAGE',
+    errorMessage
   }
 };
 
-export var setLoadRemoteManifestError = () => {
-  return {
-    type: 'SET_LOAD_REMOTE_MANIFEST_ERROR'
-  }
-};

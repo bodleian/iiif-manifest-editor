@@ -15,7 +15,7 @@ var OpenLocalManifestForm = React.createClass({
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setUploadLocalManifestError());
+        dispatch(actions.setErrorMessage('Error loading local manifest. Please select a valid manifest file.'));
       });
   },
   onFormSubmit: function(e) {

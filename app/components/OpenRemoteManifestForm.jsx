@@ -14,7 +14,7 @@ var OpenRemoteManifestForm = React.createClass({
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setLoadRemoteManifestError());
+        dispatch(actions.setErrorMessage('Error loading remote manifest. Please provide a valid manifest URL.'));
       });
   },
   onFormSubmit: function(e) {
