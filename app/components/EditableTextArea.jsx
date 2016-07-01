@@ -34,6 +34,8 @@ var EditableTextArea = React.createClass({
   },
   inputLostFocus: function() {
     this.setState({ editing: false });
+    // send the key and value of the text area to the update handler callback method
+    this.props.onUpdateHandler(this.props.fieldName, this.refs.textArea.value);
   },
   keyPressed: function(event) {
     if(event.key == 'Enter') {
