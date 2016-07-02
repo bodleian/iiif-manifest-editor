@@ -7,13 +7,13 @@ var ThumbnailStrip = require('ThumbnailStrip');
 var EditManifest = React.createClass({
   componentWillMount: function() {
     var {manifestData} = this.props;
-    if(manifestData === undefined || manifestData.data === undefined) {
+    if(manifestData === undefined) {
       window.location.hash = '#/';
     }
   },
   render: function() {
     var {manifestData} = this.props;
-    if(manifestData === undefined || manifestData.data === undefined) {
+    if(manifestData === undefined) {
       return false;
     } else {
       return (

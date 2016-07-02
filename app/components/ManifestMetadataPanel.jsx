@@ -15,12 +15,12 @@ var ManifestMetadataPanel = React.createClass({
   },
   extractManifestMetadata: function() {
     var {manifestData} = this.props;
-    if(manifestData.data !== undefined) {
+    if(manifestData !== undefined) {
       return {
-        attribution: manifestData.data.attribution,
-        label: manifestData.data.label,
-        description: this.getDescriptionForLanguageCode(manifestData.data.description, 'en'),
-        license: manifestData.data.license
+        attribution: manifestData.attribution,
+        label: manifestData.label,
+        description: this.getDescriptionForLanguageCode(manifestData.description, 'en'),
+        license: manifestData.license
       };
     }
   },

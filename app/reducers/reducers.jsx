@@ -33,16 +33,16 @@ export var manifestReducer = (state = stateDefaults, action) => {
     case 'SAVE_METADATA_FIELD':
       switch(action.fieldName) {
         case 'label':
-          state.manifestData.data.label = action.fieldValue;
+          state.manifestData.label = action.fieldValue;
           break;
         case 'attribution':
-          state.manifestData.data.attribution = action.fieldValue;
+          state.manifestData.attribution = action.fieldValue;
           break;
         case 'description':
-          state.manifestData.data.description[1]['@value'] = action.fieldValue;
+          state.manifestData.description[1]['@value'] = action.fieldValue;
           break;
         case 'license':
-          state.manifestData.data.license = action.fieldValue;
+          state.manifestData.license = action.fieldValue;
           break;
         default:
           break;

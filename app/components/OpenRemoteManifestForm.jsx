@@ -10,7 +10,7 @@ var OpenRemoteManifestForm = React.createClass({
     axios.get(remoteManifestUrl)
       .then(function(response) {
         dispatch(actions.completeManifestFetch(remoteManifestUrl));
-        dispatch(actions.setManifestData(response));
+        dispatch(actions.setManifestData(response.data));
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {

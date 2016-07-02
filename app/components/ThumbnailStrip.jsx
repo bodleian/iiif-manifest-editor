@@ -4,11 +4,11 @@ var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 
 var ThumbnailStrip = React.createClass({
-  getSequenceFromManifest: function(manifestObj) {
-    if(manifestObj.data !== undefined) {
-      if(manifestObj.data.sequences.length > 0) {
+  getSequenceFromManifest: function(manifestData) {
+    if(manifestData !== undefined) {
+      if(manifestData.sequences.length > 0) {
         // return the first available sequence from the given manifest
-        return manifestObj.data.sequences[0];
+        return manifestData.sequences[0];
       } else {
         return {};
       }
