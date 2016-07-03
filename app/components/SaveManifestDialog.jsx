@@ -16,7 +16,7 @@ var SaveManifestDialog = React.createClass({
               <h4 className="modal-title">Save Manifest</h4>
             </div>
             <div className="modal-body">
-              <input type='text' ref='manifestFilename' placeholder="Enter a filename for the manifest" defaultValue="manifest.json" />
+              <input type='text' ref='manifestFilename' className="form-control" placeholder="Enter a filename for the manifest" defaultValue="manifest.json" />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
