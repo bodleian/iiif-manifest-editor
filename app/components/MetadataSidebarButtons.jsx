@@ -18,6 +18,11 @@ var MetadataSidebarButtons = React.createClass({
     a.download = manifestFilenameToSave;
     a.click();
   },
+  componentWillReceiveProps: function(nextProps) {
+    if(this.props.manifestFilenameToSave !== nextProps.manifestFilenameToSave) {
+       this.downloadManifestData(nextProps.manifestFilenameToSave);
+    }
+  },
   render: function() {
     return (
       <div className="metadata-sidebar-buttons">
@@ -25,7 +30,7 @@ var MetadataSidebarButtons = React.createClass({
         <Link to="/open" className="btn btn-default metadata-sidebar-button">Open</Link>
         <a onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button">Save</a>
         <Link to="/" className="btn btn-default metadata-sidebar-button">Close</Link>
-        <SaveManifestDialog ref="saveManifestDialog" onSave={this.downloadManifestData} />
+        <SaveManifestDialog ref="saveManifestDialog" />
       </div>
     );
   }
@@ -34,7 +39,8 @@ var MetadataSidebarButtons = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      manifestData: state.manifestReducer.manifestData
+      manifestData: state.manifestReducer.manifestData,
+      manifestFilenameToSave: state.manifestReducer.manifestFilenameToSave
     };
   }
 )(MetadataSidebarButtons);

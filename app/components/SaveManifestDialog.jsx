@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var {connect} = require('react-redux');
+var actions = require('actions');
 
 var SaveManifestDialog = React.createClass({
   setManifestFilename: function() {
     var manifestFilenameToSave = this.refs.manifestFilename.value;
-    this.props.onSave(manifestFilenameToSave);
+    var {dispatch} = this.props;
+    dispatch(actions.setManifestFilename(manifestFilenameToSave));
   },
   render: function() {
     return (
@@ -29,4 +32,4 @@ var SaveManifestDialog = React.createClass({
   }
 });
 
-module.exports = SaveManifestDialog;
+module.exports = connect()(SaveManifestDialog);

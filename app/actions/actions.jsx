@@ -18,6 +18,13 @@ export var setManifestData = (manifestData) => {
   }
 };
 
+export var setManifestFilename = (manifestFilenameToSave) => {
+  return {
+    type: 'SET_MANIFEST_FILE_NAME',
+    manifestFilenameToSave
+  }
+};
+
 export var setErrorMessage = (errorMessage) => {
   return {
     type: 'SET_ERROR_MESSAGE',
