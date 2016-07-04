@@ -21,13 +21,18 @@ var ThumbnailStrip = React.createClass({
         return sequenceObj.canvases;
       } else {
         return {};
-      }      
+      }
     }
   },
   buildThumbnailStripCanvasComponents: function(canvases) {
     var thumbnailStripCanvasComponents = [];
     for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
       var canvasMetadata = canvases[canvasIndex];
+      // Set first canvas as selectedCanvasData on initial load to set active class on first canvas in thumbnail strip
+      if(canvasIndex === 0) {
+        var {dispatch} = this.props;
+        dispatch(actions.setSelectedCanvasData(canvasMetadata));
+      }
       thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasMetadata={canvasMetadata}/>);
     }
     return thumbnailStripCanvasComponents;
