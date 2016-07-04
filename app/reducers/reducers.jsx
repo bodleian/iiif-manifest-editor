@@ -28,7 +28,6 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestData: action.manifestData
       });
     case 'SET_MANIFEST_FILE_NAME':
-      console.log('State from the reducer: ', state);
       return Object.assign({}, state, {
         manifestFilenameToSave: action.manifestFilenameToSave
       });
