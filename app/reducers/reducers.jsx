@@ -6,7 +6,8 @@ var stateDefaults = {
   manifestFilenameToSave: 'manifest.json',
   errorMessage: undefined,
   fieldName: undefined,
-  fieldValue: undefined
+  fieldValue: undefined,
+  selectedCanvasData: undefined
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
@@ -44,6 +45,11 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state,
         manifestData: updatedManifestData
       };
+    case 'SET_SELECTED_CANVAS_DATA':
+      return {
+        ...state,
+        selectedCanvasData: action.selectedCanvasData
+      }
     default:
       return state;
   }

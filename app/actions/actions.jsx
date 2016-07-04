@@ -39,3 +39,10 @@ export var saveMetadataField = (fieldName, fieldValue) => {
     fieldValue
   }
 };
+
+export var setSelectedCanvasData = (selectedCanvasData) => {
+  return {
+    type: 'SET_SELECTED_CANVAS_DATA',
+    selectedCanvasData
+  }
+};

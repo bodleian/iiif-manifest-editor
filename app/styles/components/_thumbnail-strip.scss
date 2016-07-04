@@ -5,7 +5,14 @@
   overflow-x: scroll;
 
   .thumbnail-strip-canvas {
-    border: 1px solid $gray-light;
-    width: 150px;
+    height:158px;
+
+    img {
+      margin: 2px 10px;
+    }
+    .thumbnail-strip-canvas-label {
+      display: block;
+      text-align: center;
+    }
   }
 }
