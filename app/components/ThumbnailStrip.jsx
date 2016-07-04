@@ -4,7 +4,7 @@ var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 
 var ThumbnailStrip = React.createClass({
-  componentDidMount: function() {
+  componentWillMount: function() {
     var {manifestData} = this.props;
     var sequence = this.getSequenceFromManifest(manifestData);
     var canvases = this.getCanvasesFromSequence(sequence);
