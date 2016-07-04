@@ -9,17 +9,11 @@ var EditableTextArea = React.createClass({
       text: this.props.value
     }
   },
-  componentDidMount: function() {
-    var $this = $(ReactDOM.findDOMNode(this));
-    this.setState({ initialWidth: $this[0].scrollWidth });
-  },
   componentDidUpdate: function() {
     if(this.state.editing) {
-      var $this = $(ReactDOM.findDOMNode(this));
-      var currentTextArea = $this[0];
-      currentTextArea.style.width = (this.state.initialWidth - 30) + 'px';
+      var $textareas = $(ReactDOM.findDOMNode(this.refs.textArea));
+      var currentTextArea = $textareas[0];
       currentTextArea.style.height = currentTextArea.scrollHeight + 'px';
-      currentTextArea.style.marginLeft = '15px';
       currentTextArea.style.overflowY = 'hidden';
     }
   },
@@ -44,13 +38,17 @@ var EditableTextArea = React.createClass({
   },
   render: function() {
     if(this.state.editing) {
-      return <textarea ref='textArea'
-                       onChange={this.textChanged}
-                       onBlur={this.inputLostFocus}
-                       onKeyPress={this.keyPressed}
-                       defaultValue={this.state.text}
-                       autoFocus>
-             </textarea>;
+      return (
+        <div ref="textAreaContainer" className={this.props.classNames}>
+          <textarea ref='textArea'
+                    onChange={this.textChanged}
+                    onBlur={this.inputLostFocus}
+                    onKeyPress={this.keyPressed}
+                    defaultValue={this.state.text}
+                    autoFocus>
+         </textarea>
+       </div>
+      );
     }
     return <div className={this.props.classNames} onClick={this.labelClicked} >{this.state.text}</div>;
   }

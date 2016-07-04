@@ -18,7 +18,10 @@
         font-weight: bold;
       }
 
-      .metadata-field-value {
+      .metadata-field-value textarea {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
       }
     }
   }
