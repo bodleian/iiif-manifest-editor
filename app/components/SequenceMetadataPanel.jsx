@@ -12,8 +12,8 @@ var SequenceMetadataPanel = React.createClass({
     return (
       <div className="metadata-sidebar-panel">
         <div className="row">
-          <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" value={sequence.getLabel()} onUpdateHandler={()=>{}}/>
+          <div className="col-md-3 metadata-field-label">Sequence Label:</div>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" fieldValue={sequence.getLabel()} onUpdateHandler={()=>{}}/>
         </div>
       </div>
     );

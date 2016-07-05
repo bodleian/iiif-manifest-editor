@@ -25,19 +25,19 @@ var ManifestMetadataPanel = React.createClass({
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" value={metadata.label} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" fieldValue={metadata.label} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Attribution:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="attribution" value={metadata.attribution} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="attribution" fieldValue={metadata.attribution} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Description:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="description" value={metadata.description} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="description" fieldValue={metadata.description} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">License:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="license" value={metadata.license} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="license" fieldValue={metadata.license} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
       </div>
     );

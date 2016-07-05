@@ -6,16 +6,20 @@ var EditableTextArea = React.createClass({
   getInitialState: function() {
     return {
       editing: false,
-      text: this.props.value
+      text: this.props.fieldValue
     }
   },
   componentDidUpdate: function() {
+    this.setState({ text: this.props.fieldValue })
     if(this.state.editing) {
       var $textareas = $(ReactDOM.findDOMNode(this.refs.textArea));
       var currentTextArea = $textareas[0];
       currentTextArea.style.height = currentTextArea.scrollHeight + 'px';
       currentTextArea.style.overflowY = 'hidden';
     }
+  },
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return this.props.fieldValue !== nextProps.fieldValue || this.state.editing !== nextState.editing;
   },
   labelClicked: function() {
     this.setState({ editing: true });
