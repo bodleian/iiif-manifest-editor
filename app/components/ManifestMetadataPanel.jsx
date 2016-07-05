@@ -1,43 +1,32 @@
 var React = require('react');
 var {connect} = require('react-redux');
-var EditableTextArea = require('EditableTextArea');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
+var EditableTextArea = require('EditableTextArea');
 
 var ManifestMetadataPanel = React.createClass({
-  extractManifestMetadata: function() {
-    var {manifestData} = this.props;
-    var manifestoObject = manifesto.create(JSON.stringify(manifestData));
-    return {
-      label: manifestoObject.getLabel(),
-      attribution: manifestoObject.getAttribution(),
-      description: manifestoObject.getDescription('de'),
-      license: manifestoObject.getLicense()
-    };
-  },
-  saveMetadataFieldToStore: function(fieldName, fieldValue) {
-    var {dispatch} = this.props;
-    dispatch(actions.saveMetadataField(fieldName, fieldValue));
+  saveMetadataFieldToStore: function(fieldValue, path) {
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
-    var metadata = this.extractManifestMetadata();
+    var manifest = manifesto.create(JSON.stringify(this.props.manifestData));
     return (
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" fieldValue={metadata.label} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLabel()} path="label" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Attribution:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="attribution" fieldValue={metadata.attribution} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getAttribution()} path="attribution" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Description:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="description" fieldValue={metadata.description} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getDescription()} path="description/1/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">License:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="license" fieldValue={metadata.license} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLicense()} path="license" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
       </div>
     );

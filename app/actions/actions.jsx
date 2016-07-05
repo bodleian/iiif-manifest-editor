@@ -32,11 +32,11 @@ export var setErrorMessage = (errorMessage) => {
   }
 };
 
-export var saveMetadataField = (fieldName, fieldValue) => {
+export var updateMetadataFieldValueAtPath = (fieldValue, path) => {
   return {
-    type: 'SAVE_METADATA_FIELD',
-    fieldName,
-    fieldValue
+    type: 'UPDATE_METADATA_FIELD_VALUE_AT_PATH',
+    fieldValue,
+    path
   }
 };
 

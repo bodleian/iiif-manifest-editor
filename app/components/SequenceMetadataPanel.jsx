@@ -1,19 +1,21 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var actions = require('actions');
 var manifesto = require('manifesto.js');
 var EditableTextArea = require('EditableTextArea');
 
 var SequenceMetadataPanel = React.createClass({
+  saveMetadataFieldToStore: function(fieldValue, path) {
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
+  },
   render: function() {
-    var {manifestData} = this.props;
-    var manifestoObject = manifesto.create(JSON.stringify(manifestData));
-    var sequence = manifestoObject.getSequenceByIndex(0);
-
+    var manifest = manifesto.create(JSON.stringify(this.props.manifestData));
+    var sequence = manifest.getSequenceByIndex(0);
     return (
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Sequence Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" fieldValue={sequence.getLabel()} onUpdateHandler={()=>{}}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={sequence.getLabel()} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
       </div>
     );

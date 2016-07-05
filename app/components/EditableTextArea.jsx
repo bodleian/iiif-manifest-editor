@@ -6,11 +6,11 @@ var EditableTextArea = React.createClass({
   getInitialState: function() {
     return {
       editing: false,
-      text: this.props.fieldValue
+      fieldValue: this.props.fieldValue
     }
   },
   componentDidUpdate: function() {
-    this.setState({ text: this.props.fieldValue })
+    this.setState({ fieldValue: this.state.fieldValue })
     if(this.state.editing) {
       var $textareas = $(ReactDOM.findDOMNode(this.refs.textArea));
       var currentTextArea = $textareas[0];
@@ -27,13 +27,13 @@ var EditableTextArea = React.createClass({
   textChanged: function() {
     // dynamically adjust the height of the text area based on content that is entered
     var textArea = this.refs.textArea;
-    this.setState({ text: textArea.value });
+    this.setState({ fieldValue: textArea.value });
     textArea.style.height = textArea.scrollHeight + 'px';
   },
   inputLostFocus: function() {
     this.setState({ editing: false });
     // send the key and value of the text area to the update handler callback method
-    this.props.onUpdateHandler(this.props.fieldName, this.refs.textArea.value);
+    this.props.onUpdateHandler(this.state.fieldValue, this.props.path);
   },
   keyPressed: function(event) {
     if(event.key == 'Enter') {
@@ -48,13 +48,13 @@ var EditableTextArea = React.createClass({
                     onChange={this.textChanged}
                     onBlur={this.inputLostFocus}
                     onKeyPress={this.keyPressed}
-                    defaultValue={this.state.text}
+                    defaultValue={this.state.fieldValue}
                     autoFocus>
          </textarea>
        </div>
       );
     }
-    return <div className={this.props.classNames} onClick={this.labelClicked} >{this.state.text}</div>;
+    return <div className={this.props.classNames} onClick={this.labelClicked} >{this.state.fieldValue}</div>;
   }
 });
 
