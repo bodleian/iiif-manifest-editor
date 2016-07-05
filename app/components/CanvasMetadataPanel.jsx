@@ -6,7 +6,7 @@ var CanvasMetadataPanel = React.createClass({
   render: function() {
     return (
       <div className="metadata-sidebar-panel">
-        <ThumbnailStripCanvas canvasMetadata={this.props.selectedCanvasData}/>
+        <ThumbnailStripCanvas canvas={this.props.selectedCanvasData}/>
       </div>
     );
   }

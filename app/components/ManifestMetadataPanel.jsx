@@ -2,27 +2,18 @@ var React = require('react');
 var {connect} = require('react-redux');
 var EditableTextArea = require('EditableTextArea');
 var actions = require('actions');
+var manifesto = require('manifesto.js');
 
 var ManifestMetadataPanel = React.createClass({
-  getDescriptionForLanguageCode: function(descriptions, languageCode) {
-    for(var index = 0; index < descriptions.length; index++) {
-      var description = descriptions[index];
-      if(description['@language'] === languageCode) {
-        return description['@value'];
-      }
-    }
-    return undefined;
-  },
   extractManifestMetadata: function() {
     var {manifestData} = this.props;
-    if(manifestData !== undefined) {
-      return {
-        attribution: manifestData.attribution,
-        label: manifestData.label,
-        description: this.getDescriptionForLanguageCode(manifestData.description, 'en'),
-        license: manifestData.license
-      };
-    }
+    var manifestoObject = manifesto.create(JSON.stringify(manifestData));
+    return {
+      label: manifestoObject.getLabel(),
+      attribution: manifestoObject.getAttribution(),
+      description: manifestoObject.getDescription('de'),
+      license: manifestoObject.getLicense()
+    };
   },
   saveMetadataFieldToStore: function(fieldName, fieldValue) {
     var {dispatch} = this.props;
