@@ -55,9 +55,14 @@ export var manifestReducer = (state = stateDefaults, action) => {
         object = object[stack.shift()];
       }
       object[stack.shift()] = action.fieldValue;
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
       // return the updated manifest data with the original state variables
       return {
         ...state,
+        manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
     case 'SET_SELECTED_CANVAS_DATA':
