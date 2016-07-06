@@ -11,6 +11,13 @@ export var completeManifestFetch = (url) => {
   };
 };
 
+export var setManifestoObject = (manifestoObject) => {
+  return {
+    type: 'SET_MANIFESTO_OBJECT',
+    manifestoObject
+  }
+};
+
 export var setManifestData = (manifestData) => {
   return {
     type: 'SET_MANIFEST_DATA',

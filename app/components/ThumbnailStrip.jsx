@@ -2,20 +2,14 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
-var manifesto = require('manifesto.js');
 
 var ThumbnailStrip = React.createClass({
   componentWillMount: function() {
-    var {manifestData} = this.props;
-    var manifestoObject = manifesto.create(JSON.stringify(manifestData));
-    this.setState({
-      manifestoObject: manifestoObject
-    });
-    var sequence = manifestoObject.getSequenceByIndex(0);
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
     var firstCanvas = sequence.getCanvasByIndex(0);
-    // // Set first canvas as selectedCanvasData on initial load to set active class on first canvas in thumbnail strip
-    var {dispatch} = this.props;
-    dispatch(actions.setSelectedCanvasData(firstCanvas));
+    // Set first canvas as selectedCanvasData on initial load to set active class on first canvas in thumbnail strip
+    this.props.dispatch(actions.setSelectedCanvasData(firstCanvas));
   },
   buildThumbnailStripCanvasComponents: function(sequence) {
     var thumbnailStripCanvasComponents = [];
@@ -26,10 +20,9 @@ var ThumbnailStrip = React.createClass({
     return thumbnailStripCanvasComponents;
   },
   render: function() {
-    var sequence = this.state.manifestoObject.getSequenceByIndex(0);
     return (
       <div className="row thumbnail-strip-container">
-        {this.buildThumbnailStripCanvasComponents(sequence)}
+        {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
       </div>
     );
   }
@@ -38,6 +31,7 @@ var ThumbnailStrip = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }

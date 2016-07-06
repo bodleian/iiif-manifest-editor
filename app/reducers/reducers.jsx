@@ -1,8 +1,10 @@
+var manifesto = require('manifesto.js');
 
 var stateDefaults = {
   isFetching: false,
   url: undefined,
   manifestData: undefined,
+  manifestoObject: undefined,
   manifestFilenameToSave: 'manifest.json',
   errorMessage: undefined,
   fieldName: undefined,
@@ -16,6 +18,7 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return Object.assign({}, state, {
         isFetching: true,
         url: undefined,
+        manifestoObject: undefined,
         manifestData: undefined,
         errorMessage: undefined
       });
@@ -23,6 +26,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         url: action.url
+      });
+    case 'SET_MANIFESTO_OBJECT':
+      return Object.assign({}, state, {
+        manifestoObject: action.manifestoObject
       });
     case 'SET_MANIFEST_DATA':
       return Object.assign({}, state, {

@@ -1,7 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
-var manifesto = require('manifesto.js');
 var EditableTextArea = require('EditableTextArea');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 
@@ -10,7 +9,7 @@ var CanvasMetadataPanel = React.createClass({
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
-    var manifest = manifesto.create(JSON.stringify(this.props.manifestData));
+    var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = this.props.selectedCanvasData;
     var canvasLabel = canvas.getLabel();
@@ -42,6 +41,7 @@ var CanvasMetadataPanel = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData,
       selectedCanvasData: state.manifestReducer.selectedCanvasData
     };

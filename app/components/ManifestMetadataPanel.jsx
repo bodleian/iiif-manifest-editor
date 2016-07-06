@@ -1,7 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
-var manifesto = require('manifesto.js');
 var EditableTextArea = require('EditableTextArea');
 
 var ManifestMetadataPanel = React.createClass({
@@ -9,7 +8,7 @@ var ManifestMetadataPanel = React.createClass({
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
-    var manifest = manifesto.create(JSON.stringify(this.props.manifestData));
+    var manifest = this.props.manifestoObject;
     return (
       <div className="metadata-sidebar-panel">
         <div className="row">
@@ -36,6 +35,7 @@ var ManifestMetadataPanel = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }

@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
+var manifesto = require('manifesto.js');
 
 var OpenLocalManifestForm = React.createClass({
   fetchLocalManifestFile: function(localManifestFile) {
@@ -12,6 +13,7 @@ var OpenLocalManifestForm = React.createClass({
     axios.put('/manifestUpload', formData)
       .then(function(response) {
         dispatch(actions.completeManifestFetch(localManifestFile));
+        dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
         window.location = '#/edit';  // redirect to edit manifest on success
       })

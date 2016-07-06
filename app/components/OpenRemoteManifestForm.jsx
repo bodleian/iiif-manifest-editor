@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
+var manifesto = require('manifesto.js');
 
 var OpenRemoteManifestForm = React.createClass({
   fetchManifest: function(remoteManifestUrl) {
@@ -10,6 +11,7 @@ var OpenRemoteManifestForm = React.createClass({
     axios.get(remoteManifestUrl)
       .then(function(response) {
         dispatch(actions.completeManifestFetch(remoteManifestUrl));
+        dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
         window.location = '#/edit';  // redirect to edit manifest on success
       })

@@ -1,7 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
-var manifesto = require('manifesto.js');
 var EditableTextArea = require('EditableTextArea');
 
 var SequenceMetadataPanel = React.createClass({
@@ -9,7 +8,7 @@ var SequenceMetadataPanel = React.createClass({
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
-    var manifest = manifesto.create(JSON.stringify(this.props.manifestData));
+    var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     return (
       <div className="metadata-sidebar-panel">
@@ -25,6 +24,7 @@ var SequenceMetadataPanel = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }
