@@ -47,9 +47,9 @@ export var updateMetadataFieldValueAtPath = (fieldValue, path) => {
   }
 };
 
-export var setSelectedCanvasData = (selectedCanvasData) => {
+export var setSelectedCanvasId = (selectedCanvasId) => {
   return {
-    type: 'SET_SELECTED_CANVAS_DATA',
-    selectedCanvasData
+    type: 'SET_SELECTED_CANVAS_ID',
+    selectedCanvasId
   }
 };

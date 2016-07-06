@@ -65,10 +65,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-    case 'SET_SELECTED_CANVAS_DATA':
+    case 'SET_SELECTED_CANVAS_ID':
       return {
         ...state,
-        selectedCanvasData: action.selectedCanvasData
+        selectedCanvasId: action.selectedCanvasId
       }
     default:
       return state;

@@ -4,27 +4,28 @@ var actions = require('actions');
 var manifesto = require('manifesto.js');
 
 var ThumbnailStripCanvas = React.createClass({
-  setSelectedCanvasData: function() {
-    var {dispatch, canvas} = this.props;
-    dispatch(actions.setSelectedCanvasData(canvas));
+  setSelectedCanvasId: function() {
+    var {dispatch, canvasId} = this.props;
+    dispatch(actions.setSelectedCanvasId(canvasId));
   },
   setActiveClass: function() {
-    var {selectedCanvasData} = this.props;
-    if(selectedCanvasData !== undefined && this.props.canvas.id === selectedCanvasData.id) {
+    if(this.props.selectedCanvasId !== undefined && this.props.canvasId === this.props.selectedCanvasId) {
       return "thumbnail-strip-canvas active";
     } else {
       return "thumbnail-strip-canvas";
     }
   },
   getMainImage: function() {
-    return this.props.canvas.getThumbUri('100', '150');
+    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
+    return canvas.getThumbUri('100', '150');
   },
   render: function() {
+    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
-      <div className={this.setActiveClass()} onClick={this.setSelectedCanvasData}>
-        <img src={this.getMainImage()} alt={this.props.canvas.getLabel()} height="150" />
+      <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
+        <img src={this.getMainImage()} alt={canvas.getLabel()} height="150" />
         <div className="thumbnail-strip-canvas-label">
-          {this.props.canvas.getLabel()}
+          {canvas.getLabel()}
         </div>
       </div>
     );
@@ -34,7 +35,8 @@ var ThumbnailStripCanvas = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      selectedCanvasData: state.manifestReducer.selectedCanvasData
+      manifestoObject: state.manifestReducer.manifestoObject,
+      selectedCanvasId: state.manifestReducer.selectedCanvasId
     };
   }
 )(ThumbnailStripCanvas);
