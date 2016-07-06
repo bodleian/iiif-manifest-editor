@@ -37,17 +37,18 @@ export var manifestReducer = (state = stateDefaults, action) => {
         errorMessage: action.errorMessage
       });
     case 'UPDATE_METADATA_FIELD_VALUE_AT_PATH':
+      // make a copy of the manifest data to update
       var updatedManifestData = {
         ...state.manifestData
       };
-
+      // update the metadata field at the given path
       var object = updatedManifestData;
       var stack = action.path.split('/');
       while(stack.length > 1) {
         object = object[stack.shift()];
       }
       object[stack.shift()] = action.fieldValue;
-
+      // return the updated manifest data with the original state variables
       return {
         ...state,
         manifestData: updatedManifestData

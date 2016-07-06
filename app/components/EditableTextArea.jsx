@@ -9,8 +9,12 @@ var EditableTextArea = React.createClass({
       fieldValue: this.props.fieldValue
     }
   },
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      fieldValue: nextProps.fieldValue
+    });
+  },
   componentDidUpdate: function() {
-    this.setState({ fieldValue: this.state.fieldValue })
     if(this.state.editing) {
       var $textareas = $(ReactDOM.findDOMNode(this.refs.textArea));
       var currentTextArea = $textareas[0];
@@ -19,7 +23,9 @@ var EditableTextArea = React.createClass({
     }
   },
   shouldComponentUpdate: function(nextProps, nextState) {
-    return this.props.fieldValue !== nextProps.fieldValue || this.state.editing !== nextState.editing;
+    return this.props.fieldValue !== nextProps.fieldValue ||
+           this.state.fieldValue !== nextState.fieldValue ||
+           this.state.editing !== nextState.editing;
   },
   labelClicked: function() {
     this.setState({ editing: true });
@@ -54,7 +60,7 @@ var EditableTextArea = React.createClass({
        </div>
       );
     }
-    return <div className={this.props.classNames} onClick={this.labelClicked} >{this.state.fieldValue}</div>;
+    return <div className={this.props.classNames} onClick={this.labelClicked}>{this.state.fieldValue}</div>;
   }
 });
 
