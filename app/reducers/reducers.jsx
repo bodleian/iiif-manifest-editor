@@ -10,6 +10,7 @@ var stateDefaults = {
   fieldName: undefined,
   fieldValue: undefined,
   selectedCanvasData: undefined
+  selectedCanvasId: undefined
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
@@ -70,6 +71,15 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state,
         selectedCanvasId: action.selectedCanvasId
       }
+    case 'START_IMAGE_ANNOTATION_FETCH':
+      return Object.assign({}, state, {
+        isFetching: true,
+        errorMessage: undefined
+      });
+    case 'COMPLETE_IMAGE_ANNOTATION_FETCH':
+      return Object.assign({}, state, {
+        isFetching: false,
+      });
     default:
       return state;
   }

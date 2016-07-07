@@ -53,3 +53,15 @@ export var setSelectedCanvasId = (selectedCanvasId) => {
     selectedCanvasId
   }
 };
+
+export var startImageAnnotationFetch = () => {
+  return {
+    type: 'START_IMAGE_ANNOTATION_FETCH'
+  };
+};
+
+export var completeImageAnnotationFetch = () => {
+  return {
+    type: 'COMPLETE_IMAGE_ANNOTATION_FETCH'
+  };
+};

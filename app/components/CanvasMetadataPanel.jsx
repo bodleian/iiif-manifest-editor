@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
+var axios = require('axios');
 var EditableTextArea = require('EditableTextArea');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 
@@ -13,6 +14,38 @@ var CanvasMetadataPanel = React.createClass({
       this.props.dispatch(actions.setSelectedCanvasId(fieldValue));
     }
   },
+  updateImageAnnotationForCanvasWithId: function(fieldName, fieldValue, path) {
+    // fetch new image annotation remotely
+    var {dispatch} = this.props;
+    dispatch(actions.startImageAnnotationFetch());
+    var that = this;
+    axios.get(fieldValue)
+      .then(function(response) {
+        var updatedImageAnnotation = response.data;
+        // update the on property on the fetched imageAnnotation to set it to the original canvas ID
+        updatedImageAnnotation.on = that.props.selectedCanvasId;
+        dispatch(actions.completeImageAnnotationFetch());
+        // dispatch action to store to replace existing image annotation with fetched image annotation
+        dispatch(actions.updateMetadataFieldValueAtPath(updatedImageAnnotation, path));
+      })
+      .catch(function(error) {
+        dispatch(actions.setErrorMessage('Error loading image annotation. Please provide a valid image annotation URI.'));
+      });
+  },
+  displayImageAnnotationFetchErrors: function() {
+    var {errorMessage} = this.props;
+    if(errorMessage !== undefined) {
+      return (
+        <div className="row">
+          <div className="col-md-offset-1 col-md-10">
+            <div className="alert alert-danger image-annotation-fetch-error">
+              {errorMessage}
+            </div>
+          </div>
+        </div>
+      );
+    }
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -20,7 +53,7 @@ var CanvasMetadataPanel = React.createClass({
     var image = canvas.getImages()[0];
     var canvasIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/@id";
     var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
-    var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0/@id";
+    var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
     return (
       <div className="metadata-sidebar-panel">
         <ThumbnailStripCanvas canvasId={this.props.selectedCanvasId}/>
@@ -34,8 +67,9 @@ var CanvasMetadataPanel = React.createClass({
           <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvaLabel" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
-          <div className="col-md-3 metadata-field-label">Image URI:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
+          {this.displayImageAnnotationFetchErrors()}
         </div>
       </div>
     );
@@ -47,7 +81,8 @@ module.exports = connect(
     return {
       manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData,
-      selectedCanvasId: state.manifestReducer.selectedCanvasId
+      selectedCanvasId: state.manifestReducer.selectedCanvasId,
+      errorMessage: state.manifestReducer.errorMessage
     };
   }
 )(CanvasMetadataPanel);
