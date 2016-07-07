@@ -7,16 +7,17 @@ var manifesto = require('manifesto.js');
 var OpenRemoteManifestForm = React.createClass({
   fetchManifest: function(remoteManifestUrl) {
     var {dispatch} = this.props;
-    dispatch(actions.startManifestFetch());
+    dispatch(actions.startManifestFetch('MANIFEST_TYPE_REMOTE'));
     axios.get(remoteManifestUrl)
       .then(function(response) {
-        dispatch(actions.completeManifestFetch(remoteManifestUrl));
         dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
+        dispatch(actions.completeManifestFetch());
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setErrorMessage('Error loading remote manifest. Please provide a valid manifest URL.'));
+        dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest. Please provide a valid manifest URL.'));
+        dispatch(actions.completeManifestFetch());
       });
   },
   onFormSubmit: function(e) {
@@ -34,7 +35,6 @@ var OpenRemoteManifestForm = React.createClass({
     }
   },
   render: function() {
-    var {isFetching} = this.props;
     return (
       <div>
         <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
@@ -44,7 +44,7 @@ var OpenRemoteManifestForm = React.createClass({
               <input type="text" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" />
             </div>
             <div className="col-sm-2">
-              <button id="loadRemoteManifestButton" type="submit" className="btn btn-default">{isFetching ? 'Loading...' : 'Load Manifest'}</button>
+              <button id="loadRemoteManifestButton" type="submit" className="btn btn-default">{this.props.isFetchingRemoteManifest ? 'Loading...' : 'Load Manifest'}</button>
             </div>
           </div>
         </form>
@@ -56,7 +56,7 @@ var OpenRemoteManifestForm = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      isFetching: state.manifestReducer.isFetching
+      isFetchingRemoteManifest: state.manifestReducer.isFetchingRemoteManifest
     };
   }
 )(OpenRemoteManifestForm);

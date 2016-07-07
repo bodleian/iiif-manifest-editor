@@ -22,24 +22,24 @@ var CanvasMetadataPanel = React.createClass({
     axios.get(fieldValue)
       .then(function(response) {
         var updatedImageAnnotation = response.data;
-        // update the on property on the fetched imageAnnotation to set it to the original canvas ID
+        // update the on property on the fetched image annotation to set it to the original canvas ID
         updatedImageAnnotation.on = that.props.selectedCanvasId;
         dispatch(actions.completeImageAnnotationFetch());
         // dispatch action to store to replace existing image annotation with fetched image annotation
         dispatch(actions.updateMetadataFieldValueAtPath(updatedImageAnnotation, path));
       })
       .catch(function(error) {
-        dispatch(actions.setErrorMessage('Error loading image annotation. Please provide a valid image annotation URI.'));
+        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image annotation. Please provide a valid image annotation URI.'));
       });
   },
   displayImageAnnotationFetchErrors: function() {
-    var {errorMessage} = this.props;
-    if(errorMessage !== undefined) {
+    var {error} = this.props;
+    if(error !== undefined) {
       return (
         <div className="row">
           <div className="col-md-offset-1 col-md-10">
             <div className="alert alert-danger image-annotation-fetch-error">
-              {errorMessage}
+              {error.message}
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ module.exports = connect(
       manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData,
       selectedCanvasId: state.manifestReducer.selectedCanvasId,
-      errorMessage: state.manifestReducer.errorMessage
+      error: state.manifestReducer.error
     };
   }
 )(CanvasMetadataPanel);

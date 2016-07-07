@@ -1,13 +1,13 @@
-export var startManifestFetch = () => {
+export var startManifestFetch = (manifestType) => {
   return {
-    type: 'START_MANIFEST_FETCH'
+    type: 'START_MANIFEST_FETCH',
+    manifestType
   };
 };
 
-export var completeManifestFetch = (url) => {
+export var completeManifestFetch = () => {
   return {
     type: 'COMPLETE_MANIFEST_FETCH',
-    url
   };
 };
 
@@ -32,17 +32,10 @@ export var setManifestFilename = (manifestFilenameToSave) => {
   }
 };
 
-export var setErrorMessage = (errorMessage) => {
-  return {
-    type: 'SET_ERROR_MESSAGE',
-    errorMessage
-  }
-};
-
-export var updateMetadataFieldValueAtPath = (fieldValue, path) => {
+export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   return {
     type: 'UPDATE_METADATA_FIELD_VALUE_AT_PATH',
-    fieldValue,
+    metadataFieldValue,
     path
   }
 };
@@ -64,4 +57,12 @@ export var completeImageAnnotationFetch = () => {
   return {
     type: 'COMPLETE_IMAGE_ANNOTATION_FETCH'
   };
+};
+
+export var setError = (errorType, errorMessage) => {
+  return {
+    type: 'SET_ERROR',
+    errorType,
+    errorMessage
+  }
 };
