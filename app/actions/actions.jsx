@@ -1,14 +1,21 @@
-export var startManifestFetch = () => {
+export var startManifestFetch = (manifestType) => {
   return {
-    type: 'START_MANIFEST_FETCH'
+    type: 'START_MANIFEST_FETCH',
+    manifestType
   };
 };
 
-export var completeManifestFetch = (url) => {
+export var completeManifestFetch = () => {
   return {
     type: 'COMPLETE_MANIFEST_FETCH',
-    url
   };
+};
+
+export var setManifestoObject = (manifestoObject) => {
+  return {
+    type: 'SET_MANIFESTO_OBJECT',
+    manifestoObject
+  }
 };
 
 export var setManifestData = (manifestData) => {
@@ -25,17 +32,37 @@ export var setManifestFilename = (manifestFilenameToSave) => {
   }
 };
 
-export var setErrorMessage = (errorMessage) => {
+export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   return {
-    type: 'SET_ERROR_MESSAGE',
-    errorMessage
+    type: 'UPDATE_METADATA_FIELD_VALUE_AT_PATH',
+    metadataFieldValue,
+    path
   }
 };
 
-export var saveMetadataField = (fieldName, fieldValue) => {
+export var setSelectedCanvasId = (selectedCanvasId) => {
   return {
-    type: 'SAVE_METADATA_FIELD',
-    fieldName,
-    fieldValue
+    type: 'SET_SELECTED_CANVAS_ID',
+    selectedCanvasId
+  }
+};
+
+export var startImageAnnotationFetch = () => {
+  return {
+    type: 'START_IMAGE_ANNOTATION_FETCH'
+  };
+};
+
+export var completeImageAnnotationFetch = () => {
+  return {
+    type: 'COMPLETE_IMAGE_ANNOTATION_FETCH'
+  };
+};
+
+export var setError = (errorType, errorMessage) => {
+  return {
+    type: 'SET_ERROR',
+    errorType,
+    errorMessage
   }
 };

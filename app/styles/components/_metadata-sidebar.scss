@@ -14,11 +14,22 @@
     .metadata-sidebar-panel {
       height: 65vh;
 
+      .row {
+        margin-bottom: 15px;
+      }
+
       .metadata-field-label {
         font-weight: bold;
       }
 
-      .metadata-field-value {
+      .image-annotation-fetch-error {
+        margin-top: 15px;
+      }
+
+      .metadata-field-value textarea {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
       }
     }
   }

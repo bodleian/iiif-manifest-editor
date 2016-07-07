@@ -4,41 +4,25 @@ var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 
 var ThumbnailStrip = React.createClass({
-  getSequenceFromManifest: function(manifestData) {
-    if(manifestData !== undefined) {
-      if(manifestData.sequences.length > 0) {
-        // return the first available sequence from the given manifest
-        return manifestData.sequences[0];
-      } else {
-        return {};
-      }
-    }
+  componentWillMount: function() {
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    var firstCanvas = sequence.getCanvasByIndex(0);
+    // save the id of the first canvas into selectedCanvasId on initial load to set active class on first canvas in thumbnail strip
+    this.props.dispatch(actions.setSelectedCanvasId(firstCanvas.id));
   },
-  getCanvasesFromSequence: function(sequenceObj) {
-    if(sequenceObj !== undefined) {
-      if(sequenceObj.canvases.length > 0) {
-        // return the list of canvases for the given sequence
-        return sequenceObj.canvases;
-      } else {
-        return {};
-      }      
-    }
-  },
-  buildThumbnailStripCanvasComponents: function(canvases) {
+  buildThumbnailStripCanvasComponents: function(sequence) {
     var thumbnailStripCanvasComponents = [];
-    for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
-      var canvasMetadata = canvases[canvasIndex];
-      thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasMetadata={canvasMetadata}/>);
+    for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
+      var canvas = sequence.getCanvasByIndex(canvasIndex);
+      thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasId={canvas.id}/>);
     }
     return thumbnailStripCanvasComponents;
   },
   render: function() {
-    var {manifestData} = this.props;
-    var sequence = this.getSequenceFromManifest(manifestData);
-    var canvases = this.getCanvasesFromSequence(sequence);
     return (
       <div className="row thumbnail-strip-container">
-        {this.buildThumbnailStripCanvasComponents(canvases)}
+        {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
       </div>
     );
   }
@@ -47,6 +31,7 @@ var ThumbnailStrip = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }

@@ -6,11 +6,11 @@ var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
 var OpenManifest = React.createClass({
   displayManifestFetchErrors: function() {
-    var {errorMessage} = this.props;
-    if(errorMessage !== undefined) {
+    var {error} = this.props;
+    if(error !== undefined) {
       return (
         <div className="alert alert-danger">
-          {errorMessage}
+          {error.message}
         </div>
       );
     }
@@ -46,7 +46,7 @@ var OpenManifest = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      errorMessage: state.manifestReducer.errorMessage
+      error: state.manifestReducer.error
     };
   }
 )(OpenManifest);

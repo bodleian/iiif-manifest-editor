@@ -9,20 +9,6 @@ var MetadataSidebarButtons = React.createClass({
     var $saveManifestDialog = $(ReactDOM.findDOMNode(this.refs.saveManifestDialog));
     $saveManifestDialog.modal();
   },
-  downloadManifestData: function(manifestFilenameToSave) {
-    var {manifestData} = this.props;
-    var manifestDataJson = JSON.stringify(manifestData, null, '\t');
-    var a = document.createElement('a');
-    var blob = new Blob([manifestDataJson], {'type':'application/json'});
-    a.href = window.URL.createObjectURL(blob);
-    a.download = manifestFilenameToSave;
-    a.click();
-  },
-  componentWillReceiveProps: function(nextProps) {
-    if(this.props.manifestFilenameToSave !== nextProps.manifestFilenameToSave) {
-       this.downloadManifestData(nextProps.manifestFilenameToSave);
-    }
-  },
   render: function() {
     return (
       <div className="metadata-sidebar-buttons">

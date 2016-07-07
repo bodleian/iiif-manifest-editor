@@ -1,52 +1,31 @@
 var React = require('react');
 var {connect} = require('react-redux');
-var EditableTextArea = require('EditableTextArea');
 var actions = require('actions');
+var EditableTextArea = require('EditableTextArea');
 
 var ManifestMetadataPanel = React.createClass({
-  getDescriptionForLanguageCode: function(descriptions, languageCode) {
-    for(var index = 0; index < descriptions.length; index++) {
-      var description = descriptions[index];
-      if(description['@language'] === languageCode) {
-        return description['@value'];
-      }
-    }
-    return undefined;
-  },
-  extractManifestMetadata: function() {
-    var {manifestData} = this.props;
-    if(manifestData !== undefined) {
-      return {
-        attribution: manifestData.attribution,
-        label: manifestData.label,
-        description: this.getDescriptionForLanguageCode(manifestData.description, 'en'),
-        license: manifestData.license
-      };
-    }
-  },
-  saveMetadataFieldToStore: function(fieldName, fieldValue) {
-    var {dispatch} = this.props;
-    dispatch(actions.saveMetadataField(fieldName, fieldValue));
+  saveMetadataFieldToStore: function(fieldValue, path) {
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
-    var metadata = this.extractManifestMetadata();
+    var manifest = this.props.manifestoObject;
     return (
       <div className="metadata-sidebar-panel">
         <div className="row">
           <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="label" value={metadata.label} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLabel()} path="label" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Attribution:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="attribution" value={metadata.attribution} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getAttribution()} path="attribution" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Description:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="description" value={metadata.description} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getDescription()} path="description/1/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">License:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="license" value={metadata.license} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLicense()} path="license" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
       </div>
     );
@@ -56,6 +35,7 @@ var ManifestMetadataPanel = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }

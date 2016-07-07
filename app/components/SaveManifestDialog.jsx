@@ -4,10 +4,19 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 
 var SaveManifestDialog = React.createClass({
+  downloadManifestData: function(manifestFilenameToSave) {
+    var {manifestData} = this.props;
+    var manifestDataJson = JSON.stringify(manifestData, null, '\t');
+    var a = document.createElement('a');
+    var blob = new Blob([manifestDataJson], {'type':'application/json'});
+    a.href = window.URL.createObjectURL(blob);
+    a.download = manifestFilenameToSave;
+    a.click();
+  },
   setManifestFilename: function() {
     var manifestFilenameToSave = this.refs.manifestFilename.value;
-    var {dispatch} = this.props;
-    dispatch(actions.setManifestFilename(manifestFilenameToSave));
+    this.props.dispatch(actions.setManifestFilename(manifestFilenameToSave));
+    this.downloadManifestData(manifestFilenameToSave);
   },
   render: function() {
     return (
