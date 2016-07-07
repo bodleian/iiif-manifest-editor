@@ -17,7 +17,7 @@ var ThumbnailStripCanvas = React.createClass({
   },
   getMainImage: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
-    return canvas.getThumbUri('100', '150');
+    return canvas.getThumbUri('', '150');
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
