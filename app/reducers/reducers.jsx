@@ -9,7 +9,6 @@ var stateDefaults = {
   errorMessage: undefined,
   fieldName: undefined,
   fieldValue: undefined,
-  selectedCanvasData: undefined
   selectedCanvasId: undefined
 }
 
