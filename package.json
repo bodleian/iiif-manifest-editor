@@ -40,6 +40,7 @@
   "dependencies": {
     "axios": "^0.11.0",
     "express": "^4.13.4",
+    "font-awesome": "^4.6.3",
     "manifesto.js": "^0.1.20",
     "multer": "^1.1.0",
     "react": "^0.14.7",
@@ -55,6 +56,8 @@
     "bootstrap-sass": "^3.3.6",
     "css-loader": "^0.23.1",
     "expect": "^1.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "jquery": "^2.2.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
@@ -70,6 +73,7 @@
     "sass-loader": "^3.2.0",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
   }
 }

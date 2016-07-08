@@ -43,6 +43,14 @@ module.exports = {
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
+      },
+      {
+        loader: 'style!css',
+        test: /\.css$/
+      },
+      {
+        loader: 'url',
+        test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/
       }
     ]
   },
