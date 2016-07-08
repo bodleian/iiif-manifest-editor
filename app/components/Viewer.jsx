@@ -6,24 +6,33 @@ var Viewer = React.createClass({
   shouldComponentUpdate(newProps) {
     return newProps.manifestData !== this.props.manifestData;
   },
+  componentDidMount: function() {
+    // initialize the viewer
+    var viewer = L.map('map', {
+      center: [0, 0],
+      crs: L.CRS.Simple,
+      zoom: 0,
+      touchZoom: false,
+      inertia: false
+    });
+
+    // add the main image to the viewer
+    L.tileLayer.iiif('http://www.e-codices.unifr.ch/loris/kba/kba-MurF0031a/kba-MurF0031a_recto.jp2/info.json', {
+      // continuousWorld: true,
+      // noWrap: true,
+      maxZoom: 3
+    }).addTo(viewer);
+
+    // add zoom controls to the viewer
+    L.control.zoom().addTo(viewer);
+  },
   render: function() {
-    var {manifestData} = this.props;
     return (
-      <div className="row viewer-container">
-        <div className="col-md-6">
-          <p><strong>Label</strong>: {manifestData.label}</p>
-          <p><strong>Attribution</strong>: {manifestData.attribution}</p>
-          <p><strong>License</strong>: {manifestData.license}</p>
-        </div>
+      <div className="viewer-container">
+        <div id="map"></div>
       </div>
     );
   }
 });
 
-module.exports = connect(
-  (state) => {
-    return {
-      manifestData: state.manifestReducer.manifestData
-    };
-  }
-)(Viewer);
+module.exports = connect()(Viewer);

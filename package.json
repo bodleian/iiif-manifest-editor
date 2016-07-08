@@ -40,6 +40,8 @@
   "dependencies": {
     "axios": "^0.11.0",
     "express": "^4.13.4",
+    "leaflet": "^0.7.7",
+    "leaflet-iiif": "0.0.8",
     "manifesto.js": "^0.1.20",
     "multer": "^1.1.0",
     "react": "^0.14.7",
