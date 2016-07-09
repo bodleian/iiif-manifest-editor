@@ -15,7 +15,6 @@ var OpenLocalManifestDragAndDrop = React.createClass({
         dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
         dispatch(actions.completeManifestFetch());
-        dispatch(actions.metadataSidebarPanelOpen(false));
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
