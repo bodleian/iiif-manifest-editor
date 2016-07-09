@@ -1,6 +1,7 @@
 var React = require('react');
 var {Link} = require('react-router');
 var {connect} = require('react-redux');
+var OpenLocalManifestDragAndDrop = require('OpenLocalManifestDragAndDrop');
 var OpenLocalManifestForm = require('OpenLocalManifestForm');
 var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 
@@ -25,10 +26,8 @@ var OpenManifest = React.createClass({
 
           {this.displayManifestFetchErrors()}
 
-          <div className="drop-manifest-container">
-            <p>Drag and drop manifest here</p>
-          </div>
 
+          <OpenLocalManifestDragAndDrop/>
           <OpenLocalManifestForm/>
           <OpenRemoteManifestForm/>
 
