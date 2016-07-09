@@ -2,21 +2,25 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
+var manifesto = require('manifesto.js');
 
 var OpenLocalManifestDragAndDrop = React.createClass({
   fetchLocalManifestFile: function(localManifestFile) {
     var {dispatch} = this.props;
     var formData = new FormData();
     formData.append('localManifestFile', localManifestFile);
-    dispatch(actions.startManifestFetch());
+    dispatch(actions.startManifestFetch('MANIFEST_TYPE_LOCAL'));
     axios.put('/manifestUpload', formData)
       .then(function(response) {
-        dispatch(actions.completeManifestFetch(localManifestFile));
+        dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
+        dispatch(actions.completeManifestFetch());
+        dispatch(actions.metadataSidebarPanelOpen(false));
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setErrorMessage('Error loading local manifest. Please select a valid manifest file.'));
+        dispatch(actions.setError('FETCH_LOCAL_MANIFEST_ERROR', 'Error loading local manifest. Please select a valid manifest file.'));
+        dispatch(actions.completeManifestFetch());
       });
   },
   onFileDrag: function(evt) {
@@ -33,10 +37,10 @@ var OpenLocalManifestDragAndDrop = React.createClass({
     }
   },
   render: function() {
-    var {isFetching} = this.props;
+    var {isFetchingLocalManifest} = this.props;
     return (
       <div className="drop-manifest-container" id="localManifestFileDragAndDrop" onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
-        {isFetching ? 'Uploading...' : 'Drag and drop manifest here'}
+        {isFetchingLocalManifest ? 'Uploading...' : 'Drag and drop manifest here'}
       </div>
     );
   }
@@ -45,7 +49,7 @@ var OpenLocalManifestDragAndDrop = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      isFetching: state.manifestReducer.isFetching
+      isFetchingLocalManifest: state.manifestReducer.isFetchingLocalManifest
     };
   }
 )(OpenLocalManifestDragAndDrop);
