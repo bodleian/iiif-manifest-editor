@@ -5,7 +5,19 @@
   overflow-x: scroll;
 
   .thumbnail-strip-canvas {
-    border: 1px solid $gray-light;
-    width: 150px;
+    height:178px;
+
+    &.active {
+      border: 2px solid red;
+      border-radius: 5px;
+    }
+
+    img {
+      margin: 2px 10px;
+    }
+    .thumbnail-strip-canvas-label {
+      display: block;
+      text-align: center;
+    }
   }
 }

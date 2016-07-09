@@ -1,27 +1,33 @@
+var manifesto = require('manifesto.js');
 
 var stateDefaults = {
-  isFetching: false,
-  url: undefined,
+  isFetchingLocalManifest: false,
+  isFetchingRemoteManifest: false,
+  isFetchingImageAnnotation: false,
   manifestData: undefined,
+  manifestoObject: undefined,
   manifestFilenameToSave: 'manifest.json',
-  errorMessage: undefined,
-  fieldName: undefined,
-  fieldValue: undefined
+  metadataFieldValue: undefined,
+  selectedCanvasId: undefined,
+  error: undefined
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
   switch (action.type) {
     case 'START_MANIFEST_FETCH':
       return Object.assign({}, state, {
-        isFetching: true,
-        url: undefined,
-        manifestData: undefined,
-        errorMessage: undefined
+        isFetchingLocalManifest: action.manifestType === 'MANIFEST_TYPE_LOCAL',
+        isFetchingRemoteManifest: action.manifestType === 'MANIFEST_TYPE_REMOTE',
+        error: undefined
       });
     case 'COMPLETE_MANIFEST_FETCH':
       return Object.assign({}, state, {
-        isFetching: false,
-        url: action.url
+        isFetchingLocalManifest: false,
+        isFetchingRemoteManifest: false
+      });
+    case 'SET_MANIFESTO_OBJECT':
+      return Object.assign({}, state, {
+        manifestoObject: action.manifestoObject
       });
     case 'SET_MANIFEST_DATA':
       return Object.assign({}, state, {
@@ -31,19 +37,47 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return Object.assign({}, state, {
         manifestFilenameToSave: action.manifestFilenameToSave
       });
-    case 'SET_ERROR_MESSAGE':
-      return Object.assign({}, state, {
-        errorMessage: action.errorMessage
-      });
-    case 'SAVE_METADATA_FIELD':
+    case 'UPDATE_METADATA_FIELD_VALUE_AT_PATH':
+      // make a copy of the manifest data to update
       var updatedManifestData = {
         ...state.manifestData
       };
-      updatedManifestData[action.fieldName] = action.fieldValue;
+      // update the metadata field at the given path
+      var object = updatedManifestData;
+      var stack = action.path.split('/');
+      while(stack.length > 1) {
+        object = object[stack.shift()];
+      }
+      object[stack.shift()] = action.metadataFieldValue;
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
       return {
         ...state,
+        manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'SET_SELECTED_CANVAS_ID':
+      return Object.assign({}, state, {
+        ...state,
+        selectedCanvasId: action.selectedCanvasId,
+        error: undefined
+      });
+    case 'START_IMAGE_ANNOTATION_FETCH':
+      return Object.assign({}, state, {
+        isFetchingImageAnnotation: true,
+        error: undefined
+      });
+    case 'COMPLETE_IMAGE_ANNOTATION_FETCH':
+      return Object.assign({}, state, {
+        isFetchingImageAnnotation: false
+      });
+    case 'SET_ERROR':
+      return Object.assign({}, state, {
+        error: { type: action.errorType, message: action.errorMessage }
+      });
     default:
       return state;
   }
