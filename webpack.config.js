@@ -5,6 +5,8 @@ module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
+    'script!leaflet/dist/leaflet.js',
+    'script!leaflet-iiif/leaflet-iiif.js',
     './app/app.jsx'
   ],
   externals: {
@@ -51,6 +53,10 @@ module.exports = {
       {
         loader: 'url',
         test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/
+      },
+      {
+        loader: 'file',
+        test: /\.png$/
       }
     ]
   },

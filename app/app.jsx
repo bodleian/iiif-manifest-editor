@@ -17,6 +17,7 @@ var unsubscribe = store.subscribe(() => {
 });
 
 require('style!css?sourceMap!sass!applicationStyles');
+require('leaflet/dist/leaflet.css');
 require('font-awesome/css/font-awesome.min.css');
 
 ReactDOM.render(
