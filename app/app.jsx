@@ -17,6 +17,7 @@ var unsubscribe = store.subscribe(() => {
 });
 
 require('style!css?sourceMap!sass!applicationStyles');
+require('leaflet/dist/leaflet.css');
 
 ReactDOM.render(
   <Provider store={store}>
