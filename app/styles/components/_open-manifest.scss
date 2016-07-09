@@ -15,15 +15,18 @@
       margin-top: 7px;
     }
     .drop-manifest-container {
+      color: $gray;
       margin: 20px;
       height: 100px;
       border:1px solid $gray-light;
       background-color: $gray-lighter;
       border-radius: 5px;
-      p {
-        margin-top:40px;
-        color: $gray;
-      }
+      padding: 40px 0;
+      text-align: center;
+    }
+    .drop-manifest-container-drag {
+      border-style: dashed;
+      background-color: white;
     }
   }
   .cancel-button-container {
