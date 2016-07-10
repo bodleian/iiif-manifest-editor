@@ -5,36 +5,53 @@ var actions = require('actions');
 var manifesto = require('manifesto.js');
 
 var ThumbnailStripCanvas = React.createClass({
+  getInitialState: function() {
+    return {
+      contextMenu: undefined
+    }
+  },
   componentDidMount: function() {
-    // Custom right-click menu
     var $canvas = $(ReactDOM.findDOMNode(this));
-    $canvas.bind("contextmenu", function (event) {
-      event.preventDefault();
-      // Show contextmenu and position it at mouse coordinates
+
+    // attach contextmenu event to the canvas to show menu options on a right-click event
+    this.attachContextMenuEventToCanvas($canvas);
+
+    // attach click event to the entire document to hide displayed menu options when clicking anywhere in the view
+    this.attachClickEventToDocument($canvas);
+  },
+  attachContextMenuEventToCanvas: function($canvas) {
+    var that = this;
+    $canvas.bind('contextmenu', function(e) {
+      e.preventDefault();
+
+      // hide every displayed context menu before displaying the one for the current selected canvas
+      var $parentOfCanvas = $(ReactDOM.findDOMNode(this).parentNode);
+      for(var canvasIndex = 0; canvasIndex < $parentOfCanvas.children().length; canvasIndex++) {
+        var $currentCanvas = $($parentOfCanvas.children()[canvasIndex]);
+        var $currentCanvasMenu = $currentCanvas.children('ul.custom-menu:first');
+        $currentCanvasMenu.hide();
+      }
+
+      // show the context menu and position it at the clicked mouse coordinates
       var $contextMenu = $canvas
         .children('ul.custom-menu:first')
         .toggle()
         .css({
-          top: event.pageY + "px",
-          left: event.pageX + "px"
+          top: e.pageY + "px",
+          left: e.pageX + "px"
         });
-    });
 
-    // Hide custom context menu if the thumbnail strip is clicked anywhere
-    $('.thumbnail-strip-container').mousedown(function(e) {
-      console.log($canvas.parent());
-      switch (e.which) {
-        case 1, 3:
-          if (!$(e.target).children(".custom-menu").length > 0 && !$(e.target).hasClass('custom-menu')) {
-            $(".custom-menu").hide(100);
-          }
-      }
+      // save the currently displayed context menu to the state so we can hide it later when needed
+      that.setState({ contextMenu: $contextMenu });
     });
-    // If the menu element is clicked
-    $(".custom-menu li").click(function(){
-      console.log('context menu clicked');
-      // Hide it after the action was triggered
-      $(".custom-menu").hide(100);
+  },
+  attachClickEventToDocument: function($canvas) {
+    var that = this;
+    $(document).bind('click', function(e) {
+      // hide the context menu when clicking anywhere in the view
+      if(that.state.contextMenu !== undefined) {
+        that.state.contextMenu.hide();
+      }
     });
   },
   setSelectedCanvasId: function() {
@@ -52,30 +69,27 @@ var ThumbnailStripCanvas = React.createClass({
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return canvas.getThumbUri('', '150');
   },
-  displayCanvasContextMenu: function() {
-    console.log('right clicked');
-  },
   addCanvasLeft: function() {
-    console.log('adding canvas left');
+    console.log('Add canvas on the left');
   },
   addCanvasRight: function() {
-    console.log('adding canvas right');
+    console.log('Add canvas on the right');
   },
   duplicateCanvas: function() {
-    console.log('duplicating canvas');
+    console.log('Duplicate canvas');
   },
   deleteCanvas: function() {
-    console.log('deleting canvas');
+    console.log('Delete canvas');
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
       <div>
         <ul className='custom-menu'>
-          <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i>Add canvas left</li>
-          <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i>Add canvas right</li>
-          <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i>Duplicate canvas</li>
-          <li onClick={this.deleteCanvas}><i className="context-menu-item fa fa-trash"></i>Delete canvas</li>
+          <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
+          <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
+          <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i> Duplicate canvas</li>
+          <li onClick={this.deleteCanvas}><i className="context-menu-item fa fa-trash"></i> Delete canvas</li>
         </ul>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
           <img src={this.getMainImage()} alt={canvas.getLabel()} height="150" />
