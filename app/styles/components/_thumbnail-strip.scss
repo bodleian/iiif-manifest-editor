@@ -1,8 +1,33 @@
+
 .thumbnail-strip-container {
   border: 2px solid $gray-light;
   height: 25vh;
   display: flex;
   overflow-x: scroll;
+
+  /* Custom right-click menu */
+  .custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
+
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+      list-style-type:none;
+      text-indent: -18px;
+    }
+    li:hover {
+      background-color: #f7f6f2;
+    }
+  }
+
 
   .thumbnail-strip-canvas {
     height:178px;
@@ -15,6 +40,7 @@
     img {
       margin: 2px 10px;
     }
+
     .thumbnail-strip-canvas-label {
       display: block;
       text-align: center;
