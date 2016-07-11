@@ -3,7 +3,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
 var EditableTextArea = require('EditableTextArea');
-var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
+var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 
 var CanvasMetadataPanel = React.createClass({
   saveMetadataFieldToStore: function(fieldName, fieldValue, path) {
@@ -56,8 +56,6 @@ var CanvasMetadataPanel = React.createClass({
     var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
     return (
       <div className="metadata-sidebar-panel">
-        <ThumbnailStripCanvas canvasId={this.props.selectedCanvasId}/>
-        <hr/>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Canvas ID:</div>
           <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasId" fieldValue={canvas.id} path={canvasIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
@@ -71,6 +69,8 @@ var CanvasMetadataPanel = React.createClass({
           <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
           {this.displayImageAnnotationFetchErrors()}
         </div>
+        <hr/>
+        <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
       </div>
     );
   }

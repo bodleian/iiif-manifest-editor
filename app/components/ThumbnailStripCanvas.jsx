@@ -93,7 +93,7 @@ var ThumbnailStripCanvas = React.createClass({
         </ul>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
           <img src={this.getMainImage()} alt={canvas.getLabel()} height="150" />
-          <div className="thumbnail-strip-canvas-label">
+          <div className="canvas-label">
             {canvas.getLabel()}
           </div>
         </div>
