@@ -19,7 +19,8 @@ var Viewer = React.createClass({
                           crs: L.CRS.Simple,
                           zoom: 0,
                           touchZoom: false,
-                          inertia: false
+                          inertia: false,
+                          attributionControl: false
                         });
     this.updateMainImageLayerInViewer();
   },
