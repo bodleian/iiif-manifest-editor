@@ -29,18 +29,20 @@ var Viewer = React.createClass({
     this.updateMainImageLayerInViewer();
   },
   updateMainImageLayerInViewer: function() {
-    // create a new main image layer using the selected canvas
-    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-    var serviceId = canvas.getImages()[0].getResource().getServices()[0].id;
-    var mainImageLayer = L.tileLayer.iiif(serviceId + '/info.json', {
-      maxZoom: 6
-    });
+    if(this.props.selectedCanvasId !== undefined) {
+      // create a new main image layer using the selected canvas
+      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
+      var serviceId = canvas.getImages()[0].getResource().getServices()[0].id;
+      var mainImageLayer = L.tileLayer.iiif(serviceId + '/info.json', {
+        maxZoom: 6
+      });
 
-    // save the main image layer to the state
-    this.setState({ mainImageLayer: mainImageLayer });
+      // save the main image layer to the state
+      this.setState({ mainImageLayer: mainImageLayer });
 
-    // update the main image layer in the viewer
-    mainImageLayer.addTo(this.state.viewer);
+      // update the main image layer in the viewer
+      mainImageLayer.addTo(this.state.viewer);  
+    }
   },
   render: function() {
     return (

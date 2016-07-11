@@ -50,29 +50,37 @@ var CanvasMetadataPanel = React.createClass({
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-    var image = canvas.getImages()[0];
-    var canvasIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/@id";
-    var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
-    var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
-    return (
-      <div className="metadata-sidebar-panel">
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Canvas ID:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasId" fieldValue={canvas.id} path={canvasIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+    if(canvas !== null) {
+      var image = canvas.getImages()[0];
+      var canvasIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/@id";
+      var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
+      var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
+      return (
+        <div className="metadata-sidebar-panel">
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Canvas ID:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasId" fieldValue={canvas.id} path={canvasIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </div>
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Canvas Label:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvaLabel" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </div>
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
+            {this.displayImageAnnotationFetchErrors()}
+          </div>
+          <hr/>
+          <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
         </div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Canvas Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvaLabel" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+      );
+    } else {
+      return (
+        <div>
+          The selected canvas has been deleted.
         </div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
-          {this.displayImageAnnotationFetchErrors()}
-        </div>
-        <hr/>
-        <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
-      </div>
-    );
+      );
+    }
   }
 });
 

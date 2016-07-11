@@ -40,6 +40,13 @@ export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   }
 };
 
+export var deleteCanvasAtIndex = (canvasIndex) => {
+  return {
+    type: 'DELETE_CANVAS_BY_INDEX',
+    canvasIndex
+  }
+};
+
 export var setSelectedCanvasId = (selectedCanvasId) => {
   return {
     type: 'SET_SELECTED_CANVAS_ID',

@@ -59,6 +59,24 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'DELETE_CANVAS_BY_INDEX':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // delete the canvas at the given index from the first sequence
+      updatedManifestData.sequences[0].canvases.splice(action.canvasIndex, 1);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'SET_SELECTED_CANVAS_ID':
       return Object.assign({}, state, {
         ...state,

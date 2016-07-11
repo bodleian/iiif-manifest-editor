@@ -8,7 +8,7 @@ var ThumbnailStrip = React.createClass({
     var thumbnailStripCanvasComponents = [];
     for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
       var canvas = sequence.getCanvasByIndex(canvasIndex);
-      thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasId={canvas.id}/>);
+      thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>);
     }
     return thumbnailStripCanvasComponents;
   },
