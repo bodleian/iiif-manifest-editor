@@ -41,4 +41,10 @@ var SaveManifestDialog = React.createClass({
   }
 });
 
-module.exports = connect()(SaveManifestDialog);
+module.exports = connect(
+  (state) => {
+    return {
+      manifestData: state.manifestReducer.manifestData
+    };
+  }
+)(SaveManifestDialog);
