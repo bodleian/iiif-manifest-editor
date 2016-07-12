@@ -34,7 +34,12 @@ var EditableTextArea = React.createClass({
   textChanged: function() {
     // dynamically adjust the height of the text area based on content that is entered
     var textArea = this.refs.textArea;
-    this.setState({ fieldValue: textArea.value });
+    var updatedValue = textArea.value;
+    // do not allow empty field values, use N/A instead
+    if(updatedValue === '') {
+      updatedValue = 'N/A';
+    }
+    this.setState({ fieldValue: updatedValue });
     textArea.style.height = textArea.scrollHeight + 'px';
   },
   inputLostFocus: function() {
