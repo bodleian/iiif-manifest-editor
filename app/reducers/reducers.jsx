@@ -1,4 +1,5 @@
 var manifesto = require('manifesto.js');
+var uuid = require('node-uuid');
 
 var stateDefaults = {
   isFetchingLocalManifest: false,
@@ -59,7 +60,51 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-    case 'DELETE_CANVAS_BY_INDEX':
+    case 'APPEND_EMPTY_CANVAS_TO_SEQUENCE':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // insert the empty canvas at the end of the sequence
+      var sequenceLength = state.manifestoObject.getSequenceByIndex(0).getCanvases().length;
+      updatedManifestData.sequences[0].canvases.splice(sequenceLength, 0, action.emptyCanvas);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+    case 'DUPLICATE_CANVAS_AT_INDEX':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // make a copy of the canvas to duplicate
+      var duplicatedCanvas = {
+        ...state.manifestData.sequences[0].canvases[action.canvasIndex]
+      };
+      // update fields in the duplicated canvas object that need to be modified
+      duplicatedCanvas['@id'] = uuid();
+
+      // insert the new canvas record to the right of the current canvas
+      updatedManifestData.sequences[0].canvases.splice(action.canvasIndex + 1, 0, duplicatedCanvas);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+    case 'DELETE_CANVAS_AT_INDEX':
       // make a copy of the manifest data to update
       var updatedManifestData = {
         ...state.manifestData

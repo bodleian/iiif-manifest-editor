@@ -5,6 +5,16 @@
   display: flex;
   overflow-x: scroll;
 
+  .add-new-canvas-button {
+    border: 2px solid $gray-light;
+    border-radius: 5px;
+    position: relative;
+    min-width: 140px;
+    height: 140px;
+    top: 6%;
+    margin-left: 15px;
+  }
+
   /* Custom right-click menu */
   .custom-menu {
     display: none;

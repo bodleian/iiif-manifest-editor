@@ -6,15 +6,15 @@ var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 
 var CanvasMetadataPanel = React.createClass({
-  saveMetadataFieldToStore: function(fieldName, fieldValue, path) {
+  saveMetadataFieldToStore: function(fieldValue, path, fieldName) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
 
-    // udpate the selected canvas id in the store so it updates in the thumbnail strip
-    if(fieldName === "canvasId") {
+    // when the canvas id changes, update the selected canvas id in the store so it updates in the thumbnail strip
+    if(fieldName === 'canvasId') {
       this.props.dispatch(actions.setSelectedCanvasId(fieldValue));
     }
   },
-  updateImageAnnotationForCanvasWithId: function(fieldName, fieldValue, path) {
+  updateImageAnnotationForCanvasWithId: function(fieldValue, path) {
     // fetch new image annotation remotely
     var {dispatch} = this.props;
     dispatch(actions.startImageAnnotationFetch());
@@ -65,11 +65,11 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Label:</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvaLabel" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
             {this.displayImageAnnotationFetchErrors()}
           </div>
         </div>

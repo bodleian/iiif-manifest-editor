@@ -40,9 +40,23 @@ export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   }
 };
 
+export var appendEmptyCanvasToSequence = (emptyCanvas) => {
+  return {
+    type: 'APPEND_EMPTY_CANVAS_TO_SEQUENCE',
+    emptyCanvas
+  }
+};
+
+export var duplicateCanvasAtIndex = (canvasIndex) => {
+  return {
+    type: 'DUPLICATE_CANVAS_AT_INDEX',
+    canvasIndex
+  }
+};
+
 export var deleteCanvasAtIndex = (canvasIndex) => {
   return {
-    type: 'DELETE_CANVAS_BY_INDEX',
+    type: 'DELETE_CANVAS_AT_INDEX',
     canvasIndex
   }
 };

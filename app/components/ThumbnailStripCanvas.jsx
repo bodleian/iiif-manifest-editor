@@ -64,9 +64,11 @@ var ThumbnailStripCanvas = React.createClass({
       return "thumbnail-strip-canvas";
     }
   },
-  getMainImage: function() {
-    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
-    return canvas.getThumbUri('', '150');
+  getMainImage: function(canvas) {
+    return canvas.getImages().length > 0 ? canvas.getThumbUri('', '150') : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
+  },
+  getMainImageLabel: function(canvas) {
+    return canvas !== null ? canvas.getLabel() : 'Empty canvas';
   },
   addCanvasLeft: function() {
     console.log('Add canvas on the left');
@@ -75,7 +77,9 @@ var ThumbnailStripCanvas = React.createClass({
     console.log('Add canvas on the right');
   },
   duplicateCanvas: function() {
-    console.log('Duplicate canvas');
+    // dispatch an action to duplicate the canvas at the given index
+    var {dispatch, canvasIndex} = this.props;
+    dispatch(actions.duplicateCanvasAtIndex(canvasIndex));
   },
   deleteCanvas: function() {
     // dispatch an action to delete the canvas at the given index from the thumbnail strip
@@ -96,9 +100,9 @@ var ThumbnailStripCanvas = React.createClass({
           <li onClick={this.deleteCanvas}><i className="context-menu-item fa fa-trash"></i> Delete canvas</li>
         </ul>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
-          <img src={this.getMainImage()} alt={canvas.getLabel()} height="150" />
+          <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label">
-            {canvas.getLabel()}
+            {this.getMainImageLabel(canvas)}
           </div>
         </div>
       </div>
