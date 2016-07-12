@@ -57,6 +57,8 @@ var CanvasMetadataPanel = React.createClass({
       var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
       return (
         <div className="metadata-sidebar-panel">
+          <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
+          <hr/>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas ID:</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasId" fieldValue={canvas.id} path={canvasIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
@@ -70,8 +72,6 @@ var CanvasMetadataPanel = React.createClass({
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="imageId" fieldValue={image.id} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
             {this.displayImageAnnotationFetchErrors()}
           </div>
-          <hr/>
-          <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
         </div>
       );
     } else {
