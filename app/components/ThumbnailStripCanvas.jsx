@@ -31,13 +31,12 @@ var ThumbnailStripCanvas = React.createClass({
         var $currentCanvasMenu = $currentCanvas.children('ul.custom-menu:first');
         $currentCanvasMenu.hide();
       }
-
+      var $contextMenu = $canvas.children('ul.custom-menu:first');
       // show the context menu and position it at the clicked mouse coordinates
-      var $contextMenu = $canvas
-        .children('ul.custom-menu:first')
+      $contextMenu
         .toggle()
         .css({
-          top: e.pageY + "px",
+          top: (e.pageY - $contextMenu.height()) + "px",
           left: e.pageX + "px"
         });
 
