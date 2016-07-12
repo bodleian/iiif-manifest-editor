@@ -1,6 +1,21 @@
 .home-container {
-  padding-top: 50px;
   text-align: center;
+  background-color: #444;
+  padding:40px;
+  border:1px solid #ddd;
+  border-radius:5px;
+
+  .well {
+    background-color: #222;
+    color: #eee;
+    padding:40px;
+
+    h2 {
+      font-size: 2rem;
+      font-weight:normal;
+      letter-spacing: 2px;
+    }
+  }
 
   .btn {
     margin: 10px auto;
