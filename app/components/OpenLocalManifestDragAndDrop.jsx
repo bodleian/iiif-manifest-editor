@@ -39,7 +39,7 @@ var OpenLocalManifestDragAndDrop = React.createClass({
     var {isFetchingLocalManifest} = this.props;
     return (
       <div className="drop-manifest-container" id="localManifestFileDragAndDrop" onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
-        {isFetchingLocalManifest ? 'Uploading...' : 'Drag and drop manifest here'}
+          <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
       </div>
     );
   }

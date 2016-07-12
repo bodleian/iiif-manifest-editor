@@ -12,10 +12,10 @@ var MetadataSidebarButtons = React.createClass({
   render: function() {
     return (
       <div className="metadata-sidebar-buttons">
-        <Link to="/new" className="btn btn-default metadata-sidebar-button">New</Link>
-        <Link to="/open" className="btn btn-default metadata-sidebar-button">Open</Link>
-        <a onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button">Save</a>
-        <Link to="/" className="btn btn-default metadata-sidebar-button">Close</Link>
+        <Link to="/new" className="btn btn-default metadata-sidebar-button"><i className="fa fa-file"></i> New</Link>
+        <Link to="/open" className="btn btn-default metadata-sidebar-button"><i className="fa fa-folder-open"></i> Open</Link>
+        <a onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download"></i> Save</a>
+        <Link to="/" className="btn btn-default metadata-sidebar-button"><i className="fa fa-close"></i> Close</Link>
         <SaveManifestDialog ref="saveManifestDialog" />
       </div>
     );

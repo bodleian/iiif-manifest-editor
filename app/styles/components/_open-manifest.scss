@@ -23,6 +23,11 @@
       border-radius: 5px;
       padding: 40px 0;
       text-align: center;
+
+      .drag-and-drop-message {
+        font-size: 1.5em;
+        letter-spacing: 1px;
+      }
     }
     .drop-manifest-container-drag {
       border-style: dashed;

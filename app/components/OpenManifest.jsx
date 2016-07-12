@@ -33,7 +33,7 @@ var OpenManifest = React.createClass({
 
           <div className="row cancel-button-container">
             <div className="col-md-12">
-              <Link to="/" className="btn btn-default">Cancel</Link>
+              <Link to="/" className="btn btn-default"><i className="fa fa-ban"></i> Cancel</Link>
             </div>
           </div>
         </div>

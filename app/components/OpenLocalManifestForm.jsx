@@ -39,7 +39,7 @@ var OpenLocalManifestForm = React.createClass({
             <input type="file" required className="form-control" id="localManifestFile" placeholder="Select manifest to open" ref="localManifestFile" />
           </div>
           <div className="col-sm-2">
-            <button type="submit" className="btn btn-default">{this.props.isFetchingLocalManifest ? 'Uploading...' : 'Open Manifest'}</button>
+            <button type="submit" className="btn btn-default"><i className="fa fa-folder-open"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Open Manifest'}</button>
           </div>
         </div>
       </form>

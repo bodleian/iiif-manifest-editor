@@ -44,7 +44,7 @@ var OpenRemoteManifestForm = React.createClass({
               <input required type="url" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" />
             </div>
             <div className="col-sm-2">
-              <button id="loadRemoteManifestButton" type="submit" className="btn btn-default">{this.props.isFetchingRemoteManifest ? 'Loading...' : 'Load Manifest'}</button>
+              <button id="loadRemoteManifestButton" type="submit" className="btn btn-default"><i className="fa fa-cloud-download"></i>{this.props.isFetchingRemoteManifest ? ' Loading...' : ' Load Manifest'}</button>
             </div>
           </div>
         </form>
