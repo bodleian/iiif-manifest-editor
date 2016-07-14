@@ -97,10 +97,10 @@ var ThumbnailStripCanvas = React.createClass({
   deleteCanvas: function() {
     // dispatch an action to delete the canvas at the given index from the thumbnail strip
     var {dispatch, canvasIndex} = this.props;
-    dispatch(actions.deleteCanvasAtIndex(canvasIndex));
     if (canvasIndex == this.props.manifestoObject.getSequenceByIndex(0).getCanvasIndexById(this.props.selectedCanvasId)) {
       dispatch(actions.setSelectedCanvasId(undefined));
     }
+    dispatch(actions.deleteCanvasAtIndex(canvasIndex));
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
