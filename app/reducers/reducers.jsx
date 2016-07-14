@@ -60,15 +60,14 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-    case 'APPEND_EMPTY_CANVAS_TO_SEQUENCE':
+    case 'ADD_EMPTY_CANVAS_AT_INDEX':
       // make a copy of the manifest data to update
       var updatedManifestData = {
         ...state.manifestData
       };
 
-      // insert the empty canvas at the end of the sequence
-      var sequenceLength = state.manifestoObject.getSequenceByIndex(0).getCanvases().length;
-      updatedManifestData.sequences[0].canvases.splice(sequenceLength, 0, action.emptyCanvas);
+      // insert the empty canvas at the given index in the sequence
+      updatedManifestData.sequences[0].canvases.splice(action.canvasIndex, 0, action.emptyCanvas);
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
       var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));

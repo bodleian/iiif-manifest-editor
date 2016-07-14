@@ -5,6 +5,18 @@ var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 var uuid = require('node-uuid');
 
 var ThumbnailStrip = React.createClass({
+  getInitialState: function() {
+    return {
+      emptyCanvas: {
+        "@id": uuid(),
+        "@type": "sc:Canvas",
+        "label": "Empty canvas",
+        "height": 0,
+        "width": 0,
+        "images": []
+      }
+    }
+  },
   buildThumbnailStripCanvasComponents: function(sequence) {
     var thumbnailStripCanvasComponents = [];
     for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
@@ -15,15 +27,8 @@ var ThumbnailStrip = React.createClass({
   },
   appendEmptyCanvasToSequence: function() {
     // dispatch action to add empty canvas to end of sequence
-    var emptyCanvas = {
-      "@id": uuid(),
-      "@type": "sc:Canvas",
-      "label": "Empty canvas",
-      "height": 0,
-      "width": 0,
-      "images": []
-    };
-    this.props.dispatch(actions.appendEmptyCanvasToSequence(emptyCanvas));
+    var targetCanvasIndex = this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length;
+    this.props.dispatch(actions.addEmptyCanvasAtIndex(this.state.emptyCanvas, targetCanvasIndex));
   },
   render: function() {
     return (

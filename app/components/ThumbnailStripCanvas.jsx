@@ -3,11 +3,20 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
+var uuid = require('node-uuid');
 
 var ThumbnailStripCanvas = React.createClass({
   getInitialState: function() {
     return {
-      contextMenu: undefined
+      contextMenu: undefined,
+      emptyCanvas: {
+        "@id": uuid(),
+        "@type": "sc:Canvas",
+        "label": "Empty canvas",
+        "height": 0,
+        "width": 0,
+        "images": []
+      }
     }
   },
   componentDidMount: function() {
@@ -71,10 +80,14 @@ var ThumbnailStripCanvas = React.createClass({
     return canvas !== null ? canvas.getLabel() : 'Empty canvas';
   },
   addCanvasLeft: function() {
-    console.log('Add canvas on the left');
+    // dispatch an action to add an empty canvas to the left of the given canvas
+    var {dispatch, canvasIndex} = this.props;
+    dispatch(actions.addEmptyCanvasAtIndex(this.state.emptyCanvas, canvasIndex));
   },
   addCanvasRight: function() {
-    console.log('Add canvas on the right');
+    // dispatch an action to add an empty canvas to the left of the given canvas
+    var {dispatch, canvasIndex} = this.props;
+    dispatch(actions.addEmptyCanvasAtIndex(this.state.emptyCanvas, canvasIndex + 1));
   },
   duplicateCanvas: function() {
     // dispatch an action to duplicate the canvas at the given index

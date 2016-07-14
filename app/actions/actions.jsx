@@ -40,10 +40,11 @@ export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   }
 };
 
-export var appendEmptyCanvasToSequence = (emptyCanvas) => {
+export var addEmptyCanvasAtIndex = (emptyCanvas, canvasIndex) => {
   return {
-    type: 'APPEND_EMPTY_CANVAS_TO_SEQUENCE',
-    emptyCanvas
+    type: 'ADD_EMPTY_CANVAS_AT_INDEX',
+    emptyCanvas,
+    canvasIndex
   }
 };
 
