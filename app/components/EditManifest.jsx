@@ -48,7 +48,6 @@ var EditManifest = React.createClass({
             </div>
             <MetadataSidebar ref="sidebar"/>
           </div>
-          // TODO: move toggle and manifest buttons (new, open, save etc) to a new component
           <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar">i</a>
         </div>
       );
