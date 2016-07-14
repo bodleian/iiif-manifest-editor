@@ -49,22 +49,31 @@ var Viewer = React.createClass({
           this.setState({ mainImageLayer: mainImageLayer });
 
           // update the main image layer in the viewer
-          mainImageLayer.addTo(this.state.viewer);  
+          mainImageLayer.addTo(this.state.viewer);
         }
       }
     }
   },
   render: function() {
-    var manifest = this.props.manifestoObject;
-    var sequence = manifest.getSequenceByIndex(0);
-    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-    var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
-    return (
-      <div className="viewer-container">
-        <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
-        <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
-      </div>
-    );
+    if(this.props.selectedCanvasId !== undefined) {
+      var manifest = this.props.manifestoObject;
+      var sequence = manifest.getSequenceByIndex(0);
+      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
+      var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
+      return (
+        <div className="viewer-container">
+          <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+          <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+        </div>
+      );
+    } else {
+      return (
+        <div className="viewer-container">
+          <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+          <div className="viewer-canvas-label">[This canvas has been deleted]</div>
+        </div>
+      );
+    }
   }
 });
 
