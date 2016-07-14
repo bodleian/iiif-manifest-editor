@@ -1,5 +1,6 @@
 .metadata-sidebar-container {
   border: 2px solid $gray-light;
+  display: none;
   height: 100vh;
 
   .metadata-sidebar-buttons {
@@ -42,4 +43,8 @@
       text-align: center;
     }
   }
+}
+
+.metadata-sidebar-container.visible {
+  display: block;
 }
