@@ -5,10 +5,14 @@ var MetadataAccordion = require('MetadataAccordion');
 
 var MetadataSidebar = React.createClass({
   getInitialState: function() {
-    return { visible: true };
+    return ({
+      visible: true
+    });
   },
-  toggle: function() {
-    this.setState({ visible: !this.state.visible });
+  toggle: function(value) {
+    this.setState({
+      visible: value
+    });
   },
   render: function() {
     var sidebarClasses = classNames(
@@ -22,7 +26,7 @@ var MetadataSidebar = React.createClass({
     return (
       <div className={sidebarClasses}>
         <div className="container-fluid">
-          <MetadataSidebarButtons/>
+          <MetadataSidebarButtons onToggleStateUpdate={this.props.onToggleStateUpdate} />
         </div>
         <MetadataAccordion/>
       </div>

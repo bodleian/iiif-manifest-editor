@@ -20,19 +20,34 @@ var EditManifest = React.createClass({
     }
   },
   getInitialState: function() {
-    return { collapsed: true };
+    return ({
+      showSidebar: true
+    });
+  },
+  onToggleStateUpdate: function(value) {
+    this.setState({
+      showSidebar: value
+    });
+    this.refs.sidebar.toggle(value);
   },
   toggleSidebar: function() {
-    this.setState({ collapsed: !this.state.collapsed });
-    this.refs.sidebar.toggle();
+    this.onToggleStateUpdate(!this.state.showSidebar);
   },
   render: function() {
     var {manifestData} = this.props,
         viewerThumbnailStripClasses = classNames(
           'viewer-thumbnail-strip',
           {
-            'col-md-8': this.state.collapsed,
-            'col-md-12': !this.state.collapsed
+            'col-md-8': this.state.showSidebar,
+            'col-md-12': !this.state.showSidebar
+          }
+        ),
+        btnShowSidebarClasses = classNames(
+          'btn',
+          'btn-default',
+          'btn-show-sidebar',
+          {
+            'visible': !this.state.showSidebar
           }
         );
 
@@ -46,9 +61,10 @@ var EditManifest = React.createClass({
               <Viewer/>
               <ThumbnailStrip/>
             </div>
-            <MetadataSidebar ref="sidebar"/>
+            <MetadataSidebar ref="sidebar" onToggleStateUpdate={this.onToggleStateUpdate}/>
           </div>
-          <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar">i</a>
+          <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
+          <a onClick={this.toggleSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
         </div>
       );
     }
