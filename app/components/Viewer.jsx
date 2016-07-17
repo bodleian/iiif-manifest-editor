@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
@@ -44,6 +45,14 @@ var Viewer = React.createClass({
           var mainImageLayer = L.tileLayer.iiif(serviceId + '/info.json', {
             maxZoom: 6
           });
+          var that = this;
+          mainImageLayer.on('loading', function (event) {
+            $(ReactDOM.findDOMNode(that)).children('.viewer-loading-indicator').show();
+          });
+
+          mainImageLayer.on('load', function (event) {
+            $(ReactDOM.findDOMNode(that)).children('.viewer-loading-indicator').hide();
+          });
 
           // save the main image layer to the state
           this.setState({ mainImageLayer: mainImageLayer });
@@ -62,6 +71,10 @@ var Viewer = React.createClass({
       var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
       return (
         <div className="viewer-container">
+          <div className="viewer-loading-indicator">
+            <i className="fa fa-circle-o-notch fa-spin"></i>
+            <div className="viewer-loading-text">Loading</div>
+          </div>
           <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
           <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
