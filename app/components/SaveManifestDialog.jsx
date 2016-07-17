@@ -110,7 +110,7 @@ var SaveManifestDialog = React.createClass({
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-default" onClick={this.validateManifest}><i className="fa fa-check-circle"></i> Validate</button>
+              <button type="button" className="btn btn-default" onClick={this.validateManifest}><i className={this.state.isValidatingManifest ? "fa fa-circle-o-notch fa-spin" : "fa fa-check-circle"}></i> Validate Manifest</button>
               <button type="button" className="btn btn-default" onClick={this.resetValidationStatus} data-dismiss="modal"><i className="fa fa-close"></i> Close</button>
               <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.setManifestFilename}><i className="fa fa-download"></i> Save</button>
             </div>

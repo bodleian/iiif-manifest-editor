@@ -7,7 +7,9 @@ var SaveManifestDialog = require('SaveManifestDialog');
 var MetadataSidebarButtons = React.createClass({
   openSaveManifestDialog: function() {
     var $saveManifestDialog = $(ReactDOM.findDOMNode(this.refs.saveManifestDialog));
-    $saveManifestDialog.modal();
+    $saveManifestDialog.modal({
+      backdrop: 'static'
+    });
   },
   showSidebar: function() {
     this.props.onToggleStateUpdate(false);
