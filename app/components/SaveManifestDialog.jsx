@@ -7,14 +7,9 @@ var actions = require('actions');
 var SaveManifestDialog = React.createClass({
   getInitialState: function() {
     return {
-      manifestValidationStatus: {
-        isValidating: false,
-        validationObject: undefined
-      }
+      isValidatingManifest: false,
+      validatorResponse: undefined
     };
-  },
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.manifestValidationStatus !== nextState.manifestValidationStatus;
   },
   downloadManifestData: function(manifestFilenameToSave) {
     var {manifestData} = this.props;
@@ -32,10 +27,8 @@ var SaveManifestDialog = React.createClass({
   },
   validateManifest: function() {
     this.setState({
-      manifestValidationStatus: {
-        isValidating: true,
-        validationObject: undefined
-      }
+      isValidatingManifest: true,
+      validatorResponse: undefined
     });
     var that = this;
     // Store generated manifest JSON on myjson.com so we can point the IIIF Validator to it
@@ -48,18 +41,14 @@ var SaveManifestDialog = React.createClass({
         axios.get(baseUriValidator + uriToValidate + validatorOptions)
         .then(function(validatorResponse){
           that.setState({
-            manifestValidationStatus: {
-              isValidating: false,
-              validationObject: validatorResponse.data
-            }
+            isValidatingManifest: false,
+            validatorResponse: validatorResponse.data
           });
         })
         .catch(function(validatorRequestError) {
           that.setState({
-            manifestValidationStatus: {
-              isValidating: false,
-              validationObject: undefined
-            }
+            isValidatingManifest: false,
+            validatorResponse: undefined
           });
         });
 
@@ -72,16 +61,14 @@ var SaveManifestDialog = React.createClass({
   resetValidationStatus: function() {
     // reset the validation status and validation object when closing the modal window
     this.setState({
-      manifestValidationStatus: {
-        isValidating: false,
-        validationObject: undefined
-      }
+      isValidatingManifest: false,
+      validatorResponse: undefined
     });
   },
   displayValidationMessage: function() {
-    if(this.state.manifestValidationStatus.validationObject !== undefined) {
-      var warnings = this.state.manifestValidationStatus.validationObject.warnings.length > 0 ? this.state.manifestValidationStatus.validationObject.warnings : '';
-      if(this.state.manifestValidationStatus.validationObject.okay) {
+    if(this.state.validatorResponse !== undefined) {
+      var warnings = this.state.validatorResponse.warnings.length > 0 ? this.state.validatorResponse.warnings : '';
+      if(this.state.validatorResponse.okay) {
         return(
           <div className="alert alert-success">
             <div><i className="fa fa-check-circle"></i> This Manifest is valid!</div>
@@ -92,13 +79,13 @@ var SaveManifestDialog = React.createClass({
         return(
         <div className="alert alert-danger">
           <div><i className="fa fa-times-circle-o"></i> This Manifest is not valid:</div>
-          <div>{this.state.manifestValidationStatus.validationObject.error}</div>
+          <div>{this.state.validatorResponse.error}</div>
           <div>{warnings}</div>
         </div>
         );
       }
     } else {
-      if(this.state.manifestValidationStatus.isValidating) {
+      if(this.state.isValidatingManifest) {
         return(
           <div className="validate-manifest-indicator"><i className="fa fa-circle-o-notch fa-spin"></i> Validating Manifest...</div>
         );
