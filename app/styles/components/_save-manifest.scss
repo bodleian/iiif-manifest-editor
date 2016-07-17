@@ -1,0 +1,12 @@
+.modal {
+  text-align: left;
+}
+.validation-status-message {
+  text-align: center;
+  margin: 20px;
+  font-size: 1.5rem;
+
+  .validate-manifest-indicator i {
+    font-size: 2rem;
+  }
+}
