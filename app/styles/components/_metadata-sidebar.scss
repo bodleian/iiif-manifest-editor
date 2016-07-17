@@ -3,11 +3,21 @@
   display: none;
   height: 100vh;
 
-  .metadata-sidebar-buttons {
-    padding: 15px;
+  .metadata-sidebar-controls {
+    padding: 15px 0;
 
-    .metadata-sidebar-button {
-      margin-right: 20px;
+    .hide-sidebar {
+      cursor: pointer;
+      width: 33px;
+    }
+
+    .metadata-sidebar-buttons {
+      float: right;
+      text-align: right;
+
+      .metadata-sidebar-button {
+        margin-left: 10px;
+      }
     }
   }
 
