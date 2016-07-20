@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var {Link} = require('react-router');
 var {connect} = require('react-redux');
+var actions = require('actions');
 var SaveManifestDialog = require('SaveManifestDialog');
 
 var MetadataSidebarButtons = React.createClass({
@@ -11,8 +12,8 @@ var MetadataSidebarButtons = React.createClass({
       backdrop: 'static'
     });
   },
-  showSidebar: function() {
-    this.props.onToggleStateUpdate(false);
+  hideSidebar: function() {
+    this.props.dispatch(actions.setShowMetadataSidebar(false));
   },
   openExitConfirmationDialog: function(targetRoute) {
     if(confirm("Are you sure you want to leave this page? This will lose all your changes.")) {
@@ -22,7 +23,7 @@ var MetadataSidebarButtons = React.createClass({
   render: function() {
     return (
       <div className="metadata-sidebar-controls row">
-        <a onClick={this.showSidebar} className="hide-sidebar btn btn-default" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
+        <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
 
         <span className="metadata-sidebar-buttons">
           <button onClick={() => this.openExitConfirmationDialog('/#/new')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-file"></i> New</button>
@@ -40,7 +41,8 @@ module.exports = connect(
   (state) => {
     return {
       manifestData: state.manifestReducer.manifestData,
-      manifestFilenameToSave: state.manifestReducer.manifestFilenameToSave
+      manifestFilenameToSave: state.manifestReducer.manifestFilenameToSave,
+      showMetadataSidebar: state.manifestReducer.showMetadataSidebar
     };
   }
 )(MetadataSidebarButtons);
