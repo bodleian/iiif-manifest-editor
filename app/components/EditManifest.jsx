@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var actions = require('actions');
 var classNames = require('classnames');
 var Viewer = require('Viewer');
 var MetadataSidebar = require('MetadataSidebar');
@@ -19,27 +20,22 @@ var EditManifest = React.createClass({
       this.props.dispatch(actions.setSelectedCanvasId(canvas.id));
     }
   },
-  getInitialState: function() {
-    return ({
-      showSidebar: true
-    });
-  },
-  onToggleStateUpdate: function(value) {
-    this.setState({
-      showSidebar: value
-    });
-    this.refs.sidebar.toggle(value);
+  setShowMetadataSidebar: function(value) {
+    this.props.dispatch(actions.setShowMetadataSidebar(value));
   },
   toggleSidebar: function() {
-    this.onToggleStateUpdate(!this.state.showSidebar);
+    this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
+  },
+  showSidebar: function() {
+    this.setShowMetadataSidebar(true);
   },
   render: function() {
     var {manifestData} = this.props,
         viewerThumbnailStripClasses = classNames(
           'viewer-thumbnail-strip',
           {
-            'col-md-8': this.state.showSidebar,
-            'col-md-12': !this.state.showSidebar
+            'col-md-8': this.props.showMetadataSidebar,
+            'col-md-12': !this.props.showMetadataSidebar
           }
         ),
         btnShowSidebarClasses = classNames(
@@ -47,7 +43,7 @@ var EditManifest = React.createClass({
           'btn-default',
           'btn-show-sidebar',
           {
-            'visible': !this.state.showSidebar
+            'visible': !this.props.showMetadataSidebar
           }
         );
 
@@ -61,10 +57,10 @@ var EditManifest = React.createClass({
               <Viewer/>
               <ThumbnailStrip/>
             </div>
-            <MetadataSidebar ref="sidebar" onToggleStateUpdate={this.onToggleStateUpdate}/>
+            <MetadataSidebar ref="sidebar"/>
           </div>
           <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
-          <a onClick={this.toggleSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
+          <a onClick={this.showSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
         </div>
       );
     }
@@ -75,7 +71,8 @@ module.exports = connect(
   (state) => {
     return {
       manifestoObject: state.manifestReducer.manifestoObject,
-      manifestData: state.manifestReducer.manifestData
+      manifestData: state.manifestReducer.manifestData,
+      showMetadataSidebar: state.manifestReducer.showMetadataSidebar
     };
   }
 )(EditManifest);
