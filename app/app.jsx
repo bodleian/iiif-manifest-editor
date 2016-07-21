@@ -12,7 +12,7 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 
 // subscribe to changes
-var subscribe = store.subscribe(() => {
+var unsubscribe = store.subscribe(() => {
   console.log('New state', store.getState());
 });
 
