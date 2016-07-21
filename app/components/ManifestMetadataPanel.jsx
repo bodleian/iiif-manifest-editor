@@ -7,82 +7,69 @@ var FormSelect = require('FormSelect');
 var ManifestMetadataPanel = React.createClass({
   getInitialState: function() {
     return {
-      mandatoryMetadataFields: {
-        label: {
-          label: 'Label',
-          path: 'label',
-          value: undefined
-        }
-      },
-      optionalMetadataFields: {
-        description: {
-          label: 'Description',
-          path: 'description/1/label',
-          value: undefined
-        },
-        attribution: {
-          label: 'Attribution',
-          path: 'attribution',
-          value: undefined
-        },
-        license: {
-          label: 'License',
-          path: 'license',
-          value: undefined
-        },
-        format: {
-          label: 'Format',
-          path: undefined,
-          value: undefined
-        },
-        width: {
-          label: 'Width',
-          path: undefined,
-          value: undefined
-        },
-        height: {
-          label: 'Height',
-          path: undefined,
-          value: undefined
-        },
-        viewingDirection: {
-          label: 'Viewing Direction',
-          path: undefined,
-          value: undefined
-        },
-        viewingHint: {
-          label: 'Viewing Hint',
-          path: undefined,
-          value: undefined
-        },
-        logo: {
-          label: 'Logo',
-          path: undefined,
-          value: undefined
-        }
-      }
+      mandatoryMetadataFields: {},
+      optionalMetadataFields: {},
+      allowableMetadataFieldNames: ['description', 'attribution', 'license', 'logo'],
+      availableMetadataFieldNames: []
     }
   },
   componentWillMount: function() {
-    // update the mandatory metadata fields with values from the loaded manifest
+    // initialize the list of mandatory and optional metadata fields using metadata from the manifest
+    this.loadMetadataFromManifest();
+  },
+  componentDidMount: function() {
+    // initialize the list of allowable metadata field names based on the ones that have already been loaded
+    this.setAvailableMetadataFieldNames();
+  },
+  loadMetadataFromManifest: function() {
+    // update a copy of the mandatory metadata fields in the state with values from the loaded manifest
     var updatedMandatoryMetadataFields = {
       ...this.state.mandatoryMetadataFields
     };
-    updatedMandatoryMetadataFields.label.value = this.props.manifestoObject.getLabel();
+    if(this.props.manifestoObject.getLabel() !== null) {  // manifest label
+      updatedMandatoryMetadataFields.label = { label: 'Label', path: 'label', value: this.props.manifestoObject.getLabel() };
+    }
 
-    // update the optional metadata fields with values from the loaded manifest
+    // update a copy of the optional metadata fields in the state with values from the loaded manifest
     var updatedOptionalMetadataFields = {
       ...this.state.optionalMetadataFields
     };
-    updatedOptionalMetadataFields.description.value = this.props.manifestoObject.getDescription();
-    updatedOptionalMetadataFields.attribution.value = this.props.manifestoObject.getAttribution();
-    updatedOptionalMetadataFields.license.value = this.props.manifestoObject.getLicense();
+    if(this.props.manifestoObject.getDescription() !== null) {  // description
+      updatedOptionalMetadataFields.description = { label: 'Description', path: 'description/1/label', value: this.props.manifestoObject.getDescription() };
+    }
+    if(this.props.manifestoObject.getAttribution() !== null) {  // attribution
+      updatedOptionalMetadataFields.attribution = { label: 'Attribution', path: 'attribution', value: this.props.manifestoObject.getAttribution() };
+    }
+    if(this.props.manifestoObject.getLicense() !== null) {  // license
+      updatedOptionalMetadataFields.license = { label: 'License', path: 'license', value: this.props.manifestoObject.getLicense() };
+    }
+    if(this.props.manifestoObject.getLogo() !== null) {  // logo
+      updatedOptionalMetadataFields.license = { label: 'Logo', path: 'logo', value: this.props.manifestoObject.getLogo() };
+    }
 
-    // update the state variables so that the initial render of the component uses the correct values
+    // update the state with the list of mandatory and optional metadata fields so that the component uses the correct values when rendering
     this.setState({
       mandatoryMetadataFields: updatedMandatoryMetadataFields,
       optionalMetadataFields: updatedOptionalMetadataFields
     });
+  },
+  setAvailableMetadataFieldNames: function() {
+    var usedMetadataFieldNames = Object.keys(this.state.optionalMetadataFields);
+
+    // filter out the metadata fields that are already in use
+    var availableMetadataFieldNames = this.state.allowableMetadataFieldNames.filter(function(fieldName) {
+      return usedMetadataFieldNames.indexOf(fieldName) < 0;
+    });
+
+    // update the state with the list of available metadata field names
+    this.setState({
+      availableMetadataFieldNames: availableMetadataFieldNames
+    });
+  },
+  addMetadataField: function(fieldName, fieldValue, path) {
+    // TODO: append the new metadata field to the list of optional metadata fields
+
+    // TODO: update the list of available metadata field names to include the newly added field name
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
@@ -114,7 +101,7 @@ var ManifestMetadataPanel = React.createClass({
                 return (
                   <div className="row" key={key}>
                     <div className="col-md-3 metadata-field-label">
-                      <FormSelect options={that.state.optionalMetadataFields} placeholder="Choose field" selectedOption={key}/>
+                      <FormSelect options={that.state.allowableMetadataFieldNames} placeholder="Choose metadata field" selectedOption={key}/>
                     </div>
                     <div className="col-md-9 metadata-field-value">
                       <EditableTextArea fieldValue={optionalField.value} path={optionalField.path} onUpdateHandler={that.saveMetadataFieldToStore}/>
@@ -125,6 +112,15 @@ var ManifestMetadataPanel = React.createClass({
             }
           })
         }
+        {(() => {
+          if(this.state.availableMetadataFieldNames.length > 0) {
+            return (
+              <button type="button" className="btn btn-default add-metadata-field-button" aria-label="Add metadata field" onClick={that.addMetadataField}>
+                <span className="fa fa-plus-circle" aria-hidden="true"></span> Add metadata field
+              </button>
+            );
+          }
+        })()}
       </div>
     );
   }
