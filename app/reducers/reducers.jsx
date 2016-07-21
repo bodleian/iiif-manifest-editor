@@ -10,7 +10,8 @@ var stateDefaults = {
   manifestFilenameToSave: 'manifest.json',
   metadataFieldValue: undefined,
   selectedCanvasId: undefined,
-  error: undefined
+  error: undefined,
+  showMetadataSidebar: true
 }
 
 export var manifestReducer = (state = stateDefaults, action) => {
@@ -139,6 +140,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
     case 'SET_ERROR':
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }
+      });
+    case 'SET_SHOW_METADATA_SIDEBAR':
+      return Object.assign({}, state, {
+        showMetadataSidebar: action.showMetadataSidebar
       });
     default:
       return state;
