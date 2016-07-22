@@ -65,29 +65,30 @@ var Viewer = React.createClass({
     }
   },
   render: function() {
-    if(this.props.selectedCanvasId !== undefined) {
-      var manifest = this.props.manifestoObject;
-      var sequence = manifest.getSequenceByIndex(0);
-      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-      var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
-      return (
-        <div className="viewer-container">
-          <div className="viewer-loading-indicator">
-            <i className="fa fa-circle-o-notch fa-spin"></i>
-            <div className="viewer-loading-text">Loading</div>
-          </div>
-          <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
-          <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+    return (
+      <div className="viewer-container">
+        <div className="viewer-loading-indicator">
+          <i className="fa fa-circle-o-notch fa-spin"></i>
+          <div className="viewer-loading-text">Loading</div>
         </div>
-      );
-    } else {
-      return (
-        <div className="viewer-container">
-          <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
-          <div className="viewer-canvas-label">[This canvas has been deleted]</div>
-        </div>
-      );
-    }
+        <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+        {(() => {
+          if(this.props.selectedCanvasId !== undefined) {
+            var manifest = this.props.manifestoObject;
+            var sequence = manifest.getSequenceByIndex(0);
+            var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
+            var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
+            return (
+              <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            );
+          } else {
+            return (
+              <div className="viewer-canvas-label">[This canvas has been deleted]</div>
+            );
+          }
+        })()}
+      </div>
+    );
   }
 });
 
