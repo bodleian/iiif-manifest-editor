@@ -32,10 +32,35 @@ export var setManifestFilename = (manifestFilenameToSave) => {
   }
 };
 
+export var addMetadataFieldAtPath = (metadataFieldName, metadataFieldValue, path) => {
+  return {
+    type: 'ADD_METADATA_FIELD_AT_PATH',
+    metadataFieldName,
+    metadataFieldValue,
+    path
+  }
+};
+
+export var updateMetadataFieldNameAtPath = (oldMetadataFieldName, newMetadataFieldName, path) => {
+  return {
+    type: 'UPDATE_METADATA_FIELD_NAME_AT_PATH',
+    oldMetadataFieldName,
+    newMetadataFieldName,
+    path
+  }
+};
+
 export var updateMetadataFieldValueAtPath = (metadataFieldValue, path) => {
   return {
     type: 'UPDATE_METADATA_FIELD_VALUE_AT_PATH',
     metadataFieldValue,
+    path
+  }
+};
+
+export var deleteMetadataFieldAtPath = (path) => {
+  return {
+    type: 'DELETE_METADATA_FIELD_AT_PATH',
     path
   }
 };
