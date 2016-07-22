@@ -112,6 +112,26 @@ var ManifestMetadataPanel = React.createClass({
       availableMetadataFields: updatedAvailableMetadataFields
     });
   },
+  updateMetadataFieldsWithSelectedOption: function(previousSelectedOption, currentSelectedOption) {
+    // create a copy of the metadata fields and delete the ones that are already in use
+    var updatedMetadataFields = {
+      ...this.state.metadataFields
+    };
+
+    // save the value of the previous field
+    var previousFieldValue = updatedMetadataFields[previousSelectedOption].value;
+
+    // set the value of the previous field to undefined
+    updatedMetadataFields[previousSelectedOption].value = undefined;
+
+    // set the value of the current field to the value of the text area
+    updatedMetadataFields[currentSelectedOption].value = previousFieldValue;
+
+    // update the state
+    this.setState({
+      metadataFields: updatedMetadataFields
+    });
+  },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
@@ -150,7 +170,7 @@ var ManifestMetadataPanel = React.createClass({
                     } else if(metadataField.value !== undefined) {
                       var allowableMetadataFields = that.getAvailableMetadataFieldsForFormSelect(fieldName);
                       return (
-                        <FormSelect options={allowableMetadataFields} selectedOption={fieldName}/>
+                        <FormSelect options={allowableMetadataFields} selectedOption={fieldName} onChange={that.updateMetadataFieldsWithSelectedOption}/>
                       );
                     }
                   })()}
