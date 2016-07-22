@@ -1,32 +1,23 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var classNames = require('classnames');
 var MetadataSidebarButtons = require('MetadataSidebarButtons');
 var MetadataAccordion = require('MetadataAccordion');
 
 var MetadataSidebar = React.createClass({
-  getInitialState: function() {
-    return ({
-      visible: true
-    });
-  },
-  toggle: function(value) {
-    this.setState({
-      visible: value
-    });
-  },
   render: function() {
     var sidebarClasses = classNames(
         'col-md-4',
         'metadata-sidebar-container',
         {
-          visible: this.state.visible
+          visible: this.props.showMetadataSidebar
         }
       );
 
     return (
       <div className={sidebarClasses}>
         <div className="container-fluid">
-          <MetadataSidebarButtons onToggleStateUpdate={this.props.onToggleStateUpdate} />
+          <MetadataSidebarButtons />
         </div>
         <MetadataAccordion/>
       </div>
@@ -35,3 +26,11 @@ var MetadataSidebar = React.createClass({
 });
 
 module.exports = MetadataSidebar;
+
+module.exports = connect(
+  (state) => {
+    return {
+      showMetadataSidebar: state.manifestReducer.showMetadataSidebar
+    };
+  }
+)(MetadataSidebar);

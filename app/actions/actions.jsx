@@ -106,6 +106,13 @@ export var completeImageAnnotationFetch = () => {
   };
 };
 
+export var setShowMetadataSidebar = (showMetadataSidebar) => {
+  return {
+    type: 'SET_SHOW_METADATA_SIDEBAR',
+    showMetadataSidebar
+  };
+};
+
 export var setError = (errorType, errorMessage) => {
   return {
     type: 'SET_ERROR',
