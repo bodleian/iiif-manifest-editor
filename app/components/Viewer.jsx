@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
+var NavigationArrow = require('NavigationArrow');
 
 var Viewer = React.createClass({
   getInitialState: function() {
@@ -76,7 +77,9 @@ var Viewer = React.createClass({
             <i className="fa fa-circle-o-notch fa-spin"></i>
             <div className="viewer-loading-text">Loading</div>
           </div>
+          <NavigationArrow direction="left" />
           <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+          <NavigationArrow direction="right" />
           <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
       );
