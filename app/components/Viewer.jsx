@@ -12,7 +12,8 @@ var Viewer = React.createClass({
     }
   },
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props.selectedCanvasId !== nextProps.selectedCanvasId;
+    return this.props.selectedCanvasId !== nextProps.selectedCanvasId
+           || this.props.manifestoObject !== nextProps.manifestoObject;
   },
   componentDidMount: function() {
     // save a single instance of the viewer to the state
