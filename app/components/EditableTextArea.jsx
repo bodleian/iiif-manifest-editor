@@ -66,7 +66,9 @@ var EditableTextArea = React.createClass({
        </div>
       );
     }
-    return <div className={this.props.classNames} onClick={this.labelClicked}>{this.state.fieldValue}</div>;
+    return <div className={this.props.classNames} onClick={this.labelClicked}>
+      <i className="fa fa-pencil-square-o"></i> {this.state.fieldValue}
+    </div>;
   }
 });
 
