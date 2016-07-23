@@ -74,6 +74,12 @@ var CanvasMetadataPanel = React.createClass({
           </div>
         </div>
       );
+    } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
+      return (
+        <div>
+          This sequence does not have any canvases.
+        </div>
+      );
     } else {
       return (
         <div>
