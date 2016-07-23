@@ -40,7 +40,7 @@ var NewManifest = React.createClass({
 
     dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(emptyManifest))));
     dispatch(actions.setManifestData(emptyManifest));
-    window.location = '#/edit';  // redirect to edit manifest on success
+    window.location = '#/edit';  // redirect to edit manifest
 
   },
   render: function() {
@@ -49,10 +49,4 @@ var NewManifest = React.createClass({
 
 });
 
-module.exports = connect(
-  (state) => {
-    return {
-      isFetchingLocalManifest: state.manifestReducer.isFetchingLocalManifest
-    };
-  }
-)(NewManifest);
+module.exports = connect()(NewManifest);
