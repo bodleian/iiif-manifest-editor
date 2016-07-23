@@ -21,7 +21,7 @@ var ManifestMetadataPanel = React.createClass({
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">Description:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getDescription()} path="description/1/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getDescription()} path="description/0/@value" onUpdateHandler={this.saveMetadataFieldToStore}/>
         </div>
         <div className="row">
           <div className="col-md-3 metadata-field-label">License:</div>
