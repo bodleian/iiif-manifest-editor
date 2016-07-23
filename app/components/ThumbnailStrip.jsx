@@ -19,8 +19,10 @@ var ThumbnailStrip = React.createClass({
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
       var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
       var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
-      var leftOffset = $activeCanvas.offset().left + $thumbnailStrip.scrollLeft();
-      $thumbnailStrip.scrollLeft(leftOffset);
+      if($activeCanvas.offset() !== undefined) {
+        var leftOffset = $activeCanvas.offset().left + $thumbnailStrip.scrollLeft();
+        $thumbnailStrip.scrollLeft(leftOffset);
+      }
     }
   },
   appendEmptyCanvasToSequence: function() {
