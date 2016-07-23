@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var ReactDOM = require('react-dom');
 var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 var uuid = require('node-uuid');
@@ -12,6 +13,17 @@ var ThumbnailStrip = React.createClass({
       thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>);
     }
     return thumbnailStripCanvasComponents;
+  },
+  componentDidUpdate: function(prevProps) {
+    // always display the selected canvas to the very left of the thumbnail strip using scrollLeft
+    if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
+      var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
+      var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
+      if($activeCanvas.offset() !== undefined) {
+        var leftOffset = $activeCanvas.offset().left + $thumbnailStrip.scrollLeft();
+        $thumbnailStrip.scrollLeft(leftOffset);
+      }
+    }
   },
   appendEmptyCanvasToSequence: function() {
     // dispatch action to add empty canvas to end of sequence
@@ -42,7 +54,8 @@ module.exports = connect(
   (state) => {
     return {
       manifestoObject: state.manifestReducer.manifestoObject,
-      manifestData: state.manifestReducer.manifestData
+      manifestData: state.manifestReducer.manifestData,
+      selectedCanvasId: state.manifestReducer.selectedCanvasId
     };
   }
 )(ThumbnailStrip);
