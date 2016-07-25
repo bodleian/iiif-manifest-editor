@@ -9,65 +9,70 @@ var ManifestMetadataPanel = React.createClass({
     return {
       availableMetadataFields: [
         {
-          id: 'label',
+          name: 'label',
           label: 'Label',
           value: undefined,
           isRequired: true,
           isUnique: true,
-          path: 'label'
+          addPath: '',
+          updatePath: 'label'
         },
         {
-          id: 'description',
+          name: 'description',
           label: 'Description',
           value: undefined,
           isRequired: false,
           isUnique: true,
-          path: 'description/0/@value'
+          addPath: 'description',
+          updatePath: 'description/0/@value'
         },
         {
-          id: 'attribution',
+          name: 'attribution',
           label: 'Attribution',
           value: undefined,
           isRequired: false,
           isUnique: true,
-          path: 'attribution'
+          addPath: '',
+          updatePath: 'attribution'
         },
         {
-          id: 'license',
+          name: 'license',
           label: 'License',
           value: undefined,
           isRequired: false,
           isUnique: true,
-          path: 'license'
+          addPath: '',
+          updatePath: 'license'
         },
         {
-          id: 'logo',
+          name: 'logo',
           label: 'Logo',
           value: undefined,
           isRequired: false,
           isUnique: true,
-          path: 'logo'
+          addPath: '',
+          updatePath: 'logo'
         }
       ],
       activeMetadataFields: []
     }
   },
-  setMetadataField: function(fieldId, fieldValue, availableMetadataFields, activeMetadataFields) {
-    // find the available metadata field based on the field id
+  setMetadataField: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
+    // find the available metadata field based on the field name
     var availableMetadataFieldIndex = -1;
     Object.keys(availableMetadataFields).map(function(index) {
       var metadataField = availableMetadataFields[index];
-      if(metadataField.id === fieldId) {
+      if(metadataField.name === fieldName) {
         availableMetadataFieldIndex = index;
       }
     });
 
-    // append the metadata field to the list of used fields
+    // append the metadata field to the list of active fields
     var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
     availableMetadataField.value = fieldValue;
     activeMetadataFields.push(availableMetadataField);
 
-    // delete the metadata field from list of available fields for unique fields
+    // delete the metadata field from the list of available fields for unique fields
     if(availableMetadataField.isUnique) {
       availableMetadataFields.splice(availableMetadataFieldIndex, 1);
     }
@@ -101,60 +106,57 @@ var ManifestMetadataPanel = React.createClass({
   },
   addMetadataField: function() {
     // create copies of the metadata field lists
+    var availableMetadataFields = [...this.state.availableMetadataFields];
     var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    // append the first optional metadata field to the list
-    activeMetadataFields.push({
-      id: undefined,
-      label: 'Choose a field',
-      value: 'N/A',
-      isRequired: false,
-      isUnique: true,
-      path: undefined
-    });
+    // append the first available metadata field to the active metadata list
+    if(availableMetadataFields.length > 0) {
+      var availableMetadataField = availableMetadataFields[0];
+      availableMetadataField.value = 'N/A';
+      activeMetadataFields.push(availableMetadataField);
 
-    // update the state
-    this.setState({
-      activeMetadataFields: activeMetadataFields
-    });
+      // delete the metadata field from the list of available fields for unique fields
+      availableMetadataFields.splice(0, 1);
 
-    // TODO: add the metadata field to the manifest data object in the store
-    // this.props.dispatch(actions.addMetadataFieldAtPath('dougkim', 'Douglas Kim is here'));
-  },
-  updateMetadataFieldName: function(previousSelectedOption, currentSelectedOption) {
-    // create a copy of the metadata fields to update
-    var activeMetadataFields = [...this.state.activeMetadataFields];
+      // update the metadata field lists in the state
+      this.setState({
+        availableMetadataFields: availableMetadataFields,
+        activeMetadataFields: activeMetadataFields
+      });
 
-    // append the first optional metadata field to the list
-    activeMetadataFields.push({
-      id: 'description',
-      label: 'Description',
-      value: 'N/A',
-      isRequired: false,
-      path: 'description/1/label'
-    });
-
-    // update the state
-    this.setState({
-      activeMetadataFields: activeMetadataFields
-    });
-
-    // TODO: update the metadata field to the manifest data object in the store
+      // add the metadata field to the manifest data object in the store
+      this.props.dispatch(actions.addMetadataFieldAtPath(availableMetadataField.name, availableMetadataField.value, availableMetadataField.addPath));
+    }
   },
   updateMetadataFieldValue: function(fieldValue, path) {
     // update the metadata field value to the manifest data object in the store
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
-  deleteMetadataField: function() {
-    console.log('Delete metadata field');
+  deleteMetadataField: function(metadataFieldToDelete, index) {
+    // create copies of the metadata field lists
+    var availableMetadataFields = [...this.state.availableMetadataFields];
+    var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    // TODO: move the metadata field to the list of available
+    // append the metadata field to delete to the list of available fields
+    metadataFieldToDelete.value = undefined;
+    availableMetadataFields.push(metadataFieldToDelete);
 
-    // TODO: delete the metadata field from the list of used
+    // delete the metadata field from the list of active fields
+    if(metadataFieldToDelete.isUnique) {
+      activeMetadataFields.splice(index, 1);
+    }
+
+    // update the metadata field lists in the state so that the component uses the correct values when rendering
+    this.setState({
+      availableMetadataFields: availableMetadataFields,
+      activeMetadataFields: activeMetadataFields
+    });
+
+    // delete the metadata field to the manifest data object in the store
+    this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
   },
   render: function() {
     var that = this;
-    console.log('Metadata Fields', this.state.activeMetadataFields);
     return (
       <div className="metadata-sidebar-panel">
         {
@@ -164,9 +166,9 @@ var ManifestMetadataPanel = React.createClass({
               <div className="row" key={index}>
                 <div className="col-md-3 metadata-field-label">
                   {(() => {
-                    if(metadataField.id === undefined) {
+                    if(metadataField.name === undefined) {
                       return (
-                        <FormSelect options={that.state.availableMetadataFields} selectedOption={metadataField.id} onChange={that.updateMetadataFieldsWithSelectedOption}/>
+                        <FormSelect options={that.state.availableMetadataFields} selectedOption={metadataField.name} onChange={that.updateMetadataFieldsWithSelectedOption}/>
                       );
                     } else {
                       return (
@@ -176,13 +178,13 @@ var ManifestMetadataPanel = React.createClass({
                   })()}
                 </div>
                 <div className="col-md-7 metadata-field-value">
-                  <EditableTextArea fieldValue={metadataField.value} path={metadataField.path} onUpdateHandler={that.updateMetadataFieldValue}/>
+                  <EditableTextArea fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={that.updateMetadataFieldValue}/>
                 </div>
                 {(() => {
                   if(!metadataField.isRequired) {
                     return (
                       <div className="col-md-2">
-                        <button type="button" className="btn btn-default" aria-label="Delete metadata field" onClick={that.deleteMetadataField}>
+                        <button type="button" className="btn btn-default" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, index)}>
                           <span className="fa fa-trash" aria-hidden="true"></span>
                         </button>
                       </div>
