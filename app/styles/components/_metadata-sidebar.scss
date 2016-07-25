@@ -2,6 +2,7 @@
   border: 2px solid $gray-light;
   display: none;
   height: 100vh;
+  padding-right: 10px;
 
   .metadata-sidebar-controls {
     padding: 15px 0;
@@ -24,6 +25,8 @@
   #metadata-accordion {
     .metadata-sidebar-panel {
       height: 65vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
 
       .row {
         margin-bottom: 15px;

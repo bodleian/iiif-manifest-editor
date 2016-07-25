@@ -7,183 +7,194 @@ var FormSelect = require('FormSelect');
 var ManifestMetadataPanel = React.createClass({
   getInitialState: function() {
     return {
-      metadataFields: {
-        label: {
-          displayLabel: 'Label',
+      availableMetadataFields: [
+        {
+          id: 'label',
+          label: 'Label',
           value: undefined,
-          path: 'label',
-          isRequired: true
+          isRequired: true,
+          isUnique: true,
+          path: 'label'
         },
-        description: {
-          displayLabel: 'Description',
+        {
+          id: 'description',
+          label: 'Description',
           value: undefined,
-          path: 'description/1/label',
-          isRequired: false
+          isRequired: false,
+          isUnique: true,
+          path: 'description/1/label'
         },
-        attribution: {
-          displayLabel: 'Attribution',
+        {
+          id: 'attribution',
+          label: 'Attribution',
           value: undefined,
-          path: 'attribution',
-          isRequired: false
+          isRequired: false,
+          isUnique: true,
+          path: 'attribution'
         },
-        license: {
-          displayLabel: 'License',
+        {
+          id: 'license',
+          label: 'License',
           value: undefined,
-          path: 'license',
-          isRequired: false
+          isRequired: false,
+          isUnique: true,
+          path: 'license'
         },
-        logo: {
-          displayLabel: 'Logo',
+        {
+          id: 'logo',
+          label: 'Logo',
           value: undefined,
-          path: 'logo',
-          isRequired: false
+          isRequired: false,
+          isUnique: true,
+          path: 'logo'
         }
-      },
-      availableMetadataFields: undefined
+      ],
+      activeMetadataFields: []
+    }
+  },
+  setMetadataField: function(fieldId, fieldValue, availableMetadataFields, activeMetadataFields) {
+    // find the available metadata field based on the field id
+    var availableMetadataFieldIndex = -1;
+    Object.keys(availableMetadataFields).map(function(index) {
+      var metadataField = availableMetadataFields[index];
+      if(metadataField.id === fieldId) {
+        availableMetadataFieldIndex = index;
+      }
+    });
+
+    // append the metadata field to the list of used fields
+    var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
+    availableMetadataField.value = fieldValue;
+    activeMetadataFields.push(availableMetadataField);
+
+    // delete the metadata field from list of available fields for unique fields
+    if(availableMetadataField.isUnique) {
+      availableMetadataFields.splice(availableMetadataFieldIndex, 1);
     }
   },
   componentWillMount: function() {
-    // initialize the list of mandatory and optional metadata fields using metadata from the manifest
-    this.loadMetadataFromManifest();
-  },
-  loadMetadataFromManifest: function() {
-    // create a copy of the metadata fields to update with values from the loaded manifest
-    var updatedMetadataFields = {
-      ...this.state.metadataFields
-    };
+    // create copies of the metadata field lists
+    var availableMetadataFields = [...this.state.availableMetadataFields];
+    var activeMetadataFields = [...this.state.activeMetadataFields];
+
     if(this.props.manifestoObject.getLabel() !== null) {  // manifest label
-      updatedMetadataFields.label.value = this.props.manifestoObject.getLabel();
+      this.setMetadataField('label', this.props.manifestoObject.getLabel(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getDescription() !== null) {  // description
-      updatedMetadataFields.description.value = this.props.manifestoObject.getDescription();
+      this.setMetadataField('description', this.props.manifestoObject.getDescription(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getAttribution() !== null) {  // attribution
-      updatedMetadataFields.attribution.value = this.props.manifestoObject.getAttribution();
+      this.setMetadataField('attribution', this.props.manifestoObject.getAttribution(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getLicense() !== null) {  // license
-      updatedMetadataFields.license.value = this.props.manifestoObject.getLicense();
+      this.setMetadataField('license', this.props.manifestoObject.getLicense(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getLogo() !== null) {  // logo
-      updatedMetadataFields.logo.value = this.props.manifestoObject.getLogo();
+      this.setMetadataField('logo', this.props.manifestoObject.getLogo(), availableMetadataFields, activeMetadataFields);
     }
 
-    // set the list of available metadata fields in the state
-    var availableMetadataFields = this.getAvailableMetadataFields();
-
-    // update the metadata fields in the state so that the component uses the correct values when rendering
+    // update the metadata field lists in the state so that the component uses the correct values when rendering
     this.setState({
-      metadataFields: updatedMetadataFields,
-      availableMetadataFields: availableMetadataFields
+      availableMetadataFields: availableMetadataFields,
+      activeMetadataFields: activeMetadataFields
     });
-  },
-  getAvailableMetadataFields: function() {
-    // create a copy of the metadata fields and delete the ones that are already in use
-    var availableMetadataFields = {
-      ...this.state.metadataFields
-    };
-    Object.keys(availableMetadataFields).map(function(fieldName) {
-      // do not include required fields or fields that have already been assigned a value
-      var metadataField = availableMetadataFields[fieldName];
-      if(metadataField.isRequired || metadataField.value !== undefined) {
-        delete availableMetadataFields[fieldName];
-      }
-    });
-    return availableMetadataFields;
   },
   addMetadataField: function() {
-    // get the first available metadata field to use
-    var updatedAvailableMetadataFields = {
-      ...this.state.availableMetadataFields
-    };
-    var metadataFieldNameToUse = Object.keys(updatedAvailableMetadataFields)[0];
+    // create copies of the metadata field lists
+    var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    // update the value of the metadata field
-    var updatedMetadataFields = {
-      ...this.state.metadataFields
-    };
-    updatedMetadataFields[metadataFieldNameToUse].value = 'N/A';
-
-    // remove the used metadata field from the list of available metadata fields
-    delete updatedAvailableMetadataFields[metadataFieldNameToUse];
+    // append the first optional metadata field to the list
+    activeMetadataFields.push({
+      id: undefined,
+      label: 'Choose a field',
+      value: 'N/A',
+      isRequired: false,
+      isUnique: true,
+      path: undefined
+    });
 
     // update the state
     this.setState({
-      metadataFields: updatedMetadataFields,
-      availableMetadataFields: updatedAvailableMetadataFields
+      activeMetadataFields: activeMetadataFields
     });
+
+    // TODO: add the metadata field to the manifest data object in the store
+    // this.props.dispatch(actions.addMetadataFieldAtPath('dougkim', 'Douglas Kim is here'));
   },
-  updateMetadataFieldsWithSelectedOption: function(previousSelectedOption, currentSelectedOption) {
-    // create a copy of the metadata fields and delete the ones that are already in use
-    var updatedMetadataFields = {
-      ...this.state.metadataFields
-    };
+  updateMetadataFieldName: function(previousSelectedOption, currentSelectedOption) {
+    // create a copy of the metadata fields to update
+    var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    // save the value of the previous field
-    var previousFieldValue = updatedMetadataFields[previousSelectedOption].value;
-
-    // set the value of the previous field to undefined
-    updatedMetadataFields[previousSelectedOption].value = undefined;
-
-    // set the value of the current field to the value of the text area
-    updatedMetadataFields[currentSelectedOption].value = previousFieldValue;
+    // append the first optional metadata field to the list
+    activeMetadataFields.push({
+      id: 'description',
+      label: 'Description',
+      value: 'N/A',
+      isRequired: false,
+      path: 'description/1/label'
+    });
 
     // update the state
     this.setState({
-      metadataFields: updatedMetadataFields
+      activeMetadataFields: activeMetadataFields
     });
+
+    // TODO: update the metadata field to the manifest data object in the store
   },
-  saveMetadataFieldToStore: function(fieldValue, path) {
+  updateMetadataFieldValue: function(fieldValue, path) {
+    // update the metadata field value to the manifest data object in the store
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
-  getAvailableMetadataFieldsForFormSelect: function(fieldNameToInclude) {
-    // create a copy of the metadata fields and delete the ones that are already in use
-    var updatedMetadataFields = {
-      ...this.state.metadataFields
-    };
-    Object.keys(updatedMetadataFields).map(function(fieldName) {
-      // always include the given field to include
-      if(fieldName !== fieldNameToInclude) {
-        // do not include required fields or fields that have already been assigned a value
-        var metadataField = updatedMetadataFields[fieldName];
-        if(metadataField.isRequired || metadataField.value !== undefined) {
-          delete updatedMetadataFields[fieldName];
-        }
-      }
-    });
-    return updatedMetadataFields;
+  deleteMetadataField: function() {
+    console.log('Delete metadata field');
+
+    // TODO: move the metadata field to the list of available
+
+    // TODO: delete the metadata field from the list of used
   },
   render: function() {
     var that = this;
+    console.log('Metadata Fields', this.state.activeMetadataFields);
     return (
       <div className="metadata-sidebar-panel">
         {
-          Object.keys(this.state.metadataFields).map(function(fieldName) {
-            var metadataField = that.state.metadataFields[fieldName];
+          Object.keys(this.state.activeMetadataFields).map(function(index) {
+            var metadataField = that.state.activeMetadataFields[index];
             return (
-              <div className="row" key={fieldName}>
+              <div className="row" key={index}>
                 <div className="col-md-3 metadata-field-label">
                   {(() => {
-                    if(metadataField.isRequired) {
+                    if(metadataField.id === undefined) {
                       return (
-                        metadataField.displayLabel
+                        <FormSelect options={that.state.availableMetadataFields} selectedOption={metadataField.id} onChange={that.updateMetadataFieldsWithSelectedOption}/>
                       );
-                    } else if(metadataField.value !== undefined) {
-                      var allowableMetadataFields = that.getAvailableMetadataFieldsForFormSelect(fieldName);
+                    } else {
                       return (
-                        <FormSelect options={allowableMetadataFields} selectedOption={fieldName} onChange={that.updateMetadataFieldsWithSelectedOption}/>
+                        metadataField.label
                       );
                     }
                   })()}
                 </div>
-                <div className="col-md-9 metadata-field-value">
-                  <EditableTextArea fieldValue={metadataField.value} path={metadataField.path} onUpdateHandler={that.saveMetadataFieldToStore}/>
+                <div className="col-md-7 metadata-field-value">
+                  <EditableTextArea fieldValue={metadataField.value} path={metadataField.path} onUpdateHandler={that.updateMetadataFieldValue}/>
                 </div>
+                {(() => {
+                  if(!metadataField.isRequired) {
+                    return (
+                      <div className="col-md-2">
+                        <button type="button" className="btn btn-default" aria-label="Delete metadata field" onClick={that.deleteMetadataField}>
+                          <span className="fa fa-trash" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                    );
+                  }
+                })()}
               </div>
             );
           })
         }
         {(() => {
-          if(Object.keys(this.state.availableMetadataFields).length > 0) {
+          if(Object.keys(that.state.availableMetadataFields).length > 0) {
             return (
               <button type="button" className="btn btn-default add-metadata-field-button" aria-label="Add metadata field" onClick={that.addMetadataField}>
                 <span className="fa fa-plus-circle" aria-hidden="true"></span> Add metadata field

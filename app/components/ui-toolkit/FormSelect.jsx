@@ -24,10 +24,10 @@ var FormSelect = React.createClass({
     return (
       <select value={this.state.selectedOption} onChange={this.handleChange}>
         {
-          Object.keys(this.state.options).map(function(key) {
-            var currentOption = that.state.options[key];
+          Object.keys(this.state.options).map(function(index) {
+            var option = that.state.options[index];
             return (
-              <option key={key} value={key}>{currentOption.displayLabel}</option>
+              <option key={option.key} value={option.key}>{option.label}</option>
             );
           })
         }

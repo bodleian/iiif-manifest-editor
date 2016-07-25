@@ -45,11 +45,13 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state.manifestData
       };
 
-      // add the metadata field at the given path
+      // add the metadata field at the given path; when no path is provided, the metadata field will be added at the top-level
       var object = updatedManifestData;
-      var stack = action.path.split('/');
-      while(stack.length > 0) {
-        object = object[stack.shift()];
+      if(action.path !== undefined) {
+        var stack = action.path.split('/');
+        while(stack.length > 0) {
+          object = object[stack.shift()];
+        }
       }
       object[action.metadataFieldName] = action.metadataFieldValue;
 
