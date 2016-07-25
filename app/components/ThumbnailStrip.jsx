@@ -43,7 +43,7 @@ var ThumbnailStrip = React.createClass({
       <div className="row thumbnail-strip-container">
         {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
         <button type="button" className="btn btn-default add-new-canvas-button" aria-label="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
-          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span>
+          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Add Canvas
         </button>
       </div>
     );

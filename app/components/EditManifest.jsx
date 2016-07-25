@@ -15,7 +15,7 @@ var EditManifest = React.createClass({
     }
 
     // save the id of the first canvas in the store on initial load to set the active class on the first canvas in the thumbnail strip
-    if(this.props.manifestoObject !== undefined) {
+    if(this.props.manifestoObject !== undefined && this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length > 0) {
       var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasByIndex(0);
       this.props.dispatch(actions.setSelectedCanvasId(canvas.id));
     }

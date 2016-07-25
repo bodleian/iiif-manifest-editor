@@ -30,7 +30,9 @@ var Viewer = React.createClass({
   },
   componentDidUpdate: function() {
     // remove the main image layer from the viewer
-    this.state.viewer.removeLayer(this.state.mainImageLayer);
+    if(this.state.mainImageLayer !== undefined) {
+      this.state.viewer.removeLayer(this.state.mainImageLayer);
+    }
     this.updateMainImageLayerInViewer();
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
@@ -68,7 +70,7 @@ var Viewer = React.createClass({
   render: function() {
     return (
       <div className="viewer-container">
-        <div className="viewer-loading-indicator">
+        <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
           <div className="viewer-loading-text">Loading</div>
         </div>
@@ -76,17 +78,22 @@ var Viewer = React.createClass({
         <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
         <NavigationArrow direction="right" />
         {(() => {
-          if(this.props.selectedCanvasId !== undefined) {
+          if(this.props.selectedCanvasId !== undefined && this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length > 0) {
             var manifest = this.props.manifestoObject;
             var sequence = manifest.getSequenceByIndex(0);
             var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-            var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
+            var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
+            var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
             return (
               <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             );
+          } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
+            return (
+              <div className="viewer-canvas-label">[This sequence does not have any canvases]</div>
+            );
           } else {
             return (
-              <div className="viewer-canvas-label">[This canvas has been deleted]</div>
+              <div className="viewer-canvas-label">[Nothing to display]</div>
             );
           }
         })()}

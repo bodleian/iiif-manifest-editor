@@ -22,7 +22,7 @@ var ManifestMetadataPanel = React.createClass({
           value: undefined,
           isRequired: false,
           isUnique: true,
-          path: 'description/1/label'
+          path: 'description/0/@value'
         },
         {
           id: 'attribution',
