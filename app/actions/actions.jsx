@@ -69,6 +69,13 @@ export var setSelectedCanvasId = (selectedCanvasId) => {
   }
 };
 
+export var reorderCanvases = (updatedSortOrder) => {
+  return {
+    type: 'REORDER_CANVASES',
+    updatedSortOrder
+  }
+};
+
 export var startImageAnnotationFetch = () => {
   return {
     type: 'START_IMAGE_ANNOTATION_FETCH'

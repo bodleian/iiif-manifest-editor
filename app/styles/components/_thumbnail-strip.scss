@@ -55,4 +55,36 @@
       text-align: center;
     }
   }
+  [draggable] {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: element;
+  }
+
+  .sortable-items {
+    display: flex;
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+
+  .sortable-item {
+    float: left;
+    text-align: center;
+    background-color: #fff;
+    cursor: move;
+    .pointer-events-none {
+      pointer-events: none;
+    }
+  }
+
+  .sortable-item-over {
+    border: 1px dashed #DDD;
+  }
 }
