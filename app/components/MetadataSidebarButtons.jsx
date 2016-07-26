@@ -23,7 +23,7 @@ var MetadataSidebarButtons = React.createClass({
   render: function() {
     return (
       <div className="metadata-sidebar-controls row">
-        <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
+        <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
 
         <span className="metadata-sidebar-buttons">
           <button onClick={() => this.openExitConfirmationDialog('/#/new')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-file hidden-sm hidden-xs"></i> New</button>

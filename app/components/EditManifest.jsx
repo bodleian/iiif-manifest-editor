@@ -44,6 +44,7 @@ var EditManifest = React.createClass({
           'btn',
           'btn-default',
           'btn-show-sidebar',
+          'hidden-xs',
           {
             'visible': !this.props.showMetadataSidebar
           }
@@ -61,7 +62,7 @@ var EditManifest = React.createClass({
             </div>
             <MetadataSidebar ref="sidebar"/>
           </div>
-          <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
+          <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar hidden-xs" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
           <a onClick={this.showSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
         </div>
       );
