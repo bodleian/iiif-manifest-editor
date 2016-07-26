@@ -8,6 +8,7 @@ var MetadataSidebar = React.createClass({
   render: function() {
     var sidebarClasses = classNames(
         'col-md-4',
+        'col-sm-4',
         'metadata-sidebar-container',
         {
           visible: this.props.showMetadataSidebar
