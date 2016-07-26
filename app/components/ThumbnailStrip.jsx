@@ -4,13 +4,18 @@ var ReactDOM = require('react-dom');
 var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 var uuid = require('node-uuid');
+var {SortableItems, SortableItem} = require('react-sortable-component');
 
 var ThumbnailStrip = React.createClass({
   buildThumbnailStripCanvasComponents: function(sequence) {
     var thumbnailStripCanvasComponents = [];
     for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
       var canvas = sequence.getCanvasByIndex(canvasIndex);
-      thumbnailStripCanvasComponents.push(<ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>);
+      thumbnailStripCanvasComponents.push(
+        <SortableItem key={canvas.id} draggable={true} className="simple-sort-item">
+        <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>
+        </SortableItem>
+      );
     }
     return thumbnailStripCanvasComponents;
   },
@@ -25,6 +30,10 @@ var ThumbnailStrip = React.createClass({
       }
     }
   },
+  handleSort: function(updatedSortOrder) {
+    this.props.dispatch(actions.reorderCanvases(updatedSortOrder));
+  },
+
   appendEmptyCanvasToSequence: function() {
     // dispatch action to add empty canvas to end of sequence
     var targetCanvasIndex = this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length;
@@ -41,7 +50,9 @@ var ThumbnailStrip = React.createClass({
   render: function() {
     return (
       <div className="row thumbnail-strip-container">
+        <SortableItems name="simple-sort" onSort={this.handleSort}>
         {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
+        </SortableItems>
         <button type="button" className="btn btn-default add-new-canvas-button" aria-label="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
           <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Add Canvas
         </button>

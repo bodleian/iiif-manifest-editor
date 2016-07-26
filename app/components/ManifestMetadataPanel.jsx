@@ -191,45 +191,45 @@ var ManifestMetadataPanel = React.createClass({
           Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
             var metadataField = that.state.activeMetadataFields[fieldIndex];
             return (
-              <div className="row" key={fieldIndex}>
-                <div className="col-md-3 metadata-field-label">
-                  {(() => {
-                    if(metadataField.name === undefined) {
-                      return (
-                        <FormSelect id={fieldIndex} options={that.state.availableMetadataFields} placeholder="Choose field" selectedOption="" onChange={that.updateMetadataFieldsWithSelectedOption}/>
-                      );
-                    } else {
-                      return (
-                        metadataField.label
-                      );
-                    }
-                  })()}
-                </div>
-                <div className="col-md-7 metadata-field-value">
-                  {(() => {
-                    if(metadataField.name === undefined) {
-                      return (
-                        <div>N/A</div>
-                      );
-                    } else {
-                      return (
-                        <EditableTextArea fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={that.updateMetadataFieldValue}/>
-                      );
-                    }
-                  })()}
-                </div>
+              <dl key={fieldIndex}>
                 {(() => {
-                  if(!metadataField.isRequired) {
+                  if(metadataField.name === undefined) {
                     return (
-                      <div className="col-md-2">
-                        <button type="button" className="btn btn-danger btn-xs" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
-                          <span className="fa fa-remove" aria-hidden="true"></span>
-                        </button>
-                      </div>
+                      <dt className="metadata-field-label">
+                        <FormSelect id={fieldIndex} options={that.state.availableMetadataFields} placeholder="Choose field" selectedOption="" onChange={that.updateMetadataFieldsWithSelectedOption}/>
+                      </dt>
+                    );
+                  } else {
+                    return (
+                      <dt className="metadata-field-label">
+                        {metadataField.label}
+                      </dt>
                     );
                   }
                 })()}
-              </div>
+                {(() => {
+                  if(metadataField.name === undefined) {
+                    return (
+                      <dd className="metadata-field-value">N/A</dd>
+                    );
+                  } else {
+                    return (
+                      <dd className="metadata-field-value">
+                        <EditableTextArea fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={that.updateMetadataFieldValue}/>
+                      </dd>
+                    );
+                  }
+                })()}
+                {(() => {
+                  if(!metadataField.isRequired) {
+                    return (
+                      <button type="button" className="btn btn-danger btn-xs delete-metadata-field-button" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
+                        <span className="fa fa-remove" aria-hidden="true"></span>
+                      </button>
+                    );
+                  }
+                })()}
+              </dl>
             );
           })
         }

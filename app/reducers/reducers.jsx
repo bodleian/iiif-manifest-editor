@@ -201,6 +201,31 @@ export var manifestReducer = (state = stateDefaults, action) => {
         selectedCanvasId: action.selectedCanvasId,
         error: undefined
       });
+    case 'REORDER_CANVASES':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // reorder canvases in sequence according to updatedSortOrder
+      function updateSortOrder(arr, sortArr) {
+        var result = [];
+        for(var i = 0; i < arr.length; i++) {
+          result[i] = arr[sortArr[i]];
+        }
+        return result;
+      }
+      updatedManifestData.sequences[0].canvases = updateSortOrder(state.manifestData.sequences[0].canvases, action.updatedSortOrder);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'START_IMAGE_ANNOTATION_FETCH':
       return Object.assign({}, state, {
         isFetchingImageAnnotation: true,
