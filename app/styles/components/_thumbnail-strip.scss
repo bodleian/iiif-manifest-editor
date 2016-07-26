@@ -4,6 +4,7 @@
   height: 25vh;
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
 
   .add-new-canvas-button {
     border-radius: 5px;

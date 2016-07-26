@@ -11,22 +11,30 @@ var ManifestMetadataPanel = React.createClass({
     var manifest = this.props.manifestoObject;
     return (
       <div className="metadata-sidebar-panel">
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Label:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLabel()} path="label" onUpdateHandler={this.saveMetadataFieldToStore}/>
-        </div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Attribution:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getAttribution()} path="attribution" onUpdateHandler={this.saveMetadataFieldToStore}/>
-        </div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Description:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getDescription()} path="description/0/@value" onUpdateHandler={this.saveMetadataFieldToStore}/>
-        </div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">License:</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={manifest.getLicense()} path="license" onUpdateHandler={this.saveMetadataFieldToStore}/>
-        </div>
+        <dl>
+          <dt className="metadata-field-label">Label:</dt>
+          <dd>
+            <EditableTextArea classNames="metadata-field-value" fieldValue={manifest.getLabel()} path="label" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </dd>
+        </dl>
+        <dl>
+          <dt className="metadata-field-label">Attribution:</dt>
+          <dd>
+            <EditableTextArea classNames="metadata-field-value" fieldValue={manifest.getAttribution()} path="attribution" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </dd>
+        </dl>
+        <dl>
+          <dt className="metadata-field-label">Description:</dt>
+          <dd>
+            <EditableTextArea classNames="metadata-field-value" fieldValue={manifest.getDescription()} path="description/0/@value" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </dd>
+        </dl>
+        <dl>
+          <dt className="metadata-field-label">License:</dt>
+          <dd>
+            <EditableTextArea classNames="metadata-field-value" fieldValue={manifest.getLicense()} path="license" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </dd>
+        </dl>
       </div>
     );
   }

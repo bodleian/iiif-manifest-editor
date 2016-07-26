@@ -2,17 +2,20 @@
   border: 2px solid $gray-light;
   display: none;
   height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .metadata-sidebar-controls {
     padding: 15px 0;
+    text-align: right;
 
     .hide-sidebar {
       cursor: pointer;
+      float: left;
       width: 33px;
     }
 
     .metadata-sidebar-buttons {
-      float: right;
       text-align: right;
 
       .metadata-sidebar-button {
@@ -24,6 +27,24 @@
   #metadata-accordion {
     .metadata-sidebar-panel {
       height: 65vh;
+
+      dl {
+        clear: both;
+        margin-bottom: 15px;
+        overflow: auto;
+
+        dt {
+          display: block;
+          float: left;
+          min-width: 8em;
+        }
+
+        dd {
+          display: block;
+          float: left;
+          width: 70%;
+        }
+      }
 
       .row {
         margin-bottom: 15px;
@@ -37,10 +58,16 @@
         margin-top: 15px;
       }
 
-      .metadata-field-value textarea {
-        padding-left: 0;
-        padding-right: 0;
-        width: 100%;
+      .metadata-field-value {
+        overflow-wrap: break-word;
+        word-break: break-word;
+        word-wrap: break-word;
+
+        textarea {
+          padding-left: 0;
+          padding-right: 0;
+          width: 100%;
+        }
       }
     }
   }
@@ -57,4 +84,20 @@
 
 .metadata-sidebar-container.visible {
   display: block;
+}
+
+@media (max-width: 991px) {
+  #metadata-accordion {
+    .metadata-sidebar-panel {
+      dl {
+        dt {
+          min-width: 0;
+        }
+
+        dt, dd {
+          float: none;
+        }
+      }
+    }
+  }
 }

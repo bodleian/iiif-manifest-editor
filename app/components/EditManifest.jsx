@@ -35,7 +35,9 @@ var EditManifest = React.createClass({
           'viewer-thumbnail-strip',
           {
             'col-md-8': this.props.showMetadataSidebar,
-            'col-md-12': !this.props.showMetadataSidebar
+            'col-md-12': !this.props.showMetadataSidebar,
+            'col-sm-8': this.props.showMetadataSidebar,
+            'col-sm-12': !this.props.showMetadataSidebar            
           }
         ),
         btnShowSidebarClasses = classNames(
