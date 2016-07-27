@@ -7,6 +7,9 @@ var FormSelect = require('FormSelect');
 var ManifestMetadataPanel = React.createClass({
   getInitialState: function() {
     return {
+      numUniqueMetadataFields: undefined,
+      numMultiValuedMetadataFields: undefined,
+      numUnassignedMetadataFields: undefined,
       availableMetadataFields: [
         {
           name: 'label',
@@ -76,7 +79,7 @@ var ManifestMetadataPanel = React.createClass({
     availableMetadataField.value = fieldValue;
     activeMetadataFields.push(availableMetadataField);
 
-    // delete the metadata field from the list of available fields for unique fields
+    // delete the metadata field from the list of available fields if it is unique
     if(availableMetadataField.isUnique) {
       availableMetadataFields.splice(availableMetadataFieldIndex, 1);
     }
@@ -85,6 +88,9 @@ var ManifestMetadataPanel = React.createClass({
     // create copies of the metadata field lists
     var availableMetadataFields = [...this.state.availableMetadataFields];
     var activeMetadataFields = [...this.state.activeMetadataFields];
+
+    var numUniqueMetadataFields =  availableMetadataFields.filter(function(field) { return !field.isUnique }).length;
+    var numMultiValuedMetadataFields = availableMetadataFields.filter(function(field) { return field.isUnique }).length;
 
     if(this.props.manifestoObject.getLabel() !== null) {  // manifest label
       this.setMetadataField('label', this.props.manifestoObject.getLabel(), availableMetadataFields, activeMetadataFields);
@@ -104,6 +110,9 @@ var ManifestMetadataPanel = React.createClass({
 
     // update the metadata field lists in the state so that the component uses the correct values when rendering
     this.setState({
+      numUniqueMetadataFields: numUniqueMetadataFields,
+      numMultiValuedMetadataFields: numMultiValuedMetadataFields,
+      numUnassignedMetadataFields: 0,
       availableMetadataFields: availableMetadataFields,
       activeMetadataFields: activeMetadataFields
     });
@@ -112,6 +121,7 @@ var ManifestMetadataPanel = React.createClass({
     // create copies of the metadata field lists
     var availableMetadataFields = [...this.state.availableMetadataFields];
     var activeMetadataFields = [...this.state.activeMetadataFields];
+    var numUnassignedMetadataFields = this.state.numUnassignedMetadataFields + 1;
 
     // append an empty metadata field to the active metadata list
     if(availableMetadataFields.length > 0) {
@@ -120,6 +130,7 @@ var ManifestMetadataPanel = React.createClass({
 
       // update the metadata field lists in the state
       this.setState({
+        numUnassignedMetadataFields: numUnassignedMetadataFields,
         activeMetadataFields: activeMetadataFields
       });
     }
@@ -135,6 +146,8 @@ var ManifestMetadataPanel = React.createClass({
     var availableMetadataFields = [...this.state.availableMetadataFields];
     var activeMetadataFields = [...this.state.activeMetadataFields];
 
+    var numUnassignedMetadataFields = (metadataFieldToDelete.name === undefined) ? this.state.numUnassignedMetadataFields - 1 : this.state.numUnassignedMetadataFields;
+
     // append the metadata field to delete to the list of available fields
     if(metadataFieldToDelete.name !== undefined) {
       metadataFieldToDelete.value = undefined;
@@ -146,6 +159,7 @@ var ManifestMetadataPanel = React.createClass({
 
     // update the metadata field lists in the state so that the component uses the correct values when rendering
     this.setState({
+      numUnassignedMetadataFields: numUnassignedMetadataFields,
       availableMetadataFields: availableMetadataFields,
       activeMetadataFields: activeMetadataFields
     });
@@ -159,6 +173,9 @@ var ManifestMetadataPanel = React.createClass({
     // create copies of the metadata field lists
     var availableMetadataFields = [...this.state.availableMetadataFields];
     var activeMetadataFields = [...this.state.activeMetadataFields];
+
+    var metadataFieldToDelete = activeMetadataFields[menuIndex];
+    var numUnassignedMetadataFields = (metadataFieldToDelete.name === undefined) ? this.state.numUnassignedMetadataFields - 1 : this.state.numUnassignedMetadataFields;
 
     // delete the selected menu at the given index in the active list of metadata fields
     activeMetadataFields.splice(menuIndex, 1);
@@ -176,6 +193,7 @@ var ManifestMetadataPanel = React.createClass({
 
     // update the metadata field lists in the state so that the component uses the correct values when rendering
     this.setState({
+      numUnassignedMetadataFields: numUnassignedMetadataFields,
       availableMetadataFields: availableMetadataFields,
       activeMetadataFields: activeMetadataFields
     });
@@ -234,7 +252,7 @@ var ManifestMetadataPanel = React.createClass({
           })
         }
         {(() => {
-          if(Object.keys(that.state.availableMetadataFields).length > 0) {
+          if(Object.keys(that.state.availableMetadataFields).length != that.state.numUnassignedMetadataFields) {
             return (
               <button type="button" className="btn btn-default add-metadata-field-button" aria-label="Add metadata field" onClick={that.addMetadataField}>
                 <span className="fa fa-plus-circle" aria-hidden="true"></span> Add metadata field
