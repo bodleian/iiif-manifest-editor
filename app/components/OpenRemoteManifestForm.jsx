@@ -22,13 +22,7 @@ var OpenRemoteManifestForm = React.createClass({
   },
   onFormSubmit: function(e) {
     e.preventDefault();
-
     var remoteManifestUrl = this.refs.remoteManifestUrl.value;
-
-    // TODO: implement validation of manifest here
-    // on error, pass error message up to parent component
-    // on success, pass the manifest data to the parent component
-
     if(remoteManifestUrl.length > 0) {
       // request the manifest data from the remote url
       this.fetchManifest(remoteManifestUrl);
@@ -36,11 +30,10 @@ var OpenRemoteManifestForm = React.createClass({
   },
   render: function() {
     return (
-      <div>
         <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
           <div className="form-group">
             <label htmlFor="remoteManifestUrl" className="col-sm-2 control-label">From URL</label>
-            <div className="col-sm-8">
+            <div className="col-sm-6 col-md-7 col-lg-8">
               <input required type="url" className="form-control" id="remoteManifestUrl" placeholder="Enter URL for manifest to load" ref="remoteManifestUrl" />
             </div>
             <div className="col-sm-2">
@@ -48,7 +41,6 @@ var OpenRemoteManifestForm = React.createClass({
             </div>
           </div>
         </form>
-      </div>
     );
   }
 });

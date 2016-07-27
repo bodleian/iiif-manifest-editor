@@ -35,6 +35,7 @@
         clear: both;
         margin-bottom: 15px;
         overflow: auto;
+        position: relative;
 
         dt {
           display: block;
@@ -42,10 +43,19 @@
           min-width: 8em;
         }
 
-        dd {
+        dd.metadata-field-value {
           display: block;
           float: left;
+          min-height: 25px;
+          padding-right: 30px;
           width: 65%;
+        }
+
+        dd.metadata-field-delete {
+          position: absolute;
+          right: 4px;
+          top: 0;
+          width: 22px;
         }
       }
 
@@ -100,6 +110,10 @@
 
         dt, dd {
           float: none;
+        }
+
+        dd.metadata-field-value {
+          width: 80% !important;
         }
       }
     }

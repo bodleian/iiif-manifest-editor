@@ -241,9 +241,11 @@ var ManifestMetadataPanel = React.createClass({
                 {(() => {
                   if(!metadataField.isRequired) {
                     return (
-                      <button type="button" className="btn btn-danger btn-xs delete-metadata-field-button" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
-                        <span className="fa fa-remove" aria-hidden="true"></span>
-                      </button>
+                      <dd className="metadata-field-delete">
+                        <button type="button" className="btn btn-danger btn-xs delete-metadata-field-button" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
+                          <span className="fa fa-remove" aria-hidden="true"></span>
+                        </button>
+                      </dd>
                     );
                   }
                 })()}
