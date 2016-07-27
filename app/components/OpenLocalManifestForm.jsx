@@ -35,7 +35,7 @@ var OpenLocalManifestForm = React.createClass({
       <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
         <div className="form-group">
           <label htmlFor="localManifestFile" className="col-sm-2 control-label">From Computer</label>
-          <div className="col-sm-8">
+          <div className="col-sm-6 col-md-7 col-lg-8">
             <input type="file" required className="form-control" id="localManifestFile" placeholder="Select manifest to open" ref="localManifestFile" />
           </div>
           <div className="col-sm-2">

@@ -26,7 +26,6 @@ var OpenManifest = React.createClass({
 
           {this.displayManifestFetchErrors()}
 
-
           <OpenLocalManifestDragAndDrop/>
           <OpenLocalManifestForm/>
           <OpenRemoteManifestForm/>
