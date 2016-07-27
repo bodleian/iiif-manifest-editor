@@ -31,6 +31,10 @@
       overflow-x: hidden;
       overflow-y: scroll;
 
+      .row {
+        margin-bottom: 15px;
+      }
+
       dl {
         clear: both;
         margin-bottom: 15px;

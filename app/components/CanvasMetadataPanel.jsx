@@ -54,6 +54,8 @@ var CanvasMetadataPanel = React.createClass({
       var image = canvas.getImages()[0];
       var canvasIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/@id";
       var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
+      var canvasWidthPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/width";
+      var canvasHeightPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/height";
       var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
       return (
         <div className="metadata-sidebar-panel">
@@ -66,6 +68,14 @@ var CanvasMetadataPanel = React.createClass({
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Label:</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </div>
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Canvas Width:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </div>
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Canvas Height:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
