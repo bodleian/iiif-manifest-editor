@@ -1,7 +1,12 @@
 # iiif-manifest-editor #
 
-The iiif-manifest-editor is a web application that generates IIIF manifests using local image files and existing IIIF manifests. 
+The iiif-manifest-editor is a web application that generates IIIF manifests using local image files and existing IIIF manifests.
 The web application allows you to import, view, update and export metadata using the [IIIF APIs](http://iiif.io/technical-details/).
+
+## How to use
+See this Wiki page for instructions on how to use the IIIF manifest editor:
+[User manual](https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual)
+
 
 ## How to set up the application ##
 
@@ -15,7 +20,7 @@ The web application allows you to import, view, update and export metadata using
 * Clone this repository: `git clone git@github.com:bodleian/iiif-manifest-editor.git`
 * Change into the project directory: `cd iiif-manifest-editor`
 * Install Node v6.1.0 with nvm: `nvm install v6.1.0`
-* Set nvm to use Node v6.1.0: `nvm use v6.1.0` 
+* Set nvm to use Node v6.1.0: `nvm use v6.1.0`
 * Install the required node modules into the project: `npm install`
 
 ## How to run the application ##
