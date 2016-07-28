@@ -60,6 +60,14 @@
           right: 4px;
           top: 0;
           width: 22px;
+
+          a {
+            color: #333333;
+
+            &:hover {
+              color: #d9534f;
+            }
+          }
         }
       }
 
@@ -81,11 +89,6 @@
           padding-right: 0;
           width: 100%;
         }
-      }
-      .delete-metadata-field-button {
-        float: right;
-        font-size: 10px;
-        margin-right: 3px;
       }
     }
   }

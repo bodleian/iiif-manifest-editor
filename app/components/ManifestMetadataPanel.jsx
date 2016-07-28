@@ -242,9 +242,9 @@ var ManifestMetadataPanel = React.createClass({
                   if(!metadataField.isRequired) {
                     return (
                       <dd className="metadata-field-delete">
-                        <button type="button" className="btn btn-danger btn-xs delete-metadata-field-button" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
-                          <span className="fa fa-remove" aria-hidden="true"></span>
-                        </button>
+                        <a href="javascript:;" aria-label="Delete metadata field" onClick={() => that.deleteMetadataField(metadataField, fieldIndex)}>
+                          <span className="fa fa-times-circle" aria-hidden="true"></span>
+                        </a>
                       </dd>
                     );
                   }
@@ -257,7 +257,7 @@ var ManifestMetadataPanel = React.createClass({
           if(Object.keys(that.state.availableMetadataFields).length != that.state.numUnassignedMetadataFields) {
             return (
               <button type="button" className="btn btn-default add-metadata-field-button" aria-label="Add metadata field" onClick={that.addMetadataField}>
-                <span className="fa fa-plus-circle" aria-hidden="true"></span> Add metadata field
+                <span className="fa fa-plus" aria-hidden="true"></span> Add metadata field
               </button>
             );
           }
