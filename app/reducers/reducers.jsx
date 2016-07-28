@@ -72,9 +72,11 @@ export var manifestReducer = (state = stateDefaults, action) => {
 
       // create the new metadata field and delete the old metadata field at the given path
       var object = updatedManifestData;
-      var stack = action.path.split('/');
-      while(stack.length > 0) {
-        object = object[stack.shift()];
+      if(action.path) {
+        var stack = action.path.split('/');
+        while(stack.length > 0) {
+          object = object[stack.shift()];
+        }
       }
       object[action.newMetadataFieldName] = object[action.oldMetadataFieldName];
       delete object[action.oldMetadataFieldName];
