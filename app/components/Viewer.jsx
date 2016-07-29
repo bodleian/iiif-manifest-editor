@@ -14,7 +14,8 @@ var Viewer = React.createClass({
   },
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.selectedCanvasId !== nextProps.selectedCanvasId
-           || this.props.manifestoObject !== nextProps.manifestoObject;
+           || this.props.manifestoObject !== nextProps.manifestoObject
+           || this.props.showMetadataSidebar !== nextProps.showMetadataSidebar;
   },
   componentDidMount: function() {
     // save a single instance of the viewer to the state
@@ -28,12 +29,17 @@ var Viewer = React.createClass({
                         });
     this.updateMainImageLayerInViewer();
   },
-  componentDidUpdate: function() {
-    // remove the main image layer from the viewer
-    if(this.state.mainImageLayer !== undefined) {
-      this.state.viewer.removeLayer(this.state.mainImageLayer);
+  componentDidUpdate: function(prevProps, prevState) {
+    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
+      this.state.viewer.invalidateSize();
     }
-    this.updateMainImageLayerInViewer();
+    // remove the main image layer from the viewer
+    if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
+      if(this.state.mainImageLayer !== undefined) {
+        this.state.viewer.removeLayer(this.state.mainImageLayer);
+      }
+      this.updateMainImageLayerInViewer();
+    }
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
@@ -106,7 +112,8 @@ module.exports = connect(
   (state) => {
     return {
       manifestoObject: state.manifestReducer.manifestoObject,
-      selectedCanvasId: state.manifestReducer.selectedCanvasId
+      selectedCanvasId: state.manifestReducer.selectedCanvasId,
+      showMetadataSidebar: state.manifestReducer.showMetadataSidebar
     };
   }
 )(Viewer);
