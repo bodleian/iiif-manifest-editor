@@ -26,8 +26,6 @@ var MetadataSidebar = React.createClass({
   }
 });
 
-module.exports = MetadataSidebar;
-
 module.exports = connect(
   (state) => {
     return {
