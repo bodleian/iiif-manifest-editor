@@ -15,7 +15,12 @@ var OpenLocalManifestForm = React.createClass({
         dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
         dispatch(actions.completeManifestFetch());
-        window.location = '#/edit';  // redirect to edit manifest on success
+        // check if valid manifestoObject was created, otherwise display error message
+        if(this.props.manifestoObject) {
+          window.location = '#/edit';  // redirect to edit manifest on success
+        } else {
+          dispatch(actions.setError('FETCH_LOCAL_MANIFEST_ERROR', 'Error loading local manifest. Please select a valid manifest file.'));
+        }
       })
       .catch(function(error) {
         dispatch(actions.setError('FETCH_LOCAL_MANIFEST_ERROR', 'Error loading local manifest. Please select a valid manifest file.'));
@@ -50,6 +55,7 @@ var OpenLocalManifestForm = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       isFetchingLocalManifest: state.manifestReducer.isFetchingLocalManifest
     };
   }
