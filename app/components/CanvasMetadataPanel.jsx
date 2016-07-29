@@ -61,6 +61,7 @@ var CanvasMetadataPanel = React.createClass({
         <div className="metadata-sidebar-panel">
           <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
           <hr/>
+          {this.displayImageAnnotationFetchErrors()}
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas ID:</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasId" fieldValue={canvas.id} path={canvasIdPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
@@ -80,7 +81,6 @@ var CanvasMetadataPanel = React.createClass({
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
-            {this.displayImageAnnotationFetchErrors()}
           </div>
         </div>
       );
