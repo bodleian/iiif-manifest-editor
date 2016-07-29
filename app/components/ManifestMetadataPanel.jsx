@@ -92,19 +92,19 @@ var ManifestMetadataPanel = React.createClass({
     var numUniqueMetadataFields =  availableMetadataFields.filter(function(field) { return !field.isUnique }).length;
     var numMultiValuedMetadataFields = availableMetadataFields.filter(function(field) { return field.isUnique }).length;
 
-    if(this.props.manifestoObject.getLabel() !== null) {  // manifest label
+    if(this.props.manifestoObject.getLabel()) {  // manifest label
       this.setMetadataField('label', this.props.manifestoObject.getLabel(), availableMetadataFields, activeMetadataFields);
     }
-    if(this.props.manifestoObject.getDescription() !== null) {  // description
+    if(this.props.manifestoObject.getDescription()) {  // description
       this.setMetadataField('description', this.props.manifestoObject.getDescription(), availableMetadataFields, activeMetadataFields);
     }
-    if(this.props.manifestoObject.getAttribution() !== null) {  // attribution
+    if(this.props.manifestoObject.getAttribution()) {  // attribution
       this.setMetadataField('attribution', this.props.manifestoObject.getAttribution(), availableMetadataFields, activeMetadataFields);
     }
-    if(this.props.manifestoObject.getLicense() !== null) {  // license
+    if(this.props.manifestoObject.getLicense()) {  // license
       this.setMetadataField('license', this.props.manifestoObject.getLicense(), availableMetadataFields, activeMetadataFields);
     }
-    if(this.props.manifestoObject.getLogo() !== null) {  // logo
+    if(this.props.manifestoObject.getLogo()) {  // logo
       this.setMetadataField('logo', this.props.manifestoObject.getLogo(), availableMetadataFields, activeMetadataFields);
     }
 
