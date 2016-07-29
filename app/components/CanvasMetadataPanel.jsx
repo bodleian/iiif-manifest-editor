@@ -34,7 +34,7 @@ var CanvasMetadataPanel = React.createClass({
   },
   displayImageAnnotationFetchErrors: function() {
     var {error} = this.props;
-    if(error !== undefined) {
+    if(error !== undefined && error.type === 'FETCH_IMAGE_ANNOTATION_ERROR') {
       return (
         <div className="row">
           <div className="col-md-offset-1 col-md-10">
