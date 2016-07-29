@@ -8,7 +8,7 @@ var OpenRemoteManifestForm = require('OpenRemoteManifestForm');
 var OpenManifest = React.createClass({
   displayManifestFetchErrors: function() {
     var {error} = this.props;
-    if(error !== undefined) {
+    if(error !== undefined && (error.type === 'FETCH_REMOTE_MANIFEST_ERROR' || error.type === 'FETCH_LOCAL_MANIFEST_ERROR')) {
       return (
         <div className="alert alert-danger">
           {error.message}
