@@ -34,7 +34,7 @@ var Viewer = React.createClass({
       this.state.viewer.invalidateSize();
     }
     // remove the main image layer from the viewer
-    if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
+    if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
       if(this.state.mainImageLayer !== undefined) {
         this.state.viewer.removeLayer(this.state.mainImageLayer);
       }
