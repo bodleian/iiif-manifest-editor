@@ -64,6 +64,7 @@
 
   .sortable-items {
     display: flex;
+    flex-shrink: 0;
     &:before,
     &:after {
       content: " ";
