@@ -15,9 +15,10 @@ var SaveManifestDialog = React.createClass({
     var {manifestData} = this.props;
     var manifestDataJson = JSON.stringify(manifestData, null, '\t');
     var a = document.createElement('a');
-    var blob = new Blob([manifestDataJson], {'type':'application/json'});
+    var blob = new Blob([manifestDataJson], {type: 'application/json'});
     a.href = window.URL.createObjectURL(blob);
     a.download = manifestFilenameToSave;
+    document.body.appendChild(a);
     a.click();
   },
   setManifestFilename: function() {
