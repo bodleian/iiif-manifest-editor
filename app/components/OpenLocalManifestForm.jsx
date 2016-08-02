@@ -8,6 +8,7 @@ var OpenLocalManifestForm = React.createClass({
   fetchLocalManifestFile: function(localManifestFile) {
     var {dispatch} = this.props;
     var formData = new FormData();
+    var that = this;
     formData.append('localManifestFile', localManifestFile);
     dispatch(actions.startManifestFetch('MANIFEST_TYPE_LOCAL'));
     axios.put('/manifestUpload', formData)
@@ -16,7 +17,7 @@ var OpenLocalManifestForm = React.createClass({
         dispatch(actions.setManifestData(response.data));
         dispatch(actions.completeManifestFetch());
         // check if valid manifestoObject was created, otherwise display error message
-        if(this.props.manifestoObject) {
+        if(that.props.manifestoObject) {
           window.location = '#/edit';  // redirect to edit manifest on success
         } else {
           dispatch(actions.setError('FETCH_LOCAL_MANIFEST_ERROR', 'Error loading local manifest. Please select a valid manifest file.'));
