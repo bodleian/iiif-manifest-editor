@@ -233,7 +233,7 @@ var ManifestMetadataPanel = React.createClass({
                   } else {
                     return (
                       <dd className="metadata-field-value">
-                        <EditableTextArea fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={that.updateMetadataFieldValue}/>
+                        <EditableTextArea fieldName={metadataField.name} fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={that.updateMetadataFieldValue}/>
                       </dd>
                     );
                   }
