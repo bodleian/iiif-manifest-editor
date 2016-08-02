@@ -27,7 +27,7 @@ var ManifestMetadataPanel = React.createClass({
           isRequired: false,
           isUnique: true,
           addPath: 'description',
-          updatePath: 'description/0/@value'
+          updatePath: 'description'
         },
         {
           name: 'attribution',
