@@ -7,6 +7,12 @@ var uuid = require('node-uuid');
 var {SortableItems, SortableItem} = require('react-sortable-component');
 
 var ThumbnailStrip = React.createClass({
+  componentDidMount: function() {
+    window.addEventListener("drop",function(e){
+      e = e || event;
+      e.preventDefault();
+    },false);
+  },
   buildThumbnailStripCanvasComponents: function(sequence) {
     var thumbnailStripCanvasComponents = [];
     for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
