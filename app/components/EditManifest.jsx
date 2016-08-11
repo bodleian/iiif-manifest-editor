@@ -8,6 +8,11 @@ var ThumbnailStrip = require('ThumbnailStrip');
 var actions = require('actions');
 
 var EditManifest = React.createClass({
+  componentDidMount: function() {
+    $(window).on('beforeunload', function() {
+      return true;
+    });
+  },
   componentWillMount: function() {
     var {manifestData} = this.props;
     if(manifestData === undefined) {
