@@ -47,41 +47,51 @@ var CanvasMetadataPanel = React.createClass({
       );
     }
   },
-  createImageAnnotationForImageUri: function(imageResourceId, path, fieldName) {
+  createImageAnnotationForImageUri: function(imageResourceId) {
+    var that = this;
+
     // extract base service uri
     var imageResourceUriParts = imageResourceId.split('/');
     imageResourceUriParts.splice(-4, 4);
     var baseServiceUri = imageResourceUriParts.join('/')
+    var infoJson = baseServiceUri + '/info.json';
 
-    // create an image annotation from the following template
-    var imageAnnotation = {
-      "@context":"http://iiif.io/api/presentation/2/context.json",
-      "@id": "http://" + uuid(),
-      "@type": "oa:Annotation",
-      "motivation": "sc:painting",
-      "resource": {
-        "@id": imageResourceId,
-        "@type": "dctypes:Image",
-        "format": "image/jpeg",
-        "service": {
-          "@context": "http://iiif.io/api/image/2/context.json",
-          "@id": baseServiceUri,
-          "profile": "http://iiif.io/api/image/2/level2.json"
-        },
-        "height": 0,
-        "width": 0
-      },
-      "on": this.props.selectedCanvasId
-    };
+    // check if image resource exists by requesting its info.json
+    axios.get(infoJson)
+      .then(function(response) {
+        // create an image annotation from the following template
+        var imageAnnotation = {
+          "@context":"http://iiif.io/api/presentation/2/context.json",
+          "@id": "http://" + uuid(),
+          "@type": "oa:Annotation",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": imageResourceId,
+            "@type": "dctypes:Image",
+            "format": "image/jpeg",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": baseServiceUri,
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            },
+            "height": response.data.height,
+            "width": response.data.width
+          },
+          "on": that.props.selectedCanvasId
+        };
 
-    // get the index of the selected canvas
-    var manifest = this.props.manifestoObject;
-    var sequence = manifest.getSequenceByIndex(0);
-    var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-    var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
+        // get the index of the selected canvas
+        var manifest = that.props.manifestoObject;
+        var sequence = manifest.getSequenceByIndex(0);
+        var canvas = sequence.getCanvasById(that.props.selectedCanvasId);
+        var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
 
-    // save the image annotation in the manifestData object in the store
-    this.props.dispatch(actions.addImageAnnotationToCanvas(imageAnnotation, selectedCanvasIndex));
+        // save the image annotation in the manifestData object in the store
+        that.props.dispatch(actions.addImageAnnotationToCanvas(imageAnnotation, selectedCanvasIndex));
+      })
+      .catch(function(error) {
+        that.props.dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image URI. Please provide a valid image URI.'));
+      });
   },
   render: function() {
     var manifest = this.props.manifestoObject;
@@ -89,6 +99,7 @@ var CanvasMetadataPanel = React.createClass({
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
     if(canvas !== null) {
       var image = canvas.getImages()[0];
+      var resource = image !== undefined ? image.__jsonld.resource : undefined;
       var canvasIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/@id";
       var canvasLabelPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/label";
       var canvasWidthPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/width";
@@ -117,7 +128,7 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image URI:</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.createImageAnnotationForImageUri}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.createImageAnnotationForImageUri}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>

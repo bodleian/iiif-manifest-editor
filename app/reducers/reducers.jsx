@@ -251,6 +251,9 @@ export var manifestReducer = (state = stateDefaults, action) => {
       } else {
         canvasToAnnotate.images.push(action.imageAnnotation);
       }
+      // set the canvas dimensions to the image dimensions
+      canvasToAnnotate.width = action.imageAnnotation.resource.width;
+      canvasToAnnotate.height = action.imageAnnotation.resource.height;
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
       var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
