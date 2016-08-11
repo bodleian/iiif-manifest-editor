@@ -4,6 +4,7 @@ var actions = require('actions');
 var axios = require('axios');
 var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
+var uuid = require('node-uuid');
 
 var CanvasMetadataPanel = React.createClass({
   saveMetadataFieldToStore: function(fieldValue, path, fieldName) {
@@ -46,6 +47,33 @@ var CanvasMetadataPanel = React.createClass({
       );
     }
   },
+  createImageAnnotationForImageUri: function(imageResourceId, path, fieldName) {
+    // extract base service uri
+    var imageResourceUriParts = imageResourceId.split('/');
+    imageResourceUriParts.splice(-4, 4);
+    var baseServiceUri = imageResourceUriParts.join('/')
+
+    // create an image annotation from the following template
+    var imageAnnotation = {
+      "@context":"http://iiif.io/api/presentation/2/context.json",
+      "@id": "http://" + uuid(),
+      "@type": "oa:Annotation",
+      "motivation": "sc:painting",
+      "resource": {
+        "@id": imageResourceId,
+        "@type": "dctypes:Image",
+        "format": "image/jpeg",
+        "service": {
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": baseServiceUri,
+          "profile": "http://iiif.io/api/image/2/level2.json"
+        },
+        "height": 0,
+        "width": 0
+      },
+      "on": this.props.selectedCanvasId
+    };
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -77,6 +105,10 @@ var CanvasMetadataPanel = React.createClass({
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Height:</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasHeight" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </div>
+          <div className="row">
+            <div className="col-md-3 metadata-field-label">Image URI:</div>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.createImageAnnotationForImageUri}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
