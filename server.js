@@ -15,7 +15,7 @@ app.listen(PORT, function () {
 });
 
 // manifest upload route
-app.put('/manifestUpload', upload.single('localManifestFile'), function(req, res, next) {
+app.put(app.path() + '/manifestUpload', upload.single('localManifestFile'), function(req, res, next) {
   fs.readFile(req.file.path, 'utf-8', function(err, data) {
     if(err) throw err;
     res.write(data);
