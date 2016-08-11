@@ -39,6 +39,20 @@ var EditableTextArea = React.createClass({
     if(updatedValue === '') {
       updatedValue = 'N/A';
     }
+    // Check the field name to determine which field values need to be integers
+    switch (this.state.fieldName) {
+      case 'canvasWidth':
+      case 'canvasHeight':
+        // convert field value to integer
+        updatedValue = parseInt(updatedValue);
+        // Set fieldValue to 0 for non-valid and negative numbers
+        if(isNaN(updatedValue) || updatedValue < 0) {
+          updatedValue = 0;
+        }
+        break;
+      default:
+        break;
+    }
     this.setState({ fieldValue: updatedValue });
     textArea.style.height = textArea.scrollHeight + 'px';
   },

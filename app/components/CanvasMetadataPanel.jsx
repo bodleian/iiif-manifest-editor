@@ -72,11 +72,11 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Width:</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasWidth" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Height:</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasHeight" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI:</div>
