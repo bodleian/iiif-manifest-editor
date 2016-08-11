@@ -237,6 +237,30 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return Object.assign({}, state, {
         isFetchingImageAnnotation: false
       });
+    case 'ADD_IMAGE_ANNOTATION_TO_CANVAS':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // insert the empty canvas at the given index in the sequence
+      var canvasToAnnotate = updatedManifestData.sequences[0].canvases[action.canvasIndex];
+      var numImagesOnCanvas = canvasToAnnotate.images.length;
+      if(numImagesOnCanvas > 0) {
+        canvasToAnnotate.images[0] = action.imageAnnotation;
+      } else {
+        canvasToAnnotate.images.push(action.imageAnnotation);
+      }
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'SET_ERROR':
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }

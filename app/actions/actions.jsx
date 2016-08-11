@@ -113,6 +113,14 @@ export var completeImageAnnotationFetch = () => {
   };
 };
 
+export var addImageAnnotationToCanvas = (imageAnnotation, canvasIndex) => {
+  return {
+    type: 'ADD_IMAGE_ANNOTATION_TO_CANVAS',
+    imageAnnotation,
+    canvasIndex
+  };
+};
+
 export var setShowMetadataSidebar = (showMetadataSidebar) => {
   return {
     type: 'SET_SHOW_METADATA_SIDEBAR',

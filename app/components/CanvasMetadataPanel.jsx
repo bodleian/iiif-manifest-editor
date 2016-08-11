@@ -73,6 +73,15 @@ var CanvasMetadataPanel = React.createClass({
       },
       "on": this.props.selectedCanvasId
     };
+
+    // get the index of the selected canvas
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
+    var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
+
+    // save the image annotation in the manifestData object in the store
+    this.props.dispatch(actions.addImageAnnotationToCanvas(imageAnnotation, selectedCanvasIndex));
   },
   render: function() {
     var manifest = this.props.manifestoObject;
