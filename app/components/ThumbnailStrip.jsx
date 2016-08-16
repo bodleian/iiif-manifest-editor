@@ -44,7 +44,7 @@ var ThumbnailStrip = React.createClass({
     // dispatch action to add empty canvas to end of sequence
     var targetCanvasIndex = this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length;
     var emptyCanvas = {
-      "@id": uuid(),
+      "@id": "http://" + uuid(),
       "@type": "sc:Canvas",
       "label": "Empty canvas",
       "height": 0,

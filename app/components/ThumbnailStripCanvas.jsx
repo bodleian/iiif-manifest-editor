@@ -75,7 +75,7 @@ var ThumbnailStripCanvas = React.createClass({
     // dispatch an action to add an empty canvas to the left of the given canvas
     var {dispatch, canvasIndex} = this.props;
     var emptyCanvas = {
-      "@id": uuid(),
+      "@id": "http://" + uuid(),
       "@type": "sc:Canvas",
       "label": "Empty canvas",
       "height": 0,
@@ -88,7 +88,7 @@ var ThumbnailStripCanvas = React.createClass({
     // dispatch an action to add an empty canvas to the left of the given canvas
     var {dispatch, canvasIndex} = this.props;
     var emptyCanvas = {
-      "@id": uuid(),
+      "@id": "http://" + uuid(),
       "@type": "sc:Canvas",
       "label": "Empty canvas",
       "height": 0,

@@ -21,10 +21,9 @@ var NewManifest = React.createClass({
       ],
   	  "license": "https://creativecommons.org/licenses/by/3.0/",
   	  "attribution": "[Click to edit attribution]",
-  	  "seeAlso": "-",
   	  "sequences": [
   		  {
-          "@id": uuid(),
+          "@id": "http://" + uuid(),
           "@type": "sc:Sequence",
           "label": [
             {
