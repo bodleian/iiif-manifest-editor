@@ -1,5 +1,6 @@
 var manifesto = require('manifesto.js');
 var uuid = require('node-uuid');
+var deepcopy = require('deepcopy');
 
 var stateDefaults = {
   isFetchingLocalManifest: false,
@@ -161,11 +162,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
       };
 
       // make a copy of the canvas to duplicate
-      var duplicatedCanvas = {
-        ...state.manifestData.sequences[0].canvases[action.canvasIndex]
-      };
+      var duplicatedCanvas = deepcopy(state.manifestData.sequences[0].canvases[action.canvasIndex]);
+
       // update fields in the duplicated canvas object that need to be modified
-      duplicatedCanvas['@id'] = uuid();
+      duplicatedCanvas['@id'] = "http://" + uuid();
 
       // insert the new canvas record to the right of the current canvas
       updatedManifestData.sequences[0].canvases.splice(action.canvasIndex + 1, 0, duplicatedCanvas);
@@ -247,6 +247,8 @@ export var manifestReducer = (state = stateDefaults, action) => {
       var canvasToAnnotate = updatedManifestData.sequences[0].canvases[action.canvasIndex];
       var numImagesOnCanvas = canvasToAnnotate.images.length;
       if(numImagesOnCanvas > 0) {
+        // delete existing image annotation
+        canvasToAnnotate.images.pop();
         canvasToAnnotate.images[0] = action.imageAnnotation;
       } else {
         canvasToAnnotate.images.push(action.imageAnnotation);
