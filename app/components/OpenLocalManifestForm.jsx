@@ -11,7 +11,7 @@ var OpenLocalManifestForm = React.createClass({
     var that = this;
     formData.append('localManifestFile', localManifestFile);
     dispatch(actions.startManifestFetch('MANIFEST_TYPE_LOCAL'));
-    axios.put('/manifestUpload', formData)
+    axios.put('manifestUpload', formData)
       .then(function(response) {
         dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
         dispatch(actions.setManifestData(response.data));
