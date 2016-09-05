@@ -6,6 +6,14 @@
   overflow-y: auto;
   overflow-x: hidden;
 
+  .panel-heading {
+    h4 {
+      a {
+        text-decoration:none;
+      }
+    }
+  }
+
   .metadata-sidebar-controls {
     padding: 15px 0;
     text-align: right;
