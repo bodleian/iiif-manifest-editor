@@ -135,3 +135,9 @@ export var setError = (errorType, errorMessage) => {
     errorMessage
   }
 };
+
+export var resetError = () => {
+  return {
+    type: 'RESET_ERROR'
+  }
+};

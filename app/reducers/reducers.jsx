@@ -270,6 +270,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }
       });
+    case 'RESET_ERROR':
+      return Object.assign({}, state, {
+        error: undefined
+      });
     case 'SET_SHOW_METADATA_SIDEBAR':
       return Object.assign({}, state, {
         showMetadataSidebar: action.showMetadataSidebar

@@ -28,6 +28,7 @@ var CanvasMetadataPanel = React.createClass({
         dispatch(actions.completeImageAnnotationFetch());
         // dispatch action to store to replace existing image annotation with fetched image annotation
         dispatch(actions.updateMetadataFieldValueAtPath(updatedImageAnnotation, path));
+        dispatch(actions.resetError());
       })
       .catch(function(error) {
         dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image annotation. Please provide a valid image annotation URI.'));
@@ -48,8 +49,8 @@ var CanvasMetadataPanel = React.createClass({
     }
   },
   createImageAnnotationForImageUri: function(imageResourceId) {
+    var {dispatch} = this.props;
     var that = this;
-
     // extract base service uri
     var imageResourceUriParts = imageResourceId.split('/');
     imageResourceUriParts.splice(-4, 4);
@@ -87,10 +88,11 @@ var CanvasMetadataPanel = React.createClass({
         var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
 
         // save the image annotation in the manifestData object in the store
-        that.props.dispatch(actions.addImageAnnotationToCanvas(imageAnnotation, selectedCanvasIndex));
+        dispatch(actions.addImageAnnotationToCanvas(imageAnnotation, selectedCanvasIndex));
+        dispatch(actions.resetError());
       })
       .catch(function(error) {
-        that.props.dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image URI. Please provide a valid image URI.'));
+        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image URI. Please provide a valid image URI.'));
       });
   },
   render: function() {
