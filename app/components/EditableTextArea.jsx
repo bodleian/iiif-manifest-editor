@@ -66,6 +66,12 @@ var EditableTextArea = React.createClass({
       this.inputLostFocus();
     }
   },
+  handleFocus: function(e) {
+    var target = e.target;
+    setTimeout(function() {
+      target.select();
+    }, 0);
+  },
   render: function() {
     if(this.state.editing) {
       return (
@@ -75,6 +81,7 @@ var EditableTextArea = React.createClass({
                     onBlur={this.inputLostFocus}
                     onKeyPress={this.keyPressed}
                     defaultValue={this.state.fieldValue}
+                    onFocus={this.handleFocus}
                     autoFocus>
          </textarea>
        </div>
