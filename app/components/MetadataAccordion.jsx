@@ -11,7 +11,7 @@ var MetadataAccordion = React.createClass({
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
-              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-manifest-metadata"><i className="fa fa-book"></i> Manifest metadata</a>
+              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-manifest-metadata"><i className="fa fa-book"></i> Manifest Metadata</a>
             </h4>
           </div>
           <div id="collapse-manifest-metadata" className="panel-collapse collapse in">
@@ -23,7 +23,7 @@ var MetadataAccordion = React.createClass({
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
-              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-sequence-metadata"><i className="fa fa-list-ol"></i> Sequence metadata</a>
+              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-sequence-metadata"><i className="fa fa-list-ol"></i> Sequence Metadata</a>
             </h4>
           </div>
           <div id="collapse-sequence-metadata" className="panel-collapse collapse">
@@ -35,7 +35,7 @@ var MetadataAccordion = React.createClass({
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
-              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-canvas-metadata"><i className="fa fa-file-image-o"></i> Canvas metadata</a>
+              <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-canvas-metadata"><i className="fa fa-file-image-o"></i> Canvas Metadata</a>
             </h4>
           </div>
           <div id="collapse-canvas-metadata" className="panel-collapse collapse">
