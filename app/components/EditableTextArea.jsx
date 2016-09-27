@@ -7,7 +7,8 @@ var EditableTextArea = React.createClass({
     return {
       editing: false,
       fieldName: this.props.fieldName,
-      fieldValue: this.props.fieldValue
+      fieldValue: this.props.fieldValue,
+      labelPrefix: this.props.labelPrefix
     }
   },
   componentWillReceiveProps: function(nextProps) {
@@ -87,9 +88,11 @@ var EditableTextArea = React.createClass({
        </div>
       );
     }
-    return <div className={this.props.classNames} onClick={this.labelClicked}>
-      <i className="fa fa-pencil-square-o"></i> {this.state.fieldValue}
-    </div>;
+    return (
+      <div className={this.props.classNames} onClick={this.labelClicked}>
+        {this.state.labelPrefix} <i className="fa fa-pencil-square-o"></i> {this.state.fieldValue}
+      </div>
+    );
   }
 });
 

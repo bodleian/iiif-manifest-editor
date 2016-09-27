@@ -91,15 +91,15 @@ var Viewer = React.createClass({
             var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
             var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
             return (
-              <EditableTextArea classNames="viewer-canvas-label" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             );
           } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
             return (
-              <div className="viewer-canvas-label">[This sequence does not have any canvases]</div>
+              <div className="viewer-canvas-label">Canvas Label: [This sequence does not have any canvases]</div>
             );
           } else {
             return (
-              <div className="viewer-canvas-label">[Nothing to display]</div>
+              <div className="viewer-canvas-label">Canvas Label: [Nothing to display]</div>
             );
           }
         })()}
