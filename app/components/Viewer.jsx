@@ -74,26 +74,39 @@ var Viewer = React.createClass({
     }
   },
   render: function() {
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    var sequenceLength = sequence.getCanvases().length;
+    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
+    var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
+    var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
     return (
       <div className="viewer-container">
         <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
           <div className="viewer-loading-text">Loading</div>
         </div>
-        <NavigationArrow direction="left" />
-        <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
-        <NavigationArrow direction="right" />
         {(() => {
-          if(this.props.selectedCanvasId !== undefined && this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length > 0) {
-            var manifest = this.props.manifestoObject;
-            var sequence = manifest.getSequenceByIndex(0);
-            var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-            var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
-            var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
+          if(canvasIndex > 0) {
+            return (
+              <NavigationArrow direction="left" />
+            );
+          }
+        })()}
+        <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+        {(() => {
+          if(canvasIndex < sequenceLength-1) {
+            return (
+              <NavigationArrow direction="right" />
+            );
+          }
+        })()}
+        {(() => {
+          if(this.props.selectedCanvasId !== undefined && sequenceLength > 0) {
             return (
               <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             );
-          } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
+          } else if(sequenceLength < 1) {
             return (
               <div className="viewer-canvas-label">Canvas Label: [This sequence does not have any canvases]</div>
             );
