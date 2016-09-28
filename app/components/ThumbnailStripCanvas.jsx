@@ -6,52 +6,29 @@ var manifesto = require('manifesto.js');
 var uuid = require('node-uuid');
 
 var ThumbnailStripCanvas = React.createClass({
-  getInitialState: function() {
-    return {
-      contextMenu: undefined
-    }
-  },
   componentDidMount: function() {
     var $canvas = $(ReactDOM.findDOMNode(this));
 
-    // attach contextmenu event to the canvas to show menu options on a right-click event
-    this.attachContextMenuEventToCanvas($canvas);
-
-    // attach click event to the entire document to hide displayed menu options when clicking anywhere in the view
-    this.attachClickEventToDocument($canvas);
+    // attach hover event to the canvas to fade in and out canvas menu options
+    this.attachHoverEventToCanvas($canvas);
   },
-  attachContextMenuEventToCanvas: function($canvas) {
-    var that = this;
-    $canvas.bind('contextmenu', function(e) {
-      e.preventDefault();
+  attachHoverEventToCanvas: function($canvas) {
+    var fadeInterval = 400;
 
-      // hide every displayed context menu before displaying the one for the current selected canvas
-      var $parentOfCanvas = $(ReactDOM.findDOMNode(this).parentNode);
-      for(var canvasIndex = 0; canvasIndex < $parentOfCanvas.children().length; canvasIndex++) {
-        var $currentCanvas = $($parentOfCanvas.children()[canvasIndex]);
-        var $currentCanvasMenu = $currentCanvas.children('ul.custom-menu:first');
-        $currentCanvasMenu.hide();
-      }
-      var $contextMenu = $canvas.children('ul.custom-menu:first');
-      // show the context menu and position it at the clicked mouse coordinates
-      $contextMenu
-        .toggle()
-        .css({
-          top: (e.pageY - $contextMenu.height()) + "px",
-          left: e.pageX + "px"
-        });
-
-      // save the currently displayed context menu to the state so we can hide it later when needed
-      that.setState({ contextMenu: $contextMenu });
+    // fade in and out the canvas menu options
+    var $canvasMenuOptions = $canvas.find('.canvas-menu-options');
+    $canvas.hover(function() {
+      $canvasMenuOptions.stop(true, true).fadeIn(fadeInterval);
+    }, function () {
+      $canvasMenuOptions.stop(true, true).fadeOut(fadeInterval);
     });
-  },
-  attachClickEventToDocument: function($canvas) {
-    var that = this;
-    $(document).bind('click', function(e) {
-      // hide the context menu when clicking anywhere in the view
-      if(that.state.contextMenu !== undefined) {
-        that.state.contextMenu.hide();
-      }
+
+    // fade in and out the delete canvas button
+    var $deleteCanvasButton = $canvas.find('.delete-canvas-button');
+    $canvas.hover(function() {
+      $deleteCanvasButton.stop(true, true).fadeIn(fadeInterval);
+    }, function () {
+      $deleteCanvasButton.stop(true, true).fadeOut(fadeInterval);
     });
   },
   setSelectedCanvasId: function() {
@@ -110,16 +87,24 @@ var ThumbnailStripCanvas = React.createClass({
     }
     dispatch(actions.deleteCanvasAtIndex(canvasIndex));
   },
+  openDeleteCanvasConfirmationDialog: function() {
+    if(confirm('Are you sure you want to delete this canvas?')) {
+      this.deleteCanvas();
+    }
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
-      <div>
-        <ul className='custom-menu'>
-          <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
-          <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
-          <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i> Duplicate canvas</li>
-          <li onClick={this.deleteCanvas}><i className="context-menu-item fa fa-trash"></i> Delete canvas</li>
-        </ul>
+      <div className="thumbnail-strip-canvas-container">
+        <a className="delete-canvas-button" onClick={this.openDeleteCanvasConfirmationDialog}><img src="img/remove.png" height="15" /></a>
+        <span className="canvas-menu-options dropdown">
+          <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-ellipsis-h"></i></a>
+          <ul className="dropdown-menu">
+            <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
+            <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
+            <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i> Duplicate canvas</li>
+          </ul>
+        </span>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
           <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label">
