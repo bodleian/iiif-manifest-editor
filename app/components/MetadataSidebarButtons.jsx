@@ -24,12 +24,16 @@ var MetadataSidebarButtons = React.createClass({
     return (
       <div className="metadata-sidebar-controls row">
         <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
-
         <span className="metadata-sidebar-buttons">
-          <button onClick={() => this.openExitConfirmationDialog('#/new')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-file hidden-sm hidden-xs"></i> New</button>
-          <button onClick={() => this.openExitConfirmationDialog('#/open')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open</button>
-          <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save</button>
-          <button onClick={() => this.openExitConfirmationDialog('#/')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-close hidden-sm hidden-xs"></i> Close</button>
+          <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
+          <span className="manifest-actions-menu dropdown">
+            <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
+            <ul className="dropdown-menu pull-left">
+              <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
+              <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+              <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
+            </ul>
+          </span>
           <SaveManifestDialog ref="saveManifestDialog" />
         </span>
       </div>
