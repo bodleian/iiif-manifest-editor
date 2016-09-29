@@ -8,17 +8,24 @@
 
     .open-manifest-form-header {
       font-size: 1.6rem;
+      padding: 7px 0;
       border-bottom: 1px solid $gray-light;
+
+      .open-manifest-cancel-button {
+        float: right;
+        margin-right: 7px;
+      }
     }
-    h3 {
-      font-size: 1.6rem;
-      margin-top: 7px;
+
+    .open-manifest-button-container {
+      margin: 20px auto;
     }
+
     .drop-manifest-container {
       color: $gray;
       margin: 20px;
       height: 100px;
-      border:1px solid $gray-light;
+      border: 1px solid $gray-light;
       background-color: $gray-lighter;
       border-radius: 5px;
       padding: 40px 0;
@@ -29,12 +36,10 @@
         letter-spacing: 1px;
       }
     }
+
     .drop-manifest-container-drag {
       border-style: dashed;
       background-color: white;
     }
-  }
-  .cancel-button-container {
-    margin:20px auto;
   }
 }
