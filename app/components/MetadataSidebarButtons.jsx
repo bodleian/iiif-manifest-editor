@@ -20,6 +20,9 @@ var MetadataSidebarButtons = React.createClass({
       window.location = targetRoute;
     }
   },
+  openImportCanvasesView: function() {
+    window.location = '#/canvases';
+  },
   render: function() {
     return (
       <div className="metadata-sidebar-controls row">
@@ -31,6 +34,7 @@ var MetadataSidebarButtons = React.createClass({
             <ul className="dropdown-menu pull-left">
               <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
               <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+              <li onClick={() => this.openImportCanvasesView()}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
               <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
             </ul>
           </span>

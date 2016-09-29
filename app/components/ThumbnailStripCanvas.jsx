@@ -92,6 +92,9 @@ var ThumbnailStripCanvas = React.createClass({
       this.deleteCanvas();
     }
   },
+  openImportCanvasesView: function() {
+    window.location = '#/canvases';
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
@@ -103,6 +106,7 @@ var ThumbnailStripCanvas = React.createClass({
             <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
             <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
             <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i> Duplicate canvas</li>
+            <li onClick={() => this.openImportCanvasesView()}><i className="context-menu-item fa fa-picture-o"></i> Import canvases</li>
           </ul>
         </span>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
