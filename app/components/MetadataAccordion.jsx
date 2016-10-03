@@ -45,7 +45,7 @@ var MetadataAccordion = React.createClass({
           </div>
         </div>
         <div className="panel panel-default">
-          <div className="panel-heading">
+          <div className="panel-heading" id="bulk-actions-panel-heading">
             <h4 className="panel-title">
               <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-bulk-actions"><i className="fa fa-cogs"></i> Bulk Actions</a>
             </h4>
