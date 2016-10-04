@@ -66,9 +66,9 @@ var CanvasMetadataPanel = React.createClass({
             "@type": "dctypes:Image",
             "format": "image/jpeg",
             "service": {
-              "@context": "http://iiif.io/api/image/2/context.json",
+              "@context": response.data['@context'],
               "@id": baseServiceUri,
-              "profile": "http://iiif.io/api/image/2/level2.json"
+              "profile": response.data.profile
             },
             "height": response.data.height,
             "width": response.data.width
