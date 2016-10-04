@@ -1,0 +1,37 @@
+.import-canvases-container {
+  position: relative;
+
+  .sequence-browser {
+    position: relative;
+    border: 2px solid $gray-light;
+    height: 75vh;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    .sequence-viewer {
+      display: inline-block;
+      vertical-align: middle;
+      border-left: 1px solid $gray-light;
+      border-right: 2px solid $gray-light;
+      width: 30%;
+      height: 100%;
+    }
+
+    .open-sequence-button {
+      position: absolute;
+      top: 50%;
+      height: 30%;
+      margin-top: -50px; /* account for padding and border if not using box-sizing: border-box; */
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  .sequence-thumbnail-strip {
+    border: 2px solid $gray-light;
+    height: 25vh;
+    display: flex;
+    overflow-x: scroll;
+  }
+}
