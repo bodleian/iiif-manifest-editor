@@ -50,9 +50,18 @@
 
 
   .thumbnail-strip-canvas {
-    &.active {
-      border: 2px solid red;
+    &.active img {
+      border: 3px solid $iiifRed;
       border-radius: 5px;
+      padding:2px;
+    }
+
+    &.active .canvas-label span {
+      background-color: $iiifRed;
+      border:1px solid darken($iiifRed, 15%);
+      color:white;
+      padding:0 8px;
+      border-radius:3px;
     }
 
     img {
