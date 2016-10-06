@@ -6,8 +6,8 @@
   margin-right: -15px;
 
   .viewer-loading-indicator {
-    opacity:0.8;
-    padding:30px;
+    opacity:0.6;
+    padding:15px;
     background-color: #222;
     border-radius: 10px;
     position: absolute;
@@ -16,7 +16,7 @@
     z-index: 1;
     text-align: center;
     i {
-      font-size: 5rem;
+      font-size: 3rem;
       color: white;
     }
 
