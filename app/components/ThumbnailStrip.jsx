@@ -31,8 +31,13 @@ var ThumbnailStrip = React.createClass({
       var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
       var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
       if($activeCanvas.offset() !== undefined) {
-        var leftOffset = $activeCanvas.offset().left + $thumbnailStrip.scrollLeft();
-        $thumbnailStrip.scrollLeft(leftOffset);
+        var scrollPosition = $thumbnailStrip.scrollLeft() + ($activeCanvas.offset().left + $activeCanvas.width()/2) - $thumbnailStrip.width()/2;
+        $activeCanvas.css({opacity:0.6});
+        $($thumbnailStrip).animate({
+          scrollLeft: scrollPosition,
+        }, 400, function() {
+          $activeCanvas.css({opacity:1.0});
+        });
       }
     }
   },
