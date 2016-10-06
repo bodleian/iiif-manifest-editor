@@ -1,12 +1,12 @@
 var React = require('react');
-var axios = require('axios');
+var ReactDOM = require('react-dom');
 var manifesto = require('manifesto.js');
 var OpenSequenceDialog = require('OpenSequenceDialog');
 
 var SequenceBrowser = React.createClass({
   getInitialState: function() {
     return {
-      activeManifests: []
+      sourceManifests: []
     }
   },
   showOpenSequenceDialog: function() {
@@ -15,27 +15,16 @@ var SequenceBrowser = React.createClass({
       backdrop: 'static'
     });
   },
-  fetchRemoteManifest: function(remoteManifestUrl) {
-    var that = this;
-    axios.get(remoteManifestUrl)
-      .then(function(response) {
-        // add the requested manifest data to the list of active manifests in the state
-        that.addManifestDataToState(JSON.stringify(response.data));
-      })
-      .catch(function(error) {
-        console.log('Unable to retrieve remote manifest', remoteManifestUrl);
-      });
-  },
   addManifestDataToState: function(manifestData) {
-    // create a copy of the active manifests
-    var activeManifests = [...this.state.activeManifests];
+    // create a copy of the source manifests
+    var sourceManifests = [...this.state.sourceManifests];
 
-    // append the manifest to the list of active manifests
-    activeManifests.push(manifestData);
+    // append the manifest to the list of source manifests
+    sourceManifests.push(manifestData);
 
-    // update the list of active manifests in the state
+    // update the list of source manifests in the state
     this.setState({
-      activeManifests: activeManifests
+      sourceManifests: sourceManifests
     });
   },
   render: function() {
@@ -43,8 +32,8 @@ var SequenceBrowser = React.createClass({
     return (
       <div className="sequence-browser">
         {
-          Object.keys(this.state.activeManifests).map(function(manifestIndex) {
-            var manifestData = that.state.activeManifests[manifestIndex];
+          Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
+            var manifestData = that.state.sourceManifests[manifestIndex];
             var manifestoObject = manifesto.create(manifestData);
             var sequence = manifestoObject.getSequenceByIndex(0);
             return (
@@ -60,10 +49,10 @@ var SequenceBrowser = React.createClass({
             );
           })
         }
-        <button type="button" className="btn btn-default open-sequence-button" aria-label="Open sequence" onClick={() => this.fetchRemoteManifest("http://iiif.bodleian.ox.ac.uk/iiif/manifest/51a65464-6408-4a78-9fd1-93e1fa995b9c.json")}>
-          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Open Sequence
+        <button type="button" className="btn btn-default open-sequence-button" aria-label="Open sequence" onClick={() => this.showOpenSequenceDialog()}>
+          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span> Open Sequence
         </button>
-        <OpenSequenceDialog ref="openSequenceDialog" />
+        <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={that.addManifestDataToState}/>
       </div>
     );
   }
