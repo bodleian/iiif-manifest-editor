@@ -35,7 +35,7 @@ var ThumbnailStrip = React.createClass({
         $activeCanvas.css({opacity:0.6});
         $($thumbnailStrip).animate({
           scrollLeft: scrollPosition,
-        }, 400, function() {
+        }, 300, function() {
           $activeCanvas.css({opacity:1.0});
         });
       }
