@@ -96,9 +96,9 @@ var ThumbnailStripCanvas = React.createClass({
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
       <div className="thumbnail-strip-canvas-container">
-        <a className="delete-canvas-button" onClick={this.openDeleteCanvasConfirmationDialog}><img src="img/remove.png" height="15" /></a>
+        <a className="delete-canvas-button btn btn-danger btn-xs btn-transparent" onClick={this.openDeleteCanvasConfirmationDialog} title="Remove Canvas"><i className="fa fa-trash"></i></a>
         <span className="canvas-menu-options dropdown">
-          <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-ellipsis-h"></i></a>
+          <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-bars"></i></a>
           <ul className="dropdown-menu">
             <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
             <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
