@@ -128,17 +128,17 @@ export var setShowMetadataSidebar = (showMetadataSidebar) => {
   };
 };
 
-export var renameCanvasLabelsByPagination = (indexOffset) => {
+export var renameCanvasLabelsByPagination = (canvasIndexOffset) => {
   return {
     type: 'RENAME_CANVAS_LABELS_BY_PAGINATION',
-    indexOffset
+    canvasIndexOffset
   };
 };
 
-export var renameCanvasLabelsByFoliation = (indexOffset, startWithFoliationSide) => {
+export var renameCanvasLabelsByFoliation = (canvasIndexOffset, startWithFoliationSide) => {
   return {
     type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
-    indexOffset,
+    canvasIndexOffset,
     startWithFoliationSide
   };
 };
