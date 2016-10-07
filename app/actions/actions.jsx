@@ -128,6 +128,14 @@ export var setShowMetadataSidebar = (showMetadataSidebar) => {
   };
 };
 
+export var renameCanvasLabels = (orderingType, indexOffset) => {
+  return {
+    type: 'RENAME_CANVAS_LABELS',
+    orderingType,
+    indexOffset
+  };
+};
+
 export var setError = (errorType, errorMessage) => {
   return {
     type: 'SET_ERROR',

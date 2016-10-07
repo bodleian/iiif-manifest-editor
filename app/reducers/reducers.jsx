@@ -266,6 +266,32 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'RENAME_CANVAS_LABELS':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // automatically rename canvas labels in sequence
+      function renameCanvasLabels(canvases, orderingType, indexOffset) {
+        var renamedCanvases = [];
+        for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
+          canvases[canvasIndex].label = canvasIndex + 1;
+          renamedCanvases[canvasIndex] = canvases[canvasIndex];
+        }
+        return renamedCanvases;
+      }
+      updatedManifestData.sequences[0].canvases = renameCanvasLabels(state.manifestData.sequences[0].canvases, action.orderingType, action.indexOffset);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'SET_ERROR':
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }
