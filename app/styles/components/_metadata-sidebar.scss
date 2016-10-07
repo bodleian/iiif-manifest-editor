@@ -54,13 +54,12 @@
 
   #metadata-accordion {
 
+    #bulk-actions-panel-heading {
+      background-color: #444;
+      color: whitesmoke;
+    }
+
     #bulk-actions-panel {
-
-      #bulk-actions-panel-heading {
-        background-color: #444;
-        color:whitesmoke;
-      }
-
       label.control-label {
         text-align: left;
       }
