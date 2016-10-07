@@ -92,6 +92,9 @@ var ThumbnailStripCanvas = React.createClass({
       this.deleteCanvas();
     }
   },
+  stringTruncate: function(str, maxLength) {
+    return str.length > maxLength ? str.substring(0, maxLength - 1) + '…' : str;
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
@@ -107,8 +110,8 @@ var ThumbnailStripCanvas = React.createClass({
         </span>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
           <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
-          <div className="canvas-label">
-            <span>{this.getMainImageLabel(canvas)}</span>
+          <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
+            <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
           </div>
         </div>
       </div>
