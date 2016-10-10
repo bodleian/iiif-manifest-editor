@@ -1,11 +1,30 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var actions = require('actions');
 var classNames = require('classnames');
 var MetadataSidebarButtons = require('MetadataSidebarButtons');
 var MetadataAccordion = require('MetadataAccordion');
 
 var MetadataSidebar = React.createClass({
+  setShowMetadataSidebar: function(value) {
+    this.props.dispatch(actions.setShowMetadataSidebar(value));
+  },
+  toggleSidebar: function() {
+    this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
+  },
+  showSidebar: function() {
+    this.setShowMetadataSidebar(true);
+  },
   render: function() {
+    var btnShowSidebarClasses = classNames(
+          'btn',
+          'btn-default',
+          'btn-show-sidebar',
+          'hidden-xs',
+          {
+            'visible': !this.props.showMetadataSidebar
+          }
+        );
     var sidebarClasses = classNames(
         'col-md-4',
         'col-sm-4',
@@ -14,13 +33,15 @@ var MetadataSidebar = React.createClass({
           visible: this.props.showMetadataSidebar
         }
       );
-
     return (
-      <div className={sidebarClasses}>
-        <div className="container-fluid">
-          <MetadataSidebarButtons />
+      <div>
+        <a onClick={this.showSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
+        <div className={sidebarClasses}>
+          <div className="container-fluid">
+            <MetadataSidebarButtons />
+          </div>
+          <MetadataAccordion/>
         </div>
-        <MetadataAccordion/>
       </div>
     );
   }

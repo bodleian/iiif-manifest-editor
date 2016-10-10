@@ -171,3 +171,21 @@
     }
   }
 }
+
+.btn-show-sidebar {
+  border-radius: 0;
+  display: none;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 33px;
+
+  i {
+    padding-top: 15px;
+  }
+
+  &.visible {
+    display: inline;
+  }
+}

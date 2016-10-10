@@ -44,7 +44,6 @@ var ThumbnailStrip = React.createClass({
   handleSort: function(updatedSortOrder) {
     this.props.dispatch(actions.reorderCanvases(updatedSortOrder));
   },
-
   appendEmptyCanvasToSequence: function() {
     // dispatch action to add empty canvas to end of sequence
     var targetCanvasIndex = this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length;
