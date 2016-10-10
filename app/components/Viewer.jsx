@@ -75,6 +75,12 @@ var Viewer = React.createClass({
       }
     }
   },
+  setShowMetadataSidebar: function(value) {
+    this.props.dispatch(actions.setShowMetadataSidebar(value));
+  },
+  toggleSidebar: function() {
+    this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -118,6 +124,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
+        <a onClick={this.toggleSidebar} className="btn btn-default viewer-info-icon-button hidden-xs" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
       </div>
     );
   }

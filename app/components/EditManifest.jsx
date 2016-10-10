@@ -25,12 +25,6 @@ var EditManifest = React.createClass({
       this.props.dispatch(actions.setSelectedCanvasId(canvas.id));
     }
   },
-  setShowMetadataSidebar: function(value) {
-    this.props.dispatch(actions.setShowMetadataSidebar(value));
-  },
-  toggleSidebar: function() {
-    this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
-  },
   render: function() {
     var {manifestData} = this.props;
     var viewerThumbnailStripClasses = classNames(
@@ -54,7 +48,6 @@ var EditManifest = React.createClass({
             </div>
             <MetadataSidebar ref="sidebar"/>
           </div>
-          <a onClick={this.toggleSidebar} className="btn btn-default menu-toggle-sidebar hidden-xs" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
         </div>
       );
     }
