@@ -1,10 +1,11 @@
 .metadata-sidebar-container {
   border: 2px solid $gray-light;
   display: none;
+  width: 30%;
   height: 100vh;
-  padding-right: 10px;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 0 15px;
 
   .panel-heading {
     h4 {
@@ -179,7 +180,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 33px;
+  width: 3%;
 
   i {
     padding-top: 15px;

@@ -1,3 +1,13 @@
 .edit-manifest-container {
   position: relative;
+
+  .viewer-thumbnail-strip-narrow-view {
+    float: left;
+    width: 70%;
+  }
+
+  .viewer-thumbnail-strip-wide-view {
+    float: left;
+    width: 97%;
+  }
 }

@@ -1,9 +1,8 @@
 .viewer-container {
   position: relative;
   border: 2px solid $gray-light;
+  width: 100%;
   height: 75vh;
-  margin-left: -15px;
-  margin-right: -15px;
 
   .viewer-info-icon-button {
     border-radius: 4px;

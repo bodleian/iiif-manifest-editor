@@ -17,26 +17,24 @@ var MetadataSidebar = React.createClass({
   },
   render: function() {
     var btnShowSidebarClasses = classNames(
-          'btn',
-          'btn-default',
-          'btn-show-sidebar',
-          'hidden-xs',
-          {
-            'visible': !this.props.showMetadataSidebar
-          }
-        );
-    var sidebarClasses = classNames(
-        'col-md-4',
-        'col-sm-4',
-        'metadata-sidebar-container',
-        {
-          visible: this.props.showMetadataSidebar
-        }
-      );
+      'btn',
+      'btn-default',
+      'btn-show-sidebar',
+      'hidden-xs',
+      {
+        'visible': !this.props.showMetadataSidebar
+      }
+    );
+    var metadataSidebarClasses = classNames(
+      'metadata-sidebar-container',
+      {
+        visible: this.props.showMetadataSidebar
+      }
+    );
     return (
       <div>
         <a onClick={this.showSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
-        <div className={sidebarClasses}>
+        <div className={metadataSidebarClasses}>
           <div className="container-fluid">
             <MetadataSidebarButtons />
           </div>

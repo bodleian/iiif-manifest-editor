@@ -28,12 +28,9 @@ var EditManifest = React.createClass({
   render: function() {
     var {manifestData} = this.props;
     var viewerThumbnailStripClasses = classNames(
-      'viewer-thumbnail-strip',
       {
-        'col-md-8': this.props.showMetadataSidebar,
-        'col-md-12': !this.props.showMetadataSidebar,
-        'col-sm-8': this.props.showMetadataSidebar,
-        'col-sm-12': !this.props.showMetadataSidebar            
+        'viewer-thumbnail-strip-narrow-view': this.props.showMetadataSidebar,
+        'viewer-thumbnail-strip-wide-view': !this.props.showMetadataSidebar
       }
     );
     if(manifestData === undefined) {

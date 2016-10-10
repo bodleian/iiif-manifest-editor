@@ -59,7 +59,7 @@ var ThumbnailStrip = React.createClass({
   },
   render: function() {
     return (
-      <div className="row thumbnail-strip-container">
+      <div className="thumbnail-strip-container">
         <SortableItems name="simple-sort" onSort={this.handleSort}>
         {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
         </SortableItems>
