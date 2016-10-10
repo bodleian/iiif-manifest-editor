@@ -95,13 +95,16 @@ var ThumbnailStripCanvas = React.createClass({
   openImportCanvasesView: function() {
     window.location = '#/canvases';
   },
+  stringTruncate: function(str, maxLength) {
+    return str.length > maxLength ? str.substring(0, maxLength - 1) + '…' : str;
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
       <div className="thumbnail-strip-canvas-container">
-        <a className="delete-canvas-button" onClick={this.openDeleteCanvasConfirmationDialog}><img src="img/remove.png" height="15" /></a>
+        <a className="delete-canvas-button btn btn-danger btn-xs btn-transparent" onClick={this.openDeleteCanvasConfirmationDialog} title="Remove Canvas"><i className="fa fa-trash"></i></a>
         <span className="canvas-menu-options dropdown">
-          <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-ellipsis-h"></i></a>
+          <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-bars"></i></a>
           <ul className="dropdown-menu">
             <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
             <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
@@ -111,8 +114,8 @@ var ThumbnailStripCanvas = React.createClass({
         </span>
         <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
           <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
-          <div className="canvas-label">
-            {this.getMainImageLabel(canvas)}
+          <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
+            <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
           </div>
         </div>
       </div>

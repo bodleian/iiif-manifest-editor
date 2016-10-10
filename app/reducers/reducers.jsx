@@ -266,6 +266,77 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'RENAME_CANVAS_LABELS_BY_PAGINATION':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // automatically rename canvas labels in sequence
+      function renameCanvasLabelsByPagination(canvases, canvasIndexOffset) {
+        var renamedCanvases = [];
+        var canvasLabelCounter = 1;
+        for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
+          if(canvasIndex >= canvasIndexOffset) {
+            canvases[canvasIndex].label = canvasLabelCounter;
+            canvasLabelCounter++;
+          }
+          renamedCanvases[canvasIndex] = canvases[canvasIndex];
+        }
+        return renamedCanvases;
+      }
+      updatedManifestData.sequences[0].canvases = renameCanvasLabelsByPagination(state.manifestData.sequences[0].canvases, action.canvasIndexOffset);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+    case 'RENAME_CANVAS_LABELS_BY_FOLIATION':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // automatically rename canvas labels in sequence
+      function renameCanvasLabelsByFoliation(canvases, canvasIndexOffset, startWithFoliationSide) {
+        var renamedCanvases = [];
+        var foliationSide = (startWithFoliationSide == 'recto') ? 'r' : 'v';
+        var canvasLabelCounter = 1;
+        for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
+          if(canvasIndex >= canvasIndexOffset) {
+            // append the foliation side to the canvas label
+            canvases[canvasIndex].label = canvasLabelCounter + foliationSide;
+
+            // increment the canvas label counter when the foliation side changes to verso
+            if(foliationSide == 'v') {
+              canvasLabelCounter++;
+            }
+
+            // toggle the foliation side 
+            foliationSide = (foliationSide == 'r') ? 'v' : 'r';
+          }
+
+          renamedCanvases[canvasIndex] = canvases[canvasIndex];
+        }
+        return renamedCanvases;
+      }
+      updatedManifestData.sequences[0].canvases = renameCanvasLabelsByFoliation(state.manifestData.sequences[0].canvases, action.canvasIndexOffset, action.startWithFoliationSide);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+
     case 'SET_ERROR':
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }

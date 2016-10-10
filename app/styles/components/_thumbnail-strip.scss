@@ -21,15 +21,15 @@
     .delete-canvas-button {
       display: none;
       position: absolute;
-      left: 8px;
-      top: 8px;
+      left: 12px;
+      top: 4px;
     }
 
     .canvas-menu-options {
       display: none;
       position: absolute;
-      right: 8px;
-      top: 8px;
+      right: 12px;
+      top: 4px;
 
       a, a:active, a:hover, a:visited, a:focus {
         color: #09f;
@@ -50,9 +50,18 @@
 
 
   .thumbnail-strip-canvas {
-    &.active {
-      border: 2px solid red;
+    &.active img {
+      border: 3px solid $iiifRed;
       border-radius: 5px;
+      padding:2px;
+    }
+
+    &.active .canvas-label span {
+      background-color: $iiifRed;
+      border:1px solid darken($iiifRed, 15%);
+      color:white;
+      padding:0 8px;
+      border-radius:3px;
     }
 
     img {

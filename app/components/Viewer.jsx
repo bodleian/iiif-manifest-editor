@@ -28,6 +28,8 @@ var Viewer = React.createClass({
                           attributionControl: false
                         });
     this.updateMainImageLayerInViewer();
+    var _this = this;
+    setTimeout(function(){ _this.state.viewer.invalidateSize()}, 100);
   },
   componentDidUpdate: function(prevProps, prevState) {
     if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {

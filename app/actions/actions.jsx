@@ -128,6 +128,21 @@ export var setShowMetadataSidebar = (showMetadataSidebar) => {
   };
 };
 
+export var renameCanvasLabelsByPagination = (canvasIndexOffset) => {
+  return {
+    type: 'RENAME_CANVAS_LABELS_BY_PAGINATION',
+    canvasIndexOffset
+  };
+};
+
+export var renameCanvasLabelsByFoliation = (canvasIndexOffset, startWithFoliationSide) => {
+  return {
+    type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+    canvasIndexOffset,
+    startWithFoliationSide
+  };
+};
+
 export var setError = (errorType, errorMessage) => {
   return {
     type: 'SET_ERROR',

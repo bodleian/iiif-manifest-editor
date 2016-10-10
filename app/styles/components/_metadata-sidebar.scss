@@ -56,7 +56,19 @@
 
     #bulk-actions-panel-heading {
       background-color: #444;
-      color:whitesmoke;
+      color: whitesmoke;
+    }
+
+    #bulk-actions-panel {
+      label.control-label {
+        text-align: left;
+      }
+    }
+
+    .metadata-sidebar-panel-subtitle {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
 
     .metadata-sidebar-panel {

@@ -43,13 +43,40 @@ var CanvasMetadataPanel = React.createClass({
       );
     }
   },
-  createImageAnnotationForImageUri: function(imageResourceId) {
+  isIiifImageUri: function(uri) {
+    // TODO: implement more robust IIIF image URI validation
+    return uri.substr(-11) === '/native.jpg' || uri.substr(-12) === '/default.jpg';
+  },
+  setImageUri: function(imageResourceId) {
     var {dispatch} = this.props;
     var that = this;
+    // check if the entered URI is a valid IIIF Image API URI; if not, check if it redirects to one
+    if(this.isIiifImageUri(imageResourceId)) {
+      this.createImageAnnotationForImageUri(imageResourceId);
+    }
+    else {
+      // for redirected image URIs: do an axios request and check if the responseURL is a IIIF Image API URI
+      axios.get(imageResourceId)
+        .then(function(response) {
+          if(response.request.responseURL && that.isIiifImageUri(response.request.responseURL)) {
+            that.createImageAnnotationForImageUri(response.request.responseURL);
+          } else {
+            dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
+          }
+        })
+        .catch(function(error) {
+          dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
+        });
+    }
+  },
+  createImageAnnotationForImageUri: function(imageUri) {
+    var {dispatch} = this.props;
+    var that = this;
+
     // extract base service uri
-    var imageResourceUriParts = imageResourceId.split('/');
+    var imageResourceUriParts = imageUri.split('/');
     imageResourceUriParts.splice(-4, 4);
-    var baseServiceUri = imageResourceUriParts.join('/')
+    var baseServiceUri = imageResourceUriParts.join('/');
     var infoJson = baseServiceUri + '/info.json';
 
     // check if image resource exists by requesting its info.json
@@ -62,13 +89,13 @@ var CanvasMetadataPanel = React.createClass({
           "@type": "oa:Annotation",
           "motivation": "sc:painting",
           "resource": {
-            "@id": imageResourceId,
+            "@id": imageUri,
             "@type": "dctypes:Image",
             "format": "image/jpeg",
             "service": {
-              "@context": "http://iiif.io/api/image/2/context.json",
+              "@context": response.data['@context'],
               "@id": baseServiceUri,
-              "profile": "http://iiif.io/api/image/2/level2.json"
+              "profile": response.data.profile
             },
             "height": response.data.height,
             "width": response.data.width
@@ -87,7 +114,7 @@ var CanvasMetadataPanel = React.createClass({
         dispatch(actions.resetError());
       })
       .catch(function(error) {
-        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image URI. Please provide a valid image URI.'));
+        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
       });
   },
   render: function() {
@@ -120,7 +147,7 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image URI</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.createImageAnnotationForImageUri}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.setImageUri}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI</div>
