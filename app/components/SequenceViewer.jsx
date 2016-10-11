@@ -5,6 +5,7 @@ var SequenceViewer = React.createClass({
   render: function() {
     return (
       <div className="sequence-viewer">
+        <a onClick={this.showManifestMetadataModal} className="btn btn-default sequence-viewer-info-icon-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (
