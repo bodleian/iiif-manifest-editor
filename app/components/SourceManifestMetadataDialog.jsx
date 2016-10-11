@@ -12,7 +12,42 @@ var SourceManifestMetadataDialog = React.createClass({
             </div>
             <div className="modal-body">
               <div className="source-manifest-metadata">
-                {this.props.manifestData}
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">Manifest URI</div>
+                  <div className="col-md-9 metadata-field-value">
+                    <a href={this.props.manifestData.id} target="_blank">{this.props.manifestData.id}</a>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">Label</div>
+                  <div className="col-md-9 metadata-field-value">
+                    {this.props.manifestData.getLabel()}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">Description</div>
+                  <div className="col-md-9 metadata-field-value">
+                    {this.props.manifestData.getDescription()}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">Attribution</div>
+                  <div className="col-md-9 metadata-field-value">
+                    {this.props.manifestData.getAttribution()}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">License</div>
+                  <div className="col-md-9 metadata-field-value">
+                    {this.props.manifestData.getLicense()}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-3 metadata-field-label">Logo</div>
+                  <div className="col-md-9 metadata-field-value">
+                    {this.props.manifestData.getLogo()}
+                  </div>
+                </div>
               </div>
             </div>
             <div className="modal-footer">
