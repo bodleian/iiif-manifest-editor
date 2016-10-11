@@ -18,7 +18,7 @@ var SequenceThumbnailStripCanvas = React.createClass({
         <div className="sequence-browser-canvas-thumbnail">
           <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
-            <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
+            <span>{this.stringTruncate(this.getMainImageLabel(canvas), 25)}</span>
           </div>
         </div>
       </div>
