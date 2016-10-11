@@ -15,6 +15,7 @@ var SequenceViewer = React.createClass({
       <div className="sequence-viewer">
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={this.props.manifestData} />
         <a onClick={() => this.showSourceManifestMetadataDialog()} className="btn btn-default sequence-viewer-info-icon-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
+        <a onClick={() => this.props.onRemoveHandler(this.props.sequenceIndex)} className="btn btn-default remove-sequence-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (

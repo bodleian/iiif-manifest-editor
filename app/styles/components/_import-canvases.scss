@@ -29,8 +29,15 @@
       overflow-y: scroll;
 
       .sequence-viewer-info-icon-button {
-        position: fixed;
-        margin:2px;
+        position: relative;
+        float: left;
+        margin: 2px 0 0 2px;
+      }
+
+      .remove-sequence-button {
+        position: relative;
+        float: right;
+        margin: 2px 2px 0 0;
       }
 
       .sequence-browser-canvas-thumbnail {
