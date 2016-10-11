@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var manifesto = require('manifesto.js');
 var OpenSequenceDialog = require('OpenSequenceDialog');
+var SequenceThumbnailStripCanvas = require('SequenceThumbnailStripCanvas');
 
 var SequenceBrowser = React.createClass({
   getInitialState: function() {
@@ -39,9 +40,9 @@ var SequenceBrowser = React.createClass({
             return (
               <div key={manifestIndex} className="sequence-viewer">
                 {
-                  sequence.getCanvases().map(function(canvas) {
+                  sequence.getCanvases().map(function(canvas, canvasIndex) {
                     return (
-                      <div key={canvas.__jsonld['@id']}>{canvas.__jsonld.label}</div>
+                      <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} />
                     );
                   })
                 }
