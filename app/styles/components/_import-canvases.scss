@@ -1,6 +1,16 @@
 .import-canvases-container {
   position: relative;
 
+  .sequence-browser-narrow-view {
+    float: left;
+    width: 70%;
+  }
+
+  .sequence-browser-wide-view {
+    float: left;
+    width: 97%;
+  }
+
   .sequence-browser {
     position: relative;
     border: 2px solid $gray-light;
@@ -8,8 +18,6 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    margin-left: -15px;
-    margin-right: -15px;
 
     .sequence-viewer {
       display: inline-block;
@@ -22,11 +30,10 @@
 
     .open-sequence-button {
       position: absolute;
-      top: 50%;
-      height: 30%;
-      margin-top: -50px; /* account for padding and border if not using box-sizing: border-box; */
+      min-width: 120px;
+      height: 140px;
+      top: 30%;
       margin-left: 20px;
-      margin-right: 20px;
     }
   }
 

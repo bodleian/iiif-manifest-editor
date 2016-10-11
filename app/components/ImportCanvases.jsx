@@ -8,12 +8,9 @@ var MetadataSidebar = require('MetadataSidebar');
 var ImportCanvases = React.createClass({
   render: function() {
     var sequenceBrowserThumbnailStripClasses = classNames(
-      'sequence-browser-thumbnail-strip',
       {
-        'col-md-8': this.props.showMetadataSidebar,
-        'col-md-12': !this.props.showMetadataSidebar,
-        'col-sm-8': this.props.showMetadataSidebar,
-        'col-sm-12': !this.props.showMetadataSidebar            
+        'sequence-browser-narrow-view': this.props.showMetadataSidebar,
+        'sequence-browser-wide-view': !this.props.showMetadataSidebar
       }
     );
     return (

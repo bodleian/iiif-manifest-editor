@@ -50,7 +50,7 @@ var SequenceBrowser = React.createClass({
           })
         }
         <button type="button" className="btn btn-default open-sequence-button" aria-label="Open sequence" onClick={() => this.showOpenSequenceDialog()}>
-          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span> Open Sequence
+          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Open Sequence
         </button>
         <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={that.addManifestDataToState}/>
       </div>
