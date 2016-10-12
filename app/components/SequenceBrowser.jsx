@@ -20,6 +20,10 @@ var SequenceBrowser = React.createClass({
     })
   },
   addManifestDataToState: function(manifestData) {
+    // close modal window
+    var $openSequenceDialog = $(ReactDOM.findDOMNode(this.refs.openSequenceDialog));
+    $openSequenceDialog.modal('hide');
+
     // create a copy of the source manifests
     var sourceManifests = [...this.state.sourceManifests];
 
