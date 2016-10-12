@@ -75,7 +75,7 @@ var SourceManifestMetadataDialog = React.createClass({
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Logo</div>
-                        <div className="col-md-9 metadata-field-value">{logo}</div>
+                        <div className="col-md-9 metadata-field-value"><img src={logo} alt={logo} className="source-attribution-logo" /></div>
                       </div>
                     );
                   }
