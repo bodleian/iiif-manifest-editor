@@ -162,6 +162,15 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state.manifestData
       };
       
+      // Check if canvas ID already exists and if yes, create a new ID
+      for (var canvasIndex = 0; canvasIndex < updatedManifestData.sequences[0].canvases.length; canvasIndex++) {
+        var canvas = updatedManifestData.sequences[0].canvases[canvasIndex];
+        if(canvas['@id'] === action.canvas['@id']) {
+          action.canvas['@id'] = uuid();
+          break;
+        }
+      };
+      
       // insert the empty canvas at the given index in the sequence
       updatedManifestData.sequences[0].canvases.splice(action.canvasIndex, 0, action.canvas);
 
