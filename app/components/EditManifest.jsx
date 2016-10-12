@@ -5,7 +5,6 @@ var classNames = require('classnames');
 var Viewer = require('Viewer');
 var MetadataSidebar = require('MetadataSidebar');
 var ThumbnailStrip = require('ThumbnailStrip');
-var actions = require('actions');
 
 var EditManifest = React.createClass({
   componentDidMount: function() {
