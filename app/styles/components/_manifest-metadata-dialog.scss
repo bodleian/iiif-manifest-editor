@@ -1,4 +1,9 @@
 .manifest-metadata-dialog {
+  
+  .source-manifest-metadata {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
 
   .metadata-field-row {
     margin-bottom: 15px;
@@ -11,10 +16,12 @@
     .metadata-field-value {
       white-space: normal; 
       word-wrap: break-word;
+      padding-right: 50px;
     }  
 
     .source-attribution-logo {
       max-width: 100%;
+      max-height: 150px;
     }
   }
 }
