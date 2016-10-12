@@ -28,6 +28,10 @@ var OpenSequenceDialog = React.createClass({
 
         // clear the remote manifest url text field
         _this.refs.remoteManifestUrl.value = '';
+        
+        // close modal window
+        var $openSequenceDialog = $(ReactDOM.findDOMNode(_this));
+        $openSequenceDialog.modal('hide');
       })
       .catch(function(error) {
         // set the error message in the state and reset isFetchingRemoteManifestStatus
