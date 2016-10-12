@@ -58,10 +58,14 @@ var ThumbnailStrip = React.createClass({
     this.props.dispatch(actions.addEmptyCanvasAtIndex(emptyCanvas, targetCanvasIndex));
   },
   addCanvas: function(e) {
-    var insertIndex = e.target.getAttribute('data-canvas-index');
-    if (e.stopPropagation) {
-      e.stopPropagation(); // Stops some browsers from redirecting.
+    // Stops browsers from redirecting.
+    if(e.preventDefault) { 
+      e.preventDefault(); 
     }
+    if(e.stopPropagation) { 
+      e.stopPropagation(); 
+    }
+    var insertIndex = e.target.getAttribute('data-canvas-index');
     // raw canvas data is being passed as a JSON string
     var canvas = e.dataTransfer.getData('text/plain');
     if(canvas !== '') {
