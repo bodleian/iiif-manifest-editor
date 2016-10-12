@@ -15,6 +15,9 @@ var SequenceBrowser = React.createClass({
     $openSequenceDialog.modal({
       backdrop: 'static'
     });
+    setTimeout(function (){
+        $openSequenceDialog.find('input').focus();
+    }, 500);
   },
   addManifestDataToState: function(manifestData) {
     // create a copy of the source manifests
