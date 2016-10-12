@@ -18,8 +18,8 @@ var ThumbnailStrip = React.createClass({
     for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
       var canvas = sequence.getCanvasByIndex(canvasIndex);
       thumbnailStripCanvasComponents.push(
-        <SortableItem key={canvas.id} draggable={true} className="simple-sort-item">
-        <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>
+        <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
+          <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>
         </SortableItem>
       );
     }
@@ -57,11 +57,25 @@ var ThumbnailStrip = React.createClass({
     };
     this.props.dispatch(actions.addEmptyCanvasAtIndex(emptyCanvas, targetCanvasIndex));
   },
+  addCanvas: function(e) {
+    var insertIndex = e.target.getAttribute('data-canvas-index');
+    if (e.stopPropagation) {
+      e.stopPropagation(); // Stops some browsers from redirecting.
+    }
+    // raw canvas data is being passed as a JSON string
+    var canvas = e.dataTransfer.getData('text/plain');
+    if(canvas !== '') {
+      this.props.dispatch(actions.addCanvasAtIndex(JSON.parse(canvas), insertIndex));
+    }
+    // some browsers require a return false for handling drop events
+    return false;
+  },
+  
   render: function() {
     return (
-      <div className="thumbnail-strip-container">
+      <div className="thumbnail-strip-container" onDrop={this.addCanvas}>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
-        {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
+          {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
         </SortableItems>
         <button type="button" className="btn btn-default add-new-canvas-button" aria-label="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
           <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Add Canvas

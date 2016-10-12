@@ -11,10 +11,13 @@ var SequenceThumbnailStripCanvas = React.createClass({
   stringTruncate: function(str, maxLength) {
     return str.length > maxLength ? str.substring(0, maxLength - 1) + '…' : str;
   },
+  setCanvasData: function(e) {
+    e.dataTransfer.setData("text/plain", JSON.stringify(this.props.canvasRawData));
+  },
   render: function() {
     var canvas = this.props.canvas;
     return (
-      <div className="thumbnail-strip-canvas-container">
+      <div className="thumbnail-strip-canvas-container" onDragStart={this.setCanvasData}>
         <div className="sequence-browser-canvas-thumbnail">
           <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>

@@ -73,6 +73,14 @@ export var addEmptyCanvasAtIndex = (emptyCanvas, canvasIndex) => {
   }
 };
 
+export var addCanvasAtIndex = (canvas, canvasIndex) => {
+  return {
+    type: 'ADD_CANVAS_AT_INDEX',
+    canvas,
+    canvasIndex
+  }
+};
+
 export var duplicateCanvasAtIndex = (canvasIndex) => {
   return {
     type: 'DUPLICATE_CANVAS_AT_INDEX',

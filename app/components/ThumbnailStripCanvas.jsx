@@ -112,8 +112,8 @@ var ThumbnailStripCanvas = React.createClass({
             <li onClick={() => this.openImportCanvasesView()}><i className="context-menu-item fa fa-picture-o"></i> Import canvases</li>
           </ul>
         </span>
-        <div className={this.setActiveClass()} onClick={this.setSelectedCanvasId}>
-          <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
+        <div className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.setSelectedCanvasId}>
+          <img src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
             <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
           </div>

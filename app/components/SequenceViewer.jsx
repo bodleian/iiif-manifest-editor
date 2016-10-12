@@ -19,7 +19,7 @@ var SequenceViewer = React.createClass({
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (
-              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} />
+              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasRawData={canvas.__jsonld} />
             );
           })
         }
