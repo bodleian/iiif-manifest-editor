@@ -74,6 +74,8 @@ var ThumbnailStrip = React.createClass({
       selectedCanvasStartIndex: undefined,
       selectedCanvasEndIndex: undefined
     });
+
+    this.toggleDeleteSelectedCanvasesPrompt(false);
   },
   updateSelectedCanvasIndexes: function(clickedCanvasIndex) {
     // get the index of the active canvas
@@ -89,6 +91,16 @@ var ThumbnailStrip = React.createClass({
       selectedCanvasStartIndex: selectedCanvasStartIndex,
       selectedCanvasEndIndex: selectedCanvasEndIndex
     });
+
+    this.toggleDeleteSelectedCanvasesPrompt(true);
+  },
+  toggleDeleteSelectedCanvasesPrompt: function(toggleDisplay) {
+    var $deleteSelectedCanvasPrompt = $(ReactDOM.findDOMNode(this.refs.deleteSelectedCanvasPrompt));
+    if(toggleDisplay) {
+      $deleteSelectedCanvasPrompt.slideDown();
+    } else {
+      $deleteSelectedCanvasPrompt.slideUp();
+    }
   },
   isCanvasSelected: function(currentCanvasIndex) {
     // set which canvases within the range are selected
@@ -102,10 +114,20 @@ var ThumbnailStrip = React.createClass({
     }
     return false;
   },
+  deleteSelectedCanvases: function() {
+    // TODO: delete selected canvases
+
+    this.deSelectCanvases();
+  },
   render: function() {
     var _this = this;
     return (
       <div className="thumbnail-strip-container" onDrop={this.addCanvas}>
+        <div className="alert alert-danger delete-selected-canvases-prompt" ref="deleteSelectedCanvasPrompt">
+          Delete selected canvases?
+          <button type="button" className="btn btn-default" onClick={this.deleteSelectedCanvases}><i className="fa fa-check"></i> OK</button>
+          <button type="button" className="btn btn-default" onClick={this.deSelectCanvases}><i className="fa fa-times"></i> Cancel</button>
+        </div>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
           {
             this.props.manifestoObject.getSequenceByIndex(0).getCanvases().map(function(canvas, canvasIndex) {
@@ -117,8 +139,8 @@ var ThumbnailStrip = React.createClass({
             })
           }
         </SortableItems>
-        <button type="button" className="btn btn-default add-new-canvas-button" aria-label="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
-          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Add Canvas
+        <button type="button" className="btn btn-default add-new-canvas-button" title="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
+          <span className="fa fa-plus-circle fa-2x"></span><br />Add Canvas
         </button>
       </div>
     );

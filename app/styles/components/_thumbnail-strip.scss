@@ -6,6 +6,23 @@
   display: flex;
   overflow-x: scroll;
 
+  .delete-selected-canvases-prompt {
+    position: absolute;
+    display: none;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: $iiifRed;
+    color: white;
+    font-weight: bold;
+
+    button.btn {
+      margin-left: 10px;
+    }
+  }
+
   .add-new-canvas-button {
     border-radius: 5px;
     position: relative;
@@ -48,7 +65,6 @@
       }
     }
   }
-
 
   .thumbnail-strip-canvas {
     &.active img {
