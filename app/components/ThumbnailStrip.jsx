@@ -1,32 +1,26 @@
 var React = require('react');
-var {connect} = require('react-redux');
 var ReactDOM = require('react-dom');
+var {connect} = require('react-redux');
 var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 var uuid = require('node-uuid');
 var {SortableItems, SortableItem} = require('react-sortable-component');
 
 var ThumbnailStrip = React.createClass({
+  getInitialState: function() {
+    return {
+      selectedCanvasStartIndex: undefined,
+      selectedCanvasEndIndex: undefined
+    }
+  },
   componentDidMount: function() {
-    window.addEventListener("drop",function(e){
+    window.addEventListener("drop", function(e) {
       e = e || event;
       e.preventDefault();
-    },false);
-  },
-  buildThumbnailStripCanvasComponents: function(sequence) {
-    var thumbnailStripCanvasComponents = [];
-    for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
-      var canvas = sequence.getCanvasByIndex(canvasIndex);
-      thumbnailStripCanvasComponents.push(
-        <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
-          <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id}/>
-        </SortableItem>
-      );
-    }
-    return thumbnailStripCanvasComponents;
+    }, false);
   },
   componentDidUpdate: function(prevProps) {
-    // always display the selected canvas to the very left of the thumbnail strip using scrollLeft
+    // center the selected canvas in the thumbnail strip using scrollLeft
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
       var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
       var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
@@ -74,12 +68,47 @@ var ThumbnailStrip = React.createClass({
     // some browsers require a return false for handling drop events
     return false;
   },
-  
+  updateSelectedCanvasIndexes: function(clickedCanvasIndex) {
+    // get the index of the active canvas
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
+    var activeCanvasIndex = sequence.getCanvasIndexById(canvas.id);
+
+    // set the start and end indexes for the selected range of canvases in the state
+    var selectedCanvasStartIndex = (activeCanvasIndex > clickedCanvasIndex) ? clickedCanvasIndex : activeCanvasIndex;
+    var selectedCanvasEndIndex = (activeCanvasIndex > clickedCanvasIndex) ? activeCanvasIndex : clickedCanvasIndex;
+    this.setState({
+      selectedCanvasStartIndex: selectedCanvasStartIndex,
+      selectedCanvasEndIndex: selectedCanvasEndIndex
+    });
+  },
+  isCanvasSelected: function(currentCanvasIndex) {
+    // set which canvases within the range are selected
+    var _this = this;
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
+      if(currentCanvasIndex == canvasIndex) {
+        return currentCanvasIndex >= _this.state.selectedCanvasStartIndex && currentCanvasIndex <= _this.state.selectedCanvasEndIndex;
+      }
+    }
+    return false;
+  },
   render: function() {
+    var _this = this;
     return (
       <div className="thumbnail-strip-container" onDrop={this.addCanvas}>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
-          {this.buildThumbnailStripCanvasComponents(this.props.manifestoObject.getSequenceByIndex(0))}
+          {
+            this.props.manifestoObject.getSequenceByIndex(0).getCanvases().map(function(canvas, canvasIndex) {
+              return (
+                <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
+                  <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
+                </SortableItem>
+              );
+            })
+          }
         </SortableItems>
         <button type="button" className="btn btn-default add-new-canvas-button" aria-label="Add new canvas to end of sequence" onClick={this.appendEmptyCanvasToSequence}>
           <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Add Canvas

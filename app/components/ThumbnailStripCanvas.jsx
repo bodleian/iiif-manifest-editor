@@ -31,9 +31,15 @@ var ThumbnailStripCanvas = React.createClass({
       $deleteCanvasButton.stop(true, true).fadeOut(fadeInterval);
     });
   },
-  setSelectedCanvasId: function() {
-    var {dispatch, canvasId} = this.props;
-    dispatch(actions.setSelectedCanvasId(canvasId));
+  handleCanvasClick: function(e) {
+    if(e.shiftKey) {
+      // invoke the callback handler when the canvas is clicked with the shift key
+      this.props.onCanvasShiftClick(this.props.canvasIndex);
+    } else {
+      // dispatch action to set the active canvas in the store
+      var {dispatch, canvasId} = this.props;
+      dispatch(actions.setSelectedCanvasId(canvasId));
+    }
   },
   setActiveClass: function() {
     if(this.props.selectedCanvasId !== undefined && this.props.canvasId === this.props.selectedCanvasId) {
@@ -41,6 +47,9 @@ var ThumbnailStripCanvas = React.createClass({
     } else {
       return "thumbnail-strip-canvas";
     }
+  },
+  setSelectedClass: function() {
+    return this.props.isSelectedCanvas ? "selected-canvas" : "";
   },
   getMainImage: function(canvas) {
     return canvas.getImages().length > 0 ? canvas.getThumbUri('', '150') : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
@@ -118,8 +127,8 @@ var ThumbnailStripCanvas = React.createClass({
             })()}
           </ul>
         </span>
-        <div className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.setSelectedCanvasId}>
-          <img src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
+        <div className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
+          <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
             <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
           </div>
