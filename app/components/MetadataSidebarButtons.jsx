@@ -20,8 +20,8 @@ var MetadataSidebarButtons = React.createClass({
       window.location = targetRoute;
     }
   },
-  openImportCanvasesView: function() {
-    window.location = '#/canvases';
+  switchToView: function(viewRoute) {
+    window.location = viewRoute;
   },
   render: function() {
     return (
@@ -29,15 +29,25 @@ var MetadataSidebarButtons = React.createClass({
         <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
         <span className="metadata-sidebar-buttons">
           <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
-          <span className="manifest-actions-menu dropdown">
-            <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
-            <ul className="dropdown-menu pull-left">
-              <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
-              <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
-              <li onClick={() => this.openImportCanvasesView()}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
-              <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
-            </ul>
-          </span>
+          {(() => {
+            if(window.location.hash.startsWith('#/edit?')) {
+              return (
+                <span className="manifest-actions-menu dropdown">
+                  <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
+                  <ul className="dropdown-menu pull-left">
+                    <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
+                    <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+                    <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
+                    <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
+                  </ul>
+                </span>
+              );
+            } else {
+              return (
+                <button onClick={() => this.switchToView('#/edit')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-sign-out fa-flip-horizontal hidden-sm hidden-xs"></i> Return to Edit Manifest</button>
+              );
+            }
+          })()}
           <SaveManifestDialog ref="saveManifestDialog" />
         </span>
       </div>

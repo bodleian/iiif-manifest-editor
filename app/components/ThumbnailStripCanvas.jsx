@@ -109,7 +109,13 @@ var ThumbnailStripCanvas = React.createClass({
             <li onClick={this.addCanvasLeft}><i className="context-menu-item fa fa-arrow-left"></i> Add canvas left</li>
             <li onClick={this.addCanvasRight}><i className="context-menu-item fa fa-arrow-right"></i> Add canvas right</li>
             <li onClick={this.duplicateCanvas}><i className="context-menu-item fa fa-files-o"></i> Duplicate canvas</li>
-            <li onClick={() => this.openImportCanvasesView()}><i className="context-menu-item fa fa-picture-o"></i> Import canvases</li>
+            {(() => {
+              if(window.location.hash.startsWith('#/edit?')) {
+                return (
+                  <li onClick={() => this.openImportCanvasesView()}><i className="context-menu-item fa fa-picture-o"></i> Import canvases</li>
+                );
+              }
+            })()}
           </ul>
         </span>
         <div className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.setSelectedCanvasId}>
