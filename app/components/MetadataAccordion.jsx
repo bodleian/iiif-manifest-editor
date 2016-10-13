@@ -5,6 +5,14 @@ var CanvasMetadataPanel = require('CanvasMetadataPanel');
 var BulkActionsPanel = require('BulkActionsPanel');
 
 var MetadataAccordion = React.createClass({
+  setMetadataPanelClasses: function(panelName) {
+    if((panelName === 'manifestMetadata' && window.location.hash.startsWith('#/edit?')) ||
+       (panelName === 'canvasMetadata' && window.location.hash.startsWith('#/canvases?'))) {
+      return "panel-collapse collapse in";
+    } else {
+      return "panel-collapse collapse";
+    }
+  },
   render: function() {
     return (
       <div className="panel-group" id="metadata-accordion">
@@ -14,7 +22,7 @@ var MetadataAccordion = React.createClass({
               <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-manifest-metadata"><i className="fa fa-book"></i> Manifest Metadata</a>
             </h4>
           </div>
-          <div id="collapse-manifest-metadata" className="panel-collapse collapse in">
+          <div id="collapse-manifest-metadata" className={this.setMetadataPanelClasses('manifestMetadata')}>
             <div className="panel-body">
               <ManifestMetadataPanel/>
             </div>
@@ -26,7 +34,7 @@ var MetadataAccordion = React.createClass({
               <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-sequence-metadata"><i className="fa fa-list-ol"></i> Sequence Metadata</a>
             </h4>
           </div>
-          <div id="collapse-sequence-metadata" className="panel-collapse collapse">
+          <div id="collapse-sequence-metadata" className={this.setMetadataPanelClasses('sequenceMetadata')}>
             <div className="panel-body">
               <SequenceMetadataPanel/>
             </div>
@@ -38,7 +46,7 @@ var MetadataAccordion = React.createClass({
               <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-canvas-metadata"><i className="fa fa-file-image-o"></i> Canvas Metadata</a>
             </h4>
           </div>
-          <div id="collapse-canvas-metadata" className="panel-collapse collapse">
+          <div id="collapse-canvas-metadata" className={this.setMetadataPanelClasses('canvasMetadata')}>
             <div className="panel-body">
               <CanvasMetadataPanel/>
             </div>
@@ -50,7 +58,7 @@ var MetadataAccordion = React.createClass({
               <a data-toggle="collapse" data-parent="#metadata-accordion" href="#collapse-bulk-actions"><i className="fa fa-cogs"></i> Bulk Actions</a>
             </h4>
           </div>
-          <div id="collapse-bulk-actions" className="panel-collapse collapse">
+          <div id="collapse-bulk-actions" className={this.setMetadataPanelClasses('bulkActions')}>
             <div className="panel-body">
               <BulkActionsPanel/>
             </div>
