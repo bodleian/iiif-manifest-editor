@@ -33,9 +33,12 @@ var ThumbnailStripCanvas = React.createClass({
   },
   handleCanvasClick: function(e) {
     if(e.shiftKey) {
-      // invoke the callback handler when the canvas is clicked with the shift key
+      // on shift click, select the range of canvases in the thumbnail strip
       this.props.onCanvasShiftClick(this.props.canvasIndex);
     } else {
+      // on normal click, deselect all canvases in the thumbnail strip
+      this.props.onCanvasNormalClick();
+
       // dispatch action to set the active canvas in the store
       var {dispatch, canvasId} = this.props;
       dispatch(actions.setSelectedCanvasId(canvasId));

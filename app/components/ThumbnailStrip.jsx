@@ -68,6 +68,13 @@ var ThumbnailStrip = React.createClass({
     // some browsers require a return false for handling drop events
     return false;
   },
+  deSelectCanvases: function() {
+    // reset the start and end range of the selected canvases
+    this.setState({
+      selectedCanvasStartIndex: undefined,
+      selectedCanvasEndIndex: undefined
+    });
+  },
   updateSelectedCanvasIndexes: function(clickedCanvasIndex) {
     // get the index of the active canvas
     var manifest = this.props.manifestoObject;
@@ -104,7 +111,7 @@ var ThumbnailStrip = React.createClass({
             this.props.manifestoObject.getSequenceByIndex(0).getCanvases().map(function(canvas, canvasIndex) {
               return (
                 <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
-                  <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
+                  <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.deSelectCanvases} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
                 </SortableItem>
               );
             })
