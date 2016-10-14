@@ -37,6 +37,9 @@ var ThumbnailStrip = React.createClass({
   },
   handleSort: function(updatedSortOrder) {
     this.props.dispatch(actions.reorderCanvases(updatedSortOrder));
+
+    // deselect canvases on reorder
+    this.deSelectCanvases();
   },
   appendEmptyCanvasToSequence: function() {
     // dispatch action to add empty canvas to end of sequence
@@ -52,19 +55,21 @@ var ThumbnailStrip = React.createClass({
     this.props.dispatch(actions.addEmptyCanvasAtIndex(emptyCanvas, targetCanvasIndex));
   },
   addCanvas: function(e) {
-    // Stops browsers from redirecting.
+    // stops browsers from redirecting
     if(e.preventDefault) { 
       e.preventDefault(); 
     }
     if(e.stopPropagation) { 
       e.stopPropagation(); 
     }
+
     var insertIndex = e.target.getAttribute('data-canvas-index');
     // raw canvas data is being passed as a JSON string
     var canvas = e.dataTransfer.getData('text/plain');
     if(canvas !== '') {
       this.props.dispatch(actions.addCanvasAtIndex(JSON.parse(canvas), insertIndex));
     }
+
     // some browsers require a return false for handling drop events
     return false;
   },
@@ -75,6 +80,7 @@ var ThumbnailStrip = React.createClass({
       selectedCanvasEndIndex: undefined
     });
 
+    // hide the prompt to delete the selected canvases
     this.toggleDeleteSelectedCanvasesPrompt(false);
   },
   updateSelectedCanvasIndexes: function(clickedCanvasIndex) {
@@ -92,6 +98,7 @@ var ThumbnailStrip = React.createClass({
       selectedCanvasEndIndex: selectedCanvasEndIndex
     });
 
+    // show the prompt to delete the selected canvases
     this.toggleDeleteSelectedCanvasesPrompt(true);
   },
   toggleDeleteSelectedCanvasesPrompt: function(toggleDisplay) {
@@ -115,8 +122,19 @@ var ThumbnailStrip = React.createClass({
     return false;
   },
   deleteSelectedCanvases: function() {
-    // TODO: delete selected canvases
+    // delete the selected canvases from the end of the thumbnail strip first; deleting from the front of the 
+    // thumbnail strip shifts the canvas indexes left causing subsequent deletions to fail
+    var {dispatch, canvasIndex} = this.props;
+    for(var canvasIndex = this.state.selectedCanvasEndIndex; canvasIndex >= this.state.selectedCanvasStartIndex; canvasIndex--) {
+      // dispatch an action to reset the selected canvas id in the store if the active canvas is deleted
+      if(canvasIndex == this.props.manifestoObject.getSequenceByIndex(0).getCanvasIndexById(this.props.selectedCanvasId)) {
+        dispatch(actions.setSelectedCanvasId(undefined));
+      }
+      // dispatch an action to delete the selected canvas at the given index within the selected range
+      dispatch(actions.deleteCanvasAtIndex(canvasIndex));
+    }
 
+    // deselect canvases after deleting canvases
     this.deSelectCanvases();
   },
   render: function() {
