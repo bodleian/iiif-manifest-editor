@@ -40,6 +40,20 @@ var SequenceViewer = React.createClass({
       return currentCanvasIndex == this.state.selectedCanvasStartIndex || currentCanvasIndex == this.state.selectedCanvasEndIndex;
     }
   },
+  setCanvasData: function(e) {
+    var rawCanvasData = [];
+    var canvases = this.props.sequence.getCanvases();
+    if(this.state.selectedCanvasStartIndex !== undefined && this.state.selectedCanvasEndIndex !== undefined) {
+      for(var canvasIndex = this.state.selectedCanvasStartIndex; canvasIndex <= this.state.selectedCanvasEndIndex; canvasIndex++) {
+        var canvas = canvases[canvasIndex];
+        rawCanvasData.push(canvas.__jsonld);
+      }
+    } else {
+      var canvas = canvases[this.state.selectedCanvasStartIndex];
+      rawCanvasData.push(canvas.__jsonld);
+    }
+    e.dataTransfer.setData("text/plain", JSON.stringify(rawCanvasData));
+  },
   showSourceManifestMetadataDialog: function() {
     var $sourceManifestMetadataDialog = $(ReactDOM.findDOMNode(this.refs.sourceManifestMetadataDialog));
     $sourceManifestMetadataDialog.modal({
@@ -49,14 +63,14 @@ var SequenceViewer = React.createClass({
   render: function() {
     var _this = this;
     return (
-      <div className="sequence-viewer">
+      <div className="sequence-viewer" onDragStart={this.setCanvasData}>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={this.props.manifestData} />
         <a onClick={() => this.showSourceManifestMetadataDialog()} className="btn btn-default sequence-viewer-info-icon-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
         <a onClick={() => this.props.onRemoveHandler(this.props.sequenceIndex)} className="btn btn-default remove-sequence-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (
-              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasIndex={canvasIndex} canvasRawData={canvas.__jsonld} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.setCanvasStartIndex} onCanvasShiftClick={_this.setCanvasEndIndex}/>
+              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasIndex={canvasIndex} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.setCanvasStartIndex} onCanvasShiftClick={_this.setCanvasEndIndex}/>
             );
           })
         }

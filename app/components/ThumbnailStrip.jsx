@@ -54,7 +54,7 @@ var ThumbnailStrip = React.createClass({
     };
     this.props.dispatch(actions.addEmptyCanvasAtIndex(emptyCanvas, targetCanvasIndex));
   },
-  addCanvas: function(e) {
+  addCanvases: function(e) {
     // stops browsers from redirecting
     if(e.preventDefault) { 
       e.preventDefault(); 
@@ -63,11 +63,16 @@ var ThumbnailStrip = React.createClass({
       e.stopPropagation(); 
     }
 
+    // get the index in the thumbnail strip to insert the selected canvases
     var insertIndex = e.target.getAttribute('data-canvas-index');
+
     // raw canvas data is being passed as a JSON string
-    var canvas = e.dataTransfer.getData('text/plain');
-    if(canvas !== '') {
-      this.props.dispatch(actions.addCanvasAtIndex(JSON.parse(canvas), insertIndex));
+    var rawCanvasData = e.dataTransfer.getData('text/plain');
+    var canvases = JSON.parse(rawCanvasData);
+    if(canvases !== '') {
+      for(var canvasIndex = canvases.length-1; canvasIndex >= 0; canvasIndex--) {
+        this.props.dispatch(actions.addCanvasAtIndex(canvases[canvasIndex], insertIndex));
+      }
     }
 
     // some browsers require a return false for handling drop events
@@ -132,7 +137,7 @@ var ThumbnailStrip = React.createClass({
   render: function() {
     var _this = this;
     return (
-      <div className="thumbnail-strip-container" onDrop={this.addCanvas}>
+      <div className="thumbnail-strip-container" onDrop={this.addCanvases}>
         <div className="alert alert-danger delete-selected-canvases-prompt" ref="deleteSelectedCanvasPrompt">
           Delete selected canvases?
           <button type="button" className="btn btn-default" onClick={this.deleteSelectedCanvases}><i className="fa fa-check"></i> OK</button>
