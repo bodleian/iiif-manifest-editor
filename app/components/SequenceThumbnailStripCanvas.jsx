@@ -14,12 +14,24 @@ var SequenceThumbnailStripCanvas = React.createClass({
   setCanvasData: function(e) {
     e.dataTransfer.setData("text/plain", JSON.stringify(this.props.canvasRawData));
   },
+  setSelectedClass: function() {
+    return this.props.isSelectedCanvas ? "selected-canvas" : "";
+  },
+  handleCanvasClick: function(e) {
+    if(e.shiftKey) {
+      // on shift click, set the end index for the range of selected canvases in the sequence viewer
+      this.props.onCanvasShiftClick(this.props.canvasIndex);
+    } else {
+      // on normal click, set the start index for the range of selected canvases in the sequence viewer
+      this.props.onCanvasNormalClick(this.props.canvasIndex);
+    }
+  },
   render: function() {
     var canvas = this.props.canvas;
     return (
       <div className="thumbnail-strip-canvas-container" onDragStart={this.setCanvasData}>
-        <div className="sequence-browser-canvas-thumbnail">
-          <img src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
+        <div className="sequence-browser-canvas-thumbnail" onClick={this.handleCanvasClick}>
+          <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="150" />
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
             <span>{this.stringTruncate(this.getMainImageLabel(canvas), 25)}</span>
           </div>

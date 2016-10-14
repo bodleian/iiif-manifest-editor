@@ -43,6 +43,10 @@
       .sequence-browser-canvas-thumbnail {
         text-align: center;
         margin: 10px 0;
+
+        img.selected-canvas {
+          opacity: 0.5;      
+        }
       }
 
       .sequence-browser-canvas-thumbnail:first-child {

@@ -110,16 +110,8 @@ var ThumbnailStrip = React.createClass({
     }
   },
   isCanvasSelected: function(currentCanvasIndex) {
-    // set which canvases within the range are selected
-    var _this = this;
-    var manifest = this.props.manifestoObject;
-    var sequence = manifest.getSequenceByIndex(0);
-    for(var canvasIndex = 0; canvasIndex < sequence.getCanvases().length; canvasIndex++) {
-      if(currentCanvasIndex == canvasIndex) {
-        return currentCanvasIndex >= _this.state.selectedCanvasStartIndex && currentCanvasIndex <= _this.state.selectedCanvasEndIndex;
-      }
-    }
-    return false;
+    // return whether the canvas is selected if its index falls within the selected start and end range
+    return currentCanvasIndex >= this.state.selectedCanvasStartIndex && currentCanvasIndex <= this.state.selectedCanvasEndIndex;
   },
   deleteSelectedCanvases: function() {
     // delete the selected canvases from the end of the thumbnail strip first; deleting from the front of the 

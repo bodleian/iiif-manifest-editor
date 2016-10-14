@@ -4,6 +4,42 @@ var SequenceThumbnailStripCanvas = require('SequenceThumbnailStripCanvas');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
 
 var SequenceViewer = React.createClass({
+  getInitialState: function() {
+    return {
+      selectedCanvasStartIndex: undefined,
+      selectedCanvasEndIndex: undefined
+    }
+  },
+  setCanvasStartIndex: function(startCanvasIndex) {
+    // set the start index for the range of selected canvases
+    this.setState({
+      selectedCanvasStartIndex: startCanvasIndex,
+      selectedCanvasEndIndex: undefined
+    });
+  },
+  setCanvasEndIndex: function(endCanvasIndex) {
+    // set the start and end indexes for the range of selected canvases
+    var selectedCanvasStartIndex = this.state.selectedCanvasStartIndex;
+    var selectedCanvasEndIndex = endCanvasIndex;
+    if(this.state.selectedCanvasStartIndex > endCanvasIndex) {
+      selectedCanvasStartIndex = endCanvasIndex;
+      selectedCanvasEndIndex = this.state.selectedCanvasStartIndex;
+    }
+    this.setState({
+      selectedCanvasStartIndex: selectedCanvasStartIndex,
+      selectedCanvasEndIndex: selectedCanvasEndIndex
+    });
+  },
+  isCanvasSelected: function(currentCanvasIndex) {
+    // return whether the canvas is selected if its index falls within the selected start and end range
+    if(this.state.selectedCanvasStartIndex !== undefined && this.state.selectedCanvasEndIndex !== undefined) {
+      return currentCanvasIndex >= this.state.selectedCanvasStartIndex && currentCanvasIndex <= this.state.selectedCanvasEndIndex;
+    }
+    // select the current canvas if an incomplete range is specified
+    else {
+      return currentCanvasIndex == this.state.selectedCanvasStartIndex || currentCanvasIndex == this.state.selectedCanvasEndIndex;
+    }
+  },
   showSourceManifestMetadataDialog: function() {
     var $sourceManifestMetadataDialog = $(ReactDOM.findDOMNode(this.refs.sourceManifestMetadataDialog));
     $sourceManifestMetadataDialog.modal({
@@ -11,6 +47,7 @@ var SequenceViewer = React.createClass({
     });
   },
   render: function() {
+    var _this = this;
     return (
       <div className="sequence-viewer">
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={this.props.manifestData} />
@@ -19,7 +56,7 @@ var SequenceViewer = React.createClass({
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (
-              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasRawData={canvas.__jsonld} />
+              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasIndex={canvasIndex} canvasRawData={canvas.__jsonld} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.setCanvasStartIndex} onCanvasShiftClick={_this.setCanvasEndIndex}/>
             );
           })
         }
