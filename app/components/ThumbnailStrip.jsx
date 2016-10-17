@@ -78,6 +78,17 @@ var ThumbnailStrip = React.createClass({
     // some browsers require a return false for handling drop events
     return false;
   },
+  cancelDragOver: function(e) {
+    // stops browsers from redirecting
+    if(e.preventDefault) { 
+      e.preventDefault(); 
+    }
+    if(e.stopPropagation) { 
+      e.stopPropagation(); 
+    }
+    // some browsers require a return false for canceling the onDragOver event
+    return false;
+  },
   deSelectCanvases: function() {
     // reset the start and end range of the selected canvases
     this.setState({
@@ -137,7 +148,7 @@ var ThumbnailStrip = React.createClass({
   render: function() {
     var _this = this;
     return (
-      <div className="thumbnail-strip-container" onDrop={this.addCanvases}>
+      <div className="thumbnail-strip-container" onDragOver={this.cancelDragOver} onDrop={this.addCanvases}>
         <div className="alert alert-danger delete-selected-canvases-prompt" ref="deleteSelectedCanvasPrompt">
           Delete selected canvases?
           <button type="button" className="btn btn-default" onClick={this.deleteSelectedCanvases}><i className="fa fa-check"></i> OK</button>
