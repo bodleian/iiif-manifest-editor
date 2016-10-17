@@ -19,7 +19,7 @@ var SequenceViewer = React.createClass({
   },
   setCanvasEndIndex: function(endCanvasIndex) {
     // set the start and end indexes for the range of selected canvases
-    var selectedCanvasStartIndex = this.state.selectedCanvasStartIndex;
+    var selectedCanvasStartIndex = this.state.selectedCanvasStartIndex !== undefined ? this.state.selectedCanvasStartIndex : endCanvasIndex;
     var selectedCanvasEndIndex = endCanvasIndex;
     if(this.state.selectedCanvasStartIndex > endCanvasIndex) {
       selectedCanvasStartIndex = endCanvasIndex;
@@ -43,15 +43,41 @@ var SequenceViewer = React.createClass({
   setCanvasData: function(e) {
     var rawCanvasData = [];
     var canvases = this.props.sequence.getCanvases();
+    var draggedCanvasIndex = e.target.getAttribute('data-canvas-index');
+    
+    // Case 1: both start and end index are defined
     if(this.state.selectedCanvasStartIndex !== undefined && this.state.selectedCanvasEndIndex !== undefined) {
-      for(var canvasIndex = this.state.selectedCanvasStartIndex; canvasIndex <= this.state.selectedCanvasEndIndex; canvasIndex++) {
-        var canvas = canvases[canvasIndex];
-        rawCanvasData.push(canvas.__jsonld);
+      if(draggedCanvasIndex < this.state.selectedCanvasStartIndex || draggedCanvasIndex > this.state.selectedCanvasEndIndex) {
+        var canvas = canvases[draggedCanvasIndex];
+        rawCanvasData.push(canvas.__jsonld);  
+      } else {
+        for(var canvasIndex = this.state.selectedCanvasStartIndex; canvasIndex <= this.state.selectedCanvasEndIndex; canvasIndex++) {
+          var canvas = canvases[canvasIndex];
+          rawCanvasData.push(canvas.__jsonld);
+        }
       }
-    } else {
-      var canvas = canvases[this.state.selectedCanvasStartIndex];
-      rawCanvasData.push(canvas.__jsonld);
     }
+
+    // Case 2: only start index is defined (single canvas)
+    else if(this.state.selectedCanvasStartIndex !== undefined && this.state.selectedCanvasEndIndex === undefined) {
+      var canvas = canvases[this.state.selectedCanvasStartIndex];
+      if(draggedCanvasIndex !== this.state.selectedCanvasStartIndex) {
+        canvas = canvases[draggedCanvasIndex];
+      }
+      rawCanvasData.push(canvas.__jsonld);  
+    }
+
+    // Case 3: neither start nor end index are defined
+    else if(this.state.selectedCanvasStartIndex === undefined && this.state.selectedCanvasEndIndex === undefined) {
+      var canvas = canvases[draggedCanvasIndex];
+      rawCanvasData.push(canvas.__jsonld);  
+    }
+
+    // Case 4: only end index is defined => this scenario should not occur
+    else if(this.state.selectedCanvasStartIndex === undefined && this.state.selectedCanvasEndIndex !== undefined) {
+      
+    }
+    
     e.dataTransfer.setData("text/plain", JSON.stringify(rawCanvasData));
   },
   showSourceManifestMetadataDialog: function() {
