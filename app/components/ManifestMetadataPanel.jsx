@@ -55,6 +55,42 @@ var ManifestMetadataPanel = React.createClass({
           isUnique: true,
           addPath: '',
           updatePath: 'logo'
+        },
+        {
+          name: 'related',
+          label: 'Related',
+          value: undefined,
+          isRequired: false,
+          isUnique: true,
+          addPath: '',
+          updatePath: 'related'
+        },
+        {
+          name: 'seeAlso',
+          label: 'See Also',
+          value: undefined,
+          isRequired: false,
+          isUnique: true,
+          addPath: '',
+          updatePath: 'seeAlso'
+        },
+        {
+          name: 'viewingDirection',
+          label: 'Viewing Direction',
+          value: undefined,
+          isRequired: false,
+          isUnique: true,
+          addPath: '',
+          updatePath: 'viewingDirection'
+        },
+        {
+          name: 'viewingHint',
+          label: 'Viewing Hint',
+          value: undefined,
+          isRequired: false,
+          isUnique: true,
+          addPath: '',
+          updatePath: 'viewingHint'
         }
       ],
       activeMetadataFields: []
@@ -70,7 +106,7 @@ var ManifestMetadataPanel = React.createClass({
     });
     return availableMetadataFieldIndex;
   },
-  setMetadataField: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
+  updateMetadataFieldLists: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
     // find the available metadata field based on the field name
     var availableMetadataFieldIndex = this.getAvailableMetadataFieldIndexByFieldName(availableMetadataFields, fieldName);
 
@@ -93,19 +129,31 @@ var ManifestMetadataPanel = React.createClass({
     var numMultiValuedMetadataFields = availableMetadataFields.filter(function(field) { return field.isUnique }).length;
 
     if(this.props.manifestoObject.getLabel()) {  // manifest label
-      this.setMetadataField('label', this.props.manifestoObject.getLabel(), availableMetadataFields, activeMetadataFields);
+      this.updateMetadataFieldLists('label', this.props.manifestoObject.getLabel(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getDescription()) {  // description
-      this.setMetadataField('description', this.props.manifestoObject.getDescription(), availableMetadataFields, activeMetadataFields);
+      this.updateMetadataFieldLists('description', this.props.manifestoObject.getDescription(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getAttribution()) {  // attribution
-      this.setMetadataField('attribution', this.props.manifestoObject.getAttribution(), availableMetadataFields, activeMetadataFields);
+      this.updateMetadataFieldLists('attribution', this.props.manifestoObject.getAttribution(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getLicense()) {  // license
-      this.setMetadataField('license', this.props.manifestoObject.getLicense(), availableMetadataFields, activeMetadataFields);
+      this.updateMetadataFieldLists('license', this.props.manifestoObject.getLicense(), availableMetadataFields, activeMetadataFields);
     }
     if(this.props.manifestoObject.getLogo()) {  // logo
-      this.setMetadataField('logo', this.props.manifestoObject.getLogo(), availableMetadataFields, activeMetadataFields);
+      this.updateMetadataFieldLists('logo', this.props.manifestoObject.getLogo(), availableMetadataFields, activeMetadataFields);
+    }
+    if(this.props.manifestData.related) {  // related
+      this.updateMetadataFieldLists('related', this.props.manifestData.related, availableMetadataFields, activeMetadataFields);
+    }
+    if(this.props.manifestData.seeAlso) {  // see also
+      this.updateMetadataFieldLists('seeAlso', this.props.manifestData.seeAlso.toString(), availableMetadataFields, activeMetadataFields);
+    }
+    if(this.props.manifestData.viewingDirection) {  // viewing direction
+      this.updateMetadataFieldLists('viewingDirection', this.props.manifestData.viewingDirection, availableMetadataFields, activeMetadataFields);
+    }
+    if(this.props.manifestData.viewingHint) {  // viewing hint
+      this.updateMetadataFieldLists('viewingHint', this.props.manifestData.viewingHint, availableMetadataFields, activeMetadataFields);
     }
 
     // update the metadata field lists in the state so that the component uses the correct values when rendering
@@ -276,7 +324,8 @@ var ManifestMetadataPanel = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      manifestoObject: state.manifestReducer.manifestoObject
+      manifestoObject: state.manifestReducer.manifestoObject,
+      manifestData: state.manifestReducer.manifestData
     };
   }
 )(ManifestMetadataPanel);
