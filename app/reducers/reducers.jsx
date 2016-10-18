@@ -307,7 +307,7 @@ export var manifestReducer = (state = stateDefaults, action) => {
         var canvasLabelCounter = 1;
         for(var canvasIndex = 0; canvasIndex < canvases.length; canvasIndex++) {
           if(canvasIndex >= canvasIndexOffset) {
-            canvases[canvasIndex].label = canvasLabelCounter;
+            canvases[canvasIndex].label = canvasLabelCounter.toString();
             canvasLabelCounter++;
           }
           renamedCanvases[canvasIndex] = canvases[canvasIndex];
