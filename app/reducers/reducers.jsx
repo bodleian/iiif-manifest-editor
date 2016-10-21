@@ -155,7 +155,6 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-
     case 'ADD_CANVAS_AT_INDEX':
       // make a copy of the manifest data to update
       var updatedManifestData = {
@@ -183,7 +182,6 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-
     case 'DUPLICATE_CANVAS_AT_INDEX':
       // make a copy of the manifest data to update
       var updatedManifestData = {
@@ -365,7 +363,10 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
-
+    case 'SET_SHOW_METADATA_SIDEBAR':
+      return Object.assign({}, state, {
+        showMetadataSidebar: action.showMetadataSidebar
+      });
     case 'SET_ERROR':
       return Object.assign({}, state, {
         error: { type: action.errorType, message: action.errorMessage }
@@ -373,10 +374,6 @@ export var manifestReducer = (state = stateDefaults, action) => {
     case 'RESET_ERROR':
       return Object.assign({}, state, {
         error: undefined
-      });
-    case 'SET_SHOW_METADATA_SIDEBAR':
-      return Object.assign({}, state, {
-        showMetadataSidebar: action.showMetadataSidebar
       });
     default:
       return state;

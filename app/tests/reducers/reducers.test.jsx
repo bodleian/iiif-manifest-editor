@@ -238,6 +238,84 @@ describe('Reducers', () => {
       expect(res.manifestData.sequences[0].canvases[0]['@id']).toEqual('empty canvas id');
     });
 
+    it('should add a canvas to the front of the list of canvases', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var numCanvases = manifestData.sequences[0].canvases.length;
+      var action = {
+        type: 'ADD_CANVAS_AT_INDEX',
+        canvas: {
+          "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json",
+          "@type": "sc:Canvas",
+          "label": "bindingA",
+          "height": 6496,
+          "width": 4872,
+          "images": [
+            {
+              "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/annotation/ssg-fab0002_e001.json",
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "on": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json",
+              "resource": {
+                "@id": "http://www.e-codices.unifr.ch/loris/ssg/ssg-fab0002/ssg-fab0002_e001.jp2/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 6496,
+                "width": 4872,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://www.e-codices.unifr.ch/loris/ssg/ssg-fab0002/ssg-fab0002_e001.jp2",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              }
+            }
+          ]
+        },
+        canvasIndex: 0
+      }
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases.length).toEqual(numCanvases + 1);
+      expect(res.manifestData.sequences[0].canvases[0]['@id']).toEqual('http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json');
+    });
+
+    it('should add a canvas to the end of the list of canvases', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var numCanvases = manifestData.sequences[0].canvases.length;
+      var action = {
+        type: 'ADD_CANVAS_AT_INDEX',
+        canvas: {
+          "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json",
+          "@type": "sc:Canvas",
+          "label": "bindingA",
+          "height": 6496,
+          "width": 4872,
+          "images": [
+            {
+              "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/annotation/ssg-fab0002_e001.json",
+              "@type": "oa:Annotation",
+              "motivation": "sc:painting",
+              "on": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json",
+              "resource": {
+                "@id": "http://www.e-codices.unifr.ch/loris/ssg/ssg-fab0002/ssg-fab0002_e001.jp2/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "height": 6496,
+                "width": 4872,
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "http://www.e-codices.unifr.ch/loris/ssg/ssg-fab0002/ssg-fab0002_e001.jp2",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              }
+            }
+          ]
+        },
+        canvasIndex: 3
+      }
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases.length).toEqual(numCanvases + 1);
+      expect(res.manifestData.sequences[0].canvases[3]['@id']).toEqual('http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/canvas/ssg-fab0002_e001.json');
+    });
+
     it('should add a duplicated canvas to the right', () => {
       var manifestData = JSON.parse(manifestDataFixture);
       var numCanvases = manifestData.sequences[0].canvases.length;
@@ -300,12 +378,149 @@ describe('Reducers', () => {
       expect(res.error).toEqual(undefined);
     });
 
-    it('should set isFetchingImageAnnotation to the store when fetching an image annotation', () => {
+    it('should set isFetchingImageAnnotation to the store when fetching an image annotation is complete', () => {
       var action = {
         type: 'COMPLETE_IMAGE_ANNOTATION_FETCH'
       };
       var res = reducers.manifestReducer(df(''), df(action));
       expect(res.isFetchingImageAnnotation).toEqual(false);
+    });
+
+    it('should add an image annotation to the canvas', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'ADD_IMAGE_ANNOTATION_TO_CANVAS',
+        imageAnnotation: {
+          "@context": "http://iiif.io/api/presentation/2/context.json",
+          "@id": "image annotation id",
+          "@type": " image annotation type",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "resource id",
+            "@type": "resource type",
+            "format": "resource format",
+            "service": {
+              "@context": "service context",
+              "@id": "service id",
+              "profile": "service profile"
+            },
+            "height": 0,
+            "width": 0
+          },
+          "on": "image annotation on canvas"
+        },
+        canvasIndex: 0
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].images[0]['@id']).toEqual("image annotation id");
+      expect(res.manifestData.sequences[0].canvases[0].images[0].resource['@id']).toEqual("resource id");
+      expect(res.manifestData.sequences[0].canvases[0].images[0].resource.service['@id']).toEqual("service id");
+    });
+
+    it('should set the canvas dimensions to the image annotation dimensions when an image annotation is added to the canvas', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'ADD_IMAGE_ANNOTATION_TO_CANVAS',
+        imageAnnotation: {
+          "@context": "http://iiif.io/api/presentation/2/context.json",
+          "@id": "image annotation id",
+          "@type": " image annotation type",
+          "motivation": "sc:painting",
+          "resource": {
+            "@id": "resource id",
+            "@type": "resource type",
+            "format": "resource format",
+            "service": {
+              "@context": "service context",
+              "@id": "service id",
+              "profile": "service profile"
+            },
+            "height": 1234,
+            "width": 5678
+          },
+          "on": "image annotation on canvas"
+        },
+        canvasIndex: 0
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].height).toEqual(1234);
+      expect(res.manifestData.sequences[0].canvases[0].width).toEqual(5678);
+    });
+
+    it('should rename every canvas label using a pagination scheme starting from 1', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_PAGINATION',
+        canvasIndexOffset: 0
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("1");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("2");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("3");
+    });
+
+    it('should rename every canvas label except the first using a pagination scheme starting from 1', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_PAGINATION',
+        canvasIndexOffset: 1
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("recto");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("1");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("2");
+    });
+
+    it('should rename every canvas labels using a foliation scheme starting from 1r', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+        canvasIndexOffset: 0,
+        startWithFoliationSide: 'recto'
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("1r");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("1v");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("2r");
+    });
+
+    it('should rename every canvas labels using a foliation scheme starting from 1v', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+        canvasIndexOffset: 0,
+        startWithFoliationSide: 'verso'
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("1v");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("2r");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("2v");
+    });
+
+    it('should rename every canvas label except the first using a foliation scheme starting from 1r', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+        canvasIndexOffset: 1,
+        startWithFoliationSide: 'recto'
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("recto");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("1r");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("1v");
+    });
+
+    it('should rename every canvas label except the first using a foliation scheme starting from 1v', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var action = {
+        type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+        canvasIndexOffset: 1,
+        startWithFoliationSide: 'verso'
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.sequences[0].canvases[0].label).toEqual("recto");
+      expect(res.manifestData.sequences[0].canvases[1].label).toEqual("1v");
+      expect(res.manifestData.sequences[0].canvases[2].label).toEqual("2r");
     });
 
     it('should set showMetadataSidebar to true in the store when toggled to the open state', () => {
@@ -336,5 +551,14 @@ describe('Reducers', () => {
       expect(res.error.type).toEqual('type of error');
       expect(res.error.message).toEqual('error message');
     });
+
+    it('should reset the error object to undefined', () => {
+      var action = {
+        type: 'RESET_ERROR'
+      };
+      var res = reducers.manifestReducer(df(''), df(action));
+      expect(res.error).toEqual(undefined);
+    });
+
   });
 });

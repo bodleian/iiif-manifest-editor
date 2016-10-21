@@ -118,6 +118,42 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should add a canvas at the index', () => {
+    var action = {
+      type: 'ADD_CANVAS_AT_INDEX',
+      canvas: {
+        "@id": "canvas id",
+        "@type": "type of canvas",
+        "label": "random canvas",
+        "height": 0,
+        "width": 0,
+        "images": [
+          {
+            "@id": "image id",
+            "@type": "type of image",
+            "motivation": "image motivation",
+            "on": "image on canvas",
+            "resource": {
+              "@id": "resource id",
+              "@type": "type of resource",
+              "format": "format of resource",
+              "height": 0,
+              "width": 0,
+              "service": {
+                "@context": "http://iiif.io/api/image/2/context.json",
+                "@id": "resource id",
+                "profile": "http://iiif.io/api/image/2/level2.json"
+              }
+            }
+          }
+        ]
+      },
+      canvasIndex: 0
+    }
+    var res = actions.addCanvasAtIndex(action.canvas, action.canvasIndex);
+    expect(res).toEqual(action);
+  });
+
   it('should duplicate canvas at the index', () => {
     var action = {
       type: 'DUPLICATE_CANVAS_AT_INDEX',
@@ -179,6 +215,25 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should rename canvas labels using a pagination scheme starting from the canvas index', () => {
+    var action = {
+      type: 'RENAME_CANVAS_LABELS_BY_PAGINATION',
+      canvasIndexOffset: 0
+    }
+    var res = actions.renameCanvasLabelsByPagination(action.canvasIndexOffset);
+    expect(res).toEqual(action);
+  });
+
+  it('should rename canvas labels using a foliation scheme starting from the canvas index offset and foliation side', () => {
+    var action = {
+      type: 'RENAME_CANVAS_LABELS_BY_FOLIATION',
+      canvasIndexOffset: 0,
+      startWithFoliationSide: 'recto'
+    }
+    var res = actions.renameCanvasLabelsByFoliation(action.canvasIndexOffset, action.startWithFoliationSide);
+    expect(res).toEqual(action);
+  });
+
   it('should set the error type and error message', () => {
     var action = {
       type: 'SET_ERROR',
@@ -186,6 +241,14 @@ describe('Actions', () => {
       errorMessage: 'error message'
     }
     var res = actions.setError(action.errorType, action.errorMessage);
+    expect(res).toEqual(action);
+  });
+
+  it('should reset the error', () => {
+    var action = {
+      type: 'RESET_ERROR'
+    }
+    var res = actions.resetError();
     expect(res).toEqual(action);
   });
 });
