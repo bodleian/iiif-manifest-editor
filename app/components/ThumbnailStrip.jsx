@@ -66,6 +66,17 @@ var ThumbnailStrip = React.createClass({
     // get the index in the thumbnail strip to insert the selected canvases
     var insertIndex = e.target.getAttribute('data-canvas-index');
 
+    // handle adding canvases to the beginning and end of a sequence (insertIndex is null)
+    if (insertIndex === null) {
+      // check mouse position to determine whether canvases were dropped to very beginning of sequence
+      // everything above x = 20 is not beginning of sequence so either has an insertIndex or 
+      // if it is null it is assumed that canvases were dropped to the end of the sequence 
+      if (e.clientX > 20) { 
+        var sequence = this.props.manifestoObject.getSequenceByIndex(0);
+        insertIndex = sequence.canvases.length;
+      }
+    }
+
     // raw canvas data is being passed as a JSON string
     var rawCanvasData = e.dataTransfer.getData('text/plain');
     var canvases = JSON.parse(rawCanvasData);
