@@ -33,7 +33,7 @@ var BulkActionsPanel = React.createClass({
             </div>
           </div>
           <div className="form-group">
-            <div className="col-md-8">
+            <div className="col-md-9">
               <button onClick={this.renameCanvasLabelsByPagination} className="btn btn-default form-control"><i className="fa fa-sort-numeric-asc"></i> Rename Canvases by Pagination</button>
             </div>
           </div>
@@ -73,7 +73,7 @@ var BulkActionsPanel = React.createClass({
             </div>
           </div>
           <div className="form-group">
-            <div className="col-md-8">
+            <div className="col-md-9">
               <button onClick={this.renameCanvasLabelsByFoliation} className="btn btn-default form-control"><i className="fa fa-sort-numeric-asc"></i> Rename Canvases by Foliation</button>
             </div>
           </div>
