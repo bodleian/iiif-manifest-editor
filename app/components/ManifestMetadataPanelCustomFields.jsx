@@ -72,7 +72,17 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                   } else {
                     return (
                       <dd className="metadata-field-value">
-                        Show editable text area
+                        {(() => {
+                          if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
+                            return (
+                              <EditableTextArea fieldName={metadataField.label} fieldValue={metadataField.value.toString()} path="" onUpdateHandler={_this.updateMetadataFieldValue}/>
+                            );
+                          } else {
+                            return (
+                              <span>{JSON.stringify(metadataField.value)}</span>
+                            );
+                          }
+                        })()}                    
                       </dd>
                     );
                   }
