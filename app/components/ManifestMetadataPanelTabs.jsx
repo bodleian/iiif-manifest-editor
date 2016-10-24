@@ -9,13 +9,13 @@ var ManifestMetadataPanelTabs = React.createClass({
         <div className="row">
           <div className="col-md-12">
             <ul className="nav nav-tabs" id="tab-nav">
-              <li><a href="#predefined-fields" data-toggle="tab">Predefined Fields</a></li>
+              <li className="active"><a href="#predefined-fields" data-toggle="tab">Predefined Fields</a></li>
               <li><a href="#custom-fields" data-toggle="tab">Custom Fields</a></li>
             </ul>
           </div>
         </div>
         <div className="tab-content">
-          <div className="tab-pane" id="predefined-fields">
+          <div className="tab-pane active" id="predefined-fields">
             <ManifestMetadataPanelPredefinedFields/>
           </div>
           <div className="tab-pane" id="custom-fields">
