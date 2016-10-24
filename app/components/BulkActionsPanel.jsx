@@ -11,6 +11,10 @@ var BulkActionsPanel = React.createClass({
     e.preventDefault();
     this.props.dispatch(actions.renameCanvasLabelsByFoliation(this.refs.canvasIndexOffsetFoliation.value, this.refs.foliationSide.value));
   },
+  reverseSequence: function(e) {
+    e.preventDefault();
+    this.props.dispatch(actions.reverseSequence());
+  },
   render: function() {
     var canvases = this.props.manifestData.sequences[0].canvases;
     return (
@@ -83,6 +87,13 @@ var BulkActionsPanel = React.createClass({
             <div className="text-muted"><i className="fa fa-arrow-right"></i> e.g. 1r, 1v, 2r, 2v, 3r, 3v...</div>
           </div>
         </div>
+
+        <hr />
+        <div className="metadata-sidebar-panel-subtitle">Reverse Sequence</div>
+          <div className="col-md-9">
+            <button onClick={this.reverseSequence} className="btn btn-default form-control"><i className="fa fa-refresh"></i> Reverse Sequence</button>
+          </div>
+
       </div>
     );
   }
