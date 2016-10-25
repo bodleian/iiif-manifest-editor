@@ -134,6 +134,11 @@ var CanvasMetadataPanel = React.createClass({
           <hr/>
           {this.displayImageAnnotationFetchErrors()}
           <div className="row">
+            <div className="col-md-12">
+              <button onClick={this.renameCanvasLabelsByFoliation} className="btn btn-default center-block"><i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
+            </div>
+          </div>
+          <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Label</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
           </div>
