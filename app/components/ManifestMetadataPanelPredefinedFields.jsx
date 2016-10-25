@@ -253,12 +253,12 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     var _this = this;
     return (
       <div>
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Manifest URI</div>
-          <div className="col-md-9 metadata-field-value">
+        <dl>
+          <dt className="metadata-field-label">Manifest URI</dt>
+          <dd className="metadata-field-value">
             <a href={_this.props.manifestoObject.id} target="_blank">{_this.props.manifestoObject.id}</a>
-          </div>
-        </div>
+          </dd>
+        </dl>
         {
           Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
             var metadataField = _this.state.activeMetadataFields[fieldIndex];
