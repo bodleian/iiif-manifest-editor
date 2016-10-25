@@ -1,16 +1,23 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
+var EditableTextArea = require('EditableTextArea');
+var MetadataFieldDialog = require('MetadataFieldDialog');
 
 var ManifestMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
     return {
+      selectedMetadataFieldToViewJson: {
+        label: undefined,
+        value: undefined
+      },
       activeMetadataFields: []
     }
   },
   componentWillMount: function() {
     // initialize the active metadata field list with the fields defined in the manifest
     this.setState({
-      activeMetadataFields: this.props.manifestoObject.getMetadata()
+      activeMetadataFields: this.props.manifestData.metadata
     });
   },
   addMetadataField: function(metadataFieldLabel, metadataFieldValue) {
@@ -24,6 +31,12 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     this.setState({
       activeMetadataFields: activeMetadataFields
     });
+  },
+  updateMetadataFieldName: function(fieldValue, path, fieldName) {
+    // TODO: update the metadata field name for the manifest data object in the store
+  },
+  updateMetadataFieldValue: function(fieldValue, path, fieldName) {
+    // TODO: update the metadata field value for the manifest data object in the store
   },
   deleteMetadataField: function(fieldIndex) {
     // create a copy of the active metadata field list
@@ -40,10 +53,26 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     // TODO: delete the metadata field from the manifest data object in the store
     // this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
   },
+  viewJsonMetadata: function(metadataFieldLabel, metadataFieldValue) {
+    // set the selected metadata field in the state to display the metadata field dialog with the correct data
+    this.setState({
+      selectedMetadataFieldToViewJson: {
+        label: metadataFieldLabel,
+        value: metadataFieldValue
+      }
+    });
+
+    // open the metadata field dialog
+    var $metadataFieldDialog = $(ReactDOM.findDOMNode(this.refs.metadataFieldDialog));
+    $metadataFieldDialog.modal({
+      backdrop: 'static'
+    });
+  },
   render: function() {
     var _this = this;
     return (
       <div>
+        <MetadataFieldDialog ref="metadataFieldDialog" metadataField={this.state.selectedMetadataFieldToViewJson} />
         {
           Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
             var metadataField = _this.state.activeMetadataFields[fieldIndex];
@@ -53,7 +82,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                   if(metadataField.label === undefined) {
                     return (
                       <dt className="metadata-field-label">
-                        Show text area
+                        <EditableTextArea fieldName={metadataField.label} fieldValue={metadataField.value.toString()} path="" onUpdateHandler={_this.updateMetadataFieldName}/>
                       </dt>
                     );
                   } else {
@@ -79,7 +108,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                             );
                           } else {
                             return (
-                              <span>{JSON.stringify(metadataField.value)}</span>
+                              <span><a href="javascript:;" title="View JSON metadata" onClick={() => _this.viewJsonMetadata(metadataField.label, JSON.stringify(metadataField.value, null, 2))}>View JSON metadata</a></span>
                             );
                           }
                         })()}                    
@@ -100,7 +129,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
             );
           })
         }
-        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField(undefined, undefined)}>
+        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField(undefined, "N/A")}>
           <span className="fa fa-plus"></span> Add metadata field
         </button>
       </div>
@@ -111,7 +140,6 @@ var ManifestMetadataPanelCustomFields = React.createClass({
 module.exports = connect(
   (state) => {
     return {
-      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }
