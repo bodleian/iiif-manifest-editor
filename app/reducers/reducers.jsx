@@ -65,6 +65,29 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'ADD_METADATA_FIELD_TO_LIST_AT_PATH':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // add the metadata field to the list at the given path; the metadata field will be appended to the end of the list
+      var object = updatedManifestData;
+      var stack = action.path.split('/');
+      while(stack.length > 1) {
+        object = object[stack.shift()];
+      }
+      object[stack.shift()].push(action.metadataFieldObject);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'UPDATE_METADATA_FIELD_NAME_AT_PATH':
       // make a copy of the manifest data to update
       var updatedManifestData = {

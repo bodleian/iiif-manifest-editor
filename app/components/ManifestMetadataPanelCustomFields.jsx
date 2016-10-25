@@ -21,17 +21,21 @@ var ManifestMetadataPanelCustomFields = React.createClass({
       activeMetadataFields: this.props.manifestData.metadata
     });
   },
-  addMetadataField: function(metadataFieldLabel, metadataFieldValue) {
+  addMetadataField: function(metadataFieldLabel, metadataFieldValue, path) {
     // create a copy of the active metadata field list
     var activeMetadataFields = [...this.state.activeMetadataFields];
 
     // append the metadata field to the list of active metadata fields in the state
-    activeMetadataFields.push({ label: metadataFieldLabel, value: metadataFieldValue });
+    var metadataFieldObject = { label: metadataFieldLabel, value: metadataFieldValue };
+    activeMetadataFields.push(metadataFieldObject);
 
     // update the active metadata field list in the state so that the component uses the correct values when rendering
     this.setState({
       activeMetadataFields: activeMetadataFields
     });
+
+    // add the metadata field object to the list at the given path to the manifest data object in the store
+    this.props.dispatch(actions.addMetadataFieldToListAtPath(metadataFieldObject, path));
   },
   updateMetadataFieldName: function(fieldValue, path, fieldName) {
     // TODO: update the metadata field name for the manifest data object in the store
@@ -130,7 +134,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
             );
           })
         }
-        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField(undefined, "N/A")}>
+        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('N/A', 'N/A', 'metadata')}>
           <span className="fa fa-plus"></span> Add metadata field
         </button>
       </div>
