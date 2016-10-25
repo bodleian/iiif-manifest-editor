@@ -1,5 +1,5 @@
 .metadata-sidebar-container {
-  border: 2px solid $gray-light;
+  border: $mainComponentContainerBorder;
   display: none;
   width: 30%;
   height: 100vh;
@@ -119,6 +119,7 @@
 
       .metadata-field-label {
         font-weight: bold;
+        padding-right: 5px;
       }
 
       .image-annotation-fetch-error {
