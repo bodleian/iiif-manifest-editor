@@ -191,3 +191,14 @@
     display: inline;
   }
 }
+
+#imageAnnotationUpdateHelp {
+  padding:10px;
+  border:1px solid $gray-light;
+  border-radius:10px;
+  background-color: #eee;
+
+  li {
+    margin-bottom:10px;
+  }
+}

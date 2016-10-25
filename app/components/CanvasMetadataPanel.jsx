@@ -126,6 +126,9 @@ var CanvasMetadataPanel = React.createClass({
       backdrop: 'static'
     });
   },
+  handleImageAnnotationChoice: function(selectedMethod) {
+    console.log("Form was submitted with: ", selectedMethod);
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -139,7 +142,7 @@ var CanvasMetadataPanel = React.createClass({
       var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
       return (
         <div className="metadata-sidebar-panel">
-          <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" canvas={canvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
+          <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" onSubmitHandler={this.handleImageAnnotationChoice} canvas={canvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
           <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
           <hr/>
           {this.displayImageAnnotationFetchErrors()}
