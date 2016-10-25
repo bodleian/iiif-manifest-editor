@@ -102,11 +102,11 @@ var ImageAnnotationChoiceDialog = React.createClass({
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-9">
+                      <div className="col-md-10">
                         <input className="form-control" type="text" name="uri" placeholder={this.getUriSyntax()} />
                       </div>
-                      <div className="col-md-3">
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-default">Submit</button>
+                      <div className="col-md-2">
+                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </form>

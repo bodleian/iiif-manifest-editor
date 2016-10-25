@@ -193,10 +193,11 @@
 }
 
 #imageAnnotationUpdateHelp {
-  padding:10px;
-  border:1px solid $gray-light;
-  border-radius:10px;
-  background-color: #eee;
+  margin-top:5px;
+  padding:15px;
+  border:1px solid #eee;
+  border-radius:5px;
+  background-color: lighten($gray-light, 50%);
 
   li {
     margin-bottom:10px;
