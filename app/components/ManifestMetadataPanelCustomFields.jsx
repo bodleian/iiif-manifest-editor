@@ -39,7 +39,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
   updateMetadataFieldValue: function(fieldValue, path, fieldName) {
     // TODO: update the metadata field value for the manifest data object in the store
   },
-  deleteMetadataField: function(fieldIndex) {
+  deleteMetadataField: function(path, fieldIndex) {
     // create a copy of the active metadata field list
     var activeMetadataFields = [...this.state.activeMetadataFields];
 
@@ -51,8 +51,8 @@ var ManifestMetadataPanelCustomFields = React.createClass({
       activeMetadataFields: activeMetadataFields
     });
 
-    // delete the custom metadata field from the manifest data object in the store
-    this.props.dispatch(actions.deleteCustomMetadataFieldAtIndex(fieldIndex));
+    // delete the metadata field at the given path and index from the manifest data object in the store
+    this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(path, fieldIndex));
   },
   viewJsonMetadata: function(metadataFieldLabel, metadataFieldValue) {
     // set the selected metadata field in the state to display the metadata field dialog with the correct data
@@ -120,7 +120,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                 {(() => {
                   return (
                     <dd className="metadata-field-delete">
-                      <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(fieldIndex)}>
+                      <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField('metadata', fieldIndex)}>
                         <span className="fa fa-times-circle"></span>
                       </a>
                     </dd>

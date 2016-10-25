@@ -65,9 +65,10 @@ export var deleteMetadataFieldAtPath = (path) => {
   }
 };
 
-export var deleteCustomMetadataFieldAtIndex = (fieldIndex) => {
+export var deleteMetadataFieldFromListAtPathAndIndex = (path, fieldIndex) => {
   return {
-    type: 'DELETE_CUSTOM_METADATA_FIELD_AT_INDEX',
+    type: 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX',
+    path,
     fieldIndex
   }
 };
