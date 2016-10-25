@@ -120,13 +120,31 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state.manifestData
       };
 
-      // update the metadata field at the given path
+      // delete the metadata field at the given path
       var object = updatedManifestData;
       var stack = action.path.split('/');
       while(stack.length > 1) {
         object = object[stack.shift()];
       }
       delete object[stack.shift()];
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+    case 'DELETE_CUSTOM_METADATA_FIELD_AT_INDEX':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // delete the custom metadata field at the given index
+      updatedManifestData.metadata.splice(action.fieldIndex, 1);
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
       var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));

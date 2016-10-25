@@ -65,6 +65,13 @@ export var deleteMetadataFieldAtPath = (path) => {
   }
 };
 
+export var deleteCustomMetadataFieldAtIndex = (fieldIndex) => {
+  return {
+    type: 'DELETE_CUSTOM_METADATA_FIELD_AT_INDEX',
+    fieldIndex
+  }
+};
+
 export var addEmptyCanvasAtIndex = (emptyCanvas, canvasIndex) => {
   return {
     type: 'ADD_EMPTY_CANVAS_AT_INDEX',

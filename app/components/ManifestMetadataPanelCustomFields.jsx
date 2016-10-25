@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
+var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldDialog = require('MetadataFieldDialog');
 
@@ -50,8 +51,8 @@ var ManifestMetadataPanelCustomFields = React.createClass({
       activeMetadataFields: activeMetadataFields
     });
 
-    // TODO: delete the metadata field from the manifest data object in the store
-    // this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
+    // delete the custom metadata field from the manifest data object in the store
+    this.props.dispatch(actions.deleteCustomMetadataFieldAtIndex(fieldIndex));
   },
   viewJsonMetadata: function(metadataFieldLabel, metadataFieldValue) {
     // set the selected metadata field in the state to display the metadata field dialog with the correct data
