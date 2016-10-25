@@ -1,9 +1,11 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
 var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
+var ImageAnnotationChoiceDialog = require('ImageAnnotationChoiceDialog');
 var uuid = require('node-uuid');
 
 var CanvasMetadataPanel = React.createClass({
@@ -117,6 +119,13 @@ var CanvasMetadataPanel = React.createClass({
         dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
       });
   },
+  imageAnnotationChoice: function() {
+    // open the image annnotation choice dialog
+    var $imageAnnotationDialog = $(ReactDOM.findDOMNode(this.refs.imageAnnotationDialog));
+    $imageAnnotationDialog.modal({
+      backdrop: 'static'
+    });
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -130,12 +139,13 @@ var CanvasMetadataPanel = React.createClass({
       var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
       return (
         <div className="metadata-sidebar-panel">
+          <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" canvas={canvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
           <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
           <hr/>
           {this.displayImageAnnotationFetchErrors()}
           <div className="row">
             <div className="col-md-12">
-              <button onClick={this.renameCanvasLabelsByFoliation} className="btn btn-default center-block"><i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
+              <button onClick={this.imageAnnotationChoice} className="btn btn-default center-block"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> <i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
             </div>
           </div>
           <div className="row">
