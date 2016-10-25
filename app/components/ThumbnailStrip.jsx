@@ -158,6 +158,10 @@ var ThumbnailStrip = React.createClass({
   },
   render: function() {
     var _this = this;
+    // Set viewing direction: if "right-to-left", reverse canvas display order in thumbnail strip
+    var canvases = this.props.manifestData.viewingDirection === "right-to-left" 
+      ? this.props.manifestoObject.getSequenceByIndex(0).getCanvases().reverse() 
+      : this.props.manifestoObject.getSequenceByIndex(0).getCanvases();
     return (
       <div className="thumbnail-strip-container" onDragOver={this.cancelDragOver} onDrop={this.addCanvases}>
         <div className="alert alert-danger delete-selected-canvases-prompt" ref="deleteSelectedCanvasPrompt">
@@ -167,7 +171,7 @@ var ThumbnailStrip = React.createClass({
         </div>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
           {
-            this.props.manifestoObject.getSequenceByIndex(0).getCanvases().map(function(canvas, canvasIndex) {
+            canvases.map(function(canvas, canvasIndex) {
               return (
                 <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
                   <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.deSelectCanvases} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
