@@ -120,7 +120,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
             );
           })
         }
-        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('N/A', 'N/A', 'metadata')}>
+        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('Label', 'Value', 'metadata')}>
           <span className="fa fa-plus"></span> Add metadata field
         </button>
       </div>
