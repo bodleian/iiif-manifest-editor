@@ -164,13 +164,13 @@ var CanvasMetadataPanel = React.createClass({
         <div className="metadata-sidebar-panel">
           <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" onSubmitHandler={this.handleImageAnnotationChoice} canvas={canvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
           <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
-          <hr/>
-          {this.displayImageAnnotationFetchErrors()}
           <div className="row">
             <div className="col-md-12">
-              <button onClick={this.openImageAnnotationChoiceDialog} className="btn btn-default center-block"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> <i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
+              <button onClick={this.openImageAnnotationChoiceDialog} className="btn btn-default center-block add-replace-image-on-canvas-button"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
             </div>
           </div>
+          <hr/>
+          {this.displayImageAnnotationFetchErrors()}
           <div className="row">
             <div className="col-md-3 metadata-field-label">Canvas Label</div>
             <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
@@ -185,7 +185,7 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image URI</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.setImageUri}/>
+            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.handleImageUri}/>
           </div>
           <div className="row">
             <div className="col-md-3 metadata-field-label">Image Annotation URI</div>
