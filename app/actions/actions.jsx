@@ -41,6 +41,14 @@ export var addMetadataFieldAtPath = (metadataFieldName, metadataFieldValue, path
   }
 };
 
+export var addMetadataFieldToListAtPath = (metadataFieldObject, path) => {
+  return {
+    type: 'ADD_METADATA_FIELD_TO_LIST_AT_PATH',
+    metadataFieldObject,
+    path
+  }
+};
+
 export var updateMetadataFieldNameAtPath = (oldMetadataFieldName, newMetadataFieldName, path) => {
   return {
     type: 'UPDATE_METADATA_FIELD_NAME_AT_PATH',
@@ -62,6 +70,14 @@ export var deleteMetadataFieldAtPath = (path) => {
   return {
     type: 'DELETE_METADATA_FIELD_AT_PATH',
     path
+  }
+};
+
+export var deleteMetadataFieldFromListAtPathAndIndex = (path, fieldIndex) => {
+  return {
+    type: 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX',
+    path,
+    fieldIndex
   }
 };
 

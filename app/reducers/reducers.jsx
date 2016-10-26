@@ -65,6 +65,29 @@ export var manifestReducer = (state = stateDefaults, action) => {
         manifestoObject: updatedManifestoObject,
         manifestData: updatedManifestData
       };
+    case 'ADD_METADATA_FIELD_TO_LIST_AT_PATH':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // add the metadata field to the list at the given path; the metadata field will be appended to the end of the list
+      var object = updatedManifestData;
+      var stack = action.path.split('/');
+      while(stack.length > 1) {
+        object = object[stack.shift()];
+      }
+      object[stack.shift()].push(action.metadataFieldObject);
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
     case 'UPDATE_METADATA_FIELD_NAME_AT_PATH':
       // make a copy of the manifest data to update
       var updatedManifestData = {
@@ -120,13 +143,36 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state.manifestData
       };
 
-      // update the metadata field at the given path
+      // delete the metadata field at the given path
       var object = updatedManifestData;
       var stack = action.path.split('/');
       while(stack.length > 1) {
         object = object[stack.shift()];
       }
       delete object[stack.shift()];
+
+      // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
+      var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
+
+      // return the updated manifest data with the original state variables
+      return {
+        ...state,
+        manifestoObject: updatedManifestoObject,
+        manifestData: updatedManifestData
+      };
+    case 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX':
+      // make a copy of the manifest data to update
+      var updatedManifestData = {
+        ...state.manifestData
+      };
+
+      // delete the metadata field from the list at the given index and the given path
+      var object = updatedManifestData;
+      var stack = action.path.split('/');
+      while(stack.length > 1) {
+        object = object[stack.shift()];
+      }
+      object[stack.shift()].splice(action.fieldIndex, 1);
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
       var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
