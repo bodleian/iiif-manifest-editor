@@ -37,11 +37,9 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     // add the metadata field object to the list at the given path to the manifest data object in the store
     this.props.dispatch(actions.addMetadataFieldToListAtPath(metadataFieldObject, path));
   },
-  updateMetadataFieldName: function(fieldValue, path, fieldName) {
-    // TODO: update the metadata field name for the manifest data object in the store
-  },
-  updateMetadataFieldValue: function(fieldValue, path, fieldName) {
-    // TODO: update the metadata field value for the manifest data object in the store
+  updateMetadataFieldValue: function(fieldValue, path) {
+    // update the metadata field value for the manifest data object in the store
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   deleteMetadataField: function(path, fieldIndex) {
     // create a copy of the active metadata field list
@@ -83,21 +81,9 @@ var ManifestMetadataPanelCustomFields = React.createClass({
             var metadataField = _this.state.activeMetadataFields[fieldIndex];
             return (
               <dl key={fieldIndex}>
-                {(() => {
-                  if(metadataField.label === undefined) {
-                    return (
-                      <dt className="metadata-field-label">
-                        <EditableTextArea fieldName={metadataField.label} fieldValue={metadataField.value.toString()} path="" onUpdateHandler={_this.updateMetadataFieldName}/>
-                      </dt>
-                    );
-                  } else {
-                    return (
-                      <dt className="metadata-field-label">
-                        {metadataField.label}
-                      </dt>
-                    );
-                  }
-                })()}
+                <dt className="metadata-field-label">
+                  <EditableTextArea fieldValue={metadataField.label} path={"metadata/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                </dt>
                 {(() => {
                   if(metadataField.value === undefined) {
                     return (
@@ -109,7 +95,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                         {(() => {
                           if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
                             return (
-                              <EditableTextArea fieldName={metadataField.label} fieldValue={metadataField.value.toString()} path="" onUpdateHandler={_this.updateMetadataFieldValue}/>
+                              <EditableTextArea fieldValue={metadataField.value.toString()} path={"metadata/" + fieldIndex + "/value"} onUpdateHandler={_this.updateMetadataFieldValue}/>
                             );
                           } else {
                             return (
