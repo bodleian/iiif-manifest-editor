@@ -49,19 +49,27 @@ var CanvasMetadataPanel = React.createClass({
     // TODO: implement more robust IIIF image URI validation
     return uri.substr(-11) === '/native.jpg' || uri.substr(-12) === '/default.jpg';
   },
-  setImageUri: function(imageResourceId) {
+  handleImageAnnotationUri: function(imageAnnotationUri) {
+    var sequence = this.props.manifestoObject.getSequenceByIndex(0);
+    var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
+    var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
+    this.updateImageAnnotationForCanvasWithId(imageAnnotationUri, canvasImageIdPath);
+  },
+  handleImageUri: function(imageUri) {
     var {dispatch} = this.props;
     var that = this;
     // check if the entered URI is a valid IIIF Image API URI; if not, check if it redirects to one
-    if(this.isIiifImageUri(imageResourceId)) {
-      this.createImageAnnotationForImageUri(imageResourceId);
+    if(this.isIiifImageUri(imageUri)) {
+      var infoJsonUri = this.getInfoJsonFromImageUri(imageUri);
+      this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
     }
     else {
       // for redirected image URIs: do an axios request and check if the responseURL is a IIIF Image API URI
-      axios.get(imageResourceId)
+      axios.get(imageUri)
         .then(function(response) {
           if(response.request.responseURL && that.isIiifImageUri(response.request.responseURL)) {
-            that.createImageAnnotationForImageUri(response.request.responseURL);
+            var infoJsonUri = this.getInfoJsonFromImageUri(response.request.responseURL);
+            that.createImageAnnotationFromInfoJsonUri(infoJsonUri);
           } else {
             dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
           }
@@ -71,18 +79,24 @@ var CanvasMetadataPanel = React.createClass({
         });
     }
   },
-  createImageAnnotationForImageUri: function(imageUri) {
-    var {dispatch} = this.props;
-    var that = this;
-
+  handleInfoJsonUri: function(infoJsonUri) {
+    // TODO: validate info JSON URI
+    this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
+  },
+  getInfoJsonFromImageUri: function(imageUri) {
     // extract base service uri
     var imageResourceUriParts = imageUri.split('/');
     imageResourceUriParts.splice(-4, 4);
     var baseServiceUri = imageResourceUriParts.join('/');
-    var infoJson = baseServiceUri + '/info.json';
-
+    var infoJsonUri = baseServiceUri + '/info.json';
+    return infoJsonUri;
+  },
+  createImageAnnotationFromInfoJsonUri: function(infoJsonUri) {
+    var {dispatch} = this.props;
+    var that = this;
+    var baseServiceUri = infoJsonUri.substr(0, (infoJsonUri.length - 10));
     // check if image resource exists by requesting its info.json
-    axios.get(infoJson)
+    axios.get(infoJsonUri)
       .then(function(response) {
         // create an image annotation from the following template
         var imageAnnotation = {
@@ -91,7 +105,7 @@ var CanvasMetadataPanel = React.createClass({
           "@type": "oa:Annotation",
           "motivation": "sc:painting",
           "resource": {
-            "@id": imageUri,
+            "@id": baseServiceUri + '/full/full/0/default.jpg', // TODO: get this from info.json
             "@type": "dctypes:Image",
             "format": "image/jpeg",
             "service": {
@@ -104,7 +118,6 @@ var CanvasMetadataPanel = React.createClass({
           },
           "on": that.props.selectedCanvasId
         };
-
         // get the index of the selected canvas
         var manifest = that.props.manifestoObject;
         var sequence = manifest.getSequenceByIndex(0);
@@ -116,18 +129,25 @@ var CanvasMetadataPanel = React.createClass({
         dispatch(actions.resetError());
       })
       .catch(function(error) {
-        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a IIIF Image API URI'));
+        dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not valid'));
       });
   },
-  imageAnnotationChoice: function() {
-    // open the image annnotation choice dialog
+  openImageAnnotationChoiceDialog: function() {
+    // open the image annnotation choice modal dialog
     var $imageAnnotationDialog = $(ReactDOM.findDOMNode(this.refs.imageAnnotationDialog));
     $imageAnnotationDialog.modal({
       backdrop: 'static'
     });
   },
-  handleImageAnnotationChoice: function(selectedMethod) {
-    console.log("Form was submitted with: ", selectedMethod);
+  handleImageAnnotationChoice: function(selectedMethod, uri) {
+    if(selectedMethod == "imageAnnotation") {
+      this.handleImageAnnotationUri(uri);
+    } 
+    else if(selectedMethod == "imageUri") {
+      this.handleImageUri(uri);
+    } else {
+      this.handleInfoJsonUri(uri);
+    }
   },
   render: function() {
     var manifest = this.props.manifestoObject;
@@ -148,7 +168,7 @@ var CanvasMetadataPanel = React.createClass({
           {this.displayImageAnnotationFetchErrors()}
           <div className="row">
             <div className="col-md-12">
-              <button onClick={this.imageAnnotationChoice} className="btn btn-default center-block"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> <i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
+              <button onClick={this.openImageAnnotationChoiceDialog} className="btn btn-default center-block"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> <i className="fa fa-file-image-o"></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
             </div>
           </div>
           <div className="row">

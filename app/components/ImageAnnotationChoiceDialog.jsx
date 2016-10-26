@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 
 var ImageAnnotationChoiceDialog = React.createClass({
@@ -36,7 +37,11 @@ var ImageAnnotationChoiceDialog = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    this.props.onSubmitHandler(this.state.selectedMethod);
+    this.props.onSubmitHandler(this.state.selectedMethod, this.refs.uri.value);
+    this.refs.uri.value = '';
+    // close modal window
+    var $imageAnnotationChoiceDialog = $(ReactDOM.findDOMNode(this));
+    $imageAnnotationChoiceDialog.modal('hide');
   },
   render: function() {
     return (
@@ -45,13 +50,13 @@ var ImageAnnotationChoiceDialog = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 className="modal-title">{this.props.addOrReplace === 'add' ? 'Add Image Annotation to Canvas' : 'Replace Image Annotation on Canvas'}: {this.props.canvas.getLabel()}</h4>
+              <h4 className="modal-title">{this.props.addOrReplace === 'add' ? 'Create Image Annotation on Canvas' : 'Replace Image Annotation on Canvas'}: {this.props.canvas.getLabel()}</h4>
             </div>
             <div className="modal-body">
               <div className="row">
                 <div className="col-md-12">
-                  <div>
-                    <i className="fa fa-info"></i>&nbsp;
+                  <div className="text-right">
+                    <i className="fa fa-info-circle"></i>&nbsp;
                     <a href="javascript:;" onClick={this.showHelp}>{this.state.showHelp ? 'Hide' : 'Help'}</a>
                   </div>
                   <div id="imageAnnotationUpdateHelp" className={!this.state.showHelp ? 'hidden' : null}>
@@ -72,7 +77,7 @@ var ImageAnnotationChoiceDialog = React.createClass({
                     </ul>
                   </div>
                   <hr />
-                  <h4>Create image annotation:</h4>
+                  <h4>{this.props.addOrReplace === 'add' ? 'Create Image Annotation' : 'Replace Image Annotation'}:</h4>
                   <form className="form">
                     <div className="row">
                       <div className="col-md-12">
@@ -91,7 +96,7 @@ var ImageAnnotationChoiceDialog = React.createClass({
                         <div className="radio">
                           <label>
                             <input type="radio" onChange={this.updateSelectedMethod} name="typeOfAnnotation" id="imageAnnotation" value="Image Annotation URI" />
-                              Using Existing Image Annotation URI
+                              Using existing image annotation URI
                           </label>
                         </div>
                       </div>
@@ -103,12 +108,12 @@ var ImageAnnotationChoiceDialog = React.createClass({
                     </div>
                     <div className="row">
                       <div className="col-md-12">
-                        <input className="form-control" type="text" name="uri" placeholder={this.getUriSyntax()} />
+                        <input ref="uri" className="form-control" type="text" name="uri" placeholder={this.getUriSyntax()} />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-2">
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Submit URI</button>
                       </div>
                     </div>
                   </form>
