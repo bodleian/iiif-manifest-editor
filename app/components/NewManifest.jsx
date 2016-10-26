@@ -6,17 +6,17 @@ var uuid = require('node-uuid');
 
 var NewManifest = React.createClass({
   componentDidMount: function() {
-    var {dispatch} = this.props;
     // set up manifest skeleton
     var emptyManifest = {
       "@context": "http://iiif.io/api/presentation/2/context.json",
   	  "@id": "http://" + uuid(),
   	  "@type": "sc:Manifest",
   	  "label": "[Click to edit label]",
+      "metadata": [],
   	  "description": [
         {
-        "@value": "[Click to edit description]",
-        "@language": "en"
+          "@value": "[Click to edit description]",
+          "@language": "en"
         }
       ],
   	  "license": "https://creativecommons.org/licenses/by/3.0/",
@@ -32,20 +32,18 @@ var NewManifest = React.createClass({
             }
           ],
           "canvases": []
-         }
+        }
   	  ],
   	  "structures": []
     };
 
-    dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(emptyManifest))));
-    dispatch(actions.setManifestData(emptyManifest));
+    this.props.dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(emptyManifest))));
+    this.props.dispatch(actions.setManifestData(emptyManifest));
     window.location = '#/edit';  // redirect to edit manifest
-
   },
   render: function() {
     return false;
   }
-
 });
 
 module.exports = connect()(NewManifest);
