@@ -21,13 +21,13 @@ var ImageAnnotationChoiceDialog = React.createClass({
   getUriSyntax: function() {
     switch (this.state.selectedMethod) {
       case "imageUri":
-        return "http://<domain>/<image-id>/<region>/<size>/<rotation>/default.jpg";
+        return "{scheme}://{server}{/prefix}/{identifier}/{region}/{size}/{rotation}/{quality}.{format}";
         break;
       case "infoJson":
-        return "http://<domain>/<image-id>/info.json";
+        return "{scheme}://{server}{/prefix}/{identifier}/info.json";
         break;
       case "imageAnnotation":
-        return "http://<domain>/<annotation-id>";
+        return "{scheme}://{host}/{prefix}/{identifier}/annotation/{name}";
         break;
       default:
         return "http://";
@@ -102,9 +102,11 @@ var ImageAnnotationChoiceDialog = React.createClass({
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-10">
+                      <div className="col-md-12">
                         <input className="form-control" type="text" name="uri" placeholder={this.getUriSyntax()} />
                       </div>
+                    </div>
+                    <div className="row">
                       <div className="col-md-2">
                         <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
                       </div>
