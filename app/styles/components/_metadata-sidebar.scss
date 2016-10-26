@@ -139,6 +139,10 @@
       }
     }
   }
+  
+  .add-replace-image-on-canvas-button {
+    margin-top: 15px;
+  }
 
   .metadata-sidebar-canvas {
     text-align: center;
@@ -189,5 +193,17 @@
 
   &.visible {
     display: inline;
+  }
+}
+
+#imageAnnotationUpdateHelp {
+  margin-top:5px;
+  padding:15px;
+  border:1px solid #eee;
+  border-radius:5px;
+  background-color: lighten($gray-light, 50%);
+
+  li {
+    margin-bottom:10px;
   }
 }
