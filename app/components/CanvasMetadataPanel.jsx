@@ -49,6 +49,9 @@ var CanvasMetadataPanel = React.createClass({
     // TODO: implement more robust IIIF image URI validation
     return uri.substr(-11) === '/native.jpg' || uri.substr(-12) === '/default.jpg';
   },
+  isInfoJsonUri: function(uri) {
+    return uri.substr(-10) === '/info.json';
+  },
   handleImageAnnotationUri: function(imageAnnotationUri) {
     var sequence = this.props.manifestoObject.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
@@ -80,8 +83,11 @@ var CanvasMetadataPanel = React.createClass({
     }
   },
   handleInfoJsonUri: function(infoJsonUri) {
-    // TODO: validate info JSON URI
-    this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
+    if(this.isInfoJsonUri(infoJsonUri)) {
+      this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
+    } else {
+      this.props.dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a valid info.json URI'));
+    }
   },
   getInfoJsonFromImageUri: function(imageUri) {
     // extract base service uri
