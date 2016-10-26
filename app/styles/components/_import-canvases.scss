@@ -13,7 +13,7 @@
 
   .sequence-browser {
     position: relative;
-    border: 2px solid $gray-light;
+    border: $mainComponentContainerBorder;
     height: 75vh;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -23,7 +23,7 @@
       display: inline-block;
       vertical-align: middle;
       border-left: 1px solid $gray-light;
-      border-right: 2px solid $gray-light;
+      border-right: $mainComponentContainerBorder;
       width: 30%;
       height: 100%;
       overflow-y: scroll;
