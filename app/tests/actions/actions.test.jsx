@@ -71,6 +71,16 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should add the metadata field object in the metadata field at the path', () => {
+    var action = {
+      type: 'ADD_METADATA_FIELD_TO_LIST_AT_PATH',
+      metadataFieldObject: { label: "Label", value: "Value" },
+      path: 'path to metadata field'
+    }
+    var res = actions.addMetadataFieldToListAtPath(action.metadataFieldObject, action.path);
+    expect(res).toEqual(action);
+  });
+
   it('should update the metadata field name at the path', () => {
     var action = {
       type: 'UPDATE_METADATA_FIELD_NAME_AT_PATH',
@@ -98,6 +108,16 @@ describe('Actions', () => {
       path: 'path to metadata field'
     }
     var res = actions.deleteMetadataFieldAtPath(action.path);
+    expect(res).toEqual(action);
+  });
+
+  it('should delete the metadata field object from the metadata field list at the path and index', () => {
+    var action = {
+      type: 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX',
+      path: 'path to metadata field',
+      fieldIndex: 0
+    }
+    var res = actions.deleteMetadataFieldFromListAtPathAndIndex(action.path, action.fieldIndex);
     expect(res).toEqual(action);
   });
 
