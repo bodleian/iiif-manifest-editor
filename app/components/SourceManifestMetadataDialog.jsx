@@ -81,14 +81,37 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var metadata = this.props.manifestData.getMetadata();
-                  if(metadata !== undefined && metadata !== '') {
+                  var metadataFields = this.props.manifestData.getMetadata();
+                  if(metadataFields !== undefined) {
                     return (
-                      <div className="row metadata-field-row">
-                        <div className="col-md-3 metadata-field-label">Metadata</div>
-                        <div className="col-md-9 metadata-field-value">
-                          <pre>{JSON.stringify(metadata, null, 2)}</pre>
-                        </div>
+                      <div>
+                        {
+                          Object.keys(metadataFields).map(function(fieldIndex) {
+                            var metadataField = metadataFields[fieldIndex];
+                            return (
+                              <div className="row metadata-field-row" key={fieldIndex}>
+                                <div className="col-md-3 metadata-field-label">
+                                  {metadataField.label}
+                                </div>
+                                {(() => {
+                                  if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
+                                    return (
+                                      <div className="col-md-9 metadata-field-value">
+                                        {metadataField.value}
+                                      </div>
+                                    );
+                                  } else {
+                                    return (
+                                      <div className="col-md-9 metadata-field-value">
+                                        <pre>{JSON.stringify(metadataField.value, null, 2)}</pre>
+                                      </div>
+                                    );
+                                  }
+                                })()}
+                              </div>
+                            );
+                          })
+                        }
                       </div>
                     );
                   }
