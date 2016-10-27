@@ -82,45 +82,55 @@
       }
 
       dl {
-        clear: both;
         margin-bottom: 15px;
-        overflow: auto;
         position: relative;
+        border:1px solid #ccc;
+        border-radius: 6px 6px 4px 4px;
 
-        dt {
-          display: block;
-          float: left;
-          min-width: 8em;
+        &:hover {
+          border: 1px solid $iiifBlue;
         }
 
-        dd.metadata-field-value {
+        dt {
+          padding: 1px 5px 1px 8px;
+          border-bottom: 1px solid #eee;
           display: block;
-          float: left;
+          background-color: $iiifBlue;
+          border-radius: 5px 5px 0 0;
+          color: white;
+
+          &:hover {
+            background-color: $iiifRed;
+          }
+        } 
+
+        dd.metadata-field-value {
+          color: #555;
+          display: block;
           min-height: 25px;
-          padding-right: 30px;
-          width: 65%;
+          padding: 1px 5px 1px 8px;
+
+          &:hover {
+            color: #000;
+            cursor: pointer;
+          }
         }
 
         dd.metadata-field-delete {
           position: absolute;
           right: 4px;
-          top: 0;
-          width: 22px;
+          top: 2px;
 
           a {
-            color: #333333;
-
-            &:hover {
-              color: #d9534f;
-            }
+            color:white;
           }
         }
       }
 
       .metadata-field-label {
-        font-weight: bold;
+        font-weight:normal;
+        letter-spacing: 1px;
         padding-right: 5px;
-        max-width: 30%;
       }
 
       .image-annotation-fetch-error {
