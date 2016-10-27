@@ -106,6 +106,16 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     });
     return availableMetadataFieldIndex;
   },
+  getActiveMetadataFieldIndexByFieldName: function(activeMetadataFields, fieldName) {
+    var activeMetadataFieldIndex = -1;
+    Object.keys(activeMetadataFields).map(function(index) {
+      var metadataField = activeMetadataFields[index];
+      if(metadataField.name === fieldName) {
+        activeMetadataFieldIndex = index;
+      }
+    });
+    return activeMetadataFieldIndex;
+  },
   updateMetadataFieldLists: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
     // find the available metadata field based on the field name
     var availableMetadataFieldIndex = this.getAvailableMetadataFieldIndexByFieldName(availableMetadataFields, fieldName);
@@ -164,6 +174,31 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       availableMetadataFields: availableMetadataFields,
       activeMetadataFields: activeMetadataFields
     });
+  },
+  componentDidUpdate: function(prevProps, prevState) {
+    // update viewing direction if it has been changed in Sequence Metadata panel
+    if(this.props.manifestData.viewingDirection !== prevProps.manifestData.viewingDirection) {
+      var activeMetadataFields = [...this.state.activeMetadataFields];
+      // update the viewingDirection field if it is among activeMetadataFields, otherwise add it
+      var fieldIndex = this.getActiveMetadataFieldIndexByFieldName(activeMetadataFields, 'viewingDirection')
+      if(fieldIndex !== -1) {
+        activeMetadataFields[fieldIndex].value = this.props.manifestData.viewingDirection;
+      } else {
+        var viewingDirectionMetadataField = {
+          name: 'viewingDirection',
+          label: 'Viewing Direction',
+          value: this.props.manifestData.viewingDirection,
+          isRequired: false,
+          isUnique: true,
+          addPath: '',
+          updatePath: 'viewingDirection'
+        };
+        activeMetadataFields.push(viewingDirectionMetadataField);
+      }
+      this.setState({
+        activeMetadataFields: activeMetadataFields
+      });
+    }
   },
   addMetadataField: function() {
     // create copies of the metadata field lists
