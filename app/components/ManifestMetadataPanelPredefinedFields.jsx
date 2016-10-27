@@ -26,7 +26,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           value: undefined,
           isRequired: false,
           isUnique: true,
-          addPath: 'description',
+          addPath: '',
           updatePath: 'description'
         },
         {
