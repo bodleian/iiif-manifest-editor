@@ -107,6 +107,20 @@ describe('Reducers', () => {
       expect(res.manifestData.sequences[0].canvases[0].newMetadataFieldName).toEqual('new metadata field value');
     });
 
+    it('should append a metadata field object to the manifestData object in the store', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var nextMetadataFieldIndex = manifestData.metadata.length;
+      var action = {
+        type: 'ADD_METADATA_FIELD_TO_LIST_AT_PATH',
+        metadataFieldObject: { label: "Label", value: "Value" },
+        path: 'metadata'
+      };
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.metadata[nextMetadataFieldIndex]).toExist();
+      expect(res.manifestData.metadata[nextMetadataFieldIndex].label).toEqual('Label');
+      expect(res.manifestData.metadata[nextMetadataFieldIndex].value).toEqual('Value');
+    });
+
     it('should update a manifest metadata field name in the manifestData object in the store', () => {
       var manifestData = JSON.parse(manifestDataFixture);
       var oldMetadataValue = manifestData.label;
@@ -216,6 +230,30 @@ describe('Reducers', () => {
       };
       var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
       expect(res.manifestData.sequences[0].canvases[0].label).toBe(undefined);
+    });
+
+    it('should delete the first metadata field object in the metadata field list from the manifestData object in the store', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var numMetadataFields = manifestData.metadata.length;
+      var action = {
+        type: 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX',
+        path: 'metadata',
+        fieldIndex: 0
+      }
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.metadata.length).toBe(numMetadataFields-1);
+    });
+
+    it('should delete the last metadata field object in the metadata field list from the manifestData object in the store', () => {
+      var manifestData = JSON.parse(manifestDataFixture);
+      var numMetadataFields = manifestData.metadata.length;
+      var action = {
+        type: 'DELETE_METADATA_FIELD_FROM_LIST_AT_PATH_AND_INDEX',
+        path: 'metadata',
+        fieldIndex: numMetadataFields - 1
+      }
+      var res = reducers.manifestReducer({ manifestData: manifestData }, df(action));
+      expect(res.manifestData.metadata.length).toBe(numMetadataFields-1);
     });
 
     it('should add an empty canvas to the front of the list of canvases', () => {
