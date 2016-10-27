@@ -88,12 +88,6 @@ var BulkActionsPanel = React.createClass({
           </div>
         </div>
 
-        <hr />
-        <div className="metadata-sidebar-panel-subtitle">Reverse Sequence</div>
-          <div className="col-md-9">
-            <button onClick={this.reverseSequence} className="btn btn-default form-control"><i className="fa fa-exchange"></i> Reverse Sequence</button>
-          </div>
-
       </div>
     );
   }
