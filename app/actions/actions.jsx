@@ -125,6 +125,12 @@ export var reorderCanvases = (updatedSortOrder) => {
   }
 };
 
+export var reverseSequence = () => {
+  return {
+    type: 'REVERSE_SEQUENCE'
+  }
+};
+
 export var startImageAnnotationFetch = () => {
   return {
     type: 'START_IMAGE_ANNOTATION_FETCH'
