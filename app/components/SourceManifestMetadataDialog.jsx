@@ -80,6 +80,19 @@ var SourceManifestMetadataDialog = React.createClass({
                     );
                   }
                 })()}
+                {(() => {
+                  var metadata = this.props.manifestData.getMetadata();
+                  if(metadata !== undefined && metadata !== '') {
+                    return (
+                      <div className="row metadata-field-row">
+                        <div className="col-md-3 metadata-field-label">Metadata</div>
+                        <div className="col-md-9 metadata-field-value">
+                          <pre>{JSON.stringify(metadata, null, 2)}</pre>
+                        </div>
+                      </div>
+                    );
+                  }
+                })()}
               </div>
             </div>
             <div className="modal-footer">

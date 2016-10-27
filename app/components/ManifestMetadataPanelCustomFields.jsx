@@ -17,9 +17,11 @@ var ManifestMetadataPanelCustomFields = React.createClass({
   },
   componentWillMount: function() {
     // initialize the active metadata field list with the fields defined in the manifest
-    this.setState({
-      activeMetadataFields: this.props.manifestData.metadata
-    });
+    if(this.props.manifestData.metadata) {
+      this.setState({
+        activeMetadataFields: this.props.manifestData.metadata
+      });
+    }
   },
   addMetadataField: function(metadataFieldLabel, metadataFieldValue, path) {
     // create a copy of the active metadata field list
