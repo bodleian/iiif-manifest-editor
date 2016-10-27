@@ -12,10 +12,12 @@ var SequenceMetadataPanel = React.createClass({
     var sequence = manifest.getSequenceByIndex(0);
     return (
       <div className="metadata-sidebar-panel">
-        <div className="row">
-          <div className="col-md-3 metadata-field-label">Sequence Label</div>
-          <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={sequence.getLabel()} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
-        </div>
+        <dl>
+          <dt className="metadata-field-label">Sequence Label</dt>
+          <dd className="metadata-field-value">
+            <EditableTextArea fieldValue={sequence.getLabel()} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
+          </dd>
+        </dl>
         <div className="row">
           <div className="col-md-12">
             <div className="btn-group">

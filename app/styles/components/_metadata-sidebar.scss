@@ -7,6 +7,10 @@
   overflow-x: hidden;
   padding: 0 15px;
 
+  .tab-content {
+    padding-right: 10px;
+  }
+
   .panel-heading {
     h4 {
       a {
@@ -98,10 +102,6 @@
           background-color: $iiifBlue;
           border-radius: 5px 5px 0 0;
           color: white;
-
-          &:hover {
-            background-color: $iiifRed;
-          }
         } 
 
         dd.metadata-field-value {
@@ -131,6 +131,10 @@
         font-weight:normal;
         letter-spacing: 1px;
         padding-right: 5px;
+
+        textarea {
+          color: #000;
+        }
       }
 
       .image-annotation-fetch-error {

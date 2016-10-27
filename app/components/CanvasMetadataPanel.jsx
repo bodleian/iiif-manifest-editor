@@ -177,26 +177,37 @@ var CanvasMetadataPanel = React.createClass({
           </div>
           <hr/>
           {this.displayImageAnnotationFetchErrors()}
-          <div className="row">
-            <div className="col-md-3 metadata-field-label">Canvas Label</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
-          </div>
-          <div className="row">
-            <div className="col-md-3 metadata-field-label">Canvas Width</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasWidth" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
-          </div>
-          <div className="row">
-            <div className="col-md-3 metadata-field-label">Canvas Height</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldName="canvasHeight" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
-          </div>
-          <div className="row">
-            <div className="col-md-3 metadata-field-label">Image URI</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.handleImageUri}/>
-          </div>
-          <div className="row">
-            <div className="col-md-3 metadata-field-label">Image Annotation URI</div>
-            <EditableTextArea classNames="col-md-9 metadata-field-value" fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
-          </div>
+          
+          <dl>
+            <dt className="metadata-field-label">Canvas Label</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            </dd>
+          </dl>
+          <dl>
+            <dt className="metadata-field-label">Canvas Width</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldName="canvasWidth" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            </dd>
+          </dl>
+          <dl>
+            <dt className="metadata-field-label">Canvas Height</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldName="canvasHeight" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+            </dd>
+          </dl>
+          <dl>
+            <dt className="metadata-field-label">Image URI</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldValue={resource !== undefined ? resource['@id'] : 'N/A'} onUpdateHandler={this.handleImageUri}/>
+            </dd>
+          </dl>
+          <dl>
+            <dt className="metadata-field-label">Image Annotation URI</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
+            </dd>
+          </dl>
         </div>
       );
     } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
