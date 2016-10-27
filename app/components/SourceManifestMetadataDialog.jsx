@@ -26,7 +26,7 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var label = this.props.manifestData.getLabel();
+                  var label = this.props.manifestData.label;
                   if(label !== undefined && label !== '') {
                     return (
                       <div className="row metadata-field-row">
@@ -37,7 +37,7 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var description = this.props.manifestData.getDescription();
+                  var description = this.props.manifestData.description;
                   if(description !== undefined && description !== '') {
                     return (
                       <div className="row metadata-field-row">
@@ -48,7 +48,7 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var attribution = this.props.manifestData.getAttribution();
+                  var attribution = this.props.manifestData.attribution;
                   if(attribution !== undefined && attribution !== '') {
                     return (
                       <div className="row metadata-field-row">
@@ -59,7 +59,7 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var license = this.props.manifestData.getLicense();
+                  var license = this.props.manifestData.license;
                   if(license !== undefined && license !== '') {
                     return (
                       <div className="row metadata-field-row">
@@ -70,7 +70,7 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var logo = this.props.manifestData.getLogo();
+                  var logo = this.props.manifestData.logo;
                   if(logo !== undefined && logo !== '') {
                     return (
                       <div className="row metadata-field-row">
@@ -81,7 +81,51 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var metadataFields = this.props.manifestData.getMetadata();
+                  var related = this.props.manifestData.related;
+                  if(related !== undefined && related !== '') {
+                    return (
+                      <div className="row metadata-field-row">
+                        <div className="col-md-3 metadata-field-label">Related</div>
+                        <div className="col-md-9 metadata-field-value">{related}</div>
+                      </div>
+                    );
+                  }
+                })()}
+                {(() => {
+                  var seeAlso = this.props.manifestData.seeAlso;
+                  if(seeAlso !== undefined && seeAlso !== '') {
+                    return (
+                      <div className="row metadata-field-row">
+                        <div className="col-md-3 metadata-field-label">See Also</div>
+                        <div className="col-md-9 metadata-field-value">{seeAlso}</div>
+                      </div>
+                    );
+                  }
+                })()}
+                {(() => {
+                  var viewingDirection = this.props.manifestData.viewingDirection;
+                  if(viewingDirection !== undefined && viewingDirection !== '') {
+                    return (
+                      <div className="row metadata-field-row">
+                        <div className="col-md-3 metadata-field-label">Viewing Direction</div>
+                        <div className="col-md-9 metadata-field-value">{viewingDirection}</div>
+                      </div>
+                    );
+                  }
+                })()}
+                {(() => {
+                  var viewingHint = this.props.manifestData.viewingHint;
+                  if(viewingHint !== undefined && viewingHint !== '') {
+                    return (
+                      <div className="row metadata-field-row">
+                        <div className="col-md-3 metadata-field-label">Viewing Hint</div>
+                        <div className="col-md-9 metadata-field-value">{viewingHint}</div>
+                      </div>
+                    );
+                  }
+                })()}
+                {(() => {
+                  var metadataFields = this.props.manifestData.metadata;
                   if(metadataFields !== undefined) {
                     return (
                       <div>

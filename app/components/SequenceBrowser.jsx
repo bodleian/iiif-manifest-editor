@@ -53,7 +53,7 @@ var SequenceBrowser = React.createClass({
             var manifestoObject = manifesto.create(manifestData);
             var sequence = manifestoObject.getSequenceByIndex(0);
             return(
-              <SequenceViewer key={manifestIndex} sequenceIndex={manifestIndex} sequence={sequence} manifestData={manifestoObject} onRemoveHandler={_this.removeManifestFromState}/>
+              <SequenceViewer key={manifestIndex} sequenceIndex={manifestIndex} sequence={sequence} manifestData={manifestData} onRemoveHandler={_this.removeManifestFromState}/>
             );
           })
         }
