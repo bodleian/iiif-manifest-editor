@@ -19,7 +19,7 @@ var SourceManifestMetadataDialog = React.createClass({
           return value['@value'];
         }
       }
-      // If Array does not contain any @language values, return the contents as concatendated strings 
+      // If Array does not contain any @language values, return the contents as concatenated string 
       if(!arrayContainsLocalizedValues) {
         var concatenatedValues = '';
         for (var i = 0; i < metadataFieldValue.length; i++) {
@@ -72,7 +72,6 @@ var SourceManifestMetadataDialog = React.createClass({
               <div className="source-manifest-metadata">
                 {(() => {
                   var manifestId = this.getMetadataField('id', this.props.manifestData['@id']);
-                  console.log("manifestId returned: ", manifestId);
                   if(manifestId) {
                     return (
                       <div className="row metadata-field-row">
@@ -86,7 +85,6 @@ var SourceManifestMetadataDialog = React.createClass({
                 })()}
                 {(() => {
                   var label = this.getMetadataField('label', this.props.manifestData.label);
-                  console.log("label returned: ", label);
                   if(label) {
                     return (
                       <div className="row metadata-field-row">
