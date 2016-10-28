@@ -11,8 +11,15 @@ html { font-size: 62.5%; }
   color:whitesmoke;
   padding:8px 15px;
 
-  button {
-    color:whitesmoke;
+  button.close {
+    color: white;
+    opacity: 1.0;
+    text-shadow: white;
+
+    &:hover {
+      color: whitesmoke;
+      opacity: 0.9;
+    }
   }
 
   .modal-title {
