@@ -1,6 +1,64 @@
 var React = require('react');
 
 var SourceManifestMetadataDialog = React.createClass({
+  getMetadataField: function(metadataFieldName, metadataFieldValue) {
+    // Return strings directly
+    if(typeof metadataFieldValue === 'string' || metadataFieldValue instanceof String) {
+      return metadataFieldValue;
+    }
+    // Handle Arrays first, since they are also Objects
+    else if(Array.isArray(metadataFieldValue)) {
+      var arrayContainsLocalizedValues = false;
+      for (var i = 0; i < metadataFieldValue.length; i++) {
+        var value = metadataFieldValue[i];
+        // Handle multilingual values => return English values only for now
+        if (value['@language'] !== undefined) {
+          arrayContainsLocalizedValues = true;
+        }
+        if (value['@language'] === 'en' || value['@language'] === 'eng') {
+          return value['@value'];
+        }
+      }
+      // If Array does not contain any @language values, return the contents as concatendated strings 
+      if(!arrayContainsLocalizedValues) {
+        var concatenatedValues = '';
+        for (var i = 0; i < metadataFieldValue.length; i++) {
+        var nonLocalizedValue = metadataFieldValue[i];
+          if(nonLocalizedValue['@value'] !== undefined) {
+            concatenatedValues += nonLocalizedValue['@value'] + '; '
+          }
+        }
+        if (concatenatedValues !== '') {
+          return concatenatedValues.slice(0,-2); // trim the trailing semicolon
+        }
+        else {
+          return (
+            <pre>{JSON.stringify(metadataFieldValue, null, 2)}</pre>
+          );
+        }
+      }
+    } 
+    // Handle Objects that are not Arrays
+    else if(metadataFieldValue instanceof Object) { 
+      
+      // try to get the @id property for certain fiels
+      if((metadataFieldName === 'seeAlso' || metadataFieldName === 'logo') && metadataFieldValue['@id']) {
+        return metadataFieldValue['@id'];
+      
+      // Stringify objects and return them as JSON text wrapped in <pre> tags
+      } 
+      else {
+        return (
+          <pre>{JSON.stringify(metadataFieldValue, null, 2)}</pre>
+        );
+      }
+
+    }
+
+    else {
+      return false;
+    }
+  },
   render: function() {
     return (
       <div className="modal fade manifest-metadata-dialog">
@@ -13,8 +71,9 @@ var SourceManifestMetadataDialog = React.createClass({
             <div className="modal-body">
               <div className="source-manifest-metadata">
                 {(() => {
-                  var manifestId = this.props.manifestData.id;
-                  if(manifestId !== undefined && manifestId !== '') {
+                  var manifestId = this.getMetadataField('id', this.props.manifestData['@id']);
+                  console.log("manifestId returned: ", manifestId);
+                  if(manifestId) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Manifest URI</div>
@@ -26,8 +85,9 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var label = this.props.manifestData.label;
-                  if(label !== undefined && label !== '') {
+                  var label = this.getMetadataField('label', this.props.manifestData.label);
+                  console.log("label returned: ", label);
+                  if(label) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Label</div>
@@ -37,8 +97,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var description = this.props.manifestData.description;
-                  if(description !== undefined && description !== '') {
+                  var description = this.getMetadataField('description', this.props.manifestData.description);
+                  if(description) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Description</div>
@@ -48,8 +108,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var attribution = this.props.manifestData.attribution;
-                  if(attribution !== undefined && attribution !== '') {
+                  var attribution = this.getMetadataField('attribution', this.props.manifestData.attribution);
+                  if(attribution) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Attribution</div>
@@ -59,8 +119,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var license = this.props.manifestData.license;
-                  if(license !== undefined && license !== '') {
+                  var license = this.getMetadataField('license', this.props.manifestData.license);
+                  if(license) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">License</div>
@@ -70,8 +130,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var logo = this.props.manifestData.logo;
-                  if(logo !== undefined && logo !== '') {
+                  var logo = this.getMetadataField('logo', this.props.manifestData.logo);
+                  if(logo) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Logo</div>
@@ -81,8 +141,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var related = this.props.manifestData.related;
-                  if(related !== undefined && related !== '') {
+                  var related = this.getMetadataField('related', this.props.manifestData.related);
+                  if(related) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Related</div>
@@ -92,19 +152,19 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var seeAlso = this.props.manifestData.seeAlso;
-                  if(seeAlso !== undefined && seeAlso !== '') {
+                  var seeAlso = this.getMetadataField('seeAlso', this.props.manifestData.seeAlso);
+                  if(seeAlso) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">See Also</div>
-                        <div className="col-md-9 metadata-field-value">{seeAlso}</div>
+                        <div className="col-md-9 metadata-field-value"><a href={seeAlso} target="_blank">{seeAlso}</a></div>
                       </div>
                     );
                   }
                 })()}
                 {(() => {
-                  var viewingDirection = this.props.manifestData.viewingDirection;
-                  if(viewingDirection !== undefined && viewingDirection !== '') {
+                  var viewingDirection = this.getMetadataField('viewingDirection', this.props.manifestData.viewingDirection);
+                  if(viewingDirection) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Viewing Direction</div>
@@ -114,8 +174,8 @@ var SourceManifestMetadataDialog = React.createClass({
                   }
                 })()}
                 {(() => {
-                  var viewingHint = this.props.manifestData.viewingHint;
-                  if(viewingHint !== undefined && viewingHint !== '') {
+                  var viewingHint = this.getMetadataField('viewingHint', this.props.manifestData.viewingHint);
+                  if(viewingHint) {
                     return (
                       <div className="row metadata-field-row">
                         <div className="col-md-3 metadata-field-label">Viewing Hint</div>
@@ -126,6 +186,7 @@ var SourceManifestMetadataDialog = React.createClass({
                 })()}
                 {(() => {
                   var metadataFields = this.props.manifestData.metadata;
+                  var _this = this;
                   if(metadataFields !== undefined) {
                     return (
                       <div>
@@ -137,21 +198,9 @@ var SourceManifestMetadataDialog = React.createClass({
                                 <div className="col-md-3 metadata-field-label">
                                   {metadataField.label}
                                 </div>
-                                {(() => {
-                                  if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
-                                    return (
-                                      <div className="col-md-9 metadata-field-value">
-                                        {metadataField.value}
-                                      </div>
-                                    );
-                                  } else {
-                                    return (
-                                      <div className="col-md-9 metadata-field-value">
-                                        <pre>{JSON.stringify(metadataField.value, null, 2)}</pre>
-                                      </div>
-                                    );
-                                  }
-                                })()}
+                                <div className="col-md-9 metadata-field-value">
+                                  {_this.getMetadataField(metadataField.label, metadataField.value)}
+                                </div>
                               </div>
                             );
                           })
