@@ -35,6 +35,7 @@ var OpenSequenceDialog = React.createClass({
       })
       .catch(function(error) {
         // set the error message in the state and reset isFetchingRemoteManifestStatus
+        console.log(error);
         _this.setState({
           manifestFetchError: 'Invalid remote manifest URL',
           isFetchingRemoteManifest: false
