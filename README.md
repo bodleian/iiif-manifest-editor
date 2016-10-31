@@ -2,6 +2,8 @@
 
 The iiif-manifest-editor is a web application that generates IIIF manifests. It allows you to import, view, update and export images and metadata using the [IIIF APIs](http://iiif.io/technical-details/).
 
+![Screenshot of the IIIF Manifest Editor](https://cloud.githubusercontent.com/assets/725398/19859769/b7b3c020-9f86-11e6-810a-c39335be3675.png)
+
 ## How to use
 See this Wiki page for instructions on how to use the IIIF manifest editor:
 [User manual](https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual)
