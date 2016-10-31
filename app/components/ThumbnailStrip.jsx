@@ -21,6 +21,9 @@ var ThumbnailStrip = React.createClass({
     }); 
   },
   componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      canvases: nextProps.manifestoObject.getSequenceByIndex(0).getCanvases()
+    }); 
     if(this.props.manifestData.viewingDirection !== nextProps.manifestData.viewingDirection) {
       this.setState({
        canvases: this.getCanvases(nextProps.manifestData.viewingDirection)
