@@ -194,7 +194,7 @@ var SourceManifestMetadataDialog = React.createClass({
                             return (
                               <div className="row metadata-field-row" key={fieldIndex}>
                                 <div className="col-md-3 metadata-field-label">
-                                  {metadataField.label}
+                                  {_this.getMetadataField(metadataField.label, metadataField.label)}
                                 </div>
                                 <div className="col-md-9 metadata-field-value">
                                   {_this.getMetadataField(metadataField.label, metadataField.value)}
