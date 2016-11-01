@@ -4,6 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldDialog = require('MetadataFieldDialog');
+var Utils = require('Utils');
 
 var ManifestMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
@@ -84,7 +85,17 @@ var ManifestMetadataPanelCustomFields = React.createClass({
             return (
               <dl key={fieldIndex}>
                 <dt className="metadata-field-label">
-                  <EditableTextArea fieldValue={metadataField.label} path={"metadata/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                  {(() => {
+                    if(typeof metadataField.label === 'string' || metadataField.label instanceof String) {
+                      return (
+                        <EditableTextArea fieldValue={metadataField.label.toString()} path={"metadata/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                      );
+                    } else {
+                      return (
+                        <span>{Utils.getMetadataField('label', metadataField.label)}</span>
+                      );
+                    }
+                  })()}
                 </dt>
                 {(() => {
                   if(metadataField.value === undefined) {
