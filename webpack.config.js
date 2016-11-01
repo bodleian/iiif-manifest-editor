@@ -27,7 +27,8 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './app/components',
-      './app/components/ui-toolkit'
+      './app/components/ui-toolkit',
+      'libraries'
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
