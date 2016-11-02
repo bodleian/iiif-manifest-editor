@@ -6,14 +6,17 @@
     border: 1px solid $gray-light;
     border-radius: 5px;
 
+    .open-manifest-cancel-button {
+      margin-right: 7px;
+    }
+
     .open-manifest-form-header {
       font-size: 1.6rem;
       padding: 7px 0;
       border-bottom: 1px solid $gray-light;
 
-      .open-manifest-cancel-button {
-        float: right;
-        margin-right: 7px;
+      .link-to-manual {
+        margin: -4px 4px 0 0;
       }
     }
 

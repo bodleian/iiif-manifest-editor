@@ -5,7 +5,14 @@ var Home = (props) => {
   return(
     <div className="home-container">
       <div className="well">
-        <img src="./img/IIIF-logo-colored-text.png" alt="IIIF Logo"/>
+        <div className="pull-right link-to-manual">
+          <a className="btn btn-default btn-sm" href="https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual" target="_blank"><i className="fa fa-book"></i> User Manual</a>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <img src="./img/IIIF-logo-colored-text.png" alt="IIIF Logo"/>
+          </div>
+        </div>
         <h2>IIIF Manifest Editor</h2>
         <div className="row">
           <div className="col-md-12">

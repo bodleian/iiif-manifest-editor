@@ -84,7 +84,9 @@ var OpenManifest = React.createClass({
         <div className="open-manifest-form-container">
           <div className="open-manifest-form-header">
             <span>Open Manifest</span>
-            <Link to="/" className="btn btn-default btn-xs open-manifest-cancel-button"><i className="fa fa-ban"></i> Cancel</Link>
+            <div className="pull-right link-to-manual">
+              <a className="btn btn-default btn-sm" href="https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual" target="_blank"><i className="fa fa-book"></i> User Manual</a>
+            </div>
           </div>
 
           {this.displayManifestFetchErrors()}
@@ -108,6 +110,7 @@ var OpenManifest = React.createClass({
             </div>
             <div className="row open-manifest-button-container">
               <div className="col-md-12">
+                <Link to="/" className="btn btn-default open-manifest-cancel-button"><i className="fa fa-ban"></i> Cancel</Link>
                 <button type="submit" className="btn btn-default"><i className="fa fa-folder-open"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : (this.props.isFetchingRemoteManifest ? ' Loading...' : ' Open')}</button>
               </div>
             </div>
