@@ -13,8 +13,7 @@ var EditManifest = React.createClass({
     });
   },
   componentWillMount: function() {
-    var {manifestData} = this.props;
-    if(manifestData === undefined) {
+    if(this.props.manifestData === undefined) {
       window.location.hash = '#/';
     }
 
@@ -25,14 +24,13 @@ var EditManifest = React.createClass({
     }
   },
   render: function() {
-    var {manifestData} = this.props;
     var viewerThumbnailStripClasses = classNames(
       {
         'viewer-thumbnail-strip-narrow-view': this.props.showMetadataSidebar,
         'viewer-thumbnail-strip-wide-view': !this.props.showMetadataSidebar
       }
     );
-    if(manifestData === undefined) {
+    if(this.props.manifestData === undefined) {
       return false;  // do not render the component when no manifest data exists to prevent errors before redirecting
     } else {
       return (
