@@ -1,3 +1,58 @@
+.navigator-wrapper {
+  background:#000; overflow:hidden;
+  width:166px;
+  height:178px;
+  border:solid 0px #ffffff;
+}
+.osd {
+  position: relative;
+  background-color: black;
+}
+  
+.osd-toolbar {
+  padding:0;
+  position: absolute;
+  top: 0;
+}
+
+.osd-toolbar li {
+  display: inline-block;
+}
+
+.osd-toolbar > li {
+  list-style:none;
+}
+.osd-toolbar a {
+  z-index: 1;
+  width:30px;
+  height:30px;
+  font-height:30px;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  margin-right:1px;
+  cursor:pointer;
+  text-align:center
+}
+
+.osd-toolbar a:hover {
+  background: rgba(158, 46, 0, 0.6); text-decoration:none
+}
+
+.osd-toolbar a > i {
+  width:30px;
+  height:30px;
+  line-height:30px;
+  font-size:15px;
+  padding-top:2px
+}
+  
+
+.openseadragon-container, .openseadragon {
+  height: 500px;
+  width: 100%;
+}
+
+
 .viewer-container {
   position: relative;
   border: $mainComponentContainerBorder;
