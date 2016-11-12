@@ -12,8 +12,8 @@ import OpenSeadragonNavigator from 'react-openseadragon'
 
 
 var openSeaDragonConfig = {
-      sequenceMode:  true,
-      showReferenceStrip: true,
+      sequenceMode:  false,
+      showReferenceStrip: false,
       defaultZoomLevel: 0,
       tileSources:   [
           "http://libimages.princeton.edu/loris2/pudl0001%2F4609321%2Fs42%2F00000001.jp2/info.json",
@@ -60,7 +60,7 @@ var EditManifest = React.createClass({
           <div className="row">
             <div className={viewerThumbnailStripClasses}>
               <OpenseadragonViewer config={openSeaDragonConfig} />
-              
+              <ThumbnailStrip/>
             </div>
             <MetadataSidebar ref="sidebar"/>
           </div>
