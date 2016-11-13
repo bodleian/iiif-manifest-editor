@@ -9,6 +9,10 @@ import OpenSeadragonControls from 'react-openseadragon';
 
 
 var openSeadragonConf = {
+  zoomInButton:   "zoom-in",
+  zoomOutButton:  "zoom-out",
+  homeButton:     "home",
+  fullPageButton: "full-page",
   sequenceMode:  false,
   showReferenceStrip: false,
   defaultZoomLevel: 0,
@@ -56,9 +60,16 @@ var Viewer = React.createClass({
     var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
     return (
       <div className="viewer-container">
+        <div className="osd-custom-toolbar">
+          <div id="zoom-in"><i className="fa fa-search-plus"></i></div>
+          <div id="zoom-out"><i className="fa fa-search-minus"></i></div>
+          <div id="home"><i className="fa fa-home"></i></div>
+          <div id="full-page"><i className="fa fa-arrows-alt"></i></div>
+        </div>
         <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
           <div className="viewer-loading-text">Loading</div>
+          
         </div>
         {(() => {
           if(canvasIndex > 0) {
