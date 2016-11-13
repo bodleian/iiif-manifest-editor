@@ -8,24 +8,20 @@ import OpenseadragonViewer from 'react-openseadragon';
 import OpenSeadragonControls from 'react-openseadragon';
 
 
+var openSeadragonConf = {
+  sequenceMode:  false,
+  showReferenceStrip: false,
+  defaultZoomLevel: 0,
+  tileSources:   []
+};
+
 var Viewer = React.createClass({
-  getInitialState: function() {
-    return {
-      openSeaDragonConfig: {
-      sequenceMode:  false,
-      showReferenceStrip: false,
-      defaultZoomLevel: 0,
-      tileSources: []
-      }
-    }
-  },
   componentWillMount: function() {
     this.updateTileSources();
   },
-  componentDidUpdate: function(prevProps, prevState) {
+  componentWillUpdate: function(prevProps, prevState) {
     // update the image in the viewer
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
-      console.log("Selected Canvas ID: ", this.props.selectedCanvasId);
       this.updateTileSources();
     }
   },
@@ -40,18 +36,10 @@ var Viewer = React.createClass({
         var canvasImages = canvas.getImages();
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
-          console.log("tileSource: ", serviceId + '/info.json');
-          this.setState({
-            openSeaDragonConfig: {
-              tileSources: [
-                serviceId + '/info.json'
-              ]
-            }  
-          });
+          openSeadragonConf.tileSources = [serviceId + '/info.json'];
         }
       }
     }
-    console.log("OSD Config:" , this.state.openSeaDragonConfig);
   },
   setShowMetadataSidebar: function(value) {
     this.props.dispatch(actions.setShowMetadataSidebar(value));
@@ -79,7 +67,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <OpenseadragonViewer config={this.state.openSeaDragonConfig} key={this.props.selectedCanvasId} />
+        <OpenseadragonViewer config={openSeadragonConf} key={this.props.selectedCanvasId} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
