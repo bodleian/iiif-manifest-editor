@@ -41,6 +41,17 @@ var Viewer = React.createClass({
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
           openSeadragonConf.tileSources = [serviceId + '/info.json'];
+        } 
+        else {
+          // display placeholder image for empty canvases
+          openSeadragonConf.tileSources = {
+            height: 300,
+            width:  200,
+            tileSize: 300,
+            getTileUrl: function() {
+              return "https://placeholdit.imgix.net/~text?txtsize=16&txt=Empty+Canvas&w=200&h=300";
+            }
+          };
         }
       }
     }
