@@ -43,8 +43,6 @@
     "deepcopy": "^0.6.3",
     "express": "^4.13.4",
     "font-awesome": "^4.6.3",
-    "leaflet": "^0.7.7",
-    "leaflet-iiif": "0.0.8",
     "manifesto.js": "0.1.20",
     "multer": "^1.1.0",
     "react": "^15.3.2",
