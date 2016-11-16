@@ -4,73 +4,50 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var NavigationArrow = require('NavigationArrow');
+import OpenseadragonViewer from 'react-openseadragon';
+import OpenSeadragonControls from 'react-openseadragon';
+
+
+var openSeadragonConf = {
+  zoomInButton:   "zoom-in",
+  zoomOutButton:  "zoom-out",
+  homeButton:     "home",
+  fullPageButton: "full-page",
+  sequenceMode:  false,
+  showReferenceStrip: false,
+  defaultZoomLevel: 0,
+  tileSources:   []
+};
 
 var Viewer = React.createClass({
-  getInitialState: function() {
-    return {
-      viewer: undefined,
-      mainImageLayer: undefined
-    }
+  componentWillMount: function() {
+    this.updateTileSources();
   },
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.selectedCanvasId !== nextProps.selectedCanvasId
-           || this.props.manifestoObject !== nextProps.manifestoObject
-           || this.props.showMetadataSidebar !== nextProps.showMetadataSidebar;
-  },
-  componentDidMount: function() {
-    // save a single instance of the viewer to the state
-    this.state.viewer = L.map('map', {
-                          center: [0, 0],
-                          crs: L.CRS.Simple,
-                          zoom: 0,
-                          touchZoom: false,
-                          inertia: false,
-                          attributionControl: false
-                        });
-    this.updateMainImageLayerInViewer();
-    var _this = this;
-    setTimeout(function(){ _this.state.viewer.invalidateSize()}, 100);
-  },
-  componentDidUpdate: function(prevProps, prevState) {
-    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
-      this.state.viewer.invalidateSize();
-    }
-    // remove the main image layer from the viewer
+  componentWillUpdate: function(prevProps, prevState) {
+    // update the image in the viewer
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
-      if(this.state.mainImageLayer !== undefined) {
-        this.state.viewer.removeLayer(this.state.mainImageLayer);
-      }
-      this.updateMainImageLayerInViewer();
+      this.updateTileSources();
     }
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
-  updateMainImageLayerInViewer: function() {
+  updateTileSources: function() {
     if(this.props.selectedCanvasId !== undefined) {
-      // create a new main image layer using the selected canvas
+      // update main image using the selected canvas
       var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
       if(canvas !== null) {
         var canvasImages = canvas.getImages();
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
-          var mainImageLayer = L.tileLayer.iiif(serviceId + '/info.json', {
-            maxZoom: 6
-          });
-          var that = this;
-          mainImageLayer.on('loading', function (event) {
-            $(ReactDOM.findDOMNode(that)).children('.viewer-loading-indicator').show();
-          });
-
-          mainImageLayer.on('load', function (event) {
-            $(ReactDOM.findDOMNode(that)).children('.viewer-loading-indicator').hide();
-          });
-
-          // save the main image layer to the state
-          this.setState({ mainImageLayer: mainImageLayer });
-
-          // update the main image layer in the viewer
-          mainImageLayer.addTo(this.state.viewer);
+          openSeadragonConf.tileSources = [serviceId + '/info.json'];
+        } 
+        else {
+          // display placeholder image for empty canvases
+          openSeadragonConf.tileSources = {
+            type: 'image',
+            url: "https://placeholdit.imgix.net/~text?txtsize=16&txt=Empty+Canvas&w=200&h=300"
+          };
         }
       }
     }
@@ -90,9 +67,16 @@ var Viewer = React.createClass({
     var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
     return (
       <div className="viewer-container">
+        <div className="osd-custom-toolbar">
+          <div id="zoom-in"><i className="fa fa-search-plus"></i></div>
+          <div id="zoom-out"><i className="fa fa-search-minus"></i></div>
+          <div id="home"><i className="fa fa-home"></i></div>
+          <div id="full-page"><i className="fa fa-arrows-alt"></i></div>
+        </div>
         <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
           <div className="viewer-loading-text">Loading</div>
+          
         </div>
         {(() => {
           if(canvasIndex > 0) {
@@ -101,7 +85,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <div id="map" data-canvas-id={this.props.selectedCanvasId}></div>
+        <OpenseadragonViewer config={openSeadragonConf} key={this.props.selectedCanvasId} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (

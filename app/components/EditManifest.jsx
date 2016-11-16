@@ -6,6 +6,7 @@ var Viewer = require('Viewer');
 var MetadataSidebar = require('MetadataSidebar');
 var ThumbnailStrip = require('ThumbnailStrip');
 
+
 var EditManifest = React.createClass({
   componentDidMount: function() {
     $(window).on('beforeunload', function() {
@@ -37,7 +38,7 @@ var EditManifest = React.createClass({
         <div className="edit-manifest-container container-fluid">
           <div className="row">
             <div className={viewerThumbnailStripClasses}>
-              <Viewer/>
+              <Viewer key={this.props.selectedCanvasId} />
               <ThumbnailStrip/>
             </div>
             <MetadataSidebar ref="sidebar"/>
@@ -53,6 +54,7 @@ module.exports = connect(
     return {
       manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData,
+      selectedCanvasId: state.manifestReducer.selectedCanvasId,
       showMetadataSidebar: state.manifestReducer.showMetadataSidebar
     };
   }

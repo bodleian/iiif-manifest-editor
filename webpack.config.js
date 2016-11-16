@@ -5,8 +5,6 @@ module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    'script!leaflet/dist/leaflet.js',
-    'script!leaflet-iiif/leaflet-iiif.js',
     './app/app.jsx'
   ],
   externals: {

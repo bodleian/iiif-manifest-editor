@@ -96,8 +96,8 @@ var ThumbnailStrip = React.createClass({
 
     // raw canvas data is being passed as a JSON string
     var rawCanvasData = e.dataTransfer.getData('text/plain');
-    var canvases = JSON.parse(rawCanvasData);
-    if(canvases !== '') {
+    if(rawCanvasData !== '') {
+      var canvases = JSON.parse(rawCanvasData);
       for(var canvasIndex = canvases.length-1; canvasIndex >= 0; canvasIndex--) {
         this.props.dispatch(actions.addCanvasAtIndex(canvases[canvasIndex], insertIndex));
       }
