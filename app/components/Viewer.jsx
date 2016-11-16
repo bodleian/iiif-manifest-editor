@@ -16,6 +16,7 @@ var openSeadragonConf = {
   sequenceMode:  false,
   showReferenceStrip: false,
   defaultZoomLevel: 0,
+  minZoomLevel: 0,
   tileSources:   []
 };
 
