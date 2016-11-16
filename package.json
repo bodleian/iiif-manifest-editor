@@ -47,6 +47,7 @@
     "multer": "^1.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-lazy-load": "^3.0.10",
     "react-openseadragon": "git+https://github.com/UMNLibraries/react-openseadragon.git",
     "react-router": "^2.0.0",
     "react-sortable-component": "^1.0.0"

@@ -67,7 +67,20 @@
     }
   }
 
+  
   .thumbnail-strip-canvas {
+
+    .LazyLoad {
+      min-width: 100px;
+      min-height: 150px;
+      border-radius: 3px;
+      border: 1px solid #eee;
+    } 
+
+    .LazyLoad.is-visible {
+      border: none;
+    } 
+
     &.active img {
       border: 3px solid $iiifRed;
       border-radius: 5px;

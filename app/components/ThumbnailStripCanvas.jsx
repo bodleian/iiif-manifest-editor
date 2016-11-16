@@ -4,6 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
 var uuid = require('node-uuid');
+import LazyLoad from 'react-lazy-load';
 
 var ThumbnailStripCanvas = React.createClass({
   componentDidMount: function() {
@@ -131,7 +132,9 @@ var ThumbnailStripCanvas = React.createClass({
           </ul>
         </span>
         <div className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
-          <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
+          <LazyLoad offsetHorizontal={600}>
+            <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
+          </LazyLoad>
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
             <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
           </div>
