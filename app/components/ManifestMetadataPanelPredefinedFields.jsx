@@ -98,12 +98,13 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
   },
   getAvailableMetadataFieldIndexByFieldName: function(availableMetadataFields, fieldName) {
     var availableMetadataFieldIndex = -1;
-    Object.keys(availableMetadataFields).map(function(index) {
-      var metadataField = availableMetadataFields[index];
+    for(var fieldIndex = 0; fieldIndex < availableMetadataFields.length; fieldIndex++) {
+      var metadataField = availableMetadataFields[fieldIndex];
       if(metadataField.name === fieldName) {
-        availableMetadataFieldIndex = index;
+        availableMetadataFieldIndex = fieldIndex;
+        break;
       }
-    });
+    }
     return availableMetadataFieldIndex;
   },
   getActiveMetadataFieldIndexByFieldName: function(activeMetadataFields, fieldName) {
@@ -119,15 +120,23 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
   updateMetadataFieldLists: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
     // find the available metadata field based on the field name
     var availableMetadataFieldIndex = this.getAvailableMetadataFieldIndexByFieldName(availableMetadataFields, fieldName);
+    if(availableMetadataFieldIndex !== -1) {
+      // append the metadata field to the list of active fields and update its value
+      var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
+      availableMetadataField.value = fieldValue;
+      activeMetadataFields.push(availableMetadataField);
 
-    // append the metadata field to the list of active fields
-    var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
-    availableMetadataField.value = fieldValue;
-    activeMetadataFields.push(availableMetadataField);
-
-    // delete the metadata field from the list of available fields if it is unique
-    if(availableMetadataField.isUnique) {
-      availableMetadataFields.splice(availableMetadataFieldIndex, 1);
+      // delete the metadata field from the list of available fields if it is unique
+      if(availableMetadataField.isUnique) {
+        availableMetadataFields.splice(availableMetadataFieldIndex, 1);
+      }
+    } else {
+      // find the active metadata field based on the field name and update its value
+      var activeMetadataFieldIndex = this.getActiveMetadataFieldIndexByFieldName(activeMetadataFields, fieldName);
+      if(activeMetadataFieldIndex !== -1) {
+        var activeMetadataField = activeMetadataFields[activeMetadataFieldIndex];
+        activeMetadataField.value = fieldValue;
+      }
     }
   },
   componentWillMount: function() {
@@ -176,26 +185,17 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     });
   },
   componentDidUpdate: function(prevProps, prevState) {
-    // update viewing direction if it has been changed in Sequence Metadata panel
-    if(this.props.manifestData.viewingDirection !== prevProps.manifestData.viewingDirection) {
+    // update the viewing direction field if it has been changed in the Sequence Metadata panel
+    if(this.props.manifestData.viewingDirection !== prevProps.manifestData.viewingDirection && this.props.manifestData.viewingDirection !== undefined) {
+      var availableMetadataFields = [...this.state.availableMetadataFields];
       var activeMetadataFields = [...this.state.activeMetadataFields];
-      // update the viewingDirection field if it is among activeMetadataFields, otherwise add it
-      var fieldIndex = this.getActiveMetadataFieldIndexByFieldName(activeMetadataFields, 'viewingDirection')
-      if(fieldIndex !== -1) {
-        activeMetadataFields[fieldIndex].value = this.props.manifestData.viewingDirection;
-      } else {
-        var viewingDirectionMetadataField = {
-          name: 'viewingDirection',
-          label: 'Viewing Direction',
-          value: this.props.manifestData.viewingDirection,
-          isRequired: false,
-          isUnique: true,
-          addPath: '',
-          updatePath: 'viewingDirection'
-        };
-        activeMetadataFields.push(viewingDirectionMetadataField);
-      }
+
+      // update the value of the viewing direction field
+      this.updateMetadataFieldLists('viewingDirection', this.props.manifestData.viewingDirection, availableMetadataFields, activeMetadataFields);
+
+      // update the metadata field lists in the state
       this.setState({
+        availableMetadataFields: availableMetadataFields,
         activeMetadataFields: activeMetadataFields
       });
     }
