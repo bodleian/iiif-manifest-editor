@@ -9,7 +9,7 @@ var MetadataSidebarCanvas = React.createClass({
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
-      <div className="metadata-sidebar-canvas">
+      <div style={{background: '#fff url(./img/loading-small.gif) no-repeat center center'}} className="metadata-sidebar-canvas">
         <img src={this.getMainImage(canvas)} alt={canvas.getLabel()} height="150" />
         <div className="canvas-label">
           {canvas.getLabel()}
