@@ -44,6 +44,14 @@ var OpenManifest = React.createClass({
         dispatch(actions.completeManifestFetch());
       });
   },
+  getUrlParameterByName: function(name, url) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
   onFileDrag: function(evt) {
     evt.stopPropagation();
     evt.preventDefault();
@@ -53,8 +61,14 @@ var OpenManifest = React.createClass({
     var files;
     this.onFileDrag(evt);
     files = evt.target.files || evt.dataTransfer.files;
-    if (files.length > 0) {
+    if (files.length > 0) { // handle upload of local manifest files
       this.fetchLocalManifestFile(files[0]);
+    } else { // handle loading remote manifests that were dropped via IIIF icon
+      var url = evt.dataTransfer.getData('text');
+      var manifestUrl = this.getUrlParameterByName('manifest', url);
+      if(manifestUrl !== null) {
+        this.fetchRemoteManifest(manifestUrl);
+      }
     }
   },
   onFormSubmit: function(e) {
@@ -93,6 +107,7 @@ var OpenManifest = React.createClass({
 
           <div className="drop-manifest-container" id="localManifestFileDragAndDrop" onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
             <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
+            <div className="text-muted"><i className="fa fa-info-circle"></i> Drop a local manifest JSON file or a remote manifest file via IIIF icon</div>
           </div>
 
           <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
