@@ -1,17 +1,17 @@
 .import-canvases-container {
   position: relative;
 
-  .sequence-browser-narrow-view {
+  .source-manifest-browser-narrow-view {
     float: left;
     width: 70%;
   }
 
-  .sequence-browser-wide-view {
+  .source-manifest-browser-wide-view {
     float: left;
     width: 97%;
   }
 
-  .sequence-browser {
+  .source-manifest-browser {
     position: relative;
     border: $mainComponentContainerBorder;
     height: 75vh;
@@ -19,16 +19,15 @@
     overflow-y: hidden;
     white-space: nowrap;
 
-    .sequence-viewer {
+    .source-manifest-window {
       display: inline-block;
       vertical-align: middle;
       border-left: 1px solid $gray-light;
       border-right: $mainComponentContainerBorder;
-      width: 30%;
+      width: 50%;
       height: 100%;
-      overflow-y: scroll;
 
-      .sequence-viewer-info-icon-button {
+      .source-manifest-info-icon-button {
         position: relative;
         float: left;
         margin: 2px 0 0 2px;
@@ -40,17 +39,16 @@
         margin: 2px 2px 0 0;
       }
 
-      .sequence-browser-canvas-thumbnail {
+      .source-manifest-thumbnail-strip {
+        overflow-x: scroll;
+      }
+
+      .source-manifest-thumbnail-strip-canvas {
         text-align: center;
-        margin: 10px 0;
 
         img.selected-canvas {
           opacity: 0.5;      
         }
-      }
-
-      .sequence-browser-canvas-thumbnail:first-child {
-        margin-top: 20px;
       }
     }
 

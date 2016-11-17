@@ -1,9 +1,7 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var SequenceThumbnailStripCanvas = require('SequenceThumbnailStripCanvas');
-var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
+var SourceManifestThumbnailStripCanvas = require('SourceManifestThumbnailStripCanvas');
 
-var SequenceViewer = React.createClass({
+var SourceManifestThumbnailStrip = React.createClass({
   getInitialState: function() {
     return {
       selectedCanvasStartIndex: undefined,
@@ -80,23 +78,14 @@ var SequenceViewer = React.createClass({
     
     e.dataTransfer.setData("text/plain", JSON.stringify(rawCanvasData));
   },
-  showSourceManifestMetadataDialog: function() {
-    var $sourceManifestMetadataDialog = $(ReactDOM.findDOMNode(this.refs.sourceManifestMetadataDialog));
-    $sourceManifestMetadataDialog.modal({
-      backdrop: 'static'
-    });
-  },
   render: function() {
     var _this = this;
     return (
-      <div className="sequence-viewer" onDragStart={this.setCanvasData}>
-        <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
-        <a onClick={() => this.showSourceManifestMetadataDialog()} className="btn btn-default sequence-viewer-info-icon-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
-        <a onClick={() => this.props.onRemoveHandler(this.props.sequenceIndex)} className="btn btn-default remove-sequence-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
+      <div className="source-manifest-thumbnail-strip" onDragStart={this.setCanvasData}>
         {
           this.props.sequence.getCanvases().map(function(canvas, canvasIndex) {
             return (
-              <SequenceThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasIndex={canvasIndex} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.setCanvasStartIndex} onCanvasShiftClick={_this.setCanvasEndIndex}/>
+              <SourceManifestThumbnailStripCanvas key={canvasIndex} canvas={canvas} canvasIndex={canvasIndex} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.setCanvasStartIndex} onCanvasShiftClick={_this.setCanvasEndIndex}/>
             );
           })
         }
@@ -105,4 +94,4 @@ var SequenceViewer = React.createClass({
   }
 });
 
-module.exports = SequenceViewer;
+module.exports = SourceManifestThumbnailStrip;

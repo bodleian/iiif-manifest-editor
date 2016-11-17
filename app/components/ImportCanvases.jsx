@@ -2,7 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var classNames = require('classnames');
-var SequenceBrowser = require('SequenceBrowser');
+var SourceManifestBrowser = require('SourceManifestBrowser');
 var ThumbnailStrip = require('ThumbnailStrip');
 var MetadataSidebar = require('MetadataSidebar');
 
@@ -19,10 +19,10 @@ var ImportCanvases = React.createClass({
     }
   },
   render: function() {
-    var sequenceBrowserThumbnailStripClasses = classNames(
+    var sourceManifestBrowserClasses = classNames(
       {
-        'sequence-browser-narrow-view': this.props.showMetadataSidebar,
-        'sequence-browser-wide-view': !this.props.showMetadataSidebar
+        'source-manifest-browser-narrow-view': this.props.showMetadataSidebar,
+        'source-manifest-browser-wide-view': !this.props.showMetadataSidebar
       }
     );
     if(this.props.manifestData === undefined) {
@@ -31,8 +31,8 @@ var ImportCanvases = React.createClass({
       return (
         <div className="import-canvases-container container-fluid">
           <div className="row">
-            <div className={sequenceBrowserThumbnailStripClasses}>
-              <SequenceBrowser/>
+            <div className={sourceManifestBrowserClasses}>
+              <SourceManifestBrowser/>
               <ThumbnailStrip/>
             </div>
             <MetadataSidebar ref="sidebar"/>
