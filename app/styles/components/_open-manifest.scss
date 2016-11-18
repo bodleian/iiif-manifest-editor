@@ -19,30 +19,30 @@
         margin: -4px 4px 0 0;
       }
     }
-
-    .open-manifest-button-container {
-      margin: 20px auto;
-    }
-
-    .drop-manifest-container {
-      color: $gray;
-      margin: 20px;
-      height: 100px;
-      border: 1px solid $gray-light;
-      background-color: $gray-lighter;
-      border-radius: 5px;
-      padding: 30px 0;
-      text-align: center;
-
-      .drag-and-drop-message {
-        font-size: 1.5em;
-        letter-spacing: 1px;
-      }
-    }
-
-    .drop-manifest-container-drag {
-      border-color: $iiifBlue;
-      background-color: white;
-    }
   }
+}
+
+.open-manifest-button-container {
+    margin: 20px auto;
+}
+
+.drop-manifest-container {
+  color: $gray;
+  margin: 20px;
+  height: 100px;
+  border: 1px solid $gray-light;
+  background-color: $gray-lighter;
+  border-radius: 5px;
+  padding: 30px 0;
+  text-align: center;
+
+  .drag-and-drop-message {
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
+}
+
+.drop-manifest-container-drag {
+  border-color: $iiifBlue;
+  background-color: white;
 }
