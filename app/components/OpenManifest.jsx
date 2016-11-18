@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
@@ -52,10 +53,13 @@ var OpenManifest = React.createClass({
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   },
+  onDragEnter: function(evt) {
+    var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
+    $dropManifestContainer.addClass('drop-manifest-container-drag');
+  },
   onFileDrag: function(evt) {
     evt.stopPropagation();
     evt.preventDefault();
-    evt.target.className += ' drop-manifest-container-drag';
   },
   onFileDrop: function(evt) {
     var files;
@@ -70,6 +74,8 @@ var OpenManifest = React.createClass({
         this.fetchRemoteManifest(manifestUrl);
       }
     }
+    var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
+    $dropManifestContainer.removeClass('drop-manifest-container-drag');
   },
   onFormSubmit: function(e) {
     e.preventDefault();
@@ -105,7 +111,7 @@ var OpenManifest = React.createClass({
 
           {this.displayManifestFetchErrors()}
 
-          <div className="drop-manifest-container" id="localManifestFileDragAndDrop" onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
+          <div className="drop-manifest-container" ref="dropManifestContainer" onDragEnter={this.onDragEnter} onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
             <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
             <div className="text-muted"><i className="fa fa-info-circle"></i> Drop a local manifest JSON file or a remote manifest file via IIIF icon</div>
           </div>
