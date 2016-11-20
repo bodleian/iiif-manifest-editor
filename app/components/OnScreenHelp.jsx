@@ -20,7 +20,7 @@ var OnScreenHelp = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 className="modal-title">Help</h4>
+              <h4 className="modal-title"><i className="fa fa-question-circle-o"></i> Help</h4>
             </div>
             <div className="modal-body on-screen-help">
               {this.renderHelpSection(this.props.section)}
