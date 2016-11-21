@@ -27,19 +27,37 @@
       width: 50%;
       height: 100%;
 
-      .source-manifest-info-icon-button {
-        position: relative;
+      .source-manifest-viewer {
         float: left;
-        margin: 2px 0 0 2px;
+        width: 100%;
+        height: 50%;
+        margin-top: -35px;
+
+        .osd-custom-toolbar {
+          position: relative;
+          top: 40px;
+        }
       }
 
-      .remove-sequence-button {
+      .source-manifest-metadata-info-button {
         position: relative;
-        float: right;
-        margin: 2px 2px 0 0;
+        top: 47px;
+        left: -491px;
+        padding: 4px 10px 4px 11px;
+        border-radius: 5px;
+      }
+
+      .source-manifest-remove-button {
+        position: relative;
+        top: 12px;
+        right: 63px;
+        padding: 4px 7px 4px 8px;
+        border-radius: 5px;
       }
 
       .source-manifest-thumbnail-strip {
+        float: left;
+        width: 100%;
         overflow-x: scroll;
       }
 

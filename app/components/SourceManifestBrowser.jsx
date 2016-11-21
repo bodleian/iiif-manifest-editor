@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var manifesto = require('manifesto.js');
 var OpenSequenceDialog = require('OpenSequenceDialog');
 var SourceManifestWindow = require('SourceManifestWindow');
 
@@ -50,10 +49,8 @@ var SourceManifestBrowser = React.createClass({
         {
           Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
             var manifestData = _this.state.sourceManifests[manifestIndex];
-            var manifestoObject = manifesto.create(manifestData);
-            var sequence = manifestoObject.getSequenceByIndex(0);
             return(
-              <SourceManifestWindow key={manifestIndex} sequenceIndex={manifestIndex} sequence={sequence} manifestData={manifestData} onRemoveHandler={_this.removeManifestFromState}/>
+              <SourceManifestWindow key={manifestIndex} manifestIndex={manifestIndex} manifestData={manifestData} onRemoveHandler={_this.removeManifestFromState}/>
             );
           })
         }

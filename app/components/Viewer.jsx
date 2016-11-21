@@ -4,20 +4,18 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var NavigationArrow = require('NavigationArrow');
-import OpenseadragonViewer from 'react-openseadragon';
-import OpenSeadragonControls from 'react-openseadragon';
-
+import OpenseadragonViewer from 'OpenseadragonViewer'
 
 var openSeadragonConf = {
-  zoomInButton:   "zoom-in",
-  zoomOutButton:  "zoom-out",
-  homeButton:     "home",
+  zoomInButton: "zoom-in",
+  zoomOutButton: "zoom-out",
+  homeButton: "home",
   fullPageButton: "full-page",
-  sequenceMode:  false,
+  sequenceMode: false,
   showReferenceStrip: false,
   defaultZoomLevel: 0,
   minZoomLevel: 0,
-  tileSources:   []
+  tileSources: []
 };
 
 var Viewer = React.createClass({
