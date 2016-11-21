@@ -61,14 +61,25 @@
         width: 100%;
         display: flex;
         overflow-x: scroll;
-        bottom: 120px;
+        bottom: 110px;
+        background-color: rgba(255,255,255,0.7);
       }
 
       .source-manifest-thumbnail-strip-canvas {
         text-align: center;
+        margin: 5px;
 
         img.selected-canvas {
           opacity: 0.5;      
+        }
+
+        .canvas-label {
+          bottom: 15px;
+          position: relative;
+          color: white;
+          background-color: rgba(0,0,0,0.6);
+          border-radius: 2px;
+          font-size: 0.8em;
         }
       }
     }
