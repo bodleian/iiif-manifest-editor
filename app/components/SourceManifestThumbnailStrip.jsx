@@ -14,6 +14,9 @@ var SourceManifestThumbnailStrip = React.createClass({
       selectedCanvasStartIndex: startCanvasIndex,
       selectedCanvasEndIndex: undefined
     });
+
+    // refresh the viewer with selected canvas
+    this.props.onSelectHandler(startCanvasIndex);
   },
   setCanvasEndIndex: function(endCanvasIndex) {
     // set the start and end indexes for the range of selected canvases

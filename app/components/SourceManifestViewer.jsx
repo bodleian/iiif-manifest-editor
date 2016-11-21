@@ -24,33 +24,22 @@ var SourceManifestViewer = React.createClass({
   componentWillMount: function() {
     this.updateTileSources();
   },
-  // componentWillUpdate: function(prevProps, prevState) {
-  //   // update the image in the viewer
-  //   if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
-  //     this.updateTileSources();
-  //   }
-  // },
+  componentWillUpdate: function(prevProps, prevState) {
+    // update the main image in the viewer
+    if(this.props.selectedCanvasIndex !== prevProps.selectedCanvasIndex || this.props.manifestoObject !== prevProps.manifestoObject) {
+      this.updateTileSources();
+    }
+  },
   updateTileSources: function() {
-    this.state.openSeadragonConf.tileSources = ['http://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif/info.json'];
-
-    // if(this.props.selectedCanvasId !== undefined) {
-    //   // update main image using the selected canvas
-    //   var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
-    //   if(canvas !== null) {
-    //     var canvasImages = canvas.getImages();
-    //     if(canvasImages.length > 0) {
-    //       var serviceId = canvasImages[0].getResource().getServices()[0].id;
-    //       this.state.openSeadragonConf.tileSources = [serviceId + '/info.json'];
-    //     } 
-    //     else {
-    //       // display placeholder image for empty canvases
-    //       this.state.openSeadragonConf.tileSources = {
-    //         type: 'image',
-    //         url: "https://placeholdit.imgix.net/~text?txtsize=16&txt=Empty+Canvas&w=200&h=300"
-    //       };
-    //     }
-    //   }
-    // }
+    if(this.props.selectedCanvasIndex !== undefined) {
+      // update the main image in the viewer using the selected canvas
+      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasByIndex(this.props.selectedCanvasIndex);
+      var canvasImages = canvas.getImages();
+      if(canvasImages.length > 0) {
+        var serviceId = canvasImages[0].getResource().getServices()[0].id;
+        this.state.openSeadragonConf.tileSources = [serviceId + '/info.json'];
+      } 
+    }
   },
   showSourceManifestMetadataDialog: function() {
     var $sourceManifestMetadataDialog = $(ReactDOM.findDOMNode(this.refs.sourceManifestMetadataDialog));

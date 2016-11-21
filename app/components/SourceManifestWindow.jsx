@@ -4,13 +4,24 @@ var SourceManifestViewer = require('SourceManifestViewer');
 var SourceManifestThumbnailStrip = require('SourceManifestThumbnailStrip');
 
 var SourceManifestWindow = React.createClass({
+  getInitialState: function() {
+    return {
+      selectedCanvasIndex: 0
+    }
+  },
+  saveSelectedCanvasIndexToState: function(selectedCanvasIndex) {
+    // set the selected canvas index to the state
+    this.setState({
+      selectedCanvasIndex: selectedCanvasIndex
+    });
+  },
   render: function() {
     var manifestoObject = manifesto.create(this.props.manifestData);
     var sequence = manifestoObject.getSequenceByIndex(0);
     return (
       <div className="source-manifest-window">
-        <SourceManifestViewer manifestIndex={this.props.manifestIndex} manifestData={this.props.manifestData} onRemoveHandler={this.props.onRemoveHandler} />
-        <SourceManifestThumbnailStrip sequence={sequence} />
+        <SourceManifestViewer key={this.state.selectedCanvasIndex} manifestIndex={this.props.manifestIndex} manifestoObject={manifestoObject} manifestData={this.props.manifestData} selectedCanvasIndex={this.state.selectedCanvasIndex} onRemoveHandler={this.props.onRemoveHandler} />
+        <SourceManifestThumbnailStrip sequence={sequence} onSelectHandler={this.saveSelectedCanvasIndexToState} />
       </div>
     );
   }
