@@ -28,14 +28,14 @@
       height: 100%;
 
       .source-manifest-viewer {
-        float: left;
         width: 100%;
-        height: 50%;
-        margin-top: -35px;
+        margin-top: -30px;
 
         .osd-custom-toolbar {
           position: relative;
           top: 40px;
+          left: 0;
+          padding-left: 10px;
         }
       }
 
@@ -49,16 +49,19 @@
 
       .source-manifest-remove-button {
         position: relative;
-        top: 12px;
-        right: 63px;
+        top: 10px;
+        right: 65px;
         padding: 4px 7px 4px 8px;
         border-radius: 5px;
       }
 
       .source-manifest-thumbnail-strip {
+        position: relative;
         float: left;
         width: 100%;
+        display: flex;
         overflow-x: scroll;
+        bottom: 120px;
       }
 
       .source-manifest-thumbnail-strip-canvas {
