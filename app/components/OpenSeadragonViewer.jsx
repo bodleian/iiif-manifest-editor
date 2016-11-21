@@ -11,8 +11,6 @@ export default class OpenSeadragonViewer extends React.Component {
         let { include_controls, include_navigator } = this.props
         let controls  = (include_controls)  ? <OpenSeadragonControls /> : ''
         let id = this.props.config.id ? this.props.config.id : this.props.default_config.id
-        console.log('default props', this.props.default_config);
-        console.log('custom props', this.props.config);
         return (
                 <div className="osd col-md-12">
                   <div className="openseadragon" id={id}>
