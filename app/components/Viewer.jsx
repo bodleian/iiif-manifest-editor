@@ -6,6 +6,7 @@ var EditableTextArea = require('EditableTextArea');
 var NavigationArrow = require('NavigationArrow');
 import OpenseadragonViewer from 'react-openseadragon';
 import OpenSeadragonControls from 'react-openseadragon';
+var OnScreenHelp = require('OnScreenHelp');
 
 
 var openSeadragonConf = {
@@ -21,6 +22,21 @@ var openSeadragonConf = {
 };
 
 var Viewer = React.createClass({
+  getInitialState: function() {
+    return {
+      helpSection: '',
+      sidebarToggleIcon: 'on'
+    }
+  },
+  showHelp: function(helpSection) {
+    this.setState({
+      helpSection: helpSection
+    });
+    var $onScreenHelp = $(ReactDOM.findDOMNode(this.refs.onScreenHelp));
+    $onScreenHelp.modal({
+      backdrop: 'static'
+    });
+  },
   componentWillMount: function() {
     this.updateTileSources();
   },
@@ -28,6 +44,9 @@ var Viewer = React.createClass({
     // update the image in the viewer
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
       this.updateTileSources();
+    }
+    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
+      this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
     }
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
@@ -57,6 +76,7 @@ var Viewer = React.createClass({
     this.props.dispatch(actions.setShowMetadataSidebar(value));
   },
   toggleSidebar: function() {
+    this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
     this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
   },
   render: function() {
@@ -68,11 +88,14 @@ var Viewer = React.createClass({
     var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
     return (
       <div className="viewer-container">
+        <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <div className="osd-custom-toolbar">
           <div id="zoom-in"><i className="fa fa-search-plus"></i></div>
           <div id="zoom-out"><i className="fa fa-search-minus"></i></div>
           <div id="home"><i className="fa fa-home"></i></div>
           <div id="full-page"><i className="fa fa-arrows-alt"></i></div>
+          <a onClick={this.toggleSidebar} title="Show/hide metadata panel"><i className={"fa fa-toggle-" + this.state.sidebarToggleIcon}></i></a>
+          <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Viewer')} ><i className="fa fa-question-circle-o"></i></a>
         </div>
         <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
@@ -109,7 +132,6 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <a onClick={this.toggleSidebar} className="btn btn-default viewer-info-icon-button hidden-xs" title="Show/hide metadata panel"><i className="fa fa-info"></i></a>
       </div>
     );
   }
