@@ -8,6 +8,7 @@ var OnScreenHelp = require('OnScreenHelp');
 
 var SourceManifestViewer = React.createClass({
   getInitialState: function() {
+    var sidebarToggleIcon = this.props.showMetadataSidebar ? 'on' : 'off';
     return {
       openSeadragonConf: {
         id: "osd-viewer-" + this.props.manifestIndex,
@@ -23,7 +24,7 @@ var SourceManifestViewer = React.createClass({
         tileSources: []
       },
       helpSection: '',
-      sidebarToggleIcon: 'on'
+      sidebarToggleIcon: sidebarToggleIcon
     }
   },
   showHelp: function(helpSection) {
