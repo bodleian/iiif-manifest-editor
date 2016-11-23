@@ -6,13 +6,36 @@ module.exports = function(props) {
   	  <h3>Viewer</h3>
 
   	  <h4>Toolbar</h4>
-  	  <p>
-       <i className="fa fa-search-plus"></i> Click to zoom in <br />
-       <i className="fa fa-search-minus"></i> Click to zoom out <br />
-       <i className="fa fa-home"></i> Reset zoom to show full canvas <br />
-       <i className="fa fa-arrows-alt"></i> Show canvas in full-screen mode (press ESC to leave full-screen mode) <br />
-       <i className="fa fa-toggle-on"></i> Toggle the display of the Sidebar <br />
-      </p>
+  	  <table className="table table-bordered table-condensed table-striped">
+        <thead>
+          <tr>
+            <td>Icon</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i className="fa fa-search-plus viewer-style-icon"></i></td>
+            <td>Click to zoom in</td>
+          </tr>
+          <tr>
+            <td><i className="fa fa-search-minus viewer-style-icon"></i></td>
+            <td>Click to zoom out</td>
+          </tr>
+          <tr>
+            <td><i className="fa fa-home viewer-style-icon"></i></td>
+            <td>Reset zoom to show full canvas</td>
+          </tr>
+          <tr>
+            <td><i className="fa fa-arrows-alt viewer-style-icon"></i> </td>
+            <td>Show canvas in full-screen mode (press ESC to leave full-screen mode)</td>
+          </tr>
+          <tr>
+            <td><i className="fa fa-toggle-on viewer-style-icon"></i> </td>
+            <td>Toggle the display of the Sidebar</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h4>Keyboard Navigation</h4>
       <p>You can use the following keys to navigate:</p>
