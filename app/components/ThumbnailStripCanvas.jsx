@@ -113,6 +113,7 @@ var ThumbnailStripCanvas = React.createClass({
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
+    var backgroundStyle = this.props.isSelectedCanvas ? {} : { background: '#fff url(./img/loading-small.gif) no-repeat center center' };
     return (
       <div className="thumbnail-strip-canvas-container">
         <a className="delete-canvas-button btn btn-danger btn-xs btn-transparent" onClick={this.openDeleteCanvasConfirmationDialog} title="Remove Canvas"><i className="fa fa-trash"></i></a>
@@ -131,7 +132,7 @@ var ThumbnailStripCanvas = React.createClass({
             })()}
           </ul>
         </span>
-        <div style={{background: '#fff url(./img/loading-small.gif) no-repeat center center'}} className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
+        <div style={backgroundStyle} className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
           <LazyLoad offsetHorizontal={600}>
             <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} height="150" />
           </LazyLoad>
