@@ -4,8 +4,23 @@ var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SaveManifestDialog = require('SaveManifestDialog');
+var OnScreenHelp = require('OnScreenHelp');
 
 var MetadataSidebarButtons = React.createClass({
+  getInitialState: function() {
+    return {
+      helpSection: ''
+    }
+  },
+  showHelp: function(helpSection) {
+    this.setState({
+      helpSection: helpSection
+    });
+    var $onScreenHelp = $(ReactDOM.findDOMNode(this.refs.onScreenHelp));
+    $onScreenHelp.modal({
+      backdrop: 'static'
+    });
+  },
   openSaveManifestDialog: function() {
     var $saveManifestDialog = $(ReactDOM.findDOMNode(this.refs.saveManifestDialog));
     $saveManifestDialog.modal({
@@ -26,6 +41,7 @@ var MetadataSidebarButtons = React.createClass({
   render: function() {
     return (
       <div className="metadata-sidebar-controls row">
+        <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
         <span className="metadata-sidebar-buttons">
           <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
@@ -48,6 +64,7 @@ var MetadataSidebarButtons = React.createClass({
               );
             }
           })()}
+          <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
           <SaveManifestDialog ref="saveManifestDialog" />
         </span>
       </div>

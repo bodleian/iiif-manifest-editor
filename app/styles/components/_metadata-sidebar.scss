@@ -23,6 +23,12 @@
     padding: 15px 0;
     text-align: right;
 
+    a.help-icon {
+      color: $gray-dark;
+      font-size: 1.2em;
+      margin: 5px 10px 0 10px;
+    }
+
     .hide-sidebar {
       cursor: pointer;
       float: left;
@@ -33,7 +39,7 @@
       text-align: right;
 
       .metadata-sidebar-button {
-        margin-left: 10px;
+        margin-left: 5px;
       }
 
       .manifest-actions-menu {

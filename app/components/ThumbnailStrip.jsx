@@ -5,6 +5,7 @@ var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
 var uuid = require('node-uuid');
 var {SortableItems, SortableItem} = require('react-sortable-component');
+var OnScreenHelp = require('OnScreenHelp');
 
 var ThumbnailStrip = React.createClass({
   getInitialState: function() {
@@ -12,8 +13,18 @@ var ThumbnailStrip = React.createClass({
       selectedCanvasStartIndex: undefined,
       selectedCanvasEndIndex: undefined,
       isSequenceDisplayedInReverseOrder: false,
-      canvases: undefined
+      canvases: undefined,
+      helpSection: ''
     }
+  },
+  showHelp: function(helpSection) {
+    this.setState({
+      helpSection: helpSection
+    });
+    var $onScreenHelp = $(ReactDOM.findDOMNode(this.refs.onScreenHelp));
+    $onScreenHelp.modal({
+      backdrop: 'static'
+    });
   },
   componentWillMount: function() {
     this.setState({
@@ -201,11 +212,13 @@ var ThumbnailStrip = React.createClass({
     var _this = this;
     return (
       <div className="thumbnail-strip-container" onDragOver={this.cancelDragOver} onDrop={this.addCanvases}>
+        <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <div className="alert alert-danger delete-selected-canvases-prompt" ref="deleteSelectedCanvasPrompt">
           Delete selected canvases?
           <button type="button" className="btn btn-default" onClick={this.deleteSelectedCanvases}><i className="fa fa-check"></i> OK</button>
           <button type="button" className="btn btn-default" onClick={this.deSelectCanvases}><i className="fa fa-times"></i> Cancel</button>
         </div>
+        <a className="help-icon" href="javascript:;" onClick={() => this.showHelp('ThumbnailStrip')} ><i className="fa fa-question-circle-o"></i></a>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
           {
             this.state.canvases.map(function(canvas, canvasIndex) {

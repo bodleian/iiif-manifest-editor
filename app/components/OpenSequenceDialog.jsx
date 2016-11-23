@@ -62,6 +62,33 @@ var OpenSequenceDialog = React.createClass({
       return '';
     }
   },
+  getUrlParameterByName: function(name, url) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+  onDragEnter: function(evt) {
+    var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
+    $dropManifestContainer.addClass('drop-manifest-container-drag');
+  },
+  onFileDrag: function(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+  },
+  onFileDrop: function(evt) {
+    this.onFileDrag(evt);
+    // handle loading remote manifests that were dropped via IIIF icon
+    var url = evt.dataTransfer.getData('text');
+    var manifestUrl = this.getUrlParameterByName('manifest', url);
+    if(manifestUrl !== null) {
+      this.fetchRemoteManifest(manifestUrl);
+    }
+    var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
+    $dropManifestContainer.removeClass('drop-manifest-container-drag');
+  },
   render: function() {
     return (
       <div className="modal fade">
@@ -72,6 +99,10 @@ var OpenSequenceDialog = React.createClass({
               <h4 className="modal-title">Open Sequence</h4>
             </div>
             <div className="modal-body">
+              <div className="drop-manifest-container" ref="dropManifestContainer" onDragEnter={this.onDragEnter} onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
+                <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
+                <div className="text-muted"><i className="fa fa-info-circle"></i> Drop a remote manifest file via IIIF icon</div>
+              </div>
               <input type="text" ref="remoteManifestUrl" className="form-control" placeholder="Enter a remote manifest URL" />
               <div className="fetch-remote-manifest-status">
                 {this.displayFetchRemoteManifestStatus()}

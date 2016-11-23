@@ -7,6 +7,12 @@
   display: flex;
   overflow-x: scroll;
 
+  a.help-icon {
+    color: $gray-dark;
+    padding: 2px 0 0 5px;
+    font-size: 1.3em;
+  }
+
   .delete-selected-canvases-prompt {
     position: absolute;
     display: none;
