@@ -63,6 +63,14 @@
         overflow-x: scroll;
         bottom: 110px;
         background-color: rgba(255,255,255,0.7);
+        opacity: 0;
+        transition: opacity .5s ease-in-out;
+        -moz-transition: opacity .5s ease-in-out;
+        -webkit-transition: opacity .5s ease-in-out;
+      }
+
+      .source-manifest-thumbnail-strip:hover {
+        opacity: 1.0;
       }
 
       .source-manifest-thumbnail-strip-canvas {
