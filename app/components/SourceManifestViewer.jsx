@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var {connect} = require('react-redux');
+var actions = require('actions');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
 import OpenseadragonViewer from 'OpenseadragonViewer'
 
@@ -18,7 +20,8 @@ var SourceManifestViewer = React.createClass({
         defaultZoomLevel: 0,
         minZoomLevel: 0,
         tileSources: []
-      }
+      },
+      sidebarToggleIcon: 'on'
     }
   },
   componentWillMount: function() {
@@ -29,6 +32,16 @@ var SourceManifestViewer = React.createClass({
     if(this.props.selectedCanvasIndex !== prevProps.selectedCanvasIndex || this.props.manifestoObject !== prevProps.manifestoObject) {
       this.updateTileSources();
     }
+    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
+      this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
+    }
+  },
+  setShowMetadataSidebar: function(value) {
+    this.props.dispatch(actions.setShowMetadataSidebar(value));
+  },
+  toggleSidebar: function() {
+    this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
+    this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
   },
   updateTileSources: function() {
     if(this.props.selectedCanvasIndex !== undefined) {
@@ -55,6 +68,7 @@ var SourceManifestViewer = React.createClass({
           <span id={'zoom-out-' + this.props.manifestIndex}><i className="fa fa-search-minus"></i></span>
           <span id={'home-' + this.props.manifestIndex}><i className="fa fa-home"></i></span>
           <span id={'full-page-' + this.props.manifestIndex}><i className="fa fa-arrows-alt"></i></span>
+          <a onClick={this.toggleSidebar} title="Show/hide metadata panel"><i className={"fa fa-toggle-" + this.state.sidebarToggleIcon}></i></a>
           <a onClick={() => this.showSourceManifestMetadataDialog()} className="source-manifest-metadata-info-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
@@ -65,4 +79,10 @@ var SourceManifestViewer = React.createClass({
   }
 });
 
-module.exports = SourceManifestViewer;
+module.exports = connect(
+  (state) => {
+    return {
+      showMetadataSidebar: state.manifestReducer.showMetadataSidebar
+    };
+  }
+)(SourceManifestViewer);
