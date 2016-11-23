@@ -66,6 +66,15 @@
       text-align: left;
       margin: 15px 0 0 0;
     }
+
+    .fetch-remote-manifest-indicator {
+      margin-top:20px;
+      text-align: center;
+    }
+
+    .fetch-remote-manifest-indicator i {
+      font-size: 2rem;
+    }
   }
 
   #metadata-accordion {
