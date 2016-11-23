@@ -3,7 +3,8 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
-import OpenseadragonViewer from 'OpenseadragonViewer'
+import OpenseadragonViewer from 'OpenseadragonViewer';
+var OnScreenHelp = require('OnScreenHelp');
 
 var SourceManifestViewer = React.createClass({
   getInitialState: function() {
@@ -21,8 +22,18 @@ var SourceManifestViewer = React.createClass({
         minZoomLevel: 0,
         tileSources: []
       },
+      helpSection: '',
       sidebarToggleIcon: 'on'
     }
+  },
+  showHelp: function(helpSection) {
+    this.setState({
+      helpSection: helpSection
+    });
+    var $onScreenHelp = $(ReactDOM.findDOMNode(this.refs.onScreenHelp));
+    $onScreenHelp.modal({
+      backdrop: 'static'
+    });
   },
   componentWillMount: function() {
     this.updateTileSources();
@@ -63,6 +74,7 @@ var SourceManifestViewer = React.createClass({
   render: function() {
     return (
       <div className="source-manifest-viewer">
+        <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <div className="osd-custom-toolbar">
           <span id={'zoom-in-' + this.props.manifestIndex}><i className="fa fa-search-plus"></i></span>
           <span id={'zoom-out-' + this.props.manifestIndex}><i className="fa fa-search-minus"></i></span>
@@ -70,6 +82,7 @@ var SourceManifestViewer = React.createClass({
           <span id={'full-page-' + this.props.manifestIndex}><i className="fa fa-arrows-alt"></i></span>
           <a onClick={this.toggleSidebar} title="Show/hide metadata panel"><i className={"fa fa-toggle-" + this.state.sidebarToggleIcon}></i></a>
           <a onClick={() => this.showSourceManifestMetadataDialog()} className="source-manifest-metadata-info-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
+          <a className="help-icon" href="javascript:;" onClick={() => this.showHelp('SourceManifestViewer')} ><i className="fa fa-question-circle-o"></i></a>
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
         <OpenseadragonViewer config={this.state.openSeadragonConf} />
