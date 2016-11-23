@@ -18,6 +18,15 @@
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
+    background-color: rgb(245, 245, 245);
+
+    .no-source-manifests-message {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      border: 1px solid;
+      font-size: 1.2em;
+    }
 
     .source-manifest-window {
       display: inline-block;

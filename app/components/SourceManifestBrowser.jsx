@@ -32,10 +32,18 @@ var SourceManifestBrowser = React.createClass({
       sourceManifests: sourceManifests
     });
   },
+  renderOpenSequenceMessage: function() {
+    if(this.state.sourceManifests.length === 0) {
+      return (
+          <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
+      );
+    }
+  },
   render: function() {
     var _this = this;
     return (
       <div className="source-manifest-browser">
+      {this.renderOpenSequenceMessage()}
         {
           Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
             var manifestData = _this.state.sourceManifests[manifestIndex];
