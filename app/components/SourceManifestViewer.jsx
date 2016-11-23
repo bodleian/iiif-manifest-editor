@@ -55,10 +55,10 @@ var SourceManifestViewer = React.createClass({
           <span id={'zoom-out-' + this.props.manifestIndex}><i className="fa fa-search-minus"></i></span>
           <span id={'home-' + this.props.manifestIndex}><i className="fa fa-home"></i></span>
           <span id={'full-page-' + this.props.manifestIndex}><i className="fa fa-arrows-alt"></i></span>
+          <a onClick={() => this.showSourceManifestMetadataDialog()} className="source-manifest-metadata-info-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
         <OpenseadragonViewer config={this.state.openSeadragonConf} />
-        <a onClick={() => this.showSourceManifestMetadataDialog()} className="btn btn-default source-manifest-metadata-info-button" title="Show manifest metadata"><i className="fa fa-info"></i></a>
         <a onClick={() => this.props.onRemoveHandler(this.props.manifestIndex)} className="btn btn-default source-manifest-remove-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
       </div>
     );
