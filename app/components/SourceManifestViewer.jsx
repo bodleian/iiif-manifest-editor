@@ -76,6 +76,7 @@ var SourceManifestViewer = React.createClass({
       <div className="source-manifest-viewer">
         <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <div className="osd-custom-toolbar">
+          <a onClick={() => this.props.onRemoveHandler(this.props.manifestIndex)} className="source-manifest-remove-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
           <span id={'zoom-in-' + this.props.manifestIndex}><i className="fa fa-search-plus"></i></span>
           <span id={'zoom-out-' + this.props.manifestIndex}><i className="fa fa-search-minus"></i></span>
           <span id={'home-' + this.props.manifestIndex}><i className="fa fa-home"></i></span>
@@ -86,7 +87,6 @@ var SourceManifestViewer = React.createClass({
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
         <OpenseadragonViewer config={this.state.openSeadragonConf} />
-        <a onClick={() => this.props.onRemoveHandler(this.props.manifestIndex)} className="btn btn-default source-manifest-remove-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
       </div>
     );
   }

@@ -24,6 +24,10 @@ module.exports = function(props) {
         </thead>
         <tbody>
           <tr>
+            <td><i className="fa fa-times-circle viewer-style-icon"></i></td>
+            <td>Remove this source manifest / viewer</td>
+          </tr>
+          <tr>
             <td><i className="fa fa-search-plus viewer-style-icon"></i></td>
             <td>Click to zoom in</td>
           </tr>
