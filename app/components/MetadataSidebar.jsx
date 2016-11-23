@@ -36,7 +36,7 @@ var MetadataSidebar = React.createClass({
         <a onClick={this.showSidebar} className={btnShowSidebarClasses} title="Show metadata panel" ><i className="fa fa-chevron-left"></i></a>
         <div className={metadataSidebarClasses}>
           <div className="container-fluid">
-            <MetadataSidebarButtons />
+            <MetadataSidebarButtons sourceManifestBrowser={this.props.sourceManifestBrowser}/>
           </div>
           <MetadataAccordion/>
         </div>

@@ -4,6 +4,7 @@ var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SaveManifestDialog = require('SaveManifestDialog');
+var OpenSequenceDialog = require('OpenSequenceDialog');
 var OnScreenHelp = require('OnScreenHelp');
 
 var MetadataSidebarButtons = React.createClass({
@@ -27,6 +28,15 @@ var MetadataSidebarButtons = React.createClass({
       backdrop: 'static'
     });
   },
+  showOpenSequenceDialog: function() {
+    var $openSequenceDialog = $(ReactDOM.findDOMNode(this.refs.openSequenceDialog));
+    $openSequenceDialog.modal({
+      backdrop: 'static'
+    });
+    $($openSequenceDialog).on('shown.bs.modal', function() {
+      $openSequenceDialog.find('input').focus();
+    })
+  },
   hideSidebar: function() {
     this.props.dispatch(actions.setShowMetadataSidebar(false));
   },
@@ -40,33 +50,41 @@ var MetadataSidebarButtons = React.createClass({
   },
   render: function() {
     return (
-      <div className="metadata-sidebar-controls row">
-        <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
-        <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
-        <span className="metadata-sidebar-buttons">
-          <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
-          {(() => {
-            if(window.location.hash.startsWith('#/edit?')) {
-              return (
-                <span className="manifest-actions-menu dropdown">
-                  <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
-                  <ul className="dropdown-menu pull-left">
-                    <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
-                    <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
-                    <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
-                    <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
-                  </ul>
-                </span>
-              );
-            } else {
-              return (
-                <button onClick={() => this.switchToView('#/edit')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-sign-out fa-flip-horizontal hidden-sm hidden-xs"></i> Return to Edit Manifest</button>
-              );
-            }
-          })()}
-          <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
-          <SaveManifestDialog ref="saveManifestDialog" />
-        </span>
+      <div className="metadata-sidebar-controls">
+        <div className="row">
+          <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
+          <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
+          <span className="metadata-sidebar-buttons">
+            <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
+            {(() => {
+              if(window.location.hash.startsWith('#/edit?')) {
+                return (
+                  <span className="manifest-actions-menu dropdown">
+                    <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
+                    <ul className="dropdown-menu pull-left">
+                      <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
+                      <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+                      <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
+                      <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
+                    </ul>
+                  </span>
+                );
+              } else {
+                return (
+                  <button onClick={() => this.switchToView('#/edit')} className="btn btn-default metadata-sidebar-button"><i className="fa fa-sign-out fa-flip-horizontal hidden-sm hidden-xs"></i> Return to Edit Manifest</button>
+                );
+              }
+            })()}
+            <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
+            <SaveManifestDialog ref="saveManifestDialog" />
+          </span>
+        </div>
+        <div className="row">
+          <div className="open-sequence-button">
+            <button onClick={() => this.showOpenSequenceDialog()} className="btn btn-primary"><i className="fa fa-plus-circle hidden-sm hidden-xs"></i> Open Sequence</button>
+          </div>
+          <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={this.props.sourceManifestBrowser ? this.props.sourceManifestBrowser.addSourceManifestToState : undefined}/>
+        </div>
       </div>
     );
   }

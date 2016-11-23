@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var OpenSequenceDialog = require('OpenSequenceDialog');
 var SourceManifestWindow = require('SourceManifestWindow');
 
 var SourceManifestBrowser = React.createClass({
@@ -9,16 +8,7 @@ var SourceManifestBrowser = React.createClass({
       sourceManifests: []
     }
   },
-  showOpenSequenceDialog: function() {
-    var $openSequenceDialog = $(ReactDOM.findDOMNode(this.refs.openSequenceDialog));
-    $openSequenceDialog.modal({
-      backdrop: 'static'
-    });
-    $($openSequenceDialog).on('shown.bs.modal', function() {
-      $openSequenceDialog.find('input').focus();
-    })
-  },
-  addManifestDataToState: function(manifestData) {
+  addSourceManifestToState: function(manifestData) {
     // create a copy of the source manifests
     var sourceManifests = [...this.state.sourceManifests];
 
@@ -30,7 +20,7 @@ var SourceManifestBrowser = React.createClass({
       sourceManifests: sourceManifests
     });
   },
-  removeManifestFromState: function(manifestIndex) {
+  removeSourceManifestFromState: function(manifestIndex) {
     // create a copy of the source manifests
     var sourceManifests = [...this.state.sourceManifests];
 
@@ -50,14 +40,10 @@ var SourceManifestBrowser = React.createClass({
           Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
             var manifestData = _this.state.sourceManifests[manifestIndex];
             return(
-              <SourceManifestWindow key={manifestIndex} manifestIndex={manifestIndex} manifestData={manifestData} onRemoveHandler={_this.removeManifestFromState}/>
+              <SourceManifestWindow key={manifestIndex} manifestIndex={manifestIndex} manifestData={manifestData} sourceManifests={_this.state.sourceManifests} onRemoveHandler={_this.removeSourceManifestFromState}/>
             );
           })
         }
-        <button type="button" className="btn btn-default open-sequence-button" aria-label="Open sequence" onClick={() => this.showOpenSequenceDialog()}>
-          <span className="fa fa-plus-circle fa-2x" aria-hidden="true"></span><br />Open Sequence
-        </button>
-        <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={this.addManifestDataToState}/>
       </div>
     );
   }

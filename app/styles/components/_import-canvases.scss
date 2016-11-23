@@ -17,24 +17,27 @@
     height: 75vh;
     overflow-x: scroll;
     overflow-y: hidden;
+    display: flex;
 
     .source-manifest-window {
       display: inline-block;
       vertical-align: middle;
-      border-left: 1px solid $gray-light;
-      border-right: $mainComponentContainerBorder;
       width: 50%;
-      height: 100%;
 
       .source-manifest-viewer {
         width: 100%;
         margin-top: -30px;
 
+        .openseadragon-container, .openseadragon {
+          height: 72vh;
+          border-left: 1px solid $gray-light;
+          border-right: $mainComponentContainerBorder;
+        }
+
         .osd-custom-toolbar {
           position: relative;
           top: 40px;
           margin-left: -10px;
-
         }
       }
 
@@ -52,23 +55,25 @@
         position: relative;
         float: left;
         width: 100%;
-        display: flex;
-        overflow-x: scroll;
-        bottom: 110px;
+        display: flex; 
+        bottom: 120px;
         background-color: rgba(255,255,255,0.7);
         opacity: 0;
         transition: opacity .5s ease-in-out;
         -moz-transition: opacity .5s ease-in-out;
         -webkit-transition: opacity .5s ease-in-out;
+        overflow-x: hidden;
+        white-space: nowrap;
       }
 
       .source-manifest-thumbnail-strip:hover {
         opacity: 1.0;
+        overflow-x: scroll;
       }
 
       .source-manifest-thumbnail-strip-canvas {
         text-align: center;
-        margin: 5px;
+        margin: 5px 5px 0 5px;
 
         img.selected-canvas {
           opacity: 0.5;      
@@ -83,14 +88,6 @@
           font-size: 0.8em;
         }
       }
-    }
-
-    .open-sequence-button {
-      position: absolute;
-      min-width: 120px;
-      height: 140px;
-      top: 30%;
-      margin-left: 20px;
     }
 
     .remote-manifest-url-load-error {

@@ -7,6 +7,11 @@ var ThumbnailStrip = require('ThumbnailStrip');
 var MetadataSidebar = require('MetadataSidebar');
 
 var ImportCanvases = React.createClass({
+  getInitialState: function() {
+    return {
+      sourceManifestBrowser: undefined
+    }
+  },
   componentWillMount: function() {
     if(this.props.manifestData === undefined) {
       window.location.hash = '#/';
@@ -17,6 +22,11 @@ var ImportCanvases = React.createClass({
       var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasByIndex(0);
       this.props.dispatch(actions.setSelectedCanvasId(canvas.id));
     }
+  },
+  componentDidMount: function() {
+    this.setState({
+      sourceManifestBrowser: this.refs.sourceManifestBrowser
+    });
   },
   render: function() {
     var sourceManifestBrowserClasses = classNames(
@@ -32,10 +42,10 @@ var ImportCanvases = React.createClass({
         <div className="import-canvases-container container-fluid">
           <div className="row">
             <div className={sourceManifestBrowserClasses}>
-              <SourceManifestBrowser/>
+              <SourceManifestBrowser ref="sourceManifestBrowser"/>
               <ThumbnailStrip/>
             </div>
-            <MetadataSidebar ref="sidebar"/>
+            <MetadataSidebar sourceManifestBrowser={this.state.sourceManifestBrowser}/>
           </div>
         </div>
       );
