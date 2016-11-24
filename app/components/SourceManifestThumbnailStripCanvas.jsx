@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+import LazyLoad from 'react-lazy-load';
 
 var SourceManifestThumbnailStripCanvas = React.createClass({
   getMainImage: function(canvas) {
@@ -25,9 +26,12 @@ var SourceManifestThumbnailStripCanvas = React.createClass({
   },
   render: function() {
     var canvas = this.props.canvas;
+    var backgroundStyle = this.props.isSelectedCanvas ? {} : { background: 'transparent url(./img/loading-small.gif) no-repeat center center' };
     return (
-      <div className="source-manifest-thumbnail-strip-canvas" onClick={this.handleCanvasClick}>
-        <img className={this.setSelectedClass()} data-canvas-index={this.props.canvasIndex} src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="100" />
+      <div style={backgroundStyle} className="source-manifest-thumbnail-strip-canvas" onClick={this.handleCanvasClick}>
+        <LazyLoad offsetHorizontal={600}>
+          <img className={this.setSelectedClass()} data-canvas-index={this.props.canvasIndex} src={this.getMainImage(canvas)} alt={this.getMainImageLabel(canvas)} height="100" />
+        </LazyLoad>  
         <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
           <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
         </div>

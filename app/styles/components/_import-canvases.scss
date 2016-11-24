@@ -84,6 +84,14 @@
         text-align: center;
         margin: 5px 5px 0 5px;
 
+        .LazyLoad {
+          min-width: 75px;
+          min-height: 100px;
+          border-radius: 3px;
+          border: 1px solid #eee;
+          background-color: transparent;
+        }
+
         img.selected-canvas {
           opacity: 0.5;      
         }
