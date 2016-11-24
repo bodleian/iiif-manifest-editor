@@ -79,12 +79,18 @@ var MetadataSidebarButtons = React.createClass({
             <SaveManifestDialog ref="saveManifestDialog" />
           </span>
         </div>
-        <div className="row">
-          <div className="open-sequence-button">
-            <button onClick={() => this.showOpenSequenceDialog()} className="btn btn-primary"><i className="fa fa-plus-circle hidden-sm hidden-xs"></i> Open Sequence</button>
-          </div>
-          <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={this.props.sourceManifestBrowser ? this.props.sourceManifestBrowser.addSourceManifestToState : undefined}/>
-        </div>
+        {(() => {
+          if(window.location.hash.startsWith('#/canvases?')) {
+            return (
+              <div className="row">
+                <div className="open-sequence-button">
+                  <button onClick={() => this.showOpenSequenceDialog()} className="btn btn-primary"><i className="fa fa-plus-circle hidden-sm hidden-xs"></i> Open Sequence</button>
+                </div>
+                <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={this.props.sourceManifestBrowser ? this.props.sourceManifestBrowser.addSourceManifestToState : undefined}/>
+              </div> 
+            );
+          } 
+        })()}
       </div>
     );
   }
