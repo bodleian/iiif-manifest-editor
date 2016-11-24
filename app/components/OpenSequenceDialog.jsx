@@ -14,6 +14,14 @@ var OpenSequenceDialog = React.createClass({
       isFetchingRemoteManifest: true,
       manifestFetchError: undefined
     });
+    if(remoteManifestUrl === '') {
+      this.setState({
+        manifestFetchError: 'Please enter a remote manifest URL',
+        isFetchingRemoteManifest: false
+      });
+      this.refs.remoteManifestUrl.focus();
+      return false;
+    }
     var _this = this;
     axios.get(remoteManifestUrl)
       .then(function(response) {
