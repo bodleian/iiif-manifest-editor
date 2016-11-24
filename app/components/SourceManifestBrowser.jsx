@@ -18,6 +18,14 @@ var SourceManifestBrowser = React.createClass({
     // update the list of source manifests in the state
     this.setState({
       sourceManifests: sourceManifests
+    }, function() {
+      // auto scroll to the end of the Sequence Browser when a new sequence is opened
+      var $manifestBrowser = $(ReactDOM.findDOMNode(this.refs.manifestBrowser));
+      var scrollPosition = 0;
+      $manifestBrowser.children().each(function(index, elem){
+        scrollPosition += ($(elem).width());
+      });
+      $manifestBrowser.animate({scrollLeft: scrollPosition}, 600);
     });
   },
   removeSourceManifestFromState: function(manifestIndex) {
@@ -42,7 +50,7 @@ var SourceManifestBrowser = React.createClass({
   render: function() {
     var _this = this;
     return (
-      <div className="source-manifest-browser">
+      <div className="source-manifest-browser" ref="manifestBrowser">
       {this.renderOpenSequenceMessage()}
         {
           Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
