@@ -1,11 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var SourceManifestWindow = require('SourceManifestWindow');
+var uuid = require('node-uuid');
 
 var SourceManifestBrowser = React.createClass({
   getInitialState: function() {
     return {
-      sourceManifests: []
+      sourceManifests: [],
+      uuid: uuid()
     }
   },
   addSourceManifestToState: function(manifestData) {
@@ -17,7 +19,8 @@ var SourceManifestBrowser = React.createClass({
 
     // update the list of source manifests in the state
     this.setState({
-      sourceManifests: sourceManifests
+      sourceManifests: sourceManifests,
+      uuid: uuid()
     }, function() {
       // auto scroll to the end of the Sequence Browser when a new sequence is opened
       var $manifestBrowser = $(ReactDOM.findDOMNode(this.refs.manifestBrowser));
@@ -37,7 +40,8 @@ var SourceManifestBrowser = React.createClass({
 
     // update the list of source manifests in the state
     this.setState({
-      sourceManifests: sourceManifests
+      sourceManifests: sourceManifests,
+      uuid: uuid()
     });
   },
   renderOpenSequenceMessage: function() {
@@ -50,7 +54,7 @@ var SourceManifestBrowser = React.createClass({
   render: function() {
     var _this = this;
     return (
-      <div className="source-manifest-browser" ref="manifestBrowser">
+      <div key={this.state.uuid} className="source-manifest-browser" ref="manifestBrowser">
       {this.renderOpenSequenceMessage()}
         {
           Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
