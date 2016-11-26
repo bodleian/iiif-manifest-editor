@@ -7,21 +7,20 @@ var NavigationArrow = require('NavigationArrow');
 import OpenseadragonViewer from 'OpenseadragonViewer'
 var OnScreenHelp = require('OnScreenHelp');
 
-var openSeadragonConf = {
-  zoomInButton: "zoom-in",
-  zoomOutButton: "zoom-out",
-  homeButton: "home",
-  fullPageButton: "full-page",
-  sequenceMode: false,
-  showReferenceStrip: false,
-  defaultZoomLevel: 0,
-  minZoomLevel: 0,
-  tileSources: []
-};
-
 var Viewer = React.createClass({
   getInitialState: function() {
     return {
+      openSeadragonConf: {
+        zoomInButton: "zoom-in",
+        zoomOutButton: "zoom-out",
+        homeButton: "home",
+        fullPageButton: "full-page",
+        sequenceMode: false,
+        showReferenceStrip: false,
+        defaultZoomLevel: 0,
+        minZoomLevel: 0,
+        tileSources: []
+      },
       helpSection: '',
       sidebarToggleIcon: 'on'
     }
@@ -58,11 +57,11 @@ var Viewer = React.createClass({
         var canvasImages = canvas.getImages();
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
-          openSeadragonConf.tileSources = [serviceId + '/info.json'];
+          this.state.openSeadragonConf.tileSources = [serviceId + '/info.json'];
         } 
         else {
           // display placeholder image for empty canvases
-          openSeadragonConf.tileSources = {
+          this.state.openSeadragonConf.tileSources = {
             type: 'image',
             url: "https://placeholdit.imgix.net/~text?txtsize=16&txt=Empty+Canvas&w=200&h=300"
           };
@@ -107,7 +106,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <OpenseadragonViewer config={openSeadragonConf} key={this.props.selectedCanvasId} />
+        <OpenseadragonViewer config={this.state.openSeadragonConf} key={this.props.selectedCanvasId} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
