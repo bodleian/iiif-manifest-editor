@@ -25,9 +25,15 @@ module.exports = function(props) {
   		<p>
   	 	Custom fields are value/label pairs that will be stored in the "metadata" section of the manifest. 
   	 	"Custom" here means that the <i>Label</i> for each field is not predefined and can be set to any string.
-  	 	Click the "Add metadata field button" to add a custom field. This will add a new box with "Label" for the label of the new property and "Value" for the value:
+  	 	Click the "Add metadata field button" to add a custom field. This will add a new box with "Label" 
+      for the label of the new property and "Value" for the value:
   		</p>
-  		<p>To edit the <i>label</i>, click on it, replace the default text of "Label" with the name for the metadata field (e.g. "Date") and hit enter. Do the same for the <i>value</i> field.</p>
+  		<p>To edit the <i>label</i>, click on it, replace the default text of "Label" with the name for 
+      the metadata field (e.g. "Date") and hit enter. Do the same for the <i>value</i> field.</p>
+
+      <p><strong>For more information see:</strong> <br />
+        <img src="./img/IIIF-logo-colored-text.png" height="15" alt="IIIF Logo"/> <a href="http://iiif.io/api/presentation/2.1/#descriptive-properties" target="_blank">http://iiif.io/api/presentation/2.1/#descriptive-properties</a>
+      </p>
 
   	</div>
   );
