@@ -5,8 +5,9 @@ var uuid = require('node-uuid');
 
 var SourceManifestBrowser = React.createClass({
   getInitialState: function() {
+    var sourceManifests = localStorage.getItem('sourceManifests') ? JSON.parse(localStorage.getItem('sourceManifests')) : [];
     return {
-      sourceManifests: [],
+      sourceManifests: sourceManifests,
       uuid: uuid()
     }
   },
@@ -29,6 +30,9 @@ var SourceManifestBrowser = React.createClass({
         scrollPosition += ($(elem).width());
       });
       $manifestBrowser.animate({scrollLeft: scrollPosition}, 600);
+
+      // retain the state of the opened source manifests in local storage
+      localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
     });
   },
   removeSourceManifestFromState: function(manifestIndex) {
@@ -43,11 +47,17 @@ var SourceManifestBrowser = React.createClass({
       sourceManifests: sourceManifests,
       uuid: uuid()
     });
+
+    // retain the state of the opened source manifests in local storage
+    localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
+    if(localStorage.getItem('sourceManifests') == '[]') {
+      localStorage.removeItem('sourceManifests');
+    }
   },
   renderOpenSequenceMessage: function() {
     if(this.state.sourceManifests.length === 0) {
       return (
-          <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
+        <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
       );
     }
   },
