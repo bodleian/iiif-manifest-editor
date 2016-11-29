@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
 
-var OpenSequenceDialog = React.createClass({
+var OpenSourceManifestDialog = React.createClass({
   getInitialState: function() {
     return {
       isFetchingRemoteManifest: false,
@@ -38,8 +38,8 @@ var OpenSequenceDialog = React.createClass({
         _this.refs.remoteManifestUrl.value = '';
         
         // close modal window
-        var $openSequenceDialog = $(ReactDOM.findDOMNode(_this));
-        $openSequenceDialog.modal('hide');
+        var $openSourceManifestDialog = $(ReactDOM.findDOMNode(_this));
+        $openSourceManifestDialog.modal('hide');
       })
       .catch(function(error) {
         // set the error message in the state and reset isFetchingRemoteManifestStatus
@@ -127,4 +127,4 @@ var OpenSequenceDialog = React.createClass({
   }
 });
 
-module.exports = OpenSequenceDialog;
+module.exports = OpenSourceManifestDialog;

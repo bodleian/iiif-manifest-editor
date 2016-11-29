@@ -4,7 +4,7 @@ var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SaveManifestDialog = require('SaveManifestDialog');
-var OpenSequenceDialog = require('OpenSequenceDialog');
+var OpenSourceManifestDialog = require('OpenSourceManifestDialog');
 var OnScreenHelp = require('OnScreenHelp');
 
 var MetadataSidebarButtons = React.createClass({
@@ -28,13 +28,13 @@ var MetadataSidebarButtons = React.createClass({
       backdrop: 'static'
     });
   },
-  showOpenSequenceDialog: function() {
-    var $openSequenceDialog = $(ReactDOM.findDOMNode(this.refs.openSequenceDialog));
-    $openSequenceDialog.modal({
+  showOpenSourceManifestDialog: function() {
+    var $openSourceManifestDialog = $(ReactDOM.findDOMNode(this.refs.openSourceManifestDialog));
+    $openSourceManifestDialog.modal({
       backdrop: 'static'
     });
-    $($openSequenceDialog).on('shown.bs.modal', function() {
-      $openSequenceDialog.find('input').focus();
+    $($openSourceManifestDialog).on('shown.bs.modal', function() {
+      $openSourceManifestDialog.find('input').focus();
     })
   },
   hideSidebar: function() {
@@ -84,9 +84,9 @@ var MetadataSidebarButtons = React.createClass({
             return (
               <div className="row">
                 <div className="open-sequence-button">
-                  <button onClick={() => this.showOpenSequenceDialog()} className="btn btn-primary"><i className="fa fa-plus-circle hidden-sm hidden-xs"></i> Open Sequence</button>
+                  <button onClick={() => this.showOpenSourceManifestDialog()} className="btn btn-primary"><i className="fa fa-plus-circle hidden-sm hidden-xs"></i> Open Sequence</button>
                 </div>
-                <OpenSequenceDialog ref="openSequenceDialog" onSuccessHandler={this.props.sourceManifestBrowser ? this.props.sourceManifestBrowser.addSourceManifestToState : undefined}/>
+                <OpenSourceManifestDialog ref="openSourceManifestDialog" onSuccessHandler={this.props.sourceManifestBrowser ? this.props.sourceManifestBrowser.addSourceManifestToState : undefined}/>
               </div> 
             );
           } 
