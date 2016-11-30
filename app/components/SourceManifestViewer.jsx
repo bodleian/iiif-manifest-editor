@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
-import OpenseadragonViewer from 'OpenseadragonViewer';
+import OpenSeadragonViewer from 'OpenSeadragonViewer';
 var OnScreenHelp = require('OnScreenHelp');
 
 var SourceManifestViewer = React.createClass({
@@ -87,7 +87,7 @@ var SourceManifestViewer = React.createClass({
           <a className="help-icon" href="javascript:;" onClick={() => this.showHelp('SourceManifestViewer')} ><i className="fa fa-question-circle-o"></i></a>
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
-        <OpenseadragonViewer config={this.state.openSeadragonConf} />
+        <OpenSeadragonViewer config={this.state.openSeadragonConf} />
       </div>
     );
   }
