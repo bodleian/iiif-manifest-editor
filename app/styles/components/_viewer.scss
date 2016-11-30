@@ -69,20 +69,22 @@
     position: absolute;
     z-index: 2;
     opacity: 0.7;
-    color:white;
+    color: white;
     background: transparent;
-    font-size:300%;
-    top:40%;
+    font-size: 300%;
+    top: 40%;
   }
+
   .navigation-arrow-left {
-    left:10px;
+    left: 10px;
   }
+
   .navigation-arrow-right {
-    right:30px;
+    right: 30px;
   }
 
   .navigation-arrow:hover {
-    opacity:0.9;
+    opacity: 0.9;
     cursor: pointer;
   }
 
