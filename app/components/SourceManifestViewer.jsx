@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
+var NavigationArrow = require('NavigationArrow');
 import OpenseadragonViewer from 'OpenseadragonViewer';
 var OnScreenHelp = require('OnScreenHelp');
 
@@ -87,7 +88,21 @@ var SourceManifestViewer = React.createClass({
           <a className="help-icon" href="javascript:;" onClick={() => this.showHelp('SourceManifestViewer')} ><i className="fa fa-question-circle-o"></i></a>
         </div>
         <SourceManifestMetadataDialog ref="sourceManifestMetadataDialog" manifestData={JSON.parse(this.props.manifestData)} />
+        {(() => {
+          if(this.props.selectedCanvasIndex > 0) {
+            return (
+              <NavigationArrow sequence={this.props.sequence} canvasIndex={this.props.selectedCanvasIndex} onChangeHandler={this.props.onChangeHandler} direction="left" />
+            );
+          }
+        })()}
         <OpenseadragonViewer config={this.state.openSeadragonConf} />
+        {(() => {
+          if(this.props.selectedCanvasIndex < this.props.sequence.getCanvases().length - 1) {
+            return (
+              <NavigationArrow sequence={this.props.sequence} canvasIndex={this.props.selectedCanvasIndex} onChangeHandler={this.props.onChangeHandler} direction="right" />
+            );
+          }
+        })()}
       </div>
     );
   }

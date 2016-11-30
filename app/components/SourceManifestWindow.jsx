@@ -20,7 +20,7 @@ var SourceManifestWindow = React.createClass({
     var sequence = manifestoObject.getSequenceByIndex(0);
     return (
       <div className="source-manifest-window">
-        <SourceManifestViewer key={this.state.selectedCanvasIndex} manifestIndex={this.props.manifestIndex} manifestoObject={manifestoObject} manifestData={this.props.manifestData} selectedCanvasIndex={this.state.selectedCanvasIndex} onRemoveHandler={this.props.onRemoveHandler} />
+        <SourceManifestViewer key={this.state.selectedCanvasIndex} manifestIndex={this.props.manifestIndex} manifestoObject={manifestoObject} manifestData={this.props.manifestData} sequence={sequence} selectedCanvasIndex={this.state.selectedCanvasIndex} onChangeHandler={this.saveSelectedCanvasIndexToState} onRemoveHandler={this.props.onRemoveHandler} />
         <SourceManifestThumbnailStrip sequence={sequence} onSelectHandler={this.saveSelectedCanvasIndexToState} />
       </div>
     );

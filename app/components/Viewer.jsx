@@ -76,6 +76,9 @@ var Viewer = React.createClass({
     this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
     this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
   },
+  onChangeHandler: function(canvasIndex, sequence) {
+    this.props.dispatch(actions.setSelectedCanvasId(sequence.getCanvasByIndex(canvasIndex).id));
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -102,7 +105,7 @@ var Viewer = React.createClass({
         {(() => {
           if(canvasIndex > 0) {
             return (
-              <NavigationArrow direction="left" />
+              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.onChangeHandler} direction="left" />
             );
           }
         })()}
@@ -110,7 +113,7 @@ var Viewer = React.createClass({
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
-              <NavigationArrow direction="right" />
+              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.onChangeHandler} direction="right" />
             );
           }
         })()}
