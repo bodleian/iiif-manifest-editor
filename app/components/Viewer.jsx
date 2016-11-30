@@ -4,7 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var NavigationArrow = require('NavigationArrow');
-import OpenseadragonViewer from 'OpenseadragonViewer'
+import OpenSeadragonViewer from 'OpenSeadragonViewer'
 var OnScreenHelp = require('OnScreenHelp');
 
 var Viewer = React.createClass({
@@ -109,7 +109,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <OpenseadragonViewer config={this.state.openSeadragonConf} key={this.props.selectedCanvasId} />
+        <OpenSeadragonViewer config={this.state.openSeadragonConf} key={this.props.selectedCanvasId} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (

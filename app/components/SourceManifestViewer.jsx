@@ -4,7 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var SourceManifestMetadataDialog = require('SourceManifestMetadataDialog');
 var NavigationArrow = require('NavigationArrow');
-import OpenseadragonViewer from 'OpenseadragonViewer';
+import OpenSeadragonViewer from 'OpenSeadragonViewer';
 var OnScreenHelp = require('OnScreenHelp');
 
 var SourceManifestViewer = React.createClass({
@@ -95,7 +95,7 @@ var SourceManifestViewer = React.createClass({
             );
           }
         })()}
-        <OpenseadragonViewer config={this.state.openSeadragonConf} />
+        <OpenSeadragonViewer config={this.state.openSeadragonConf} />
         {(() => {
           if(this.props.selectedCanvasIndex < this.props.sequence.getCanvases().length - 1) {
             return (
