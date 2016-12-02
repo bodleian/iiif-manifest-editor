@@ -29,12 +29,12 @@ var ThumbnailStrip = React.createClass({
   componentWillMount: function() {
     this.setState({
       canvases: this.getCanvases(this.props.manifestData.viewingDirection)
-    }); 
+    });
   },
   componentWillReceiveProps: function(nextProps) {
     this.setState({
       canvases: nextProps.manifestoObject.getSequenceByIndex(0).getCanvases()
-    }); 
+    });
     if(this.props.manifestData.viewingDirection !== nextProps.manifestData.viewingDirection) {
       this.setState({
        canvases: this.getCanvases(nextProps.manifestData.viewingDirection)
@@ -52,6 +52,12 @@ var ThumbnailStrip = React.createClass({
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
       var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
       var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
+      var indexActiveThumbnail = $activeCanvas.data('canvas-index');
+
+console.log('active thumb\'s initial offset().left: ', $activeCanvas.offset().left);
+console.log('To get actual offset().left, run this in Chrome console - ');
+console.log('$(\'.thumbnail-strip-container .thumbnail-strip-canvas[data-canvas-index="' +  indexActiveThumbnail + '"\').offset().left');
+
       if($activeCanvas.offset() !== undefined) {
         var scrollPosition = $thumbnailStrip.scrollLeft() + ($activeCanvas.offset().left + $activeCanvas.width()/2) - $thumbnailStrip.width()/2;
         $activeCanvas.css({opacity:0.6});
@@ -84,11 +90,11 @@ var ThumbnailStrip = React.createClass({
   },
   addCanvases: function(e) {
     // stops browsers from redirecting
-    if(e.preventDefault) { 
-      e.preventDefault(); 
+    if(e.preventDefault) {
+      e.preventDefault();
     }
-    if(e.stopPropagation) { 
-      e.stopPropagation(); 
+    if(e.stopPropagation) {
+      e.stopPropagation();
     }
 
     // get the index in the thumbnail strip to insert the selected canvases
@@ -97,9 +103,9 @@ var ThumbnailStrip = React.createClass({
     // handle adding canvases to the beginning and end of a sequence (insertIndex is null)
     if (insertIndex === null) {
       // check mouse position to determine whether canvases were dropped to very beginning of sequence
-      // everything above x = 20 is not beginning of sequence so either has an insertIndex or 
-      // if it is null it is assumed that canvases were dropped to the end of the sequence 
-      if (e.clientX > 20) { 
+      // everything above x = 20 is not beginning of sequence so either has an insertIndex or
+      // if it is null it is assumed that canvases were dropped to the end of the sequence
+      if (e.clientX > 20) {
         var sequence = this.props.manifestoObject.getSequenceByIndex(0);
         insertIndex = sequence.canvases.length;
       }
@@ -119,11 +125,11 @@ var ThumbnailStrip = React.createClass({
   },
   cancelDragOver: function(e) {
     // stops browsers from redirecting
-    if(e.preventDefault) { 
-      e.preventDefault(); 
+    if(e.preventDefault) {
+      e.preventDefault();
     }
-    if(e.stopPropagation) { 
-      e.stopPropagation(); 
+    if(e.stopPropagation) {
+      e.stopPropagation();
     }
     // some browsers require a return false for canceling the onDragOver event
     return false;
@@ -169,7 +175,7 @@ var ThumbnailStrip = React.createClass({
     return currentCanvasIndex >= this.state.selectedCanvasStartIndex && currentCanvasIndex <= this.state.selectedCanvasEndIndex;
   },
   deleteSelectedCanvases: function() {
-    // delete the selected canvases from the end of the thumbnail strip first; deleting from the front of the 
+    // delete the selected canvases from the end of the thumbnail strip first; deleting from the front of the
     // thumbnail strip shifts the canvas indexes left causing subsequent deletions to fail
     var {dispatch, canvasIndex} = this.props;
     for(var canvasIndex = this.state.selectedCanvasEndIndex; canvasIndex >= this.state.selectedCanvasStartIndex; canvasIndex--) {
