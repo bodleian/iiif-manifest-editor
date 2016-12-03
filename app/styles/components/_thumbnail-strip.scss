@@ -75,6 +75,7 @@
 
 
   .thumbnail-strip-canvas {
+    margin: 2px 10px;
 
     .LazyLoad {
       min-width: 100px;
@@ -87,7 +88,9 @@
       }
 
       img {
-        margin: 2px 10px;
+        border: 3px solid #fff;
+        border-radius: 5px;
+        padding:2px;
       }
 
     }
@@ -98,9 +101,7 @@
     }
 
     &.active img {
-      border: 3px solid $iiifRed;
-      border-radius: 5px;
-      padding:2px;
+      border-color: $iiifRed;
     }
 
     &.active .canvas-label span {
