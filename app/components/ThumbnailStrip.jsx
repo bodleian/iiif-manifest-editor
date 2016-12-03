@@ -52,11 +52,6 @@ var ThumbnailStrip = React.createClass({
     if(this.props.selectedCanvasId !== prevProps.selectedCanvasId) {
       var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
       var $activeCanvas = $thumbnailStrip.find('.thumbnail-strip-canvas.active');
-      var indexActiveThumbnail = $activeCanvas.data('canvas-index');
-
-console.log('active thumb\'s initial offset().left: ', $activeCanvas.offset().left);
-console.log('To get actual offset().left, run this in Chrome console - ');
-console.log('$(\'.thumbnail-strip-container .thumbnail-strip-canvas[data-canvas-index="' +  indexActiveThumbnail + '"\').offset().left');
 
       if($activeCanvas.offset() !== undefined) {
         var scrollPosition = $thumbnailStrip.scrollLeft() + ($activeCanvas.offset().left + $activeCanvas.width()/2) - $thumbnailStrip.width()/2;
