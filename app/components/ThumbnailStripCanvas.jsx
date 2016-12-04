@@ -7,6 +7,11 @@ var uuid = require('node-uuid');
 import LazyLoad from 'react-lazy-load';
 
 var ThumbnailStripCanvas = React.createClass({
+  getInitialState: function() {
+    return {
+      isOver: false
+    };
+  },
   componentDidMount: function() {
     var $canvas = $(ReactDOM.findDOMNode(this));
 
@@ -117,6 +122,19 @@ var ThumbnailStripCanvas = React.createClass({
   stringTruncate: function(str, maxLength) {
     return str.length > maxLength ? str.substring(0, maxLength - 1) + '…' : str;
   },
+  handleDragOver: function() {
+    this.setState({
+      isOver: true
+    });
+  },
+  handleDragLeave: function() {
+    this.setState({
+      isOver: false
+    });
+  },
+  setCanvasContainerClass: function() {
+    return this.state.isOver ? "thumbnail-strip-canvas-container selected-drop-target-canvas" : "thumbnail-strip-canvas-container";
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     var canvasStyle = this.props.isSelectedCanvas ? {} : { background: '#fff url(./img/loading-small.gif) no-repeat center center' };
@@ -124,7 +142,7 @@ var ThumbnailStripCanvas = React.createClass({
     canvasStyle.width = this.getThumbnailCanvasWidth(canvas) + 'px';
 
     return (
-      <div className="thumbnail-strip-canvas-container">
+      <div className={this.setCanvasContainerClass()}>
         <a className="delete-canvas-button btn btn-danger btn-xs btn-transparent" onClick={this.openDeleteCanvasConfirmationDialog} title="Remove Canvas"><i className="fa fa-trash"></i></a>
         <span className="canvas-menu-options dropdown">
           <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-bars"></i></a>
@@ -141,7 +159,7 @@ var ThumbnailStripCanvas = React.createClass({
             })()}
           </ul>
         </span>
-        <div style={canvasStyle} className={this.setActiveClass()} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
+        <div style={canvasStyle} className={this.setActiveClass()} onDragOver={this.handleDragOver} onDragLeave={this.handleDragLeave} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
           <LazyLoad offsetHorizontal={600}>
             <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} />
           </LazyLoad>

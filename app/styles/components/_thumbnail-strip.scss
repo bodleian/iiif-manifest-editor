@@ -40,6 +40,10 @@
     color: rgba(31, 31, 66, 0.85);
   }
 
+  .selected-drop-target-canvas {
+    border: 1px dashed #ddd;
+  }
+
   .thumbnail-strip-canvas-container {
     position: relative;
 
