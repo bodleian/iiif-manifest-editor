@@ -73,8 +73,9 @@
     }
   }
 
-  
+
   .thumbnail-strip-canvas {
+    margin: 2px 10px;
 
     .LazyLoad {
       min-width: 100px;
@@ -83,24 +84,24 @@
       border: 1px solid #eee;
 
       img.selected-canvas {
-        opacity: 0.5;      
+        opacity: 0.5;
       }
 
       img {
-        margin: 2px 10px;
+        border: 3px solid #fff;
+        border-radius: 5px;
+        padding:2px;
       }
 
-    } 
+    }
 
     .LazyLoad.is-visible {
       border: none;
-      
-    } 
+
+    }
 
     &.active img {
-      border: 3px solid $iiifRed;
-      border-radius: 5px;
-      padding:2px;
+      border-color: $iiifRed;
     }
 
     &.active .canvas-label span {
