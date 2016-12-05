@@ -19,8 +19,7 @@ var SourceManifestBrowser = React.createClass({
 
     // update the list of source manifests in the state
     this.setState({
-      sourceManifests: sourceManifests,
-      uuid: uuid()
+      sourceManifests: sourceManifests
     }, function() {
       // auto scroll to the end of the Sequence Browser when a new sequence is opened
       var $manifestBrowser = $(ReactDOM.findDOMNode(this.refs.manifestBrowser));
@@ -40,14 +39,13 @@ var SourceManifestBrowser = React.createClass({
 
     // update the list of source manifests in the state
     this.setState({
-      sourceManifests: sourceManifests,
-      uuid: uuid()
+      sourceManifests: sourceManifests
     });
   },
   renderOpenSequenceMessage: function() {
     if(this.state.sourceManifests.length === 0) {
       return (
-          <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
+        <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
       );
     }
   },
@@ -55,12 +53,11 @@ var SourceManifestBrowser = React.createClass({
     var _this = this;
     return (
       <div key={this.state.uuid} className="source-manifest-browser" ref="manifestBrowser">
-      {this.renderOpenSequenceMessage()}
+        { this.renderOpenSequenceMessage() }
         {
-          Object.keys(this.state.sourceManifests).map(function(manifestIndex) {
-            var manifestData = _this.state.sourceManifests[manifestIndex];
+          this.state.sourceManifests.map(function(manifestData, manifestIndex) {
             return(
-              <SourceManifestWindow key={manifestIndex} manifestIndex={manifestIndex} manifestData={manifestData} sourceManifests={_this.state.sourceManifests} onRemoveHandler={_this.removeSourceManifestFromState}/>
+              <SourceManifestWindow key={manifestIndex} manifestIndex={manifestIndex} manifestData={manifestData} onRemoveHandler={_this.removeSourceManifestFromState} />
             );
           })
         }
