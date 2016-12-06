@@ -151,7 +151,7 @@ var ThumbnailStripCanvas = React.createClass({
     canvasStyle.width = this.getThumbnailCanvasWidth(canvas) + 'px';
 
     return (
-      <div className={this.setCanvasContainerClass()}>
+      <div className={this.setCanvasContainerClass()} data-canvas-index={this.props.canvasIndex} onDragOver={this.handleDragOver} onDragLeave={this.handleDragLeave}>
         <a className="delete-canvas-button btn btn-danger btn-xs btn-transparent" onClick={this.openDeleteCanvasConfirmationDialog} title="Remove Canvas"><i className="fa fa-trash"></i></a>
         <span className="canvas-menu-options dropdown">
           <a className="btn btn-default btn-xs btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Canvas Options"><i className="fa fa-bars"></i></a>
@@ -168,7 +168,7 @@ var ThumbnailStripCanvas = React.createClass({
             })()}
           </ul>
         </span>
-        <div style={canvasStyle} className={this.setActiveClass()} onDragOver={this.handleDragOver} onDragLeave={this.handleDragLeave} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
+        <div style={canvasStyle} className={this.setActiveClass()} onClick={this.handleCanvasClick}>
           <LazyLoad offsetHorizontal={600}>
             <img onLoad={this.updateCanvasWidth} className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} />
           </LazyLoad>
