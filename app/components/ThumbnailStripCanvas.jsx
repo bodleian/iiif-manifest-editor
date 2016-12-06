@@ -135,6 +135,13 @@ var ThumbnailStripCanvas = React.createClass({
   setCanvasContainerClass: function() {
     return this.state.isOver ? "thumbnail-strip-canvas-container selected-drop-target-canvas" : "thumbnail-strip-canvas-container";
   },
+  updateCanvasWidth: function() {
+    // recalculate the width on each visible canvas based on its image dimensions
+    var $visibleCanvasContainer = $(ReactDOM.findDOMNode(this));
+    var $thumbnailStripCanvas = $visibleCanvasContainer.find('.thumbnail-strip-canvas');
+    var $image = $thumbnailStripCanvas.find('.is-visible img').first();
+    $thumbnailStripCanvas.css('width', $image.width());
+  },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     var canvasStyle = this.props.isSelectedCanvas ? {} : { background: '#fff url(./img/loading-small.gif) no-repeat center center' };
@@ -161,7 +168,7 @@ var ThumbnailStripCanvas = React.createClass({
         </span>
         <div style={canvasStyle} className={this.setActiveClass()} onDragOver={this.handleDragOver} onDragLeave={this.handleDragLeave} data-canvas-index={this.props.canvasIndex} onClick={this.handleCanvasClick}>
           <LazyLoad offsetHorizontal={600}>
-            <img className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} />
+            <img onLoad={this.updateCanvasWidth} className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} />
           </LazyLoad>
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
             <span>{this.stringTruncate(this.getMainImageLabel(canvas), 20)}</span>
