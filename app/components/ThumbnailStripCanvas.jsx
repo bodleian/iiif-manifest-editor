@@ -140,7 +140,9 @@ var ThumbnailStripCanvas = React.createClass({
     var $visibleCanvasContainer = $(ReactDOM.findDOMNode(this));
     var $thumbnailStripCanvas = $visibleCanvasContainer.find('.thumbnail-strip-canvas');
     var $image = $thumbnailStripCanvas.find('.is-visible img').first();
-    $thumbnailStripCanvas.css('width', $image.width());
+    var $canvasLabel = $thumbnailStripCanvas.find('.canvas-label span').first();
+    $thumbnailStripCanvas.css('width', ($image.width() + 10));
+    $canvasLabel.css('width', ($image.width() + 10));
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);

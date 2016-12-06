@@ -77,12 +77,10 @@
     }
   }
 
-
   .thumbnail-strip-canvas {
     margin: 2px 10px;
 
     .LazyLoad {
-      min-width: 100px;
       min-height: 150px;
       border-radius: 3px;
       border: 1px solid #eee;
@@ -96,12 +94,10 @@
         border-radius: 5px;
         padding:2px;
       }
-
     }
 
     .LazyLoad.is-visible {
       border: none;
-
     }
 
     &.active img {
@@ -109,19 +105,22 @@
     }
 
     &.active .canvas-label span {
+      display: inline-block;
       background-color: $iiifRed;
-      border:1px solid darken($iiifRed, 15%);
-      color:white;
-      padding:0 8px;
-      border-radius:3px;
+      border: 1px solid darken($iiifRed, 15%);
+      color: white;
+      padding: 0 4px;
+      border-radius: 3px;
     }
-
 
     .canvas-label {
       display: block;
       text-align: center;
+      font-size: 0.8em;
+      white-space: nowrap;
     }
   }
+
   [draggable] {
     -moz-user-select: none;
     -webkit-user-select: none;
