@@ -224,7 +224,7 @@ var ThumbnailStrip = React.createClass({
           {
             this.state.canvases.map(function(canvas, canvasIndex) {
               return (
-                <SortableItem key={uuid()} draggable={true} className="simple-sort-item">
+                <SortableItem key={canvasIndex} draggable={true} className="simple-sort-item">
                   <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.deSelectCanvases} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
                 </SortableItem>
               );
