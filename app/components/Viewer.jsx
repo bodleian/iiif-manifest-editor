@@ -10,17 +10,6 @@ var OnScreenHelp = require('OnScreenHelp');
 var Viewer = React.createClass({
   getInitialState: function() {
     return {
-      openSeadragonConf: {
-        zoomInButton: "zoom-in",
-        zoomOutButton: "zoom-out",
-        homeButton: "home",
-        fullPageButton: "full-page",
-        sequenceMode: false,
-        showReferenceStrip: false,
-        defaultZoomLevel: 0,
-        minZoomLevel: 0,
-        tileSources: []
-      },
       helpSection: '',
       sidebarToggleIcon: 'on'
     }
@@ -34,22 +23,21 @@ var Viewer = React.createClass({
       backdrop: 'static'
     });
   },
-  componentWillMount: function() {
-    this.updateTileSources();
-  },
-  componentWillUpdate: function(prevProps, prevState) {
-    // update the image in the viewer
-    if(this.props.selectedCanvasId !== prevProps.selectedCanvasId || this.props.manifestoObject !== prevProps.manifestoObject) {
-      this.updateTileSources();
-    }
-    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
-      this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
-    }
-  },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
-  updateTileSources: function() {
+  getOpenSeadragonConf: function() {
+    var openSeadragonConf =  {
+        zoomInButton: "zoom-in",
+        zoomOutButton: "zoom-out",
+        homeButton: "home",
+        fullPageButton: "full-page",
+        sequenceMode: false,
+        showReferenceStrip: false,
+        defaultZoomLevel: 0,
+        minZoomLevel: 0,
+        tileSources: []
+    };
     if(this.props.selectedCanvasId !== undefined) {
       // update main image using the selected canvas
       var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
@@ -57,17 +45,18 @@ var Viewer = React.createClass({
         var canvasImages = canvas.getImages();
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
-          this.state.openSeadragonConf.tileSources = [serviceId + '/info.json'];
+          openSeadragonConf.tileSources = [serviceId + '/info.json'];
         } 
         else {
           // display placeholder image for empty canvases
-          this.state.openSeadragonConf.tileSources = {
+          openSeadragonConf.tileSources = {
             type: 'image',
             url: "https://placeholdit.imgix.net/~text?txtsize=16&txt=Empty+Canvas&w=200&h=300"
           };
         }
       }
     }
+    return openSeadragonConf;
   },
   setShowMetadataSidebar: function(value) {
     this.props.dispatch(actions.setShowMetadataSidebar(value));
@@ -86,6 +75,7 @@ var Viewer = React.createClass({
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
     var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
     var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
+    var openSeadragonConf = this.getOpenSeadragonConf();
     return (
       <div className="viewer-container">
         <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
@@ -109,7 +99,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <OpenSeadragonViewer config={this.state.openSeadragonConf} key={this.props.selectedCanvasId} />
+        <OpenSeadragonViewer config={openSeadragonConf} key={openSeadragonConf.tileSources[0]} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
