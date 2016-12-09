@@ -72,14 +72,24 @@ var SourceManifestBrowser = React.createClass({
   },
   renderLocalStorageErrorMessage: function() {
     return (
-      <div id="local-storage-error-message" className="alert alert-danger" ref="localStorageErrorMessage">
-        <i className="fa fa-times-circle"></i> Unable to open an additional manifest because the browser's storage size limitation has been reached. Please try closing one or more manifests before opening a new one.
+      <div id="local-storage-error-message" className="alert alert-danger" role="alert" ref="localStorageErrorMessage">
+        <button type="button" className="close" onClick={this.hideErrorMessage} aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Unable to open an additional manifest because the browser's storage size limitation has been reached. Please try closing one or more manifests before opening a new one.
       </div>
     );
   },
   displayErrorMessage: function() {
     var $localStorageErrorMessage = $(ReactDOM.findDOMNode(this.refs.localStorageErrorMessage));
-    $localStorageErrorMessage.fadeIn().delay(4000).fadeOut();
+    $localStorageErrorMessage.fadeIn();
+    setTimeout(function() {
+      $localStorageErrorMessage.fadeOut();
+    }, 10000);
+  },
+  hideErrorMessage: function() {
+    var $localStorageErrorMessage = $(ReactDOM.findDOMNode(this.refs.localStorageErrorMessage));
+    $localStorageErrorMessage.fadeOut();
   },
   render: function() {
     var _this = this;
