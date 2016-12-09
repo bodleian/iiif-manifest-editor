@@ -11,19 +11,6 @@ var SourceManifestViewer = React.createClass({
   getInitialState: function() {
     var sidebarToggleIcon = this.props.showMetadataSidebar ? 'on' : 'off';
     return {
-      openSeadragonConf: {
-        id: "osd-viewer-" + this.props.manifestIndex,
-        zoomInButton: "zoom-in-" + this.props.manifestIndex,
-        zoomOutButton: "zoom-out-" + this.props.manifestIndex,
-        homeButton: "home-" + this.props.manifestIndex,
-        fullPageButton: "full-page-" + this.props.manifestIndex,
-        sequenceMode: false,
-        showReferenceStrip: false,
-        showNavigator: false,
-        defaultZoomLevel: 0,
-        minZoomLevel: 0,
-        tileSources: []
-      },
       helpSection: '',
       sidebarToggleIcon: sidebarToggleIcon
     }
@@ -37,17 +24,30 @@ var SourceManifestViewer = React.createClass({
       backdrop: 'static'
     });
   },
-  componentWillMount: function() {
-    this.updateTileSources();
-  },
-  componentWillUpdate: function(prevProps, prevState) {
-    // update the main image in the viewer
-    if(this.props.selectedCanvasIndex !== prevProps.selectedCanvasIndex || this.props.manifestoObject !== prevProps.manifestoObject) {
-      this.updateTileSources();
+  getOpenSeadragonConf: function() {
+    var openSeadragonConf =  {
+      id: "osd-viewer-" + this.props.manifestIndex,
+      zoomInButton: "zoom-in-" + this.props.manifestIndex,
+      zoomOutButton: "zoom-out-" + this.props.manifestIndex,
+      homeButton: "home-" + this.props.manifestIndex,
+      fullPageButton: "full-page-" + this.props.manifestIndex,
+      sequenceMode: false,
+      showReferenceStrip: false,
+      showNavigator: false,
+      defaultZoomLevel: 0,
+      minZoomLevel: 0,
+      tileSources: []
+    };
+    if(this.props.selectedCanvasIndex !== undefined) {
+      // update the main image in the viewer using the selected canvas
+      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasByIndex(this.props.selectedCanvasIndex);
+      var canvasImages = canvas.getImages();
+      if(canvasImages.length > 0) {
+        var serviceId = canvasImages[0].getResource().getServices()[0].id;
+        openSeadragonConf.tileSources = [serviceId + '/info.json'];
+      } 
     }
-    if(this.props.showMetadataSidebar !== prevProps.showMetadataSidebar) {
-      this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
-    }
+    return openSeadragonConf;
   },
   setShowMetadataSidebar: function(value) {
     this.props.dispatch(actions.setShowMetadataSidebar(value));
@@ -56,17 +56,6 @@ var SourceManifestViewer = React.createClass({
     this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
     this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
   },
-  updateTileSources: function() {
-    if(this.props.selectedCanvasIndex !== undefined) {
-      // update the main image in the viewer using the selected canvas
-      var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasByIndex(this.props.selectedCanvasIndex);
-      var canvasImages = canvas.getImages();
-      if(canvasImages.length > 0) {
-        var serviceId = canvasImages[0].getResource().getServices()[0].id;
-        this.state.openSeadragonConf.tileSources = [serviceId + '/info.json'];
-      } 
-    }
-  },
   showSourceManifestMetadataDialog: function() {
     var $sourceManifestMetadataDialog = $(ReactDOM.findDOMNode(this.refs.sourceManifestMetadataDialog));
     $sourceManifestMetadataDialog.modal({
@@ -74,6 +63,7 @@ var SourceManifestViewer = React.createClass({
     });
   },
   render: function() {
+    var openSeadragonConf = this.getOpenSeadragonConf();
     return (
       <div className="source-manifest-viewer">
         <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
@@ -95,7 +85,7 @@ var SourceManifestViewer = React.createClass({
             );
           }
         })()}
-        <OpenSeadragonViewer config={this.state.openSeadragonConf} />
+        <OpenSeadragonViewer config={openSeadragonConf} key={openSeadragonConf.tileSources[0]} />
         {(() => {
           if(this.props.selectedCanvasIndex < this.props.sequence.getCanvases().length - 1) {
             return (
