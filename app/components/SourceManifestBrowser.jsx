@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 
 var SourceManifestBrowser = React.createClass({
   getInitialState: function() {
-    var sourceManifests = localStorage.getItem('sourceManifests') ? JSON.parse(localStorage.getItem('sourceManifests')) : [];
+    var sourceManifests = (localStorage && localStorage.getItem('sourceManifests')) ? JSON.parse(localStorage.getItem('sourceManifests')) : [];
     return {
       sourceManifests: sourceManifests,
       uuid: uuid()
@@ -18,6 +18,16 @@ var SourceManifestBrowser = React.createClass({
     // append the manifest to the list of source manifests
     sourceManifests.push(manifestData);
 
+    // retain the state of the opened source manifests in local storage
+    if(localStorage) {
+      try {
+        localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
+      } catch(e) {
+        this.displayErrorMessage();
+        return false;
+      }
+    }
+
     // update the list of source manifests in the state
     this.setState({
       sourceManifests: sourceManifests
@@ -28,10 +38,7 @@ var SourceManifestBrowser = React.createClass({
       $manifestBrowser.children().each(function(index, elem){
         scrollPosition += ($(elem).width());
       });
-      $manifestBrowser.animate({scrollLeft: scrollPosition}, 600);
-
-      // retain the state of the opened source manifests in local storage
-      localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
+      $manifestBrowser.animate({ scrollLeft: scrollPosition }, 600);
     });
   },
   removeSourceManifestFromState: function(manifestIndex) {
@@ -47,17 +54,32 @@ var SourceManifestBrowser = React.createClass({
     });
 
     // retain the state of the opened source manifests in local storage
-    localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
-    if(localStorage.getItem('sourceManifests') == '[]') {
-      localStorage.removeItem('sourceManifests');
+    if(localStorage) {    
+      localStorage.setItem('sourceManifests', JSON.stringify(sourceManifests));
+      if(localStorage.getItem('sourceManifests') === '[]') {
+        localStorage.removeItem('sourceManifests');
+      }
     }
   },
   renderOpenSequenceMessage: function() {
     if(this.state.sourceManifests.length === 0) {
       return (
-        <div className="alert alert-info no-source-manifests-message"><i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.</div>
+        <div className="alert alert-info no-source-manifests-message">
+          <i className="fa fa-info-circle"></i> To import canvases, click on the "Open Sequence" button in the sidebar and open a sequence from a remote manifest.
+        </div>
       );
     }
+  },
+  renderLocalStorageErrorMessage: function() {
+    return (
+      <div id="local-storage-error-message" className="alert alert-danger" ref="localStorageErrorMessage">
+        <i className="fa fa-times-circle"></i> Unable to open an additional manifest because the browser's storage size limitation has been reached. Please try closing one or more manifests before opening a new one.
+      </div>
+    );
+  },
+  displayErrorMessage: function() {
+    var $localStorageErrorMessage = $(ReactDOM.findDOMNode(this.refs.localStorageErrorMessage));
+    $localStorageErrorMessage.fadeIn().delay(4000).fadeOut();
   },
   render: function() {
     var _this = this;
@@ -71,6 +93,7 @@ var SourceManifestBrowser = React.createClass({
             );
           })
         }
+        { this.renderLocalStorageErrorMessage() }
       </div>
     );
   }

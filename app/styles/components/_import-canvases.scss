@@ -28,6 +28,17 @@
       font-size: 1.2em;
     }
 
+    #local-storage-error-message {
+      display: none;
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      width: 80%;
+      border: 1px solid;
+      font-size: 1.2em;
+      z-index: 2;
+    }
+
     .source-manifest-window {
       display: inline-block;
       vertical-align: middle;
