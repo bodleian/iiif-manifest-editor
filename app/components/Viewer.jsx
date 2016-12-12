@@ -15,6 +15,40 @@ var Viewer = React.createClass({
       sidebarToggleIcon: 'on'
     }
   },
+  componentDidMount: function() {
+    var _this = this;
+
+    // set the focus on the top-level viewer container
+    var $viewerContainer = $(ReactDOM.findDOMNode(this.refs.viewerContainer));
+    $viewerContainer.focus();
+
+    // handle key down events on the viewer container
+    // Note: The keydown function is used to capture arrow key presses. The keypress function ignores arrow key presses.
+    $viewerContainer.bind('keydown', function(e) {
+      if(e.shiftKey) {                 // capture shift key
+        if(e.keyCode === 37) {         // capture left arrow
+          _this.navigate('left');
+        } else if(e.keyCode === 39) {  // capture right arrow
+          _this.navigate('right');
+        }
+      }
+    });
+  },
+  navigate: function(direction) {
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.selectedCanvasId);
+    var canvasIndex = canvas !== null ? sequence.getCanvasIndexById(canvas.id) : 0;
+    if(direction === 'left') {
+      if(canvasIndex > 0) {
+        this.saveSelectedCanvasIdToStore(canvasIndex - 1, sequence);
+      }
+    } else {
+      if(canvasIndex < (sequence.getCanvases().length - 1)) {
+        this.saveSelectedCanvasIdToStore(canvasIndex + 1, sequence);
+      }
+    }
+  },
   showHelp: function(helpSection) {
     this.setState({
       helpSection: helpSection
@@ -67,7 +101,7 @@ var Viewer = React.createClass({
     this.props.showMetadataSidebar ? this.setState({sidebarToggleIcon: 'off'}) : this.setState({sidebarToggleIcon: 'on'});
     this.setShowMetadataSidebar(!this.props.showMetadataSidebar);
   },
-  onChangeHandler: function(canvasIndex, sequence) {
+  saveSelectedCanvasIdToStore: function(canvasIndex, sequence) {
     this.props.dispatch(actions.setSelectedCanvasId(sequence.getCanvasByIndex(canvasIndex).id));
   },
   rotateLeft: function() {
@@ -89,7 +123,7 @@ var Viewer = React.createClass({
     var canvasLabelPath = "sequences/0/canvases/" + canvasIndex + "/label";
     var openSeadragonConf = this.getOpenSeadragonConf();
     return (
-      <div className="viewer-container">
+      <div className="viewer-container" tabIndex="0" ref="viewerContainer">
         <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
         <div className="osd-custom-toolbar">
           <div id="zoom-in"><i className="fa fa-search-plus"></i></div>
@@ -108,15 +142,15 @@ var Viewer = React.createClass({
         {(() => {
           if(canvasIndex > 0) {
             return (
-              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.onChangeHandler} direction="left" />
+              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.saveSelectedCanvasIdToStore} direction="left" />
             );
           }
         })()}
-        <OpenSeadragonViewer config={openSeadragonConf} key={JSON.stringify(openSeadragonConf)} />
+        <OpenSeadragonViewer ref="openSeadragonViewer" config={openSeadragonConf} key={JSON.stringify(openSeadragonConf)} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
-              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.onChangeHandler} direction="right" />
+              <NavigationArrow sequence={sequence} canvasIndex={canvasIndex} onChangeHandler={this.saveSelectedCanvasIdToStore} direction="right" />
             );
           }
         })()}
