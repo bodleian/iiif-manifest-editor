@@ -27,6 +27,14 @@ module.exports = function(props) {
             <td>Reset zoom to show full canvas</td>
           </tr>
           <tr>
+            <td><i className="fa fa-undo viewer-style-icon"></i></td>
+            <td>Rotate canvas left</td>
+          </tr>
+          <tr>
+            <td><i className="fa fa-repeat viewer-style-icon"></i></td>
+            <td>Rotate canvas right</td>
+          </tr>
+          <tr>
             <td><i className="fa fa-arrows-alt viewer-style-icon"></i> </td>
             <td>Show canvas in full-screen mode (press ESC to leave full-screen mode)</td>
           </tr>
