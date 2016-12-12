@@ -212,7 +212,7 @@ export var manifestReducer = (state = stateDefaults, action) => {
         var canvas = updatedManifestData.sequences[0].canvases[canvasIndex];
         if(canvas['@id'] === action.canvas['@id']) {
           // generate a unique uuid for the newly added canvas
-          var newCanvasId = uuid();
+          var newCanvasId = "http://" + uuid();
 
           // update the canvas id with the new uuid
           action.canvas['@id'] = newCanvasId;
