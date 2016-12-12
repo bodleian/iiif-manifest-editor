@@ -4,6 +4,11 @@
   left: 10px;
   z-index: 1;
 
+  #rotate-left, #rotate-right {
+    display: inline-block;
+    position: relative;
+  }
+
   i {
     font-size: 1.4em;
     color: white;

@@ -10,6 +10,7 @@ var OnScreenHelp = require('OnScreenHelp');
 var Viewer = React.createClass({
   getInitialState: function() {
     return {
+      rotationDegrees: 0,
       helpSection: '',
       sidebarToggleIcon: 'on'
     }
@@ -36,6 +37,7 @@ var Viewer = React.createClass({
         showReferenceStrip: false,
         defaultZoomLevel: 0,
         minZoomLevel: 0,
+        degrees: this.state.rotationDegrees,
         tileSources: []
     };
     if(this.props.selectedCanvasId !== undefined) {
@@ -68,6 +70,16 @@ var Viewer = React.createClass({
   onChangeHandler: function(canvasIndex, sequence) {
     this.props.dispatch(actions.setSelectedCanvasId(sequence.getCanvasByIndex(canvasIndex).id));
   },
+  rotateLeft: function() {
+    this.setState({
+      rotationDegrees: (this.state.rotationDegrees - 90) % 360
+    });
+  },
+  rotateRight: function() {
+    this.setState({
+      rotationDegrees: (this.state.rotationDegrees + 90) % 360
+    });
+  },
   render: function() {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -83,6 +95,8 @@ var Viewer = React.createClass({
           <div id="zoom-in"><i className="fa fa-search-plus"></i></div>
           <div id="zoom-out"><i className="fa fa-search-minus"></i></div>
           <div id="home"><i className="fa fa-home"></i></div>
+          <div id="rotate-left" onClick={this.rotateLeft}><i className="fa fa-undo"></i></div>
+          <div id="rotate-right" onClick={this.rotateRight}><i className="fa fa-repeat"></i></div>
           <div id="full-page"><i className="fa fa-arrows-alt"></i></div>
           <a onClick={this.toggleSidebar} title="Show/hide metadata panel"><i className={"fa fa-toggle-" + this.state.sidebarToggleIcon}></i></a>
           <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Viewer')} ><i className="fa fa-question-circle-o"></i></a>
@@ -90,7 +104,6 @@ var Viewer = React.createClass({
         <div className="viewer-loading-indicator collapse">
           <i className="fa fa-circle-o-notch fa-spin"></i>
           <div className="viewer-loading-text">Loading</div>
-          
         </div>
         {(() => {
           if(canvasIndex > 0) {
@@ -99,7 +112,7 @@ var Viewer = React.createClass({
             );
           }
         })()}
-        <OpenSeadragonViewer config={openSeadragonConf} key={openSeadragonConf.tileSources[0]} />
+        <OpenSeadragonViewer config={openSeadragonConf} key={JSON.stringify(openSeadragonConf)} />
         {(() => {
           if(canvasIndex < sequenceLength-1) {
             return (
