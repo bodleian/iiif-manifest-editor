@@ -207,16 +207,24 @@ export var manifestReducer = (state = stateDefaults, action) => {
         ...state.manifestData
       };
       
-      // Check if canvas ID already exists and if yes, create a new ID
-      for (var canvasIndex = 0; canvasIndex < updatedManifestData.sequences[0].canvases.length; canvasIndex++) {
+      // ensure that a duplicate canvas id is not added to the manifest
+      for(var canvasIndex = 0; canvasIndex < updatedManifestData.sequences[0].canvases.length; canvasIndex++) {
         var canvas = updatedManifestData.sequences[0].canvases[canvasIndex];
         if(canvas['@id'] === action.canvas['@id']) {
-          action.canvas['@id'] = uuid();
+          // generate a unique uuid for the newly added canvas
+          var newCanvasId = uuid();
+
+          // update the canvas id with the new uuid
+          action.canvas['@id'] = newCanvasId;
+
+          // update the 'images.on' property with the new uuid
+          action.canvas.images[0]['on'] = newCanvasId;
+
           break;
         }
       };
-      
-      // insert the empty canvas at the given index in the sequence
+
+      // insert the canvas at the given index in the sequence
       updatedManifestData.sequences[0].canvases.splice(action.canvasIndex, 0, action.canvas);
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
