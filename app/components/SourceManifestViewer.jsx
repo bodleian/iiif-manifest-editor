@@ -11,6 +11,7 @@ var SourceManifestViewer = React.createClass({
   getInitialState: function() {
     var sidebarToggleIcon = this.props.showMetadataSidebar ? 'on' : 'off';
     return {
+      rotationDegrees: 0,
       helpSection: '',
       sidebarToggleIcon: sidebarToggleIcon
     }
@@ -36,6 +37,7 @@ var SourceManifestViewer = React.createClass({
       showNavigator: false,
       defaultZoomLevel: 0,
       minZoomLevel: 0,
+      degrees: this.state.rotationDegrees,
       tileSources: []
     };
     if(this.props.selectedCanvasIndex !== undefined) {
@@ -62,6 +64,16 @@ var SourceManifestViewer = React.createClass({
       backdrop: 'static'
     });
   },
+  rotateLeft: function() {
+    this.setState({
+      rotationDegrees: (this.state.rotationDegrees - 90) % 360
+    });
+  },
+  rotateRight: function() {
+    this.setState({
+      rotationDegrees: (this.state.rotationDegrees + 90) % 360
+    });
+  },
   render: function() {
     var openSeadragonConf = this.getOpenSeadragonConf();
     return (
@@ -71,6 +83,8 @@ var SourceManifestViewer = React.createClass({
           <a onClick={() => this.props.onRemoveHandler(this.props.manifestIndex)} className="source-manifest-remove-button" title="Remove sequence"><i className="fa fa-times-circle"></i></a>
           <span id={'zoom-in-' + this.props.manifestIndex}><i className="fa fa-search-plus"></i></span>
           <span id={'zoom-out-' + this.props.manifestIndex}><i className="fa fa-search-minus"></i></span>
+          <span id={'rotate-left-' + this.props.manifestIndex} onClick={this.rotateLeft}><i className="fa fa-undo rotate-button"></i></span>
+          <span id={'rotate-right-' + this.props.manifestIndex} onClick={this.rotateRight}><i className="fa fa-repeat rotate-button"></i></span>
           <span id={'home-' + this.props.manifestIndex}><i className="fa fa-home"></i></span>
           <span id={'full-page-' + this.props.manifestIndex}><i className="fa fa-arrows-alt"></i></span>
           <a onClick={this.toggleSidebar} title="Show/hide metadata panel"><i className={"fa fa-toggle-" + this.state.sidebarToggleIcon}></i></a>
@@ -85,7 +99,7 @@ var SourceManifestViewer = React.createClass({
             );
           }
         })()}
-        <OpenSeadragonViewer config={openSeadragonConf} key={openSeadragonConf.tileSources[0]} />
+        <OpenSeadragonViewer config={openSeadragonConf} key={JSON.stringify(openSeadragonConf)} />
         {(() => {
           if(this.props.selectedCanvasIndex < this.props.sequence.getCanvases().length - 1) {
             return (
