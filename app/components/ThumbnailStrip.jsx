@@ -12,8 +12,6 @@ var ThumbnailStrip = React.createClass({
     return {
       selectedCanvasStartIndex: undefined,
       selectedCanvasEndIndex: undefined,
-      isSequenceDisplayedInReverseOrder: false,
-      canvases: undefined,
       helpSection: ''
     }
   },
@@ -26,19 +24,22 @@ var ThumbnailStrip = React.createClass({
       backdrop: 'static'
     });
   },
-  componentWillMount: function() {
-    this.setState({
-      canvases: this.getCanvases(this.props.manifestData.viewingDirection)
-    });
+  scrollThumbnailStripByViewingDirection: function(viewingDirection) {
+    // scroll to beginning or end of thumbnail strip depending on viewingDirection
+    var $thumbnailStrip = $(ReactDOM.findDOMNode(this));
+    var scrollPosition = 0;
+    if(viewingDirection === 'right-to-left' || viewingDirection === 'bottom-to-top') {
+      $thumbnailStrip.find('.sortable-item').each(function(index, elem){
+        scrollPosition += ($(elem).width());
+      });
+    }
+    $($thumbnailStrip).animate({
+      scrollLeft: scrollPosition
+    }, 300);
   },
   componentWillReceiveProps: function(nextProps) {
-    this.setState({
-      canvases: nextProps.manifestoObject.getSequenceByIndex(0).getCanvases()
-    });
     if(this.props.manifestData.viewingDirection !== nextProps.manifestData.viewingDirection) {
-      this.setState({
-       canvases: this.getCanvases(nextProps.manifestData.viewingDirection)
-      });
+      this.scrollThumbnailStripByViewingDirection(nextProps.manifestData.viewingDirection);
     }
   },
   componentDidMount: function() {
@@ -46,6 +47,7 @@ var ThumbnailStrip = React.createClass({
       e = e || event;
       e.preventDefault();
     }, false);
+    this.scrollThumbnailStripByViewingDirection(this.props.manifestData.viewingDirection);
   },
   componentDidUpdate: function(prevProps) {
     // center the selected canvas in the thumbnail strip using scrollLeft
@@ -185,30 +187,6 @@ var ThumbnailStrip = React.createClass({
     // deselect canvases after deleting canvases
     this.deSelectCanvases();
   },
-  getCanvases: function(viewingDirection) {
-    // get canvases from manifestoObject on initial load, but from state once they are set to state
-    var canvases = [];
-    if(this.state.canvases !== undefined) {
-      canvases = this.state.canvases;
-    } else {
-      canvases = this.props.manifestoObject.getSequenceByIndex(0).getCanvases();
-    }
-    // Set viewing direction: if "right-to-left", reverse canvas display order in thumbnail strip
-    if(viewingDirection === "right-to-left" || viewingDirection === "bottom-to-top") {
-      // if the sequence display order is not reversed, reverse it
-      if(!this.state.isSequenceDisplayedInReverseOrder) {
-        canvases.reverse();
-      }
-      this.setState({isSequenceDisplayedInReverseOrder: true});
-    } else {
-      // if the sequence display order is reversed, reverse it again
-      if(this.state.isSequenceDisplayedInReverseOrder) {
-        canvases.reverse();
-      }
-      this.setState({isSequenceDisplayedInReverseOrder: false});
-    }
-    return canvases;
-  },
   render: function() {
     var _this = this;
     return (
@@ -222,7 +200,7 @@ var ThumbnailStrip = React.createClass({
         <a className="help-icon" href="javascript:;" onClick={() => this.showHelp('ThumbnailStrip')} ><i className="fa fa-question-circle-o"></i></a>
         <SortableItems name="simple-sort" onSort={this.handleSort}>
           {
-            this.state.canvases.map(function(canvas, canvasIndex) {
+            this.props.manifestoObject.getSequenceByIndex(0).getCanvases().map(function(canvas, canvasIndex) {
               return (
                 <SortableItem key={canvasIndex} draggable={true} className="simple-sort-item">
                   <ThumbnailStripCanvas key={canvasIndex} canvasIndex={canvasIndex} canvasId={canvas.id} isSelectedCanvas={_this.isCanvasSelected(canvasIndex)} onCanvasNormalClick={_this.deSelectCanvases} onCanvasShiftClick={_this.updateSelectedCanvasIndexes} />
