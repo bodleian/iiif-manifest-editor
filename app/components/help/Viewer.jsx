@@ -73,6 +73,14 @@ module.exports = function(props) {
             <td>move viewport right</td>
           </tr>
           <tr>
+            <td>Shift + <i className="fa fa-arrow-left"></i> left arrow</td>
+            <td>navigate to the previous canvas</td>
+          </tr>
+          <tr>
+            <td>Shift + <i className="fa fa-arrow-right"></i> right arrow</td>
+            <td>navigate to the next canvas</td>
+          </tr>
+          <tr>
             <td>0</td>
             <td>zoom / move viewport home</td>
           </tr>
@@ -87,18 +95,17 @@ module.exports = function(props) {
         </tbody>
       </table>
 
-
       <h4>Navigate within the Sequence</h4>
   	  <p>
-  	  	Click on the left arrow icon on the left side of the viewer to go to the previous canvas in the sequence, 
-        the right arrow on the right side of the viewer to go to the next canvas. Alternatively, click on a canvas 
-        in the thumbnail strip below the viewer to display the selected canvas.
+  	  	Click on the left arrow icon on the left side of the viewer or click the Shift + <i className="fa fa-arrow-left"></i> left 
+        arrow keyboard combination to go to the previous canvas in the sequence. Click on the right arrow on the right side of the 
+        viewer or click the Shift + <i className="fa fa-arrow-right"></i> right arrow keyboard combination to go to the next canvas. 
+        Alternatively, click on a canvas in the thumbnail strip below the viewer to display the selected canvas.
   	  </p>
 
       <h4>Edit the Canvas Label</h4>
       <p>Click on the canvas label in the bottom left of the viewer to edit the label. Alternatively, 
       use the Canvas Metadata panel in the sidebar to change the canvas label of the selected canvas.</p>
-
 
   	</div>
   );
