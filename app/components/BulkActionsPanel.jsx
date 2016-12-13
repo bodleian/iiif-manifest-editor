@@ -19,6 +19,17 @@ var BulkActionsPanel = React.createClass({
     var canvases = this.props.manifestData.sequences[0].canvases;
     return (
       <div id="bulk-actions-panel" className="metadata-sidebar-panel">
+        <div className="metadata-sidebar-panel-subtitle">Reverse Sequence</div>
+        <form className="form-horizontal" role="form">
+          <div className="form-group">
+            <div className="col-md-9">
+              <button onClick={this.reverseSequence} className="btn btn-default form-control"><i className="fa fa-exchange"></i> Reverse Sequence</button>
+            </div>
+          </div>
+        </form>
+
+        <hr />
+
         <div className="metadata-sidebar-panel-subtitle">Automatically Rename Canvases by Pagination</div>
         <form className="form-horizontal" role="form">
           <div className="form-group">
