@@ -5,7 +5,7 @@ module.exports = function(props) {
   	<div>
   	  <h3>The Sequence Metadata Panel</h3>
   	  <p>
-  	  	The Sequence Metadata panel let&apos;s you edit the label for the current sequence and set the viewing direction for the manifest. 
+  	  	The Sequence Metadata panel lets you edit the label for the current sequence and set the viewing direction for the manifest. 
   	  </p>
 
   	  <h4>Setting Viewing Direction</h4>

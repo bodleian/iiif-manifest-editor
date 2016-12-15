@@ -12,7 +12,7 @@ module.exports = function(props) {
   	  <p>
   	  	Empty canvases will show an "Add Image to Canvas" button underneath the thumbnail of the canvas, if the canvas already has 
   	  	an image annotation the button will say "Replace Image on Canvas". Clicking this button will open a modal window that 
-  	  	let&apos;s you add or replace an image.
+  	  	lets you add or replace an image.
   	  </p>
   	  <p>There are three ways to add or replace an image annotation:</p>
   	  <ul>

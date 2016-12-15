@@ -19,7 +19,7 @@ module.exports = function(props) {
 
       <h4>Adding Canvases</h4>
       <p>
-        At the right end of the sequence there is an "Add Canvas" button which let&apos;s you add a canvas to the end of the sequence. 
+        At the right end of the sequence there is an "Add Canvas" button which lets you add a canvas to the end of the sequence. 
         Use the Canvas Metadata panel to add an image to an empty canvas using the "Add Image to Canvas" button. You can also click on
         the <i className="fa fa-bars"></i> icon on the top right of each canvas to add a canvas to the left or to the right of the 
         current canvas or to duplicate a canvas (cf. below: The Canvas "Context Menu").
@@ -32,7 +32,7 @@ module.exports = function(props) {
 
   	  <h4>The Canvas "Context Menu"</h4>
   	  <p>	
-  	  	Clicking the <i className="fa fa-bars"></i> icon on the top right of each canvas reveals a context menu that let&apos;s you:
+  	  	Clicking the <i className="fa fa-bars"></i> icon on the top right of each canvas reveals a context menu that lets you:
       </p>
       <ul>
         <li><i className="context-menu-item fa fa-arrow-left"></i> add an empty canvas to the left of the current canvas</li>
