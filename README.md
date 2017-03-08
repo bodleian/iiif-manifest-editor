@@ -36,3 +36,27 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
 ## How to run tests ##
 
 * `npm run test`
+
+## Python server
+
+Tested on Python 2.7
+
+To install the Python server locally, create a new Python virtualenv:
+
+* `$> virtualenv dmtenv`
+
+Activate the virtual environment:
+
+* `$> source dmtenv/bin/activate`
+
+Install the required packages:
+ 
+* `(dmtenv) $> pip install -r requirements.txt`
+
+To run the server from the command line:
+
+* `(dmtenv) $> python server.py`
+
+To run the server using gunicorn:
+
+* `(dmtenv) $> gunicorn server:app`
