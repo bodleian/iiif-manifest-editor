@@ -3,3 +3,4 @@ npm-debug.log
 uploads/
 324b4fcaf164735c627269504b7bc28e.png
 7cb0d2482ecadc1b80eb0abe457371b6.png
+*.pyc
