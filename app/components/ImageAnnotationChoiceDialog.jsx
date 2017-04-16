@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
+var Utils = require('Utils');
 
 var ImageAnnotationChoiceDialog = React.createClass({
   getInitialState: function() {
@@ -50,7 +51,7 @@ var ImageAnnotationChoiceDialog = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 className="modal-title">{this.props.addOrReplace === 'add' ? 'Create Image Annotation on Canvas' : 'Replace Image Annotation on Canvas'}: {this.props.canvas.getLabel()}</h4>
+              <h4 className="modal-title">{this.props.addOrReplace === 'add' ? 'Create Image Annotation on Canvas' : 'Replace Image Annotation on Canvas'}: {Utils.getLocalizedPropertyValue(this.props.canvas.getLabel())}</h4>
             </div>
             <div className="modal-body">
               <div className="row">

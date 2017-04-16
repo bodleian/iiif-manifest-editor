@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
+var Utils = require('Utils');
 
 var SequenceMetadataPanel = React.createClass({
   saveMetadataFieldToStore: function(fieldValue, path) {
@@ -15,7 +16,7 @@ var SequenceMetadataPanel = React.createClass({
         <dl>
           <dt className="metadata-field-label">Sequence Label</dt>
           <dd className="metadata-field-value">
-            <EditableTextArea fieldValue={sequence.getLabel()} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
+            <EditableTextArea fieldValue={Utils.getLocalizedPropertyValue(sequence.getLabel())} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
           </dd>
         </dl>
         <div className="row">

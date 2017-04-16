@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
+var Utils = require('Utils');
 
 var BulkActionsPanel = React.createClass({
   renameCanvasLabelsByPagination: function(e) {
@@ -40,7 +41,7 @@ var BulkActionsPanel = React.createClass({
                   Object.keys(canvases).map(function(canvasIndex) {
                     var canvas = canvases[canvasIndex];
                     return (
-                      <option key={canvasIndex} value={canvasIndex}>{canvas.label}</option>
+                      <option key={canvasIndex} value={canvasIndex}>{Utils.getLocalizedPropertyValue(canvas.label)}</option>
                     );
                   })
                 }
@@ -71,7 +72,7 @@ var BulkActionsPanel = React.createClass({
                   Object.keys(canvases).map(function(canvasIndex) {
                     var canvas = canvases[canvasIndex];
                     return (
-                      <option key={canvasIndex} value={canvasIndex}>{canvas.label}</option>
+                      <option key={canvasIndex} value={canvasIndex}>{Utils.getLocalizedPropertyValue(canvas.label)}</option>
                     );
                   })
                 }

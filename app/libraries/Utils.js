@@ -1,3 +1,19 @@
+export var getLocalizedPropertyValue = (propertyValue) => {
+  if (typeof propertyValue === 'undefined' || propertyValue === null) {
+    return '';
+  }
+
+  // Return strings directly
+  if(typeof propertyValue === 'string' || propertyValue instanceof String) {
+    return propertyValue;
+  }
+  else {
+    // Handle multilingual values => return English values only for now
+    if (propertyValue['@language'] === 'en' || propertyValue['@language'] === 'eng') {
+      return propertyValue['@value'];
+    }
+  }
+}
 
 export var getMetadataField = (metadataFieldName, metadataFieldValue) => {
   // Return strings directly

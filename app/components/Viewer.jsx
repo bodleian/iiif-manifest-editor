@@ -4,6 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var NavigationArrow = require('NavigationArrow');
+var Utils = require('Utils');
 import OpenSeadragonViewer from 'OpenSeadragonViewer'
 var OnScreenHelp = require('OnScreenHelp');
 
@@ -157,7 +158,7 @@ var Viewer = React.createClass({
         {(() => {
           if(this.props.selectedCanvasId !== undefined && sequenceLength > 0) {
             return (
-              <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldValue={canvas !== null ? canvas.getLabel() : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldValue={canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             );
           } else if(sequenceLength < 1) {
             return (

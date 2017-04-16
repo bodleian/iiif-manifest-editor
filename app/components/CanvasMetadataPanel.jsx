@@ -7,6 +7,7 @@ var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 var ImageAnnotationChoiceDialog = require('ImageAnnotationChoiceDialog');
 var uuid = require('node-uuid');
+var Utils = require('Utils');
 
 var CanvasMetadataPanel = React.createClass({
   saveMetadataFieldToStore: function(fieldValue, path, fieldName) {
@@ -181,7 +182,7 @@ var CanvasMetadataPanel = React.createClass({
           <dl>
             <dt className="metadata-field-label">Canvas Label</dt> 
             <dd className="metadata-field-value">
-              <EditableTextArea fieldValue={canvas.getLabel()} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea fieldValue={Utils.getLocalizedPropertyValue(canvas.getLabel())} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             </dd>
           </dl>
           <dl>

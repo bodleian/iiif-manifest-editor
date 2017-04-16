@@ -1,5 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var Utils = require('Utils');
 import LazyLoad from 'react-lazy-load';
 
 var SourceManifestThumbnailStripCanvas = React.createClass({
@@ -7,7 +8,7 @@ var SourceManifestThumbnailStripCanvas = React.createClass({
     return canvas.getImages().length > 0 ? canvas.getThumbUri('', '100') : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=75&h=100';
   },
   getMainImageLabel: function(canvas) {
-    return canvas !== null ? canvas.getLabel() : 'Empty canvas';
+    return canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas';
   },
   stringTruncate: function(str, maxLength) {
     return str.length > maxLength ? str.substring(0, maxLength - 1) + '…' : str;

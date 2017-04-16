@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var manifesto = require('manifesto.js');
+var Utils = require('Utils');
 
 var MetadataSidebarCanvas = React.createClass({
   getMainImage: function(canvas) {
@@ -10,9 +11,9 @@ var MetadataSidebarCanvas = React.createClass({
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
     return (
       <div style={{background: '#fff url(./img/loading-small.gif) no-repeat center center'}} className="metadata-sidebar-canvas">
-        <img src={this.getMainImage(canvas)} alt={canvas.getLabel()} height="150" />
+        <img src={this.getMainImage(canvas)} alt={Utils.getLocalizedPropertyValue(canvas.getLabel())} height="150" />
         <div className="canvas-label">
-          {canvas.getLabel()}
+          {Utils.getLocalizedPropertyValue(canvas.getLabel())}
         </div>
       </div>
     );

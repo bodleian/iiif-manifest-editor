@@ -4,6 +4,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
 var uuid = require('node-uuid');
+var Utils = require('Utils');
 import LazyLoad from 'react-lazy-load';
 
 var ThumbnailStripCanvas = React.createClass({
@@ -70,7 +71,7 @@ var ThumbnailStripCanvas = React.createClass({
     return canvas.getImages().length > 0 ? canvas.getThumbUri('', this.getDefaultThumbnailHeight()) : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
   },
   getMainImageLabel: function(canvas) {
-    return canvas !== null ? canvas.getLabel() : 'Empty canvas';
+    return canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas';
   },
   addCanvasLeft: function() {
     // dispatch an action to add an empty canvas to the left of the given canvas

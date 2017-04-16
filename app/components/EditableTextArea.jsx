@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
+var Utils = require('Utils');
 
 var EditableTextArea = React.createClass({
   getInitialState: function() {
@@ -90,7 +91,7 @@ var EditableTextArea = React.createClass({
     }
     return (
       <div className={this.props.classNames} onClick={this.labelClicked}>
-        {this.state.labelPrefix} <i className="fa fa-pencil-square-o"></i> {this.state.fieldValue}
+        {this.state.labelPrefix} <i className="fa fa-pencil-square-o"></i> {Utils.getLocalizedPropertyValue(this.state.fieldValue)}
       </div>
     );
   }
