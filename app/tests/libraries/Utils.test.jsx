@@ -137,8 +137,37 @@ describe('Libraries', () => {
       expect(res).toEqual('http://path/to/seeAlso/resource');
     });
 
+    it('should return an empty string for an empty property value', () => {
+      var propertyValue = '';
+      var res = Utils.getLocalizedPropertyValue(df(propertyValue));
+      expect(res).toEqual('');
+    });
 
+    it('should return an empty string for an undefined property value', () => {
+      var propertyValue = undefined;
+      var res = Utils.getLocalizedPropertyValue(propertyValue);
+      expect(res).toEqual('');
+    });
 
+    it('should return an empty string for a null property value', () => {
+      var propertyValue = null;
+      var res = Utils.getLocalizedPropertyValue(propertyValue);
+      expect(res).toEqual('');
+    });
 
+    it('should return the original string for a string type property value', () => {
+      var propertyValue = 'property value';
+      var res = Utils.getLocalizedPropertyValue(df(propertyValue));
+      expect(res).toEqual('property value');
+    });
+
+    it('should return the localized English string for an object type property with a 2-letter language code (en)', () => {
+      var propertyValue = {
+        "@value": "property value",
+        "@language": "en"
+      };
+      var res = Utils.getLocalizedPropertyValue(df(propertyValue));
+      expect(res).toEqual('property value');
+    });
   });
 });
