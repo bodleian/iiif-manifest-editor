@@ -188,13 +188,13 @@ var CanvasMetadataPanel = React.createClass({
           <dl>
             <dt className="metadata-field-label">Canvas Width</dt> 
             <dd className="metadata-field-value">
-              <EditableTextArea fieldName="canvasWidth" fieldValue={canvas.getWidth()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea fieldName="canvasWidth" fieldValue={canvas.getWidth().toString()} path={canvasWidthPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             </dd>
           </dl>
           <dl>
             <dt className="metadata-field-label">Canvas Height</dt> 
             <dd className="metadata-field-value">
-              <EditableTextArea fieldName="canvasHeight" fieldValue={canvas.getHeight()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea fieldName="canvasHeight" fieldValue={canvas.getHeight().toString()} path={canvasHeightPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             </dd>
           </dl>
           <dl>
