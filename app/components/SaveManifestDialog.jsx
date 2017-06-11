@@ -32,29 +32,18 @@ var SaveManifestDialog = React.createClass({
       validatorResponse: undefined
     });
     var that = this;
-    // Store generated manifest JSON on myjson.com so we can point the IIIF Validator to it
-    axios.post("https://api.myjson.com/bins", this.props.manifestData)
-      .then(function(myJsonResponse) {
-        // returned bin ID from myjson.com
-        var uriToValidate = myJsonResponse.data.uri;
-        var baseUriValidator = "http://iiif.io/api/presentation/validator/service/validate?url=";
-        var validatorOptions = "&version=2.0&format=json";
-        axios.get(baseUriValidator + uriToValidate + validatorOptions)
-        .then(function(validatorResponse){
-          that.setState({
-            isValidatingManifest: false,
-            validatorResponse: validatorResponse.data
-          });
-        })
-        .catch(function(validatorRequestError) {
-          that.setState({
-            isValidatingManifest: false,
-            validatorResponse: undefined
-          });
+    axios.post('http://iiif.io/api/presentation/validator/service/validate', { json: this.props.manifestData, format: 'json', version: '2.0' })
+      .then(function(validatorResponse) {
+        that.setState({
+          isValidatingManifest: false,
+          validatorResponse: validatorResponse.data
         });
-
       })
-      .catch(function(myJsonRequestError) {
+      .catch(function(validatorRequestError) {
+        that.setState({
+          isValidatingManifest: false,
+          validatorResponse: undefined
+        });
         //dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest. Please provide a valid manifest URL.'));
         //dispatch(actions.completeManifestFetch());
       });
