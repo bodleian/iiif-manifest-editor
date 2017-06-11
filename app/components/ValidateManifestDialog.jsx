@@ -24,7 +24,7 @@ var ValidateManifestDialog = React.createClass({
       .then(function(myJsonResponse) {
         // returned bin ID from myjson.com
         var uriToValidate = myJsonResponse.data.uri;
-        var baseUriValidator = "http://iiif.io/api/presentation/validator/service/validate?url=";
+        var baseUriValidator = "https://iiif.io/api/presentation/validator/service/validate?url=";
         var validatorOptions = "&version=2.0&format=json";
         axios.get(baseUriValidator + uriToValidate + validatorOptions)
         .then(function(validatorResponse){
