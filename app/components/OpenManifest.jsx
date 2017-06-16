@@ -62,16 +62,25 @@ var OpenManifest = React.createClass({
     evt.preventDefault();
   },
   onFileDrop: function(evt) {
+    var {dispatch} = this.props;
     var files;
     this.onFileDrag(evt);
     files = evt.target.files || evt.dataTransfer.files;
     if (files.length > 0) { // handle upload of local manifest files
       this.fetchLocalManifestFile(files[0]);
     } else { // handle loading remote manifests that were dropped via IIIF icon
-      var url = evt.dataTransfer.getData('text');
+      // get manifest URL for Firefox and Chrome
+      var url = evt.dataTransfer.getData('text/uri-list');
+      // if text/uri-list is empty, use text/plain (e.g. for Safari)
+      if(url === "") {
+        url = evt.dataTransfer.getData('text/plain');
+      }
       var manifestUrl = this.getUrlParameterByName('manifest', url);
       if(manifestUrl !== null) {
         this.fetchRemoteManifest(manifestUrl);
+      }
+      else {
+        dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest.'));
       }
     }
     var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
