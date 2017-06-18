@@ -9,7 +9,8 @@ var DiscoverManifestsDialog = React.createClass({
   getInitialState: function() {
     return {
       selectedContentProvider: false,
-      manifestList: undefined
+      manifestList: undefined,
+      subCollectionsList: undefined
     };
   },
   loadManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
@@ -24,12 +25,22 @@ var DiscoverManifestsDialog = React.createClass({
           manifestList: data.manifests
         });
       }
+      else if(data.collections !== undefined) {
+        this.setState({
+          subCollectionsList: data.collections
+        });
+      }
     })
   },
   resetSelectedContentProvider: function() {
     this.setState({
-      selectedContentProvider: false
+      selectedContentProvider: false,
+      manifestList: undefined,
+      subCollectionsList: undefined
     });
+  },
+  selectManifest: function(selectedManifestUrl) {
+    console.log(selectedManifestUrl);
   },
   render: function() {
     return (
@@ -55,12 +66,29 @@ var DiscoverManifestsDialog = React.createClass({
                       }
                     </div>
                   );
-                } else {
+                } else if(this.state.manifestList !== undefined) {
                   return (
                     <div className="manifests-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
-                      <div>Selected: {this.state.selectedContentProvider}</div>
+                      <ul>
+                        {
+                          this.state.manifestList.map(manifest => 
+                            <li key={manifest['@id']}>
+                              <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{manifest.label}</a>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </div>
+                  );
+                }
+                else if(this.state.subCollectionsList !== undefined) {
+                  return (
+                    <div className="subcollections-list">
+                      <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
+                      <h4>{this.state.selectedContentProvider} - Subcollections</h4>
+                      <div className="alert alert-info">{this.state.selectedContentProvider} has subcollections. Subcollections are currently not supported.</div>
                     </div>
                   );
                 }
