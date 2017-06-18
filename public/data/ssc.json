@@ -1,0 +1,1127 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "https://labs2.artstor.org/iiif/ssc/manifest.json",
+  "@type": "sc:Collection",
+  "manifests": [
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730438/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Charles Allmond Papers: Slides"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730737/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Archives: RISD Buildings and Open Spaces"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731126/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rhode Island Collge Special Collections: Baxter Collection of Photographs of Cape Verde (1980s)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730796/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dr. Hileman's Powerpoints"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730658/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Williams College: Laszlow Versenyi Collection of Romanian Parish Churches"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729417/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Alison Mason Kingsbury: Life and Art"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730819/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wofford College: Fine Arts Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730556/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Muhlenberg College: Robert C. Horn Papyri Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730846/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Linfield College: Good Samaritan School of Nursing"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729438/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Reuleaux Kinematic Mechanisms Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730875/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Misericordia Unviersity: Center for Nursing History Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730656/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hartwick College - Buddhism in the Catskills Video Recordings"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730818/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hamilton College: Geosciences Rock Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730518/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "MIT: Mohamed Makiya Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730844/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Armand William Forstall, S.J. Papers"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729975/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Trinity College Watkinson Library: George Watson Cole European Postcard Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729538/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Midvale Steel Company Photographs Collected by Charles D. Wrege"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730058/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Emory: Conrad M. Stibbe Photo Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729497/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Washington University: Eames & Young Architectural Photography Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729470/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Cast Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730756/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Theatre Prints and Books from Early Modern Japan"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730877/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: Theatre Arts Productions"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729419/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: New York State Aerial Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729815/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bowdoin College Library Archives Image Gallery"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730435/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Brooklyn College Listening Project"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729536/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: New York Call Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730739/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bennington College Carolyn Crossett Rowland Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729737/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bryn Mawr College: Historical Images of Bryn Mawr College"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730840/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Noam Chomsky and Family Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730195/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Brooklyn College History"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730916/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Limestone College Undergraduate Presentations (video recordings)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730477/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "CCNY Anti-war Notices 1934-1936"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730838/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Richard H. Truly U.S. Space Program Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729429/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Images from the Cornell University Library Map Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730235/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Miami School of Architecture"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730295/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UC San Diego Library Roger Reynolds Ping Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730135/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Purchase College, SUNY: Campus Construction Photos by Robert A. Harris"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730903/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Menil Collection: Arts of the Ancient World"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730662/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martin Methodist College Marine Biology Collection: Trinidad"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729896/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Mountain Lake Biological Station (UVA) Public Image Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729458/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Western Art Teaching Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730659/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hartwick College - Campus Visitors Audio and Visual Recordings"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729955/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Trinity College Archives"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730878/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UVA Faculty Image Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729555/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Bernard Kassoy Teacher News Cartoons"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730842/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Gerard Manley Hopkins, S.J. Conference"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730557/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dartmouth: Ediciones Vigia Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731070/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Library Visual Resources: Nature Forms"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729418/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Colby College: Colbiana Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730860/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "ServiusMetz292"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730355/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rice University: The Rice Institute"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729471/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Historic Map Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730677/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hartwick College - Roy Rowan Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729516/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lawrence University Department of Theatre Arts Productions"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730678/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "San Francisco Art Institute Historical Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729957/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Purchase College, SUNY: Faculty Artworks"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wheaton College (MA): Marion B. Gebbie Archives Image Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730955/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gannon University - Erie Voices"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730482/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pratt Institute Libraries Special Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730508/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Rhode Island: The Senatorial Papers of Claiborne Pell, 1960-1997, Audio Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729427/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Colby College: Somalia, Middle Jubba Valley, Ethnographic Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dartmouth: Remix the Manuscript"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729466/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Incorporated Towns of Delaware (1968)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729995/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Images from the Rare Book and Manuscript Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729465/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Incorporated Towns of Delaware (1959)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730755/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Early American Decorated Interiors "
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731101/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hope College: Mongolian Tsakli: Buddhist Diety Paintings"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729439/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Icelandic and Faroese Photographs of Frederick W.W. Howell"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729500/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sample University Commons Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730637/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Political Americana Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730959/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: HIV/AIDS student prints 2015"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730216/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Squeeze Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730817/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "St. Lawrence University:  Van De Water Family Postcard Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730176/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bowdoin College Museum of Art Historical Images"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730615/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Illinois College Jacksonville Female Academy SharedShelf Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730660/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "CAED Material Samples"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729775/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wesleyan: Vertical Files Photographs Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729475/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Kroch Asia Rare Materials Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729463/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Plant Pathology Herbarium (CUP)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730716/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "St. Thomas University: The Voice, Serials Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730255/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wellesley College: Spiritual Spaces"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730524/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Maryland: Lo Ch'ing works of art"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730460/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Efraim Racker Art Albums"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730136/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Art: Abby Donovan and the 181"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729695/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UC San Diego Library Zambian Storytellers Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729595/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UC San Diego Library Travelogue Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730661/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cal Poly CAED Student Works"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730455/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bryn Mawr College Faculty/Staff/Student Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729444/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Postcard Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729517/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Obama Visual Iconography"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729432/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pratt Institute Archives Image Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730523/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Yale University Art Gallery: Photographs from Eastern Indonesia and Beyond: The Robert H. and Ruth Barnes Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729473/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Coins Collection "
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730499/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Library Special Collections: Ruth Laxson Artist Book Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729537/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Frank Gilbreth Motion Study Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730376/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Franklin C. Daiber Botanical Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729424/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of North Carolina: Art Department Visual Resources Library (Open Access)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729495/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Washington University: 19th Century Architectural Photography Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729496/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Washington University: James E. & Joan Singer Schiele Print Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730915/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Limestone College Undergraduate Presentations"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730458/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Beyond the Taj: Architectural Traditions and Landscape Experience in South Asia"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729459/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Claire Holt Papers: Images of Indonesian Art, Architecture, and Culture"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730595/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Ragamala Paintings Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729996/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Trinity College Watkinson Library: Renaissance Manuscript Illuminations"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730504/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UC San Diego Library Digital Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729467/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Incorporated Towns of Delaware (1989)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730758/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hampden-Sydney College: Henry & Kaye Spalding Map Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731140/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: Senior Art Shows"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730215/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Brooklyn College: Farm Labor Project"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729456/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Willard D. Straight in Korea"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729499/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: NewYork-Presbyterian/Weill Cornell Medical Center Archives Image Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729616/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: John Reps Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730519/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Ohio State University, William Henry Jackson Photochrome Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730456/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Persuasive Cartography: The PJ Mode Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730520/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Ohio State University, Ann Hamilton Project Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730675/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martin Methodist Marine Biology Collection: Key Largo"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730157/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lawrence University Wriston Art Center Galleries Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730535/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dartmouth: Open Dartmouth"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729655/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UMass Boston: Academic Images"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731073/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dartmouth: Chinese Graphic Novels"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730956/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manhattanville College: Convent Avenue Campus"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730820/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Central Methodist University Life Story Project"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730855/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Trinity College Art Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729535/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Southern Tenant Farmers Union Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730795/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gettysburg College - Map Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729816/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: Senior Art Show 2013"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730821/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Kansas City Art Institute Print Department Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: Senior Art Show 2014"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Limestone College Faculty Works (Creative Works)"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729736/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Efraim Racker Paintings"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729436/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: George Handy Bates Samoan Papers: Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730976/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Kansas City Ceramics Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730896/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Central Methodist University Archives"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729515/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Middlebury College Museum of Art, Vermont"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730575/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "St. Thomas University: The Voice, Photograph Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University: DeGregorio Collection of Antiquities"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730521/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Library Picture Collection: Posters"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730505/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Library Picture Collection: Golden Age Illustration"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729445/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Joseph C. Sloane Art Library Artists' Book Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729441/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Divine Comedy Image Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730735/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Historic Glacial Images of Alaska and Greenland"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729498/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Alexander Gardner Photographs of Lincoln Assassination Conspirators"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730158/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University: World War II Posters"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729442/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Field Guide of Biodiversity Images"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729539/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: International Ladies' Garment Workers' Union Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730036/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University History"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Rhode Island: University Archives Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729443/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Mysteries at Eleusis: Images of Inscriptions"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730717/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RISD Library Special Collections: Artists' Books"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730476/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: Senior Art Show 2015"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730837/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Linfield College: Oregon Wine History Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730500/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Shipley-Bringhurst-Hargraves Family Papers: Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729596/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: The Joe Conzo, Jr  Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730957/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wofford College: Stereographs in Special Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Central Methodist University Jordan Coller Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730847/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Linfield College: Photograph Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730275/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: John Reps Collection - Bastides"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729421/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: William Augustus Brewer Bookplate Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730776/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Saint Mary De Paul Library: Bernard H. Hall Lincoln Ephemera Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730695/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martin Methodist College Marine Biology Collection: Red Sea"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730296/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wesleyan University: Coeducation at Wesleyan, 1867-1912"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730498/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UC Berkeley: Visual Resources"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729457/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Campus Artifacts, Art & Memorabilia"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730395/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "City College Dominican Library First Blacks in the Americas"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730635/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "St. Lawrence University: Street Art Graphics"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729795/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bryn Mawr College: Albert Winslow Barker Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730057/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Michael C. Carlos Museum Collections Online"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730835/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Binghamton University: Sarra Fleur Abou-El-Haj Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730616/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Saint Mary De Paul Library: Bernard H. Hall Abraham Lincoln Portrait Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730836/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Linfield College: In Their Own Words"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730900/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Puget Sound: DIRT? Scientists, Book Artists, and Writers Reflect..."
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730513/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Linfield College: Dr. Jane Claire Dirks-Edmunds Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730777/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Saint Mary De Paul Library: Bernard H. Hall Abraham Lincoln Campaign Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729440/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Vicos Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729472/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Hip Hop Party and Event Flyers"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730841/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Santo Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730815/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Moravian College: Moravian Seminary and College for Women Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University: Artists' Books Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729422/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Willard Stewart WPA and HABS Photographs of Delaware"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730276/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University: Samek Art Museum"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730958/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Medieval Portland"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730861/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Laboratory of Ornithology Gallery of Bird and Wildlife Art"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Williams College: Furtwangler Griechische Vasenmalerei"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729519/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Art History: Visual Resources Center"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729520/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Harvard Fine Arts Library: Artistic Houses"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729997/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Trinity College Watkinson Library: Enders Ornithology Lantern Slides"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730736/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Lowentheil Collection of African-American Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730509/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Santa Rosa Junior College Digital Archives Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730897/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tuskegee University Archives: Audio Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730738/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historic Dress Rexford Costume Research Archive"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730977/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Massachusetts College of Art and Design: T.J. Lyons Type Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729523/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Harvard Fine Arts Library: Various Ports Album"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729540/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Selections from the Anthropology Collections"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730901/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hollins University: Volos Museum Stelae"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729976/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rob Olshansky: Urban and Regional Planning"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730297/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Gem Impressions Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730856/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wellesley College: \"Serve the People!\" Images of Daily Life in China during the Cultural Revolution"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730536/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Emory University Art History Department Shared Shelf Commons Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729464/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Motley Collection of Theatre & Costume Design"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730316/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: John Clair Miller Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730336/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "CCNY Science Animation"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729935/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rice University: Rio de Janeiro Iconography"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730156/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Rhode Island: Theatre Department Images"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730507/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Rhode Island: The Senatorial Papers of Claiborne Pell, 1960-1997, Audiovisual Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730778/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Knowledge of the World in Early Modern Japan"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730437/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bryn Mawr College: Richard S. Ellis Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731095/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Elmhurst College: Doan Postcard Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730056/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Rhode Island: Rhode Island Election Ballots"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730096/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "CCAD Students' Thesis Projects"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730155/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bucknell University: Nelson F. Davis Covered Bridges Photograph Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730035/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wellesley College Archives Image Gallery"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729469/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Atlas of the State of Delaware"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729428/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Billie Jean Isbell Andean Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731121/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "University of Ottawa, CRCCF: Fonds Georges-Michau"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729817/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Philadelphia Museum of Art Library and Archives"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731102/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Coker College Visual Resources Project"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729875/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Oskar Diethelm Library for the History of Psychiatry"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730459/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cornell: Andrew Dickson White Collection of Architectural Photographs"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730845/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regis University: Charles Roitz Photography Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730655/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wheaton College Shell Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7731003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Seattle Art Museum Libraries: Annual Report Collection"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729437/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UD Library: Rosenthal Lithographic Prints of Civil War Encampments"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7729715/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "UVA School of Architecture Lectures"
+    },
+    {
+      "@id": "https://labs2.artstor.org/iiif/ssc/collection_id/7730775/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Southwest Virginia LGBTQ+ History Project"
+    }
+  ]
+}

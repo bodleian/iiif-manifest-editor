@@ -1,0 +1,4341 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@type": "sc:Collection",
+  "manifests": [
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sl-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus Hipponensis, Epistolae et Sermones (Codex restitutus)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sl-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius M., Moralia in Job., t. I (Codex restitutus)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sl-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-0026-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wasmodus de Homberg; Varia in materia beghardorum et beginarum; Johannes Mulberg; Benedictus de Asinago; Felix Hemmerlin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-BN0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bohemian Prayer book"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/en/searchresult/list/one/kba-Ms-ZF-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Werner Schodoler, EidgenÃ¶ssische Chronik, Vol. 3"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus Comestor; Alexander de Villa Dei; Petrus Pictaviensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pontificale Murense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-MurF0031a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Osterspiel von Muri"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia sacra"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-MsWettF0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Sacra"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Sacra . Short tract 'De fructibus carnis et spiritus'"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hugo Argentinensis; Guilelmus Rothwell"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-0016-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Silbereisen: Chronicon Helvetiae, Part I"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-0016-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Silbereisen: Chronicon Helvetiae, Part II"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-0016-3/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Silbereisen: Chronicon Helvetiae, Part III"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettFm0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale oesa, Proprium de tempore, pars hiemalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kba-WettFm0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale oesa, Proprium de sanctis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-0428/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cartulary I of KÃ¶nigsfelden"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-4530/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Death records of Hermetschwil"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-4947/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Acta Murensia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-AA3115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Little Urbarium (Registrum Privilegiorum; Urbaria)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-AA3116/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diplomatarium Wettingense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/saa-V4-1985/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heraldry Guide of Hans Ulrich Fisch"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-I-0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Acta concilii Constantiensis et Basiliensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-I-0032/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Acta diversa concilii Basiliensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicolaus de Lyra, Postilla super Genesim et Exodum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super Leviticum, Numeros et Deuteronomium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super libros Iosue, Iudicum, Ruth, Esdrae, Iob"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super libros Regum et Esther"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super Ieremiam, Danielem, in Machabaeorum et Iudith"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super Isaiam et Dodecapropheton (Os-Hab)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra; Jacobus de Cessolis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super Evangelia Iohannis, Lucae et Marci, postilla super Tobiam et Baruch"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super Actus apostolorum, super Apocalypsim et super septem epistolas canonicas"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nycolaus de Lyra, Postilla super epistulas Pauli"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-IX-0096/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio hymnorum et sequentiarum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-VI-0022/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Super sententiarum libros quattuor"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-VII-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium graeco-latinum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-VII-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript (theological content)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-VIII-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Latin Composite Manuscript, among others Mechthild von Magdeburg: €ºLux divinitatis€¹, Agnes Blannbekin: €ºVita et revelationes€¹"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-X-0084/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium feriatum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-A-XI-0089/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes Meyer: Lives of the Dominican Brothers; Dominican Chronicle of  Popes; Dominican Chronicle of  Emperors"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-II-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Matriculation Register of the Rectorate of the University of Basel, Volume 1 (1460-1567)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-II-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Matriculation Register of the Rectorate of the University of Basel, Volume 2 (1586-1653)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-II-0004a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Matriculation Register of the Rectorate of the University of Basel, Volume 3 (1654-1764)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-II-0007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of deanships and of doctorates of the faculty of law at the University of Basel for the period from 1461 to 1921"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-II-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of the faculty of arts, 1461-1748"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-III-0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Acta concilii Constantiensis, sessiones 1-45, 1414-1418"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-IV-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalter, German"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-AN-IV-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Claudii Caesaris Arati Phaenomena"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-B-III-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homiliarium Pauli Diaconi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-B-III-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Thomas Aquinas: Quaestiones; Quodlibeta "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-B-IV-0026/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homiliarium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-B-IX-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Latin Composite Manuscript, among others Berthold of NÃ¼rnberg: €ºLiber de mysteriis et laudibus intemerate Virginis Mariae€¹, Mechthild of Magdeburg: €ºLux divinitatis€¹ "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-Bc-II-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristoteles, Miscellany"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-C-II-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus de Andelo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-C-V-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes Wydenroyd, Manuale rotae concilii Basiliensis, pars 2"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-D-III-0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manuscript Miscellany containing texts on horse medicine"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-I-0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Albertus Magnus, "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-II-0023/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vergilius Maro, Opera"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-II-0029/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Thomas de Aquino, Adamus Bucfeldus: Expositiones super Aristotelem"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Astronomica et astrologica, de tempestate"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus, Etymolgiae, lib. II-XIX"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ps. Isidorus Hispalensis, De ordine creaturarum . Vita Antigoni et s. Eupraxiae . Vita s. Goaris"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015c/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus Hispalensis . Ps. Basilius . Cyprianus Carthaginensis . Gregorius Magnus al."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015d/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus iunior Hispalensis, De vitiis . Consentius, De barbarismis et metaplasmis . Victorinus, De soloecismo et barbarismo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015f/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus iunior Hispalensis, De natura rerum cum additamento De XII signis caeli"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015g/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus Hispalensis, Sententiae (liber I-II)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0015l/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus Hispalensis, Differentiarum liber .  Gennadius Massiliensis, Definitio ecclesiasticarum dogmatum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commenta super logicam veterem"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0025/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript (Astronomy)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-III-0033/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Astrologica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IV-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nonius Marcellus; Varro"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IV-0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristoteles, Boethius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IV-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ovidio Naso, Heroides, cum glossa Guilelmi Aurelianensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IV-0024/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus de Alliaco, Imago mundi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IV-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes von Rheinfelden, Tractatus  de moribus et disciplina humanae conversationis: id est ludus cartularum moralisatus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript (Humanistica)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-V-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martianus Capella, De nuptiis Philologiae et Mercurii, lib. 1-2"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-V-0031/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diodorus Siculus, Bibliothecae libri 11-13"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-VI-0061/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tractatus rhetorici"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-VII-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commentarii super Parvulum philosophiae naturalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-VIII-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Marius Victorinus Gaius, Explanationum in Rhetoricam Ciceronis libri duo; De attributis personae et negotio"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-F-VIII-0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Titus Lucretius Carus, De rerum natura libri sex"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-H-V-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hans and Peter Roth, Pilgrimages to Jerusalem 1440 and 1453"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-N-I-0002-148b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Fragment from a Glagolitic Breviary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-N-I-0006-71/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Euporiston (fragments) / Theodorus Priscianus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ubb-R-III-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Babylonian Talmud (fragment)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata), Part 1: Genesis to Psalms"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata), Part 2: Solomon to Apocalypse (incomplete)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hrabanus Maurus, Liber de Laudibus Sanctae Crucis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible du XIIIÃ¨me siÃ¨cle (Part 1: Genesis €“ Psalms)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible du XIIIÃ¨me siÃ¨cle (Part 2: Proverbs €“ Apocalypse)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0085/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Latina (Vulgata): Evangelia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0087/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "(Pseudo-)Boethius: Geometria; Excerpta Agrimensorum Romanorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0088/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aratus €“ Germanicus: Phaenomena"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0162/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus: Opera"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0199/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius Turonensis: Libri octo miraculorum; in addition: Evangelium Johannis (Fragmentum); Hieronymus: Vita sancti Pauli Thebaei"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0218/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guillaume de Machaut, Oeuvres"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0219/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Eusebius-Hieronymus: Chronicon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0234/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cassiodorus, Augustinus, Alcuinus, Audax Grammaticus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0250/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Victorinus Aquitanus: Calculus; Abbo Floriacensis: Computus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0264/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prudentius, Carmina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0306/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Abbo Floriacensis: Computus; Annales Floriacenses breves"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0318/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Physiologus Bernensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0330/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript: Orthography and etymology, Latin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0344/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Florus Lugdunensis: Sententiae epistolarum beati Pauli apostoli a sancto Hieronimo presbitero, denique a beato papa Gregorio expositae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0347/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript: Macrobius, Plinius, Nonius Marcellus: excerpts, Latin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0348/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Latina (Vulgata): Evangelia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0357/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript: Glossaries; excerpts from classic texts; fragment from Petronius, Latin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0360/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The manuscript catalog of Jean Hurault de BoistaillÃ©"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0402/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Corpus Theophrasticum; Corpus Aristotelicum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0459/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Miscellanea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0596/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Anonymum Byzantinum chronicon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0703/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prayers and liturgical pieces from Orient and Occident"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0720-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Annales Fuldenses (fragment)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-0722-3/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cetius Faventinus: Artis architectonicae privatis usibus adbreviatus liber (fragment)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-A0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-A0095-10/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethius: Livre de consolation; Guillaume de Machaut: Le confort d'ami"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-B0219/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cartularium Lausannense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-Mss-hh-I0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diebold Schilling, Amtliche Berner Chronik, vol. 1"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-Mss-hh-I0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diebold Schilling, Amtliche Berner Chronik, vol  2"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-Mss-hh-I0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diebold Schilling, Amtliche Berner Chronik, vol. 3"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bbb-Mss-hh-I0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diebold Schilling, Spiezer Chronik"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbb-C0005-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missal from Hochdorf"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbb-C0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbb-cant/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cantatorium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbb-epist/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Epistolary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stab-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Werner Schodoler, EidgenÃ¶ssische Chronik, Vol. 2"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/caap-Martirologio1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martirologio-inventario, of the Church of S. Giorgio in Castro, 1554"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acv-P-Antitus/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antitus, La satyre megere, Les quatres eages passees, Le portail du temple Boccace"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acv-P-Sarraz-H-0050/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of Hours of Jean de Gingins"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/clap-Martirologio1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "€œMartirologio-calendario€ of the Parish of Claro"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cma-1955-74/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregory the Great, Morals in Job (Author portrait)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Adenet le Roi, CleomadÃ©s"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aeschylus, Persae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gualterus Anglicus, Fabulae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aesopus, Fabulae, Epigrammata et proverbia, Oraculum sibyllinum · Ps. Pythagoras, Carmen aureum, Praecepta delphica · Phocylides, Sententiae · Aristophanes, Nubes, Vita Aristophanis, Hypothesis in Aritophanis Plutum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historia de preliis Alexandri Magni "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Genus Arati"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Archimedes, Opera . Eutocius, Commentarii in Archimeden . Hero Alexandrinus, De mensuris"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristoteles, Categoriae uel Praedicamenta; De interpretatione uel Periermenias . Boethius, Commentarius in Aristotelis Categorias"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristoteles, Opera; Avicenna, De congelatione seu De mineralibus; Nicolaus Damasceus, De plantis; Costa-Ben-Luca, De differentia spiritus et animae; Alexander Aphrodisiensis, Opera"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chanson d€™Aspremont"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Enarrationes in Psalmos . Hugo de Sancto Victore, De meditatione"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hazo Bononiensis . Hugolinus Bononiensis . Iohannes Bassianus . Placentinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Beda Venerabilis, In Marci Evangelium Expositio"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Benedeit, The Voyage of Saint Brendan"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "BenoÃ®t de Sainte-More: Roman de Troie, ThÃ¨bes (Roman de)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pseudo-Bernard of Clairvaux"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tanach/Hebrew Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0025/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tetraevangelium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Latin Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0030/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Calendarium (Prayer calendar), Latin Bible selections: Liber Psalmorum, Cantica with prayers; Hymns, etc."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0031/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Canticum canticorum cum glossa ordinaria"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Four Gospels in Armenian"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0039/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Giovanni Boccaccio, Elegia di madonna Fiammetta"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0040/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean Bodel, Chanson de Saisnes"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ulrich Boner, Der Edelstein"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of London and paraphrase of the Metrical Chronicle of Robert of Gloucester"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Caesar, Commentarii"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cancioneiro de Pedro Fernandez de Velasco. Diversas Virtudes y vicios y Yinnos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0047/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Catullus, Carmina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0048/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chaucer, Canterbury Tales (to l. 1061)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Christine of Pisan, Epitre d'Othea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0050/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cicero, De senectute, De amicitia, Paradoxa ad Brutum; Ps. Cicero, Synonyma"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0051/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cicero, Orationes"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0052/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cicero, De Inventione"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0053/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Quintus Curtius, The Life and Deeds of Alexander the Great"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0055/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dante, Inferno e Purgatorio (Codex Guarneri)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0056/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dante, Divine Comedy (Codice Ricasoli Firidolfi)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0057/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dante, Commedia, etc. Codex Severoli"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0058/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dioscorides, De simplici medicina (Dioscorides alphabeticus); Rogerius de Barone, Practica (Rogerina maior); Practica parva (Rogerina minor); Galterius Agilus, Summa medicinalis, De febribus, De dosi medicinarum; Ps. Galenus, De dynamidiis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0059/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Meister Eckhart"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0061/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Eike von Repgow: Sachsenspiegel"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0062/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Spiritual Poems · Hartmann von Aue: Gregorius · Frauenlob: Mary's Song (also called Frauenlob's Song of Songs) · Meister Albrant: Horse Medicine (Erlau composite manuscript or Sammelhandschrift)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0064/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Euripides, Phoinissae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0067/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gui de Warewic ; Wace, Geoffroy"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0068/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Institutio canonicorum Aquisgranensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0072/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collected short Middle High German works in rhyming couplets (the Kalocsa-Codex; Gesamtabenteuer)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0074/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gradual ·  Tropary · Sequentiary."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0075/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gratianus, Decretum (cum glossa ordinaria)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0077/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guido Aretinus, Micrologus; Prologus in Antiphonarium; De ignoto cantu; Regulae rhythmicae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0078/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guido de Columnis, Historia destructionis Troiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0079/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guillaume de Lorris and Jean de Meun, Roman de la Rose"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0081/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pesach Haggadah"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0082/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Raoul de Houdenc, Roman des Eles. Donnei des Amants. Lai d€™Haveloc.  Lai de DÃ©sirÃ©.  Lai de Nabaret"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0083/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich of Veldeke, Eneide"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0084/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "De victus ratione liber II seu De observantia ciborum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0085/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homer, Iliad with scholii"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0086/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ilias latina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0087/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ilias latina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0088/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Horace, Works"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0089/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Horatius, Opera (cum glossis)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0090/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Horace, Virgil, Persius and Statius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0091/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hugo von Trimberg: Der Renner · Johann Hartlieb: Alexanderroman"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0092/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidore of Seville, Etymologiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0093/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacques de Cessoles, Echecs moralisÃ©s"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0094/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacopone da Todi, Laudi (Laudario Mortara)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0096-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guiron le courtois"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0096-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guiron le courtois"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0098/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Flavius Iosephus, Antiquitates iudaicae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0099/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Flavius Iosephus, De bello iudaico"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0100/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Justinian I, Digestum Vetus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0101/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Juvenal, Satires (with glosses)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0103/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Konrad von Megenberg, Buch der Natur · Johannes Denenat, Experientiae notabiles medicae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0104/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lactantius, Works"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0105a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lancelot propre"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0105b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lancelot propre"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0105c/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lancelot propre"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb/cb-0105d",
+      "@type": "sc:Manifest",
+      "label": "Queste del saint Graal"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb/cb-0107",
+      "@type": "sc:Manifest",
+      "label": "Codex Theodosianum (excerpts) . Lex salica emandata . Lex Ribuaria . Lex Alamannorum . Lex Baiuvariorum . Charlemagne: Capitularia .  Recapitulatio legis Salicae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0108/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lucanus, De bello civili (cum glossis)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0109/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Raimundus Lullus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0111/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Macrobius, Commentarius in Ciceronis Somnium Scipionis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0113/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Marie de France, Fables"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ps. Mauricius, Strategicon . Ps. Nicephorus, De uelitatione bellica . Ps. Iulius Africanus, Apparatus bellicus "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0116/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "'Prophecies de Merlin' in prose"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0117/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nibelungenlied, Maihingen Manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ovid, Metamorphoses, Fasti"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0125/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ovid, Metamorphoses"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0127/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Passionary of Weissenau"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0128/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paolus Diaconus, Homiliary (pars aestiva et commune sanctorum)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0130/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrarch, Triumphi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0131/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrarch and Dante, Rime"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0132/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus de Vinea, Epistulae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0133/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ps. Pilo, Liber antiquitatem biblicarum. Hildebertus Cenomannensis, Carmina (extracts)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0135/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Peter of Eboli], The Baths of Pozzuoli"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0136/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Plato, Dialogues"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0137/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Plato, Phaedo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0139/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Polybius, Historiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0141/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Propertius, Elegies"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0142/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prudentius, Carmina (cum glossis)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0143/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Benevenutus Imolensis, Romuleon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0144/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "RenÃ© d'Anjou: Le mortifiement de vaine plaisance"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0146/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manuscript with rhetorical works, owned by Petrarch"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0147/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Estoire Del Graal (interpolated)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0148/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sala (Pierre): Tristan"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0150/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Schwabenspiegel"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0151/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Seifrit, Alexander"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0154/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Statius, Thebaid"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0155/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Der Stricker: Short Poems · Rudolf von Ems: Parables from Barlaam and Josaphat (Nikolsburger Bispelhandschrift)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0160/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "History of Thebes and History of Troy"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0161/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Thomas Aquinas, Summa theologica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0162/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Thucydides, De bello Peloponensium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0163/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tibullus, Elegiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0164/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prose Tristan"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0168/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Waldef, Guy de Warwick, Otinel"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0173/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus Hipponensis, Retractationes; De haeresibus ad Quoduultdeum (Epistulae)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0174/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Giovanni Boccaccio, Des cas des nobles hommes et femmes (De casibus virorum illustrium), French translation by Laurent de Premierfait"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0176/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guillelmus Fichetus, Rhetorica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0177/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gariopontus of Salerno, Passionarius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0181/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Flavius Iosephus, Antiquitates iudaicae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0186/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Festus Pompeius, De verborum significatu"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0188/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "William of Conches, Dragmaticon, and the Compotus, Texts on Science and Astronomy"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0189/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Les VÅ“ux du paon [by Jacques de Longuyon]"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0501/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sentences of Ali"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0550/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The story of Seyf ol-MolÃ»k and BadÃ®`ol-JamÃ¢l"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0902/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Codex of Santa MarÃ­a Tepexoyucan"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0905/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Codex Testeriano Bodmer"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/daap-Passio/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Passio s. Placidi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "IV Evangelia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Adelpertus, Commentarius in Psalmos LXX priores . Adhortationes Sanctorum Patrum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ascetica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Anonymus]. Veritas textus bibliorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0029/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0032/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Anonymus]. Glossae. Tractatus de medicina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0036/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Godefridus Babio], Expositio super Mathaeum "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0038/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Anonymus], Expositio octo priorum Epistolarum S. Pauli "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0040/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Epistolae pro tempore et festis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0060/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Alcuinus, In Genesin . Priscianus, Partitiones"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0083/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium antiquissimum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0109/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Amalarius (Metensis), De ecclesiasticis officiis Lib. I und II"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0110/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ordines Romani"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0121/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale €“ Notkeri Sequentiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0126/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronimus, Expositio in Evangelium Matthaei"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0131/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript with works by Jerome, Gennadius, Isidore and others"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0134/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, in Evangelia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0149/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prosperi Epigrammata et Boethii Consolatio philosophiae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0152/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius Magnus, Moralia in Job"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0157/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0166/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrosius "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0169/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus; Evangelium Nicodemi; Hucbaldus; Bernoldus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0172/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript of grammatical texts"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0177/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Beda Venerabilis, In Marci Evangelium Expositio"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0179/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorii epistolae; Boethius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0182/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Alcuinus, Tractatus in epistolam ad Titum, Expositio in epistulam Pauli ad Philemonem, Expositio in epistulam ad Hebraeos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0191/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Canonum Collectio Quesnelliana"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0196/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ivo Carnotensis, Panormia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0199/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Canones Conciliorum. Tractatus ascetici"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0205/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiqui Canones .  Collectio vetus Gallica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0206/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Speculum humanae salvationis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0214/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript containing texts of pastoral theology by Nicolaus von DinkelsbÃ¼hl, Bonaventure, Marquard von Lindau, the Carthusian Guigo II, and Jordanus von Quedlinburg"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0236/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite Manuscript with diverse content"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0240/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Frowinus "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0253/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Hildemarus "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0262/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vita Antigoni. Epist. Senecae. Augustinus, De fide spe et caritate"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0264/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Clemens "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0266/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manuscript compilation"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0277/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Mechthild of Magdeburg, Das fliessende Licht der Gottheit"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0278/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Mystici sermones Deutsch"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0281/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ascetica; Glossa psalmorum; Poenitentiale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0285/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Devotionale Abbatis Ulrici RÃ¶sch"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0295/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethius · Vitae Sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0299/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bartholomeus de Glanvilla, De proprietatibus rerum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0301/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethii Peri hermeneias"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0302/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wandelbertus, Boethius, Ausonius, Gregorius, Arator, Prosper, Prudentius, Aldhelmus, Bonifatius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0304/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Medical Tracts"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0310/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of the Decrees of the Visconti"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0313/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio in Lib. VII Aphorismorum Hippocratis. Hippocrates, De urinis."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0315/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethius, Isagoge"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0319/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0321/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0322/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethii Consolatio; S. Wolfgangi monachi Einsidlensis et episcopi Ratisbonensis vita"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0323/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Alexander ad Aristotelem, De situ Indiae; Vita Karoli Magni et Simeonis reclusi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0324/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristotelis Categoriae etc."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0326/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manuscript of collected works"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0339/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript with grammatical and theological content"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0346/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Eusebius Caesariensis, Historia ecclesiastica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0347/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Eusebius "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0357/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Honorii Augustodunensis], Imago mundi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0358/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethius. De arithmetica et geometria. De musica."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0360/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0366/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Fragmenta Sequentiarum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0610/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium pro Ecclesia Einsidlensi. Pars hiemalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0611/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium pro Ecclesia Einsidlensi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0629/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "[Jacobus de Voragine] Legenda aurea sive lombardica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0689/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tractatus de musica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbe-0710/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Henry Suso, Writings"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vitae sanctorum et passionum martyrum. Pars aestivalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina vulgatae versionis cum prologis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina vulgatae versionis cum prologis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina vulgatae versionis cum prologis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Enarrationes in psalmos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Expositio super tertiam partem psalmorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus S. Aurelius. De Trinitate libri quindecim, praemissa epistola ad Aurelium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Expositio super Johannem evangelista"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Sermones ad populum diversi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, De Civitate Dei contra paganos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Confessionum Aurelii Augustini libri tredecim"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homiliae S. Gregorii papae super Ezechielem prophetam"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius M., Moralia in Job, t. I"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius M., Moralia in Job, t. II"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0022/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius M., Moralia in Job, t. III"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0023/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius M., Moralia in Job, t. IV"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0032/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bernardus S. Claraevallensis. Sermones super cantica canticorum LXXXII"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0033/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermones Bernardi Claraevallensis abbatis "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermones Bernardi Claraevallensis abbatis "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0037/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes Cassianus, Collationes Patrum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermons, martyrology, Euangelium Nicodemi and related texts"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0046/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Frowin, De laude liberi arbitrii libri septem"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0047/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Omiliae lectionum sancti evangelii Venerabilis Bedae presbiteri numero quinquaginta"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0048/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio S. Hieronymi Matheum et Marcum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sancti Hieronymi Hebraicarum Quaestiones"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0056/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ivonis Carnotensis episcopi Panormia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0064/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrosii episcopi Hexaemeron"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0065/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tractatus sancti Ambrosii episcopi de officiis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0067/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commenta Julii Solini sive Grammatici"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0068/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Claudianus Mamertus, De statu animae libri tres"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0072/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Benedictus s. abbas. Regula lat. germanica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0076/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio S. Hieronymi duodecim prophetarum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0087/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aurelii Augustini de doctrina christiana libri quatuor"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0088/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aurelii Augustini de sermone domini in monte secundum Matthaeum libri duo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0089/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "De gratia et libero arbitrio Aurelii Augustini et Bernardi Claraevallensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0090/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hugo de S. Victoris, De sacramentis fidei christianae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0102/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Directorium cantus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0103/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium antiquissimum (Major sections: Lectionary, Litany, Neumed Antiphoner, Partial Hymnary, Calendar of Saints, Capitulary, Collectar)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0117/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus Riga, Aurora et Warnerius Basileensis, Synodus "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermones idiomate germanico concepti"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0135/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Monita beati Effrem "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0138/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sancti Augustini liber retractationum et de poenitentia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0139/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bernardi Claraevallensis abbatis de consideratione "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0141/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Henry Suso, Horologium sapientiae, germanice"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0142/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio Basilii episcopi et abbatis super regulam S. Benedicti abbatis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0147/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paschasius Radbertus, Liber de sacramentis "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0153/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Henricus Suso OP, "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0154/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cicero, Liber rhetoricorum de inventione"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0155/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Engelberg Prayer Book"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0335/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Engelberger Predigten (Composite manuscript Ea)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0336/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Engelberger Predigten (Composite manuscript Eb)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0337/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Engelberger Predigten (Manuscript F)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0339/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Nikolaus Schulmeister Passion Tract"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-0340/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Henricus Suso OP"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-1003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium cum notis musicis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-1005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paschasius Radbertus, In lamentationes Jeremiae Prophetae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-1007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorii Papae Homilia "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-1008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, De civitate dei"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bke-1009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paulus Orosius, Historiarum adversum paganos libri VII"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/psle-0001a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium lausannense, pars hiemalis (vol. I)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/psle-0002b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium lausannense, pars aestiva, de Sanctis (vol. II)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/psle-0003a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium lausannense, pars aestiva, de Tempore (vol. III)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/psle-0003b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium lausannense, pars aestiva, de Tempore (vol. IV)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/gf-BurgOf/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Burgau €˜Offnung€™ of 1469"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/gf-FlawOf/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Flawil €˜Offnung€™"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historienbibel. Old Testament"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y024/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Burgundian Breviary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y080/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript with German sacred and profane texts from the Late Middle Ages"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y102/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Abbatia B[eat]ae Mariae Virg.: &amp; B[eat]ae Iddae Viduae in Piscina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y103/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of the Abbey of St. Gall"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y104/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of the Abbey of St. John in the Thurtal"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y105/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Vallis S[anct]ae Catharinae prope Diesenhoffe[n]"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y106/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer, Episcopatus Constantiensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y108/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Monast[eriu]m SS. Udalrici &amp; Affrae in Crutzlingen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y109/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of the Cloister of Eschenbach near Luzern"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y110/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of the Paradies Cloister (at Lake Constance)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y111/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Helvetia Sancta. Paradisus beatorum Helvetiae florum: Das ist ein heiliger lustiger blumen gartten, deren fÃ¼rnemste blumen so von anfang der christenheit bis auf unsere zeit in heiligkeit des lebens und mancherley wunder wercken in Helvetia gegrÃ¼nnet"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y112/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Diuae Virg: Mariae Sintlacisaugia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y113/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of the Abbey of All Saints in Schaffhausen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: B[eatae] Mariae Virg[inis] Marisstella, alias Wettingen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kbt-y117/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich Murer: Dominarum Monasterium Thuricense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Schwabenspiegel"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-0053/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Livre de Drapeaux/Fahnenbuch (Book of Flags)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Tempore, pars hiemalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Tempore, pars hiemalis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-3/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Tempore, pars aestiva. Commune Sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Tempore, pars aestiva. Commune Sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-5/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Sanctis, pars hiemalis. Officium B.M.V. Commune Sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-6/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Sanctis, pars hiemalis. Officium B.M.V. Commune Sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-7/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Sanctis, pars aestiva. Officium B.M.V."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-CSN-III-3-8/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Lausannense. De Sanctis, pars aestiva. Officium B.M.V."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-LB1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of Citizens 1 (Livre des bourgeois 1 / BÃ¼rgerbuch 1)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-LB2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of Citizens 2 (Livre des bourgeois 2 / BÃ¼rgerbuch 2) (1415[!]-1769)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aef-Stadtsachen-A-0596/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "«Schulordnung und Satzungen der neuaufgerichteten und reformierten Schule zu Freiburg im Ãœchtland»"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-CapRes0527/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Plutarchus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelia et collectae cartusianorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vitae et passiones sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0024/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Formulae epistolarum . Johannes Wrantz . Nicolaus de Dybin . Neidhart von Reuental"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0030/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium Lausannense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacobus de Voragine, Legenda Aurea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0037/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boetius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0039/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber Ordinarius officii et missae und Rituale, some parts in German"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0084/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia sacra (Isaias-Malachim)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0090/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium-Hymnarium Ordinis Fratrum Praedicatorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0145/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes de Paltz"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0158/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale cisterciense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0293/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vitae sanctorum . Hugo de Sancto Victore . Fretellus . Moralium dogma philosophorum . Computistica . Interpretationes nominorum hebraicorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0303/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Amedeus Lausannensis; Henricus Abbas Altae Cristae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0305/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale Cisterciense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0308/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Otto von Passau, Die vierundzwanzig Alten "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0516/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale Romanum ad usum fratrum Eremitarum S. Augustini. Sanctorale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L0523/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Cisterciense, Temporale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L1200/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Alain Chartier; Baudet Herenc; Achille Caulier; Hans RosenplÃ¼t "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcuf-L1365/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lives of the Saints"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Freiburger Perikopen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus de Candia, Commentary on the Sentences"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0025/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes Herolt OP: De eruditione Christifidelium; Fabula moralizata"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0026/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Manuscript with philosophical and theological content"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Marsilius de Padua: Defensor pacis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0051/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript with Quaestiones morales pulcrae et modernae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0060/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Franciscan composite manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0062/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermones, praedicabilia, notanda (Wildricus de Mitra, Hermannus Topelisten, Vincentius Ferrarii etc.)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0117-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Berthold of Regensburg, Sermones"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/fcc-0117-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Berthold of Regensburg, Sermones"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liturgical Psalter"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0054/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0145/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collectanea of kabbalistic and magical texts in Hebrew"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0146/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Midrash Tanhuma (Leviticus-Numbers-Deuteronomy)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0183/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Herman of Valenciennes, Bible translation in alexandrine verse"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-cl0269/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Diogenes of Sinope, Brutus and Hippocrates, Letters (translated by Francesco d'Arezzo and Ranuccio d'Arezzo)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0001-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guyart des Moulins, Bible Historiale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0001-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guyart des Moulins, Bible Historiale"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "FranÃ§ois Ximenes, Livre des anges (El Llibre dels Ã ngels)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0057/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacobus de Voragine, LÃ©gende dorÃ©e (Legenda aurea), in the translation of Jean de Vignay; Jean Golein, FÃªtes nouvelles [followed by] Du Saint Voult de Lucques"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0064/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean Mansel, La fleur des histoires"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0070-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean de Courcy, La BouquechardiÃ¨re"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0070-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean de Courcy, La BouquechardiÃ¨re"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0076/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Quintus Curtius Rufus, Faits et gestes d€™Alexandre"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0077/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Histoire romaine by Titus Livius, translated into French by Pierre Bersuire"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0085/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "William of Tyre, History of the Crusades translated into French, with an anonymous continuation to the year 1229."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0160/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Brunetto Latini, the 'TrÃ©sor'"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0165/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pierre le Fruitier, called Salmon, TraictÃ©s de Pierre Salemon a Charles VI roy de France  [Dialogues, second version]"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0167/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean Thenaud, Introduction to the Kabbalah, dedicated to King Francis I"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0169/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gaston Febus, the €œLivre de la chasse€"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0170/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Frederick II of Hohenstaufen, Livre de l€™art de chasser au moyen des oiseaux "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0176/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ovide moralisÃ©"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0178/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Guillaume de Lorris and Jean de Meun, Le Roman de la Rose. Jean de Meun, Le Testament"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0180/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Christine de Pisan, The Book of the City of Ladies"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0189/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tristan in Prose"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0190-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Giovanni Boccaccio, Des cas des nobles hommes et femmes"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-fr0190-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Giovanni Boccaccio, Des cas des nobles hommes et femmes"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-gr0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homer, Iliad with scholia and an interlinear paraphrase of Books I to XII"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The four Latin Gospels"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustine, Sermons"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidore of Seville Î‡ Jerome Î‡ Eusebius of Caesarea et al."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0022/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commentary by Hrabanus Maurus on the Books of Judith and Esther and the Book of Maccabees"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0030b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Missal of Urbain Bonivard, Prior of Saint Victor in Geneva"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0033/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of Hours for use in the Abbey of St. Martin of Tours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0037/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rituale Romanum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0037a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lectionary of St. Gall (or more exactly: Epistolary of St. Gall)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicle of Eusebius of Caesarea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0050/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collection of texts on the computation of time by the Venerable Bede . Annales Petaviani and Annals of the Abbey of Massay"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0054/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Conspiracy of Catilin and the Jugurthine War by Sallust"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0062/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Statuta et ordinationes ecclesie Gebennensis (Statutes and ordinances of the Church of Geneva)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0070/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Digestum vetus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0076/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristotle Î‡ Moses Maimonides, De uno deo benedicto"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0084/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nonius Marcellus, De compendiosa doctrina, liber quartus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0091/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0092/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aegidius Romanus, De regimine principum; Aesop, Life, Fables"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0097/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Raoul Bollart: On the Victory of King Louis XII of France against the Venetians; Moral Poem"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0098/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Alexandreis (epic poem relating the story of Alexander the Great), by Walter of ChÃ¢tillon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0099/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Plutarch, De tranquillitate animi, Latin translation by Guillaume BudÃ©"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0172/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Phalaris, Diogenes of Sinope, Brutus, Letters (translated by Francesco d'Arezzo and Ranuccio d'Arezzo)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bge-lat0357/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Institutions of Priscian and the Commentary on the Apocalypse by Beatus of LiÃ©bana"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcul-IS4254/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Othon de Grandson, Poems"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcul-M0454/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Roman de la Rose"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0350/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Othon de Grandson, Les Responses des cent Balades"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcul-U0964/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Porta"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/kol-S0023-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Illustrated Chronicle by Diebold Schilling of Lucerne (Luzerner Schillling)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/pal-L/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bonaventura, Legenda maior s. Francisci . Vita beati Antonii"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cistercian Antiphonary (Sacred pieces)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cistercian Gradual (Winter Part)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0034-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Engelbertus Admontensis; Marquard von Lindau"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0035-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript with scholastic and homiletic contents"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0039/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0040/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0041/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Nicholas of Lira, Commentary on the Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-N0175/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Elisabeth von SchÃ¶nau, Mechthild von Magdeburg"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0006-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of Hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0013-2-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vincentius Bellovacensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0013-2-3/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vincentius Bellovacensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0013-2-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vincentius Bellovacensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0033-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Berno Augiensis; Walahfridus Strabo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0034-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus Hispalensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zhl-P0037-4/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Odalricus Virdunensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bmm-Erk/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelary of Erchenbaldus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-A0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Piae conciones in Evangelii lectiones"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-A0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Fables and legends from the Vitae Patrum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-A0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Les Preceptes de Manuel empereur de Constantinople touchant l€™Ã©ducation Royalle mis en franÃ§ois par le Roy treschretien Louis XIIIe"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-A0025/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Adhortationes sanctorum patrum sive verba seniorum; Petrus Venerabilis, De miraculis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-A0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of Hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-R0055/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean-Jacques Rousseau, Dictionnaire de musique"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bpun-R0078/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean-Jacques Rousseau, Les RÃªveries du promeneur solitaire "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/oms-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale Fratrum Minorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/oms-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium de tempore (I)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/oms-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium de tempore (II)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/oms-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium in festivitatibus sanctorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bnf-lat11641/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus Hipponensis, Epistolae 27, 31, 24, 42, 45, 94, 260-261 (f.1-20) et Sermones 351, 392, 18, 87, 77, 127 (f. 21-63)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale pontificale basilieense episcopi Johannis de Venningen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pontificale Basileense episcopi Johannis de Venningen (pars prima)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pontificale Basileense episcopi Johannis de Venningen (pars altera)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristoteles, Ethica Nicomachea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale Basileense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0006a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Sacra, pars prima"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0006b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Sacra, pars altera"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale festivum basileense episcopi Christofori de Utenheim"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium trajecense ad usum ecclesiae collegiatae Sancti Lebuini daventriae (Pars aestiva)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber Horarum Bisuntinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pontifical of Charles de NeufchÃ¢tel, Archbishop of BesanÃ§on"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johannes Cassianus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dominicus de Sancto Geminiano (?)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vocabularius brevilogus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium-hymnarium basileense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gradual"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacobus de Voragine, Legenda aurea"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Florilegium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bcj-0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber Evangeliorum et Capitulare"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-chart0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tract on the Passion"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-chart0208/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prayer Book"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lectionarum Officii Monasticum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Speculum Humanae Salvationis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chronicon murense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0035/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0069/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prayer Book"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bks-membr0083/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cycle of miniatures"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staow-A02CHR0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The €œWhite Book of Sarnen€"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stash-F0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of Founders of the monastery ofAllerheiligen (All Saints) at Schaffhausen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stash-Fragment-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Versus de mensibus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stash-Fragment-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collectio canonum Dionysio-Hadriana"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stash-Fragment-0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rudolf von Ems"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/stash-Urk0238/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Schaffhausen, Richtebrief"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Adamnanus de Iona, Vita Columbae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Klosterneuburger Evangelienwerk"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bibliorum sacrorum pars prima"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia sacra"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangeliar"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Expositio in 12 prophetas minores, pars prima"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, In Johannis evangelium tractatus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0024/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0025/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0029/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0031/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0032/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0033/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Alcuinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0034/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0035/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0036/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustinus, Isidorus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Isidorus Hispalensis, Etymologiarum sive Originum libri 12-20."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius I. Papa, Homiliae in Ezechielem, liber 1, hom. 1-12."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0078/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cassiodorus, Expositio psalmorum 1-50"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0095/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missal (Gradual, Sacramentary, Lectionary)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0098/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium OFM (pars hiemalis)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0099/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium OFM (pars aestivalis)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0109/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Regino Prumiensis, Chronicon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/sbs-min0112/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Albertus Magnus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ebs-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aristotle/Albertus Magnus manuscript"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/aev-AVL-0162/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chancellery Register of the Cathedral Chapter of Sion"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acs-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Sedunense ('Temporale')"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acs-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonarium Sedunense (€žSanctorale€œ)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acs-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Giant Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acs-0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Missale Speciale Sedunense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/acs-0120/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Dacheriana"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/mvs-cuisine/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "MaÃ®tre Chiquart, Du fait de cuisine, 1420"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/mvs-viandier/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Viandier"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/dss-U0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hornbach Sacramentary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/dss-U0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Silver Evangelary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/dss-U0003/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Spiegelberger Missal"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0001-0041/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0001-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0001-0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0001-0047/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0001-0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0005-0040/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0005-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0005-0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0005-0046/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/staso-R0001-0005-0048/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0194/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Spiritual manuscript compilation for Dominican sisters"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0296/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Henrici Glareani poetae laureati geographiam annotationes"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0378/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Breviarium canonicorum regularium monasterii sanctae crucis mortariensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0386/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collected medical works"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0438/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parisian Bible"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0451/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Solothurn Legendary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0458/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "German book of meditations and prayers for Dominican nuns"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0490/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Recipe book"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-S-0555/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscripts"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SI-0145/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Old Testament Books of Wisdom; Writings on moral philosophy"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SI-0167/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Miscellanea Computistica et Astronomica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SI-0175/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jakob HÃ¼glin: Acts of the Council of Basel (1438-1441; 1443)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SI-0251/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cantatorium Solodorense"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SII-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historienbibel from the workshop of Diebold Lauber ('vom Staal-Story Bible')"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SII-0072/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Petrus Lombardus, Liber sententiarum I-IV"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SII-0154/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina (Vulgata recensione Theodulfi). Fragmenta."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SIII-0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale Fratrum Minorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbs-SIII-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Graduale de tempore"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Joachim Vadian: ChronikbÅ¯ch ettlicher Ã¤bten zÅ¯ S. Gallen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0292/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalter, Hymnary, Prologi Psalterii"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0292a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (fragments)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0294/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0295/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Antiphonary, Sacramentary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0296/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Boethius, De arithmetica, De institutione musica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0298/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Eusebius Caesariensis, Prosper de Aquitania, Chronicon"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0302/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Rudolf von Ems, History of the World. The Stricker, Charlemagne."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0307/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Titus Livius, Ab urbe condita, libri 21-30"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0317/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Basilius Caesariensis, Admonitio ad filium spiritualem; Notker Balbulus, Hymni; Vita Findani; Acta Apostolorum; Visio Pauli; Cassiodorus, De anima; Andreas Bergamensis, Chronicon."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0321/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Acta Sancti Petri in Augia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0332/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia Sacra"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0342/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vaticinia de pontificibus (Prophecies about the Papacy)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0343c/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historienbibel from the workshop of Diebold Lauber, Vol. 1: Old Testament."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0343d/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Historienbibel from the workshop of Diebold Lauber, Vol. 2: New Testament."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0427/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ludovicus de Angulo (Louis de Langle), De Figura seu imagine mundi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0455/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Volume of collected works: Walter Burley; Albertanus Brixensis; Franciscus Petrarca; Heinrich SteinhÃ¶wel; Disticha catonis; Regimen Sanitatis; Adolfus Viennensis; Ps.-Virgil; Alanus de Insulis; Pope Pius II; Hieronymus de Vallibus; Antoninus Barzizius; Vincentius Bellovacensis; Jacobus de Cessolis; Biblia pauperum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/vad-0484/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Heinrich SchlÃ¼sselfelder"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gregorius I. Papa"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Passiones sanctorum: Gregorius I. Papa, Dialogi"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pope Gregory I, Dialogues"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vitae Sanctorum; Remigius Altissiodorensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Vitas patrum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0016/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jean de Mandeville, Antichrist (Travels of Sir John Mandeville) - with illustrations"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-0030/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Lex Romana Curiensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelistary (Liber viventium)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fab0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber aureus (Evangelistary)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/ssg-fragm0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Passion Play (Fragment)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0002/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Num, Deut, Acts, Apoc), excerpts from OT and NT, varia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (I-II Chr, Tob, Jdt, Est); Actus of St. Martin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Prov, Eccl, Song, Wis; I-II Chr)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber TobiÃ¦"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber Tobiae. Judith. Esther. Canticum Canticorum. Biblical glossary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0010/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber Job. Proverbia . Ecclesiastes . Canticum Canticorum etc."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0011/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Excerpts from the Bible (OT u. NT), Gregory (In Ezek. 2), Varia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "PBible (Prov, Job, I-II Macc, IV Macc)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0014/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Job, Tob, Jdt, Est, I-II Esr)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0015/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalter"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0017/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "A copy of the Gospel of Matthew"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0018/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript, astronomical clock of Pacificus of Verona"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0019/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Psalterium iuxta Hebraeos)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0020/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium Gallicanum with Cantica"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0021/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Translatio barbarica psalterii Notkeri tertii (Old High German Psalter by Notker the German)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0022/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Golden Psalter (Psalterium aureum) of St. Gall - Psalterium Gallicanum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0023/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Folchart Psalter (Psalterium Gallicanum with Cantica)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0026/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Short Psalter, produced in the west English Abbey of Malmesbury"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Psalterium Gallicanum with commentary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0028/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Prov, Eccl, Koh, Wis, Sir)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0029/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Canticum Canticorum cum glossa; Prosper de gratia et libero arbitrio; Augustini Enchiridion et alia."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0030/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "A copy of three Old Testament books (Proverbs, Ecclesiastes, Song of Songs)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0039/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Isa, Jer, Bar)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0040/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Part I, Bible (Isa, Jer, with prologues and capitula or breves)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0041/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible with glosses (Isa, Hos, Zech, Dan)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0042/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Isa, Jer)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Ezek, minor prophets, Dan)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0044/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Part I, Bible (Ezek, minor prophets, Dan, with Prologues and Capitula), medical treatises (9. Jh.)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Ezek, minor prophets, Dan)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0046/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Ezek, minor prophets, Dan)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0047/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "MaccabÃ¦orum lib. I-II."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0048/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Codex Delta: the Gospels in Greek with interlinear translation into Latin"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0049/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0050/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelary with glosses"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0051/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Irish Evangelary from St. Gall (Quatuor evangelia)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0052/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0053/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelium longum (Evangelistary)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0054/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Gundis Evangelistary"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0056/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Tatian's Gospel Harmony"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0060/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Evangelium S. Johannis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0063/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Epistolae Pauli. Actus Apostolorum. Epistolae catholicae. Apocalypsis."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0064/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Epistles of Paul); Alcuin; Apuleius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0065/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Somnium Scipionis. Commentum Macrobii in somnium Scipionis. EpistolÃ¦ VII catholicÃ¦."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0068/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Job, Tob, Jdt, Esth, Prol. Ezra; Epst. Paul)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0070/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pauline Epistles with prologue to the Epistle to the Romans"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0072/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "EpistolÃ¦ Pauli. Acta Apostolorum. EpistolÃ¦ catholicÃ¦. Apokalypsis."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0073/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "A commentary by Pseudo-Jerome on the Epistles of Paul"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0075/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Biblia latina Vet. et Novi Testamenti"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0077/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Gen, Ex, Lev, Num, Deut, Josh, Judg, Ruth)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0078/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (I-II Sam, III-IV Kings)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0079/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (I-II Chr, Jdt, Esth, I-II Ezra, I-II Macc)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0080/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pentateuch . Books of Josua and Judges . Epistles of Paul"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0081/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Prov, Eccl, Song, Wis, Sir, Job, Tob)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0082/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Isa, Jer, Ezek, XII min. proph., Dan)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0083/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bible (Epistles, Acts, Apoc)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0085/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Expositio in Lucam libri VI"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0086/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "The Pseudo-Klementinen (Pseudo-Clementines)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0087/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Homiliae Origenis in Genesim, Exodum et Leviticum."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0088/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Origenes, Commentarii in epistulas ad Romanos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0089/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Cypriani de dominica oratione etc. Dicta Gregorii Nazanzeni episcopi de Hieremia propheta. Cypriani de mortalitate."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0090/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Altercatio contra Arrium. Epistola adversus Luciferianum hereticum."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0092/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Libri VI Effrem diaconi de judicio etc., et alia."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0093/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Effrem diaconi opuscula"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0094/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sanctus Ambrosius, Contra haereticos, eius Epistolae"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0095/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "De fide ad Gratianum contra perfidiam Arrianorum from Ambrose"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0096/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrosius, HomiliÃ¦ in evang. LucÃ¦, libri X."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0097/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrose, De officiis ministrorum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0098/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "A collection of the dogmatic works 'De spiritu sancto libri tres ad Gratianum' and 'Libri tres de incarnatione contra Apollinaristes', both originally written by Ambrose; 'De laude sanctorum' by Bishop Victricius of Rouen"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0099/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrosius in Lucam"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0100/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrosiaster"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0101/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commentarius in epistolas Pauli ad Romanos, ad Corinthios."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0102/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Ambrose, 'De spiritu sancto' and 'De incarnationis dominicae sacramento' . Victricius of Rouen, 'De laude sanctorum'"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0103/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chrysostomus Latinus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0105/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sulpicii Severi vita S. Martini; Medicinalia; Grammaticalia."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0106/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commentarius in librum Job"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0107/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Pseudo-Hieronymi Commentarius in Psalmos"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0108/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sermo S. Ysidori de Fine Mundi; Ps.-Hieronymus, Commentarius in Psalmos; etc."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0109/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In psalmos (1-59)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0110/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Commentarius in Ecclesiasten; Explanatio in canticum canticorum; Excerpta varia"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0111/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Copy of Jerome's commentary on chapters 14-18 of the Book of Isaiah"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0112/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in Esaiam, libri I-V."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0113/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Esaiam libri I-V (vol. I)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0114/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Esaiam libri XIV-XVIII (vol. III)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Esaiam libri VI-XIII (vol. II)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0116/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Ieremiam libri VI"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0117/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Ezechielem Lib. I-VI"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0118/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Ezechielem Lib. VII-XIV"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0119/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in Ioelem, in Michaeam libri duo"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0120/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sedulius, Opus paschale (Fragment). Jerome, Commentarii in Danielem. Fragment of an exegetical text"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0121/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In Hoseam libri III"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0122/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in Amos libri tres"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0123/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in Ionam, Naum, Sophoniam, Aggaeum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Exegetical-liturgical collection of works"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0125/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In evangelia / Excerpts from Homilies / Excerpts from Isidor, Cassiodor, Prosper et al."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0126/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in Matthaeum"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0127/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Copies of the commentaries of the Church father Jerome on the Gospels of Matthew and Mark"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0128/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "In ep. ad Galatas"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0129/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Commentarii in epistolas Paulinas ad Ephesios, ad Titum, ad Philemonem"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0130/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hieronymus, Liber quaestionum hebraicarum in Genesim. Anonimus, Expositio in proverbiis Salomonis. Junilius, Instituta regularia divinae legis. Hieronymus, De situ et nominibus locorum hebraicorum liber"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0132/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Volume of collected patristic works containing works by Jerome and the pseudo-Augustinian €žDe vita christiana€œ"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0133/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Composite manuscript of Biblical-geographical and Biblical-historical content, including works by theologians Jerome and Isidor of Seville, the Cosmography of Aethicus Ister, and the history of an early pilgrimage to the Holy Land"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0134/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Aurelius Prudentius Clemens, Cathemerinon and Peristephanon . Aristotle . Boethius"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/csg-0135/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Carmina"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/spl-0030-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Liber magistri Hugonis in Ecclesiasten ; Controversia Guimundi et Rogerii contra Berengarium ; Controversia Lanfranci contra Berengarium"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/nlr-lat-F-I-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Augustini Hipponensis Fragmentum Sermonis CCCLI"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/tap-Martirologio1569/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martirologio-inventario of the Church of S. Stefano in Torre, 1568"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/tap-Martirologio1639/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Martirologio-inventario of the Church of S. Stefano in Torre, 1639"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0004/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours from Paris"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours from (eastern?) France"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0006/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours from France"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0007/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours from Lille"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0008/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Book of hours from Paris"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0009/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prayer book of Anne of Cleves"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-0013/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Johann von Schwarzenberg: Memorial der Tugendt"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-Ms0001/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "BartholomÃ¤us Anhorn, Chronicle of Appenzell"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-Ms0300/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Fitzi, Johann Ulrich and Zellweger, Johann Caspar: Appenzell Book of Flags "
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-Ms0301-1/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "SchlÃ¤pfer, Johann Georg: Lucubrationen or scientific treatises"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-Ms0301-2/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "SchlÃ¤pfer, Johann Georg: Lucubrationen or scientific treatises"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/cea-Ms0301-3/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "SchlÃ¤pfer, Johann Georg: Lucubrationen or scientific treatises"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/lsb-Ms0022/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "German-language composite manuscript containing poems in the form of dialogues, a dialogue in prose, texts by Henry Suso, €œSchwesternbÃ¼cher€, legends such as the €œVierzig MyrrhenbÃ¼schel vom Leiden Christi€"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0045/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Solomon Adeni"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0052/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0067/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Harrison Miscellany"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0093/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Astronomical and Astrological Miscellany"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0104/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Elijah ben Solomon Zalman"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0112/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Bezalel Ranschburg"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Jacob ben Asher"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0125/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Hippocrates, Aphorisms"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0173/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Sefer Sod Adonai im Sharvit ha-Zahav (Book of the Lord€™s Mystery with the [commentary] Golden Scepter)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0217/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0235/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0242/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Juspa (Jousep)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0247/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0250/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Zedekiah ben Abraham"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0251/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Abraham Abulafia (1240€“after 1291)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0252/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0253/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Prayer Book according to the Ashkenazic Rite"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0257/manifest.json",
+      "@type": "sc:Manifest",
+      "label": ""
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0259/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Miscellany for Life Cycle Events"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0282/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Kalonymus ben Kalonymus"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0284/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Haggadah with Yiddish instructions and translations of concluding songs (Herlingen Haggadah)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0285/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Passover Haggadah with commentaries (Hijman Binger Haggadah)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/bc-b-0288/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Seder Tefillot u-Virkhot ha-Mohel (Order of prayers and blessings for the circumciser)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-A0135/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Library catalog of Gallus Kemli; Alphabetarium; Petrus Pictaviensis"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-A0152/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Christian Kuchimeister: NÃ¼we Casus monasterii s. Galli (1226-1329)"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0073/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Record book of entries to the Cloister of St. Gall, 15th - 17th Centuries."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0096/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collection of doctrinal theology lessons; diatribe against the Zurich Catechism, from about 1598."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0115/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Copies of works on Church history: Councils, Benedictine order"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0118/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Collection of the names of persons from the region near the baronial Abbey of St. Gallen who converted to Catholicism between 1640 and 1697"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0124/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Chrysostomus Stipplin (?), Introduction to ecclesiastical law"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0131/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Register of expenditures, presumably recorded by a finance officer of St. Gall Abbey, ca. 1706."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-B0134/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Wunderzeichen, so Maria, die MÅ¯ter Gottes, zu Sannt Gallen im MÃ¼nster zur Zeith Abbt Å®lrichs deÃŸ VIII., Abbt Gottharts unnd Abbt FranciÃŸcen etc. gethon, uÃŸ dem alten Original unnd etlichen ZÃ¤delin, so ouch darinnen gelÃ«gen, zusamen gebracht, anno 1608."
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0005/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 399 ff. · 38.2 x 27.5 cm · Hagenau · about 1431-1437"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0010i/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 274 ff. · 43.0 x 30.5 cm · St. Gall · 9th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0012/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 169 ff. · 31.3 x 23.0 cm · St. Gall · about 820-830"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0043/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 316 ff. · 29.8 x 22.5 cm · St. Gall · 9th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0054/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 60 ff. · 28.5 x 20.5 cm · Nuremberg · about 1472"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0060/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 315 ff. · 26.0 x 20.0 cm · St. Gall · about 900-910"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0062/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 236 ff. · 25.6 x 19.7 / 26.2 x 18.0 / 24.0 x 19.2 cm · St. Gall · 10th-12th centuries"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0074a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 304 ff. · 25.0 x 19.7 cm · St. Gall · 10th-11th centuries"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0077/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 371 ff. · 25.8 x 18.5 cm · St. Gall · about 900-910"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0078/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 162 ff. · 18.5 x 11.5 / 19.5 x 14.1 / 19.7 x 14.2 / 22.5 x 16.5 cm · St. Gall · 9th-15th centuries"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0080/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · II + 116 ff. · 24.0 x 17.5 cm / 23.3 x 16.5 cm / 24 x 18 cm · St. Gall · 9th-13th centuries"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0098/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 68 ff. · 18-19.4 x 14.0 cm · St. Gall · 11th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0100/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 89 ff. · 21.2 x 12.2 cm · St. Gall · 14th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0101/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 178 ff. · 21.2 x 14.5 cm · St. Gall · 15th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0106/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 279 ff. · 21 x 16 cm · St. Gall · 1523/24"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0121/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 206 ff. · 18.8 x 15.2 cm · St. Gall · 11th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0125/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 88 ff. · 19 x 13 cm · southern German region · 13th century, first half"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0129/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 106 ff. · 20.0 x 18.8 cm · St. Gall · 11th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-C0150/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 157 ff. · 16.0 x 11.3 cm · St. Gall · 15th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0074/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 423 pp. · 20 x 16 cm · St. Gall, Abbey Library · 1633"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0076/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 4 + 572 ff. · 22 x 16.5 cm · St. Gall · 1637-73"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0076a/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 352 ff. · 22 x 16.5 cm · St. Gall · 1637-73"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0076b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 491 ff. · 22 x 16.5 cm · St. Gall · 1637-73"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0076c/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 456 ff. · 22 x 16.5 cm · St. Gall · 1637-73"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0077/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 416 ff. · 22 x 16.5 cm · St. Gall · 1655"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0077b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 391 ff. · 22 x 16.5 cm · St. Gall · 1637-73"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0147/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 427 ff. · 20 x 16 cm · St. Gall · 1660"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0155/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 371 ff. · 21 x 16 cm · St. Gall · about 1677-91"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0199/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 181 pp. · 15 x 10 cm · Dillingen on the Danube · 1577"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0217/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 174 + 4 + 22 ff. · 15 x 9 cm · 1661"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0219/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 371 ff. · 15 x 10 cm · St. Gall · 16th/17th centuries"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0221/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 454 ff. · 16 x 10 cm · St. Gall · 17th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-D0227/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · VI + 100 ff. · 12 x 8 cm · St. Gall · 17th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-Ms-Rh-0167/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 199 ff. · 27.5 x 18.5 cm · Constance/area of Lake Constance · around 1260"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-Ms-Rh-0172/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · 100 ff. · 20.4 x 13.9 cm · St. Gall · 15th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-Ms-Rh-hist0027/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Parchment · A + 99 ff. · 27-28 x 19-20 cm · Reichenau · early 9th century / 10th century"
+    },
+    {
+      "@id": "http://www.e-codices.unifr.ch/metadata/iiif/zbz-Ms-Rh-hist0033b/manifest.json",
+      "@type": "sc:Manifest",
+      "label": "Paper · 168 ff. · 30.0 x 21.0 cm · Upper Rhine · about 1420-1440"
+    }
+  ]
+}

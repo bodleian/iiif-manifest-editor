@@ -1,0 +1,417 @@
+{
+  "@id": "http://scta.info/iiif/scta/collection",
+  "@type": "sc:Collection",
+  "label": "Scholastic Commentaries and Texts Archive",
+  "collections": [
+    {
+      "@id": "http://scta.info/iiif/anconacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Augustinus de Ancona Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/novocastrocommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Andreas de Novo Castro Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/halescommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Alexander de Hales Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/summahalensis/collection",
+      "@type": "sc:Collection",
+      "label": "Summa Halensis"
+    },
+    {
+      "@id": "http://scta.info/iiif/qda/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in libros De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/albertusmagnuscommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Albertus Magnus Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/anon1commentary/collection",
+      "@type": "sc:Collection",
+      "label": "Anonymous Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/anon2deanima/collection",
+      "@type": "sc:Collection",
+      "label": "Anonymous 2 De Anima Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/vargascommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Alphonsus Toletanus Vargas Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/vargasdeanima/collection",
+      "@type": "sc:Collection",
+      "label": "Alphonsus Toletanus Vargas De Anima Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/wodehamordinatio/collection",
+      "@type": "sc:Collection",
+      "label": "Wodeham Ordinatio"
+    },
+    {
+      "@id": "http://scta.info/iiif/wodehamabbreviatio/collection",
+      "@type": "sc:Collection",
+      "label": "Wodeham Abbreviatio"
+    },
+    {
+      "@id": "http://scta.info/iiif/wodehamlectura/collection",
+      "@type": "sc:Collection",
+      "label": "Lectura Secunda"
+    },
+    {
+      "@id": "http://scta.info/iiif/bonaventurecommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Bonaventure Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/liberextra/collection",
+      "@type": "sc:Collection",
+      "label": "Liber Extra"
+    },
+    {
+      "@id": "http://scta.info/iiif/monsterbek_questiones/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in De anima I-III"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-116/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-199/collection",
+      "@type": "sc:Collection",
+      "label": "Expositio I-III librorum de anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/hispanusdeanima/collection",
+      "@type": "sc:Collection",
+      "label": "Sententia cum quaestionibus libri De anima I-II"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-242/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones de anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/aer-trip/collection",
+      "@type": "sc:Collection",
+      "label": "Tractus de intellectu possibili"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-28/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in De anima Aristotelis, redactio secunda"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-3/collection",
+      "@type": "sc:Collection",
+      "label": "Tractatus de anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-328/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in tres libros De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-350/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones de anima"
+    },
+    {
+      "@id": "http://scta.info/iiif//collection",
+      "@type": "sc:Collection",
+      "label": ""
+    },
+    {
+      "@id": "http://scta.info/iiif//collection",
+      "@type": "sc:Collection",
+      "label": "Tractatus"
+    },
+    {
+      "@id": "http://scta.info/iiif//collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones De anima III"
+    },
+    {
+      "@id": "http://scta.info/iiif//collection",
+      "@type": "sc:Collection",
+      "label": "Voluntas est regina in regno animae"
+    },
+    {
+      "@id": "http://scta.info/iiif//collection",
+      "@type": "sc:Collection",
+      "label": "Ipsa movet omnia instrumenta in nobis et extra"
+    },
+    {
+      "@id": "http://scta.info/iiif/dinsdalequaestiones/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-5/collection",
+      "@type": "sc:Collection",
+      "label": "Expositio tres libros De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/alexanderexpositio/collection",
+      "@type": "sc:Collection",
+      "label": "Expositio libri De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-65/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones De anima I-II"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-69/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in De anima I"
+    },
+    {
+      "@id": "http://scta.info/iiif/da-9/collection",
+      "@type": "sc:Collection",
+      "label": "Quaestiones in tertium De anima"
+    },
+    {
+      "@id": "http://scta.info/iiif/ddbrugescommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Dionysius de Bruges Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/perusiacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Franciscus Toti de Perusia Commentary on the Sentences"
+    },
+    {
+      "@id": "http://scta.info/iiif/bielcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Biel Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/gratiandecretum/collection",
+      "@type": "sc:Collection",
+      "label": "Decretum"
+    },
+    {
+      "@id": "http://scta.info/iiif/riminicommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Gregory of Rimini Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/sienacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Gerard of Siena Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/romacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Giles of Rome Commentary on the Sentences"
+    },
+    {
+      "@id": "http://scta.info/iiif/hugolinocommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Hugolino of Orvieto Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/nataliscommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Herveus Natalis Commentary on the Sentences"
+    },
+    {
+      "@id": "http://scta.info/iiif/werlcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Henricus de Werl Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/altavillacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Jacobus de Altavila Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/almainsuperholcot/collection",
+      "@type": "sc:Collection",
+      "label": "Dictata super sententias magistri Roberti Holcot"
+    },
+    {
+      "@id": "http://scta.info/iiif/scotusordinatio/collection",
+      "@type": "sc:Collection",
+      "label": "Scotus Ordinatio"
+    },
+    {
+      "@id": "http://scta.info/iiif/janhuscommentary/collection",
+      "@type": "sc:Collection",
+      "label": "John Hus Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/hiltalingencommentary/collection",
+      "@type": "sc:Collection",
+      "label": "John Hiltalingen of Basel Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/mirecourtcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "John Mirecourt Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/lambertuscommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Lambertus Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/dinkelsbuhllectura/collection",
+      "@type": "sc:Collection",
+      "label": "Nicolas de Dinkelsbuhl Lectura Mellicensis"
+    },
+    {
+      "@id": "http://scta.info/iiif/melanderdeanima/collection",
+      "@type": "sc:Collection",
+      "label": "Melander De Anima Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/aquilacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Peter of Aquila Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/dionysiusangelica/collection",
+      "@type": "sc:Collection",
+      "label": "De angelica hierarchia"
+    },
+    {
+      "@id": "http://scta.info/iiif/dionysiusecclesiastica/collection",
+      "@type": "sc:Collection",
+      "label": "De ecclesiastica hierarchia"
+    },
+    {
+      "@id": "http://scta.info/iiif/picoapologia/collection",
+      "@type": "sc:Collection",
+      "label": "Apologia"
+    },
+    {
+      "@id": "http://scta.info/iiif/tarantasiacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Peter of Tarantaise Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/graciliscommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Peter Gracilis Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/hispanusangelica/collection",
+      "@type": "sc:Collection",
+      "label": "Expositio in librorum De angelica hierarchia beati Dionysii"
+    },
+    {
+      "@id": "http://scta.info/iiif/hispanusecclesiastica/collection",
+      "@type": "sc:Collection",
+      "label": "Expositio in librorum De ecclesiastica hierarchia beati Dionysii"
+    },
+    {
+      "@id": "http://scta.info/iiif/hispanussummulaelogicales/collection",
+      "@type": "sc:Collection",
+      "label": "Tractatus / Summulae logicales"
+    },
+    {
+      "@id": "http://scta.info/iiif/hispanussyncategoreumata/collection",
+      "@type": "sc:Collection",
+      "label": "Syncategoreumata"
+    },
+    {
+      "@id": "http://scta.info/iiif/olivicommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Peter Jean Olivi Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/lombardsententia/collection",
+      "@type": "sc:Collection",
+      "label": "Sentences of Peter Lombard"
+    },
+    {
+      "@id": "http://scta.info/iiif/plaoulcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Plaoul Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/plaoulreportatio/collection",
+      "@type": "sc:Collection",
+      "label": "Plaoul Reportatio"
+    },
+    {
+      "@id": "http://scta.info/iiif/mediavillacommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Mediavilla Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/fitzralphcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "FitzRalph Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/holcotcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Holcot Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/holcotwisdom/collection",
+      "@type": "sc:Collection",
+      "label": "Holcot Wisdom Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/aquinasscriptum/collection",
+      "@type": "sc:Collection",
+      "label": "Aquinas Scriptum"
+    },
+    {
+      "@id": "http://scta.info/iiif/strasbourgcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Strasbourg Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/vocabularius/collection",
+      "@type": "sc:Collection",
+      "label": "Lexicon Theologicum Complectens Vocabulorum Descriptiones"
+    },
+    {
+      "@id": "http://scta.info/iiif/crathorncommentary/collection",
+      "@type": "sc:Collection",
+      "label": "William Crathron Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/chattonlectura/collection",
+      "@type": "sc:Collection",
+      "label": "Chatton Lectura"
+    },
+    {
+      "@id": "http://scta.info/iiif/chattonreportatio/collection",
+      "@type": "sc:Collection",
+      "label": "Chatton Reportatio"
+    },
+    {
+      "@id": "http://scta.info/iiif/rothwellcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "William de Rothwell Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/ockhamcommentary/collection",
+      "@type": "sc:Collection",
+      "label": "Ockham Commentary"
+    },
+    {
+      "@id": "http://scta.info/iiif/vaurouilloncommentary/collection",
+      "@type": "sc:Collection",
+      "label": "William de Vaurouillon Commentary"
+    }
+  ]
+}

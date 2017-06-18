@@ -1,0 +1,24 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/",
+  "label": "IIIF Collections for digitized archives and manuscripts from Gallica",
+  "@type": "sc:Collection",
+  "attribution": "IIIF Collection provided by Biblissima.",
+  "collections": [
+    {
+      "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/arsenal-library/",
+      "@type": "sc:Collection",
+      "label": "BibliothÃ¨que de l'Arsenal"
+    },
+    {
+      "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/manuscripts-department/",
+      "@type": "sc:Collection",
+      "label": "DÃ©partement des Manuscrits"
+    },
+    {
+      "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/mss-clairvaux/",
+      "@type": "sc:Collection",
+      "label": "Digitised manuscripts from the library of Clairvaux"
+    }
+  ]
+}

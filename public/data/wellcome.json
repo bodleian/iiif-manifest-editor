@@ -1,0 +1,28 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "https://wellcomelibrary.org/service/collections/",
+  "@type": "sc:Collection",
+  "label": "Wellcome Library IIIF Collections",
+  "collections": [
+    {
+      "@id": "https://wellcomelibrary.org/service/collections/topics/",
+      "@type": "sc:Collection",
+      "label": "Browse by topic"
+    },
+    {
+      "@id": "https://wellcomelibrary.org/service/collections/genres/",
+      "@type": "sc:Collection",
+      "label": "Browse by genre"
+    },
+    {
+      "@id": "https://wellcomelibrary.org/service/collections/authors/",
+      "@type": "sc:Collection",
+      "label": "Browse by author"
+    },
+    {
+      "@id": "https://wellcomelibrary.org/service/collections/collections/",
+      "@type": "sc:Collection",
+      "label": "Browse by digital collection"
+    }
+  ]
+}
