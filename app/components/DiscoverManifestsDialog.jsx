@@ -40,12 +40,20 @@ var DiscoverManifestsDialog = React.createClass({
     });
   },
   selectManifest: function(selectedManifestUrl) {
+    var {dispatch} = this.props;
     console.log(selectedManifestUrl);
+    this.props.closeModal();
+    if(selectedManifestUrl !== null) {
+      this.props.selectManifestHandler(selectedManifestUrl);
+    }
+    else {
+      dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest.'));
+    }
   },
   render: function() {
     return (
       <div className="modal fade">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>

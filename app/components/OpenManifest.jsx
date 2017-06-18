@@ -114,6 +114,10 @@ var OpenManifest = React.createClass({
       backdrop: 'static'
     });
   },
+  closeDiscoverManifestsDialog: function() {
+    var $discoverManifestsDialog = $(ReactDOM.findDOMNode(this.refs.discoverManifestsDialog));
+    $discoverManifestsDialog.modal('hide');
+  },
   render: function() {
     return(
       <div className="container open-manifest-container">
@@ -138,7 +142,7 @@ var OpenManifest = React.createClass({
             </div>
           </div>
 
-          <DiscoverManifestsDialog ref="discoverManifestsDialog" />
+          <DiscoverManifestsDialog ref="discoverManifestsDialog" selectManifestHandler={this.fetchRemoteManifest} closeModal={this.closeDiscoverManifestsDialog} />
 
           <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
             <div className="row form-group">
