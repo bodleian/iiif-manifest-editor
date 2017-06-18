@@ -10,87 +10,87 @@
     {
       "@id": "http://purl.stanford.edu/bb475kg5932/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment from the Office of the Dead, likely from a book of hours"
     },
     {
       "@id": "http://purl.stanford.edu/bc991ym6224/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Vellum scroll, 1532?"
     },
     {
       "@id": "http://purl.stanford.edu/bk254dq8652/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Horae"
     },
     {
       "@id": "http://purl.stanford.edu/bn235bx5422/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of De angelis"
     },
     {
       "@id": "http://purl.stanford.edu/bn247br1244/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment from the Office of the Dead, Matins, third nocturne."
     },
     {
       "@id": "http://purl.stanford.edu/bn507hr4651/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Letter, 1507 June 25 : Florence"
     },
     {
       "@id": "http://purl.stanford.edu/bn627ch8839/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of a Missal"
     },
     {
       "@id": "http://purl.stanford.edu/br458mt3964/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Unidentified fragment"
     },
     {
       "@id": "http://purl.stanford.edu/bs296nz2680/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of a Lectionary"
     },
     {
       "@id": "http://purl.stanford.edu/bx035nv2285/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of a Lectionary?"
     },
     {
       "@id": "http://purl.stanford.edu/bx462pk3356/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of Moralia on the Book of Job"
     },
     {
       "@id": "http://purl.stanford.edu/bx802wm4272/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Fragment of Corpus Juris Civilis Justiani"
     },
     {
       "@id": "http://purl.stanford.edu/by458mz6531/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Stanford University Libraries, M1814. Half Box 1, Folder 19"
     },
     {
       "@id": "http://purl.stanford.edu/bz689hb4817/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Divina commedia. Inferno (canto VIII 19 - IX 27)"
     },
     {
       "@id": "http://purl.stanford.edu/cb532cr9486/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Liturgical Libellus ...; known as the Prayerbook of Elizabeth of York : manuscript codex"
     },
     {
       "@id": "http://purl.stanford.edu/cb825zt2361/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "Viaticum, book VII, chapters 2-3 and 15-20 : manuscript fragment"
     },
     {
       "@id": "http://purl.stanford.edu/cc983jb3274/iiif/manifest.json",
       "location": "Stanford University",
-      "label": ""
+      "label": "French legal document"
     },
     {
       "@id": "http://purl.stanford.edu/bb332zw4089/iiif/manifest.json",
@@ -2593,150 +2593,6 @@
       "label": "Section 3a. Clippings"
     },
     {
-      "@id": "http://purl.stanford.edu/bw651zw1435/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/by634gf9230/iiif/manifest.json",
-      "label": "Section 3a. Clippings"
-    },
-    {
-      "@id": "https://purl.stanford.edu/ct107qq6975/iiif/manifest.json",
-      "label": "Buckminster Fuller Proposal: A Geodesic Hangar, Plan Projection, Geodesic Dome, Diamonds of Fiberglass Laminate"
-    },
-    {
-      "@id": "http://purl.stanford.edu/fk413qw9431/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/fz116cn2445/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/hd970cp7625/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/hf469hh1032/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/hj166pb6276/iiif/manifest.json",
-      "label": "Section 3a. Clippings, Graphs and Old Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/hw234fh6271/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/ng613kj3707/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/pq487sp0533/iiif/manifest.json",
-      "label": "Section 3a. Clippings"
-    },
-    {
-      "@id": "https://purl.stanford.edu/rn243vd4118/iiif/manifest.json",
-      "label": "Buckminster Fuller Proposal: A Geodesic Hangar, Plan Projection, Geodesic Dome, Styrofoam or Tubular Aluminum"
-    },
-    {
-      "@id": "http://purl.stanford.edu/rv297vz4859/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/rw798zk1723/iiif/manifest.json",
-      "label": "Section 3a. Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/sr148cq3011/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/sw511hs2901/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/td554rc3549/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, N-Z"
-    },
-    {
-      "@id": "http://purl.stanford.edu/td554rc3549/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, N-Z"
-    },
-    {
-      "@id": "http://purl.stanford.edu/td554rc3549/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, N-Z"
-    },
-    {
-      "@id": "http://purl.stanford.edu/vj128tn8715/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/vm720vp5030/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/wc552yj7354/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/wh916zm0363/iiif/manifest.json",
-      "label": "Section 3b. Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/wq052vn8645/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/xb669xs8490/iiif/manifest.json",
-      "label": "Section 3b. Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/xf881mq6495/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/xn813mn8587/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/xs168bv2121/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/ym936zx1177/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, A-E"
-    },
-    {
-      "@id": "http://purl.stanford.edu/yy327pq1036/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/zd512jp7280/iiif/manifest.json",
-      "label": "Section 3a. Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/zr763qb8393/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
-      "@id": "http://purl.stanford.edu/zs635tk8804/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, F"
-    },
-    {
-      "@id": "http://purl.stanford.edu/bc220nm4611/iiif/manifest.json",
-      "label": "Section 13. LECO Photograph Index, G-M"
-    },
-    {
-      "@id": "http://purl.stanford.edu/bh840hr8847/iiif/manifest.json",
-      "label": "Section 3a. Clippings"
-    },
-    {
-      "@id": "http://purl.stanford.edu/bw651zw1435/iiif/manifest.json",
-      "label": "Section 11. Schedule of Lectures, Projects and Days"
-    },
-    {
       "@id": "http://purl.stanford.edu/by634gf9230/iiif/manifest.json",
       "label": "Section 3a. Clippings"
     },
@@ -2855,6 +2711,10 @@
     {
       "@id": "http://purl.stanford.edu/zs635tk8804/iiif/manifest.json",
       "label": "Section 13. LECO Photograph Index, F"
+    },
+    {
+      "@id": "http://purl.stanford.edu/bw651zw1435/iiif/manifest.json",
+      "label": "Section 11. Schedule of Lectures, Projects and Days"
     },
     {
       "@id": "http://purl.stanford.edu/bf371nq9572/iiif/manifest.json",
