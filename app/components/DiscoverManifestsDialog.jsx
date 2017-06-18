@@ -36,6 +36,33 @@ var DiscoverManifestsDialog = React.createClass({
       }
     })
   },
+  loadSubCollectionsManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
+    this.setState({
+      selectedContentProvider: selectedContentProvider,
+      isLoading: true
+    });
+    let _this = this;
+    axios.get(collectionListUrl)
+      .then(function(response) {
+        console.log(response.data);
+        if(response.data.manifests !== undefined) {
+          console.log("Manifests: ", response.data.manifests);
+          _this.setState({
+            manifestList: response.data.manifests,
+            isLoading: false
+          });
+        }
+        else if(response.data.collections !== undefined) {
+          _this.setState({
+            subCollectionsList: response.data.collections,
+            isLoading: false
+          });
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
   resetSelectedContentProvider: function() {
     this.setState({
       selectedContentProvider: false,
@@ -111,7 +138,15 @@ var DiscoverManifestsDialog = React.createClass({
                     <div className="subcollections-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider} - Subcollections</h4>
-                      <div className="alert alert-info">{this.state.selectedContentProvider} has subcollections. Subcollections are currently not supported.</div>
+                      <ul>
+                        {
+                          this.state.subCollectionsList.map(collection => 
+                            <li key={collection.label}>
+                              <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
+                            </li>
+                          )
+                        }
+                      </ul>
                     </div>
                   );
                 }
