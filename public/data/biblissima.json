@@ -8,12 +8,12 @@
     {
       "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/arsenal-library/",
       "@type": "sc:Collection",
-      "label": "BibliothÃ¨que de l'Arsenal"
+      "label": "Bibliothèque de l'Arsenal"
     },
     {
       "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/manuscripts-department/",
       "@type": "sc:Collection",
-      "label": "DÃ©partement des Manuscrits"
+      "label": "Département des Manuscrits"
     },
     {
       "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/mss-clairvaux/",
