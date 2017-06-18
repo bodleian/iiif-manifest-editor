@@ -1,0 +1,21 @@
+.discover-manifests {
+
+  .content-providers-list {
+    text-align: left;
+  }
+
+  .discover-loading-indicator {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 120%;
+  }
+
+  .content-provider-item {
+    .content-provider-logo {
+      max-width: 300px;
+      max-height: 40px;
+      margin-right: 10px;
+    }
+    margin-bottom: 20px;
+  }
+}

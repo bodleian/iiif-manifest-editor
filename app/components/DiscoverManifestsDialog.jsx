@@ -97,21 +97,26 @@ var DiscoverManifestsDialog = React.createClass({
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 className="modal-title">Discover Manifests</h4>
             </div>
-            <div className="modal-body">
+            <div className="modal-body discover-manifests">
               {(() => {
                 if(!this.state.selectedContentProvider) {
                   return (
-                    <div className="content-providers-list">
+                    <div>
                       <h4>Select Content Provider</h4>
-                      <ul>
-                        {
-                          iiifCollections.collections.map((collection, index) => 
-                            <li key={index}>
-                              <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
-                            </li>
-                          )
-                        }
-                      </ul>
+                      <div className="content-providers-list">
+                        <div>
+                          {
+                            iiifCollections.collections.map((collection, index) => 
+                              <div className="content-provider-item" key={index}>
+                                <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>
+                                  <img src={"/img/logos/" + collection.logo} alt="Logo" className="content-provider-logo" />
+                                </a>
+                                <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
+                              </div>
+                            )
+                          }
+                        </div>
+                      </div>
                     </div>
                   );
                 } else if(this.state.manifestList !== undefined) {

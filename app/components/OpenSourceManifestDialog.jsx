@@ -111,7 +111,7 @@ var OpenSourceManifestDialog = React.createClass({
   render: function() {
     return (
       <div className="modal fade">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
