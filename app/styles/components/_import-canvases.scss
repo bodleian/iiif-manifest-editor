@@ -1,6 +1,16 @@
 .import-canvases-container {
   position: relative;
 
+  .discover-manifests {
+    margin: 20px 0;
+  }
+
+  .discover-manifests-dialog-open-button {
+    color: white;
+    background-color: black;
+  }
+
+
   .source-manifest-browser-narrow-view {
     float: left;
     width: 70%;

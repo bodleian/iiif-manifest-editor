@@ -10,24 +10,28 @@ var DiscoverManifestsDialog = React.createClass({
     return {
       selectedContentProvider: false,
       manifestList: undefined,
-      subCollectionsList: undefined
+      subCollectionsList: undefined,
+      isLoading: false
     };
   },
   loadManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
     this.setState({
-      selectedContentProvider: selectedContentProvider
+      selectedContentProvider: selectedContentProvider,
+      isLoading: true
     });
     fetch('./data/' + collectionListUrl)
       .then((res) => res.json())
       .then((data) => {
       if(data.manifests !== undefined) {
         this.setState({
-          manifestList: data.manifests
+          manifestList: data.manifests,
+          isLoading: false
         });
       }
       else if(data.collections !== undefined) {
         this.setState({
-          subCollectionsList: data.collections
+          subCollectionsList: data.collections,
+          isLoading: false
         });
       }
     })
@@ -49,6 +53,15 @@ var DiscoverManifestsDialog = React.createClass({
       dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest.'));
     }
   },
+  displayLoadingIndicator: function() {
+    if(this.state.isLoading) {
+      return(
+        <div className="discover-loading-indicator"><i className="fa fa-circle-o-notch fa-spin"></i> Loading...</div>
+      );
+    } else {
+      return '';
+    }
+  },
   render: function() {
     return (
       <div className="modal fade">
@@ -59,18 +72,21 @@ var DiscoverManifestsDialog = React.createClass({
               <h4 className="modal-title">Discover Manifests</h4>
             </div>
             <div className="modal-body">
+              {this.displayLoadingIndicator()}
               {(() => {
                 if(!this.state.selectedContentProvider) {
                   return (
                     <div className="content-providers-list">
-                    <h4>Select Content Provider</h4>
-                      {
-                        iiifCollections.collections.map(collection => 
-                          <div key={collection.label}>
-                            <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
-                          </div>
-                        )
-                      }
+                      <h4>Select Content Provider</h4>
+                      <ul>
+                        {
+                          iiifCollections.collections.map(collection => 
+                            <li key={collection.label}>
+                              <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
+                            </li>
+                          )
+                        }
+                      </ul>
                     </div>
                   );
                 } else if(this.state.manifestList !== undefined) {
