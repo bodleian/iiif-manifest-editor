@@ -17,6 +17,7 @@ var DiscoverManifestsDialog = React.createClass({
   loadManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
     this.setState({
       selectedContentProvider: selectedContentProvider,
+      subCollectionsList: undefined,
       isLoading: true
     });
     fetch('./data/' + collectionListUrl)
@@ -44,9 +45,7 @@ var DiscoverManifestsDialog = React.createClass({
     let _this = this;
     axios.get(collectionListUrl)
       .then(function(response) {
-        console.log(response.data);
         if(response.data.manifests !== undefined) {
-          console.log("Manifests: ", response.data.manifests);
           _this.setState({
             manifestList: response.data.manifests,
             isLoading: false
@@ -99,7 +98,6 @@ var DiscoverManifestsDialog = React.createClass({
               <h4 className="modal-title">Discover Manifests</h4>
             </div>
             <div className="modal-body">
-              {this.displayLoadingIndicator()}
               {(() => {
                 if(!this.state.selectedContentProvider) {
                   return (
@@ -107,8 +105,8 @@ var DiscoverManifestsDialog = React.createClass({
                       <h4>Select Content Provider</h4>
                       <ul>
                         {
-                          iiifCollections.collections.map(collection => 
-                            <li key={collection.label}>
+                          iiifCollections.collections.map((collection, index) => 
+                            <li key={index}>
                               <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
                             </li>
                           )
@@ -123,8 +121,8 @@ var DiscoverManifestsDialog = React.createClass({
                       <h4>{this.state.selectedContentProvider}</h4>
                       <ul>
                         {
-                          this.state.manifestList.map(manifest => 
-                            <li key={manifest['@id']}>
+                          this.state.manifestList.map((manifest, index) => 
+                            <li key={index}>
                               <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{manifest.label}</a>
                             </li>
                           )
@@ -140,8 +138,8 @@ var DiscoverManifestsDialog = React.createClass({
                       <h4>{this.state.selectedContentProvider} - Subcollections</h4>
                       <ul>
                         {
-                          this.state.subCollectionsList.map(collection => 
-                            <li key={collection.label}>
+                          this.state.subCollectionsList.map((collection, index) => 
+                            <li key={index}>
                               <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
                             </li>
                           )
@@ -151,6 +149,7 @@ var DiscoverManifestsDialog = React.createClass({
                   );
                 }
               })()}
+              {this.displayLoadingIndicator()}
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-close"></i> Close</button>
