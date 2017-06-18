@@ -41,7 +41,6 @@ var DiscoverManifestsDialog = React.createClass({
   },
   selectManifest: function(selectedManifestUrl) {
     var {dispatch} = this.props;
-    console.log(selectedManifestUrl);
     this.props.closeModal();
     if(selectedManifestUrl !== null) {
       this.props.selectManifestHandler(selectedManifestUrl);

@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
+var DiscoverManifestsDialog = require('DiscoverManifestsDialog');
 
 var OpenSourceManifestDialog = React.createClass({
   getInitialState: function() {
@@ -97,6 +98,16 @@ var OpenSourceManifestDialog = React.createClass({
     var $dropManifestContainer = $(ReactDOM.findDOMNode(this.refs.dropManifestContainer));
     $dropManifestContainer.removeClass('drop-manifest-container-drag');
   },
+  openDiscoverManifestsDialog: function() {
+    var $discoverManifestsDialog = $(ReactDOM.findDOMNode(this.refs.discoverManifestsDialog));
+    $discoverManifestsDialog.modal({
+      backdrop: 'static'
+    });
+  },
+  closeDiscoverManifestsDialog: function() {
+    var $discoverManifestsDialog = $(ReactDOM.findDOMNode(this.refs.discoverManifestsDialog));
+    $discoverManifestsDialog.modal('hide');
+  },
   render: function() {
     return (
       <div className="modal fade">
@@ -111,6 +122,12 @@ var OpenSourceManifestDialog = React.createClass({
                 <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
                 <div className="text-muted"><i className="fa fa-info-circle"></i> Drop a remote manifest file via IIIF icon</div>
               </div>
+              <div className="row discover-manifests">
+                <div className="col-md-12">
+                  <button type="submit" onClick={this.openDiscoverManifestsDialog} className="btn btn-default discover-manifests-dialog-open-button"><i className="fa fa-search"></i> Discover Manifests</button>
+                </div>
+              </div>
+              <DiscoverManifestsDialog ref="discoverManifestsDialog" selectManifestHandler={this.fetchRemoteManifest} closeModal={this.closeDiscoverManifestsDialog} />
               <input type="text" ref="remoteManifestUrl" className="form-control" placeholder="Enter a remote manifest URL" />
               <div className="fetch-remote-manifest-status">
                 {this.displayFetchRemoteManifestStatus()}
