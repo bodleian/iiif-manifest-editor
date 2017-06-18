@@ -5,6 +5,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
 var manifesto = require('manifesto.js');
+var DiscoverManifestsDialog = require('DiscoverManifestsDialog');
 
 var OpenManifest = React.createClass({
   fetchLocalManifestFile: function(localManifestFile) {
@@ -107,6 +108,12 @@ var OpenManifest = React.createClass({
       );
     }
   },
+  openDiscoverManifestsDialog: function() {
+    var $discoverManifestsDialog = $(ReactDOM.findDOMNode(this.refs.discoverManifestsDialog));
+    $discoverManifestsDialog.modal({
+      backdrop: 'static'
+    });
+  },
   render: function() {
     return(
       <div className="container open-manifest-container">
@@ -117,13 +124,21 @@ var OpenManifest = React.createClass({
               <a className="btn btn-default btn-sm" href="https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual" target="_blank"><i className="fa fa-book"></i> User Manual</a>
             </div>
           </div>
-
+          
           {this.displayManifestFetchErrors()}
 
           <div className="drop-manifest-container" ref="dropManifestContainer" onDragEnter={this.onDragEnter} onDragOver={this.onFileDrag} onDragLeave={this.onFileDrag} onDrop={this.onFileDrop}>
             <div className="drag-and-drop-message"><i className="fa fa-arrow-circle-down"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : ' Drag and drop manifest here'}</div>
             <div className="text-muted"><i className="fa fa-info-circle"></i> Drop a local manifest JSON file or a remote manifest file via IIIF icon</div>
           </div>
+
+          <div className="row discover-manifests">
+            <div className="col-md-12">
+              <button type="submit" onClick={this.openDiscoverManifestsDialog} className="btn btn-default discover-manifests-dialog-open-button"><i className="fa fa-search"></i> Discover Manifests</button>
+            </div>
+          </div>
+
+          <DiscoverManifestsDialog ref="discoverManifestsDialog" />
 
           <form className="form-horizontal" role="form" onSubmit={this.onFormSubmit}>
             <div className="row form-group">

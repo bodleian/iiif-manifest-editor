@@ -26,6 +26,7 @@ module.exports = {
       'node_modules',
       './app/components',
       './app/components/ui-toolkit',
+      './app/data',
       'libraries'
     ],
     alias: {
@@ -57,6 +58,10 @@ module.exports = {
       {
         loader: 'file',
         test: /\.png$/
+      },
+      {
+        loader: 'json-loader',
+        test: /\.json$/
       }
     ]
   },
