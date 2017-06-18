@@ -127,7 +127,7 @@ var DiscoverManifestsDialog = React.createClass({
                       <ul>
                         {
                           this.state.manifestList.map((manifest, index) => 
-                            <li key={index}>
+                            <li key={index} className="manifest-list-item">
                               <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{manifest.label}</a>
                             </li>
                           )
@@ -140,7 +140,7 @@ var DiscoverManifestsDialog = React.createClass({
                   return (
                     <div className="subcollections-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
-                      <h4>{this.state.selectedContentProvider} - Subcollections</h4>
+                      <h4>{this.state.selectedContentProvider}</h4>
                       <ul>
                         {
                           this.state.subCollectionsList.map((collection, index) => 
