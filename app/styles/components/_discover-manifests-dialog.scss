@@ -1,4 +1,14 @@
 .discover-manifests {
+  .filter-manifests {
+    margin: 10px 0;
+  }
+
+  .highlight {
+    background-color: yellow;
+    a {
+      color: red;
+    }
+  }
 
   .content-providers-list {
     text-align: left;

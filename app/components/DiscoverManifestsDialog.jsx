@@ -4,6 +4,7 @@ var axios = require('axios');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var iiifCollections = require('iiif-universe.json');
+var Highlight = require('react-highlighter');
 
 var DiscoverManifestsDialog = React.createClass({
   getInitialState: function() {
@@ -11,7 +12,8 @@ var DiscoverManifestsDialog = React.createClass({
       selectedContentProvider: false,
       manifestList: undefined,
       subCollectionsList: undefined,
-      isLoading: false
+      isLoading: false,
+      filterChars: ""
     };
   },
   loadManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
@@ -88,6 +90,11 @@ var DiscoverManifestsDialog = React.createClass({
       return '';
     }
   },
+  filterManifestList: function() {
+    this.setState({
+      filterChars: this.refs.filterChars.value
+    });
+  },
   render: function() {
     return (
       <div className="modal fade">
@@ -124,11 +131,12 @@ var DiscoverManifestsDialog = React.createClass({
                     <div className="manifests-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
+                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onChange={this.filterManifestList} />
                       <ul>
                         {
                           this.state.manifestList.map((manifest, index) => 
-                            <li key={index} className="manifest-list-item">
-                              <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{manifest.label}</a>
+                            <li key={index} className={manifest.label.includes(this.state.filterChars) ? 'manifest-list-item' : 'hidden'}>
+                              <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 2 ? <Highlight search={this.state.filterChars}>{manifest.label}</Highlight> : manifest.label}</a>
                             </li>
                           )
                         }
@@ -141,11 +149,12 @@ var DiscoverManifestsDialog = React.createClass({
                     <div className="subcollections-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
+                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onChange={this.filterManifestList} />
                       <ul>
                         {
                           this.state.subCollectionsList.map((collection, index) => 
-                            <li key={index}>
-                              <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
+                            <li key={index} className={collection.label.includes(this.state.filterChars) ? 'subcollection-list-item' : 'hidden'}>
+                              <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 2 ? <Highlight search={this.state.filterChars}>{collection.label}</Highlight> : collection.label}</a>
                             </li>
                           )
                         }
