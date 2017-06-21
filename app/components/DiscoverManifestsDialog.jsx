@@ -28,13 +28,15 @@ var DiscoverManifestsDialog = React.createClass({
       if(data.manifests !== undefined) {
         this.setState({
           manifestList: data.manifests,
-          isLoading: false
+          isLoading: false,
+          filterChars: ""
         });
       }
       else if(data.collections !== undefined) {
         this.setState({
           subCollectionsList: data.collections,
-          isLoading: false
+          isLoading: false,
+          filterChars: ""
         });
       }
     })
@@ -50,13 +52,15 @@ var DiscoverManifestsDialog = React.createClass({
         if(response.data.manifests !== undefined) {
           _this.setState({
             manifestList: response.data.manifests,
-            isLoading: false
+            isLoading: false,
+            filterChars: ""
           });
         }
         else if(response.data.collections !== undefined) {
           _this.setState({
             subCollectionsList: response.data.collections,
-            isLoading: false
+            isLoading: false,
+            filterChars: ""
           });
         }
       })
@@ -68,7 +72,8 @@ var DiscoverManifestsDialog = React.createClass({
     this.setState({
       selectedContentProvider: false,
       manifestList: undefined,
-      subCollectionsList: undefined
+      subCollectionsList: undefined,
+      filterChars: ""
     });
   },
   selectManifest: function(selectedManifestUrl) {
