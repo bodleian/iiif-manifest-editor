@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var Utils = require('Utils');
 import LazyLoad from 'react-lazy-load';
 

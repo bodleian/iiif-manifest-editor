@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var ThumbnailStripCanvas = require('ThumbnailStripCanvas');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var {SortableItems, SortableItem} = require('react-sortable-component');
 var OnScreenHelp = require('OnScreenHelp');
 

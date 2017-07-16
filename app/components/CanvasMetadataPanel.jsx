@@ -6,7 +6,7 @@ var axios = require('axios');
 var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 var ImageAnnotationChoiceDialog = require('ImageAnnotationChoiceDialog');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var Utils = require('Utils');
 
 var CanvasMetadataPanel = React.createClass({
