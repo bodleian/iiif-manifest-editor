@@ -21,7 +21,6 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
 * Clone this repository: `git clone git@github.com:bodleian/iiif-manifest-editor.git`
 * Change into the project directory: `cd iiif-manifest-editor`
 * Install Node v8.1.4 with nvm: `nvm install v8.1.4`
-* Set nvm to use Node v8.1.4: `nvm use v8.1.4`
 * Install the required node modules into the project: `npm install`
 
 ## How to run the application ##
@@ -30,7 +29,7 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
   * `npm run build`: This builds the bundle file once
   * `npm run watch`: This builds the bundle file dynamically on all file changes
   * Note: when changing webpack.config.js, webpack needs to be restarted
-* Start the server: `node server.js`
+* Start the server: `npm run start`
   * The application will run on [http://localhost:3000](http://localhost:3000) by default
 
 ## How to run tests ##
