@@ -20,8 +20,8 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
 
 * Clone this repository: `git clone git@github.com:bodleian/iiif-manifest-editor.git`
 * Change into the project directory: `cd iiif-manifest-editor`
-* Install Node v6.1.0 with nvm: `nvm install v6.1.0`
-* Set nvm to use Node v6.1.0: `nvm use v6.1.0`
+* Install Node v8.1.4 with nvm: `nvm install v8.1.4`
+* Set nvm to use Node v8.1.4: `nvm use v8.1.4`
 * Install the required node modules into the project: `npm install`
 
 ## How to run the application ##

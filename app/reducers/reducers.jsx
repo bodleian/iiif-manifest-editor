@@ -1,5 +1,5 @@
 var manifesto = require('manifesto.js');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var deepcopy = require('deepcopy');
 
 var stateDefaults = {

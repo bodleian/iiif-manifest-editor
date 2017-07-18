@@ -82,7 +82,11 @@ var Viewer = React.createClass({
         var canvasImages = canvas.getImages();
         if(canvasImages.length > 0) {
           var serviceId = canvasImages[0].getResource().getServices()[0].id;
-          openSeadragonConf.tileSources = [serviceId + '/info.json'];
+          // add slash to serviceId if it does not already end with slash
+          if(serviceId.substr(-1) !== '/') {
+            serviceId = serviceId + '/';
+          }
+          openSeadragonConf.tileSources = [serviceId + 'info.json'];
         } 
         else {
           // display placeholder image for empty canvases

@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var manifesto = require('manifesto.js');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var Utils = require('Utils');
 import LazyLoad from 'react-lazy-load';
 
@@ -68,7 +68,9 @@ var ThumbnailStripCanvas = React.createClass({
     return Math.round((canvas.getWidth() / canvas.getHeight()) * this.getDefaultThumbnailHeight());
   },
   getMainImage: function(canvas) {
-    return canvas.getImages().length > 0 ? canvas.getThumbUri('', this.getDefaultThumbnailHeight()) : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
+    return canvas.getImages().length > 0 
+      ? canvas.getCanonicalImageUri(this.getThumbnailCanvasWidth(canvas)) 
+      : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
   },
   getMainImageLabel: function(canvas) {
     return canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas';
