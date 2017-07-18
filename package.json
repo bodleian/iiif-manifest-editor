@@ -43,7 +43,7 @@
     "deepcopy": "^0.6.3",
     "express": "^4.13.4",
     "font-awesome": "^4.6.3",
-    "manifesto.js": "0.1.20",
+    "manifesto.js": "0.2.1",
     "multer": "^1.1.0",
     "openseadragon": "^2.2.1",
     "react": "15.3.2",
