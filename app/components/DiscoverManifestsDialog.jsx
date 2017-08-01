@@ -5,6 +5,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var iiifCollections = require('iiif-universe.json');
 var Highlight = require('react-highlighter');
+import {debounce} from 'throttle-debounce';
 
 var DiscoverManifestsDialog = React.createClass({
   getInitialState: function() {
@@ -97,7 +98,7 @@ var DiscoverManifestsDialog = React.createClass({
   },
   filterManifestList: function() {
     this.setState({
-      filterChars: this.refs.filterChars.value
+      filterChars: this.refs.filterChars.value.toLowerCase()
     });
   },
   render: function() {
@@ -136,12 +137,12 @@ var DiscoverManifestsDialog = React.createClass({
                     <div className="manifests-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
-                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onChange={this.filterManifestList} />
+                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onKeyUp={debounce(200, this.filterManifestList)} />
                       <ul>
                         {
                           this.state.manifestList.map((manifest, index) => 
-                            <li key={index} className={manifest.label.includes(this.state.filterChars) ? 'manifest-list-item' : 'hidden'}>
-                              <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 2 ? <Highlight search={this.state.filterChars}>{manifest.label}</Highlight> : manifest.label}</a>
+                            <li key={index} className={manifest.label.toLowerCase().includes(this.state.filterChars) ? 'manifest-list-item' : 'hidden'}>
+                              <a onClick={() => this.selectManifest(manifest['@id'])} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 1 ? <Highlight search={this.state.filterChars}>{manifest.label}</Highlight> : manifest.label}</a>
                             </li>
                           )
                         }
@@ -154,12 +155,12 @@ var DiscoverManifestsDialog = React.createClass({
                     <div className="subcollections-list">
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
-                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onChange={this.filterManifestList} />
+                      <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onKeyUp={debounce(200, this.filterManifestList)} />
                       <ul>
                         {
                           this.state.subCollectionsList.map((collection, index) => 
-                            <li key={index} className={collection.label.includes(this.state.filterChars) ? 'subcollection-list-item' : 'hidden'}>
-                              <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 2 ? <Highlight search={this.state.filterChars}>{collection.label}</Highlight> : collection.label}</a>
+                            <li key={index} className={collection.label.toLowerCase().includes(this.state.filterChars) ? 'subcollection-list-item' : 'hidden'}>
+                              <a onClick={() => this.loadSubCollectionsManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{this.state.filterChars !== "" && this.state.filterChars.length > 1 ? <Highlight search={this.state.filterChars}>{collection.label}</Highlight> : collection.label}</a>
                             </li>
                           )
                         }
