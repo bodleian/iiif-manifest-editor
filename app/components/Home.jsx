@@ -24,6 +24,12 @@ var Home = (props) => {
             <Link to="/new" className="btn btn-default"><i className="fa fa-file"></i> New Manifest</Link>
           </div>
         </div>
+        <div id="bodleian-logo">
+          <img src="./img/bodleian-libraries-logo.png" alt="Bodleian Libraries Oxford" />
+        </div>
+        <div id="textandbytes-logo">
+          <img src="./img/textandbytes-logo.png" alt="text & bytes" />
+        </div>
       </div>
     </div>
   );
