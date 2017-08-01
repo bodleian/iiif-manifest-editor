@@ -3,6 +3,11 @@
     margin: 10px 0;
   }
 
+  .discover-content-list {
+    height: 400px;
+    overflow: scroll;
+  }
+
   .highlight {
     background-color: yellow;
     a {

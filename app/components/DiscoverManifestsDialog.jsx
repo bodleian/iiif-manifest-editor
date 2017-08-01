@@ -138,7 +138,7 @@ var DiscoverManifestsDialog = React.createClass({
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
                       <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onKeyUp={debounce(200, this.filterManifestList)} />
-                      <ul>
+                      <ul className="discover-content-list">
                         {
                           this.state.manifestList.map((manifest, index) => 
                             <li key={index} className={manifest.label.toLowerCase().includes(this.state.filterChars) ? 'manifest-list-item' : 'hidden'}>
@@ -156,7 +156,7 @@ var DiscoverManifestsDialog = React.createClass({
                       <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
                       <h4>{this.state.selectedContentProvider}</h4>
                       <input className="form-control filter-manifests" type="text" ref="filterChars" placeholder="Filter manifests" onKeyUp={debounce(200, this.filterManifestList)} />
-                      <ul>
+                      <ul className="discover-content-list">
                         {
                           this.state.subCollectionsList.map((collection, index) => 
                             <li key={index} className={collection.label.toLowerCase().includes(this.state.filterChars) ? 'subcollection-list-item' : 'hidden'}>
