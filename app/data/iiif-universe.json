@@ -9,14 +9,12 @@
       "@type": "sc:Collection",
       "label": "Biblissima IIIF Collections",
       "description": "Collections of IIIF Manifests from Biblissima's image repositories",
-      "localUrl": "biblissima.json",
       "logo": "biblissima.png"
     },
     {
       "@id": "http://iiif.bodleian.ox.ac.uk/iiif/collection/All",
       "@type": "sc:Collection",
       "label": "Bodleian Library, Oxford",
-      "localUrl": "bodleian.json",
       "logo": "bodleian.jpg"
     },
     {
@@ -29,7 +27,6 @@
       "@id": "http://www.e-codices.unifr.ch/metadata/iiif/collection.json",
       "@type": "sc:Collection",
       "label": "e-codices",
-      "localUrl": "e-codices.json",
       "logo": "e-codices.png"
     },
     {
@@ -42,7 +39,6 @@
       "@id": "http://scta.info/iiif/scta/collection",
       "@type": "sc:Collection",
       "label": "Sentences Commentary Text Archive",
-      "localUrl": "scta.json",
       "logo": "scta.png"
     },
     {
@@ -50,14 +46,12 @@
       "@type": "sc:Collection",
       "label": "Shared Shelf Commons",
       "description": "IIIF Manifests showcasing collections from Shared Shelf Commons",
-      "localUrl": "ssc.json",
       "logo": "ssc.png"
     },
     {
       "@id": "https://graph.global/static/data/universes/iiif/stanford.json",
       "@type": "sc:Collection",
       "label": "Stanford",
-      "localUrl": "stanford.json",
       "logo": "stanford.png"
     },
     {
@@ -70,28 +64,24 @@
       "@id": "http://digital.library.villanova.edu/Collection/vudl:3/IIIF",
       "@type": "sc:Collection",
       "label": "Villanova University",
-      "localUrl": "villanova.json",
       "logo": "villanova.png"
     },
     {
       "@id": "http://wellcomelibrary.org/service/collections/",
       "@type": "sc:Collection",
       "label": "Wellcome Library",
-      "localUrl": "wellcome.json",
       "logo": "wellcome.png"
     },
     {
       "@id": "http://manifests.ydc2.yale.edu/manifest",
       "@type": "sc:Collection",
       "label": "Yale",
-      "localUrl": "yale.json",
       "logo": "yale.gif"
     },
     {
       "@id": "http://manifests.britishart.yale.edu/collection/top",
       "@type": "sc:Collection",
       "label": "Yale Center for British Art",
-      "localUrl": "yale-center-for-british-art.json",
       "logo": "yale-center-for-british-art.png"
     }
   ]
