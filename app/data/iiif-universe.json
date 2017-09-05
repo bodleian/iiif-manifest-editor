@@ -34,7 +34,7 @@
       "logo": "e-codices.png"
     },
     {
-      "@id": "http://scta.info/iiif/collection/scta",
+      "@id": "http://scta.info/iiif/scta/collection",
       "@type": "sc:Collection",
       "label": "Sentences Commentary Text Archive",
       "localUrl": "scta.json",
