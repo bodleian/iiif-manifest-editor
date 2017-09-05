@@ -20,11 +20,10 @@
       "logo": "bodleian.jpg"
     },
     {
-      "@id": "http://digital.library.villanova.edu/Collection/vudl:3/IIIF",
+      "@id": "https://iiif.durham.ac.uk/manifests/trifle/collection/index",
       "@type": "sc:Collection",
-      "label": "Digital Library @ Villanova University",
-      "localUrl": "villanova.json",
-      "logo": "villanova.png"
+      "label": "Durham University",
+      "logo": "durham-university.png"
     },
     {
       "@id": "http://www.e-codices.unifr.ch/metadata/iiif/collection.json",
@@ -32,6 +31,12 @@
       "label": "e-codices",
       "localUrl": "e-codices.json",
       "logo": "e-codices.png"
+    },
+    {
+      "@id": "https://view.nls.uk/collections/top.json",
+      "@type": "sc:Collection",
+      "label": "National Library of Scotland",
+      "logo": "national-library-of-scotland.png"
     },
     {
       "@id": "http://scta.info/iiif/scta/collection",
@@ -54,6 +59,19 @@
       "label": "Stanford",
       "localUrl": "stanford.json",
       "logo": "stanford.png"
+    },
+    {
+      "@id": "https://textgridlab.org/1.0/iiif/manifests/collection.json",
+      "@type": "sc:Collection",
+      "label": "TextGrid",
+      "logo": "textgrid-logo.svg"
+    },
+    {
+      "@id": "http://digital.library.villanova.edu/Collection/vudl:3/IIIF",
+      "@type": "sc:Collection",
+      "label": "Villanova University",
+      "localUrl": "villanova.json",
+      "logo": "villanova.png"
     },
     {
       "@id": "http://wellcomelibrary.org/service/collections/",
