@@ -23,7 +23,7 @@ var DiscoverManifestsDialog = React.createClass({
       subCollectionsList: undefined,
       isLoading: true
     });
-    fetch('./data/' + collectionListUrl)
+    fetch(collectionListUrl)
       .then((res) => res.json())
       .then((data) => {
       if(data.manifests !== undefined) {
@@ -121,10 +121,10 @@ var DiscoverManifestsDialog = React.createClass({
                           {
                             iiifCollections.collections.map((collection, index) => 
                               <div className="content-provider-item" key={index}>
-                                <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>
+                                <a onClick={() => this.loadManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>
                                   <img src={"./img/logos/" + collection.logo} alt={collection.label} className="content-provider-logo" />
                                 </a>
-                                <a onClick={() => this.loadManifestsFromContentProvider(collection.localUrl, collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
+                                <a onClick={() => this.loadManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
                               </div>
                             )
                           }
