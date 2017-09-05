@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var axios = require('axios');
 var {connect} = require('react-redux');
 var actions = require('actions');
-var iiifCollections = require('iiif-universe.json');
+var iiifCollections = require('content-providers.json');
 var Highlight = require('react-highlighter');
 import {debounce} from 'throttle-debounce';
 
