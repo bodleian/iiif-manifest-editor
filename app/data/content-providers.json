@@ -5,6 +5,12 @@
   "label": "IIIF Universe",
   "collections": [
     {
+      "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/",
+      "@type": "sc:Collection",
+      "label": "Biblissima / Gallica",
+      "logo": "biblissima.png"
+    },
+    {
       "@id": "http://iiif.bodleian.ox.ac.uk/iiif/collection/All",
       "@type": "sc:Collection",
       "label": "Bodleian Library, Oxford",
