@@ -8,6 +8,10 @@ The iiif-manifest-editor is a web application that generates IIIF manifests. It 
 See this Wiki page for instructions on how to use the IIIF manifest editor:
 [User manual](https://github.com/bodleian/iiif-manifest-editor/wiki/User-Manual)
 
+## Online Demo
+You can find an instance of the IIIF Manifest Editor at:
+[http://iiif.bodleian.ox.ac.uk/manifest-editor/](http://iiif.bodleian.ox.ac.uk/manifest-editor/)
+
 
 ## How to set up the application ##
 
