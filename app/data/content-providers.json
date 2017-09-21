@@ -5,7 +5,7 @@
   "label": "IIIF Universe",
   "collections": [
     {
-      "@id": "http://biblissima.fr/iiif/collection/gallica-bnf/",
+      "@id": "http://biblissima.fr/iiif/collection/top",
       "@type": "sc:Collection",
       "label": "Biblissima / Gallica",
       "logo": "biblissima.png"
