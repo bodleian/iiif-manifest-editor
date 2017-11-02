@@ -11,9 +11,9 @@
       "logo": "biblissima.png"
     },
     {
-      "@id": "http://iiif.bodleian.ox.ac.uk/iiif/collection/All",
+      "@id": "https://iiif.bodleian.ox.ac.uk/iiif/collection/All",
       "@type": "sc:Collection",
-      "label": "Bodleian Library, Oxford",
+      "label": "Bodleian Libraries, Oxford",
       "logo": "bodleian.jpg"
     },
     {
