@@ -11,10 +11,18 @@ module.exports = {
     jquery: 'jQuery'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
   ],
   output: {
     path: __dirname,
@@ -70,5 +78,5 @@ module.exports = {
       path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets')
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: (process.env.NODE_ENV === "production") ? "cheap-module-source-map" : "eval-source-map"
 };
