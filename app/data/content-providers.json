@@ -35,6 +35,12 @@
       "logo": "national-library-of-scotland.png"
     },
     {
+      "@id": "https://dms-data.stanford.edu/data/manifests/Parker/collection.json",
+      "@type": "sc:Collection",
+      "label": "Parker Library On the Web",
+      "logo": "parker-stanford.png"
+    },
+    {
       "@id": "http://scta.info/iiif/scta/collection",
       "@type": "sc:Collection",
       "label": "Sentences Commentary Text Archive",
