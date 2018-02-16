@@ -10,9 +10,15 @@ var SendManifestToUri = require('SendManifestToUri');
 var SaveManifestDialog = React.createClass({
   getInitialState: function() {
     return {
-      isValidatingManifest: false,
-      validatorResponse: undefined
+      saveManifestLocation: 'local',
+      localRemoteToggleIcon: 'off'
     };
+  },
+  toggleLocalRemoteSave: function() {
+    this.setState({
+      saveManifestLocation: this.state.saveManifestLocation == 'local' ? 'remote' : 'local',
+      localRemoteToggleIcon: this.state.localRemoteToggleIcon == 'off' ? 'on' : 'off'
+    });
   },
   render: function() {
     return (
@@ -26,9 +32,18 @@ var SaveManifestDialog = React.createClass({
             <div className="modal-body">
               <ValidateManifest />
               <hr />
-              <DownloadManifest />
-              <hr />
-              <SendManifestToUri />
+              <a onClick={this.toggleLocalRemoteSave} className="toggle-local-remote-save" title="Save manifest: {this.state.saveManifestLocation}"><i className={"fa fa-toggle-" + this.state.localRemoteToggleIcon}></i> Save manifest: {this.state.saveManifestLocation}</a>
+              {(() => {
+                if(this.state.saveManifestLocation == 'local') {
+                  return (
+                    <DownloadManifest />
+                  );
+                } else {
+                  return (
+                    <SendManifestToUri />
+                  );
+                }
+              })()}
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" onClick={this.resetValidationStatus} data-dismiss="modal"><i className="fa fa-close"></i> Close</button>

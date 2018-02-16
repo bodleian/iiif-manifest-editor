@@ -17,3 +17,16 @@
     display: block;
   }
 }
+
+.toggle-local-remote-save {
+    font-size: 1.6rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    i {
+      font-size: 2rem;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+}
