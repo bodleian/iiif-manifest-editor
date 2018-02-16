@@ -13,8 +13,8 @@ module.exports = function(props) {
   	  <h4>Save and Validate Manifest</h4>
   	  <p>	
   	  	Use the <i className="fa fa-download hidden-sm hidden-xs"></i> "Save Manifest" button on the top left of the sidebar to 
-        download the currently edited manifest. 
-        A dialog will let you choose a name for your manifest and you can validate it before downloading it.
+        download the currently edited manifest or store it on a remote server.
+        Note: you can validate the manifest before downloading it or sending it to a server.
   	  </p>
 
       <h4>Manifest Actions</h4>
