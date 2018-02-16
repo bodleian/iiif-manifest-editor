@@ -84,7 +84,7 @@ var SendManifestToUri = React.createClass({
             </div>
             <div>
               <p>You may reference your remotely stored manifest from the following URI: <br />
-              <a href={this.state.remoteManifestUri}>{this.state.remoteManifestUri}</a>
+              <a target="_blank" href={this.state.remoteManifestUri}>{this.state.remoteManifestUri}</a>
               </p>
             </div>
           </div>
