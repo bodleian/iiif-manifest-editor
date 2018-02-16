@@ -113,8 +113,6 @@ var SendManifestToUri = React.createClass({
         <h3>Store Manifest Remotely</h3>
         <label htmlFor="remoteEndpoint">Server URI: </label>
         <input type='text' name="remoteEndpoint" ref='remoteEndpoint' className="form-control" placeholder="Enter a URI that stores the manifest JSON" defaultValue="https://api.myjson.com/bins" />
-        <label htmlFor="manifestFilenameRemote">Manifest file name: </label>
-        <input type='text' name="manifestFilenameRemote" ref='manifestFilenameRemote' className="form-control" placeholder="Enter a filename for the manifest" defaultValue="manifest.json" />
         <br />
         <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-arrow-circle-o-right"></i> <i className="fa fa-server"></i> Send to Server URI</button>
         <div className="remote-manifest-status-message">
