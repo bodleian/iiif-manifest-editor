@@ -21,22 +21,49 @@ var SendManifestToUri = React.createClass({
     var that = this;
     // Store generated manifest JSON on myjson.com
     // TODO: support arbitrary endpoints, get URI from user input
-    // TODO: support updates to existing remote manifests using PUT instead of creating a new one every time
     axios.post("https://api.myjson.com/bins", this.props.manifestData)
       .then(function(myJsonResponse) {
-        // TODO: update Manifest URI (@id property) with returned bin ID from myjson.com
-        // Use PUT method to update manifest @id on myJson bin – PUT /bins/:id
+        // update Manifest URI (@id property) with returned bin ID from myjson.com
+        that.props.dispatch(actions.updateMetadataFieldValueAtPath(myJsonResponse.data.uri, '@id'));
         that.setState({
           isSendingManifest: false,
           serverResponse: myJsonResponse,
           remoteManifestUri: myJsonResponse.data.uri
         });
+        // Update manifest on myJson with new ID
+        that.updateRemoteManifestWithId(myJsonResponse.data.uri);
       })
       .catch(function(myJsonRequestError) {
         that.setState({
           isSendingManifest: false,
-          serverResponse: undefined,
+          serverResponse: myJsonRequestError,
           remoteManifestUri: undefined
+        });
+      });
+  },
+  updateRemoteManifestWithId: function(manifestId) {
+    this.setState({
+      isSendingManifest: true,
+      serverResponse: undefined,
+    });
+    var that = this;
+    // Use PUT method to update manifest on myJson bin – PUT /bins/:id
+    axios.put(manifestId, this.props.manifestData, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(function(myJsonResponse) {
+        that.setState({
+          isSendingManifest: false,
+          serverResponse: myJsonResponse
+        });
+      })
+      .catch(function(myJsonRequestError) {
+        console.log("Updating the manifest failed");
+        that.setState({
+          isSendingManifest: false,
+          serverResponse: myJsonRequestError
         });
       });
   },
@@ -49,7 +76,7 @@ var SendManifestToUri = React.createClass({
   },
   displayServerResponse: function() {
     if(this.state.serverResponse !== undefined) {
-      if(this.state.serverResponse.status === 201) {
+      if(this.state.serverResponse.status === 201 || this.state.serverResponse.status === 200) {
         return(
           <div>
             <div className="alert alert-success">
@@ -101,6 +128,7 @@ var SendManifestToUri = React.createClass({
 module.exports = connect(
   (state) => {
     return {
+      manifestoObject: state.manifestReducer.manifestoObject,
       manifestData: state.manifestReducer.manifestData
     };
   }
