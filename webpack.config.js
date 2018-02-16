@@ -3,8 +3,8 @@ var path = require('path');
 
 module.exports = {
   entry: [
-    'script!jquery/dist/jquery.min.js',
-    'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
+    'script-loader!jquery/dist/jquery.min.js',
+    'script-loader!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './app/app.jsx'
   ],
   externals: {
@@ -20,7 +20,6 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    new webpack.optimize.UglifyJsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
     new webpack.optimize.OccurrenceOrderPlugin(true),
   ],
@@ -29,8 +28,8 @@ module.exports = {
     filename: './public/bundle.js'
   },
   resolve: {
-    root: __dirname,
-    modulesDirectories: [
+    modules: [
+      __dirname,
       'node_modules',
       './app/components',
       './app/components/ui-toolkit',
@@ -43,7 +42,8 @@ module.exports = {
       reducers: 'app/reducers/reducers.jsx',
       configureStore: 'app/store/configureStore.jsx'
     },
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
+    symlinks: false
   },
   module: {
     loaders: [
@@ -53,29 +53,34 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-2']
         },
         test: /\.jsx?$/,
+        include: path.resolve(__dirname, "app"),
         exclude: /(node_modules|bower_components)/
       },
       {
-        loader: 'style!css',
+        loader: 'style-loader!css-loader',
         test: /\.css$/
       },
       {
-        loader: 'url',
+        loader: 'url-loader',
         test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/
       },
       {
-        loader: 'file',
+        loader: 'file-loader',
         test: /\.png$/
       },
       {
         loader: 'json-loader',
         test: /\.json$/
+      },
+      {
+        loader: 'sass-loader', options: {
+          sourceMap: true,
+          includePaths: [
+            path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets')
+          ]
+        },
+        test: /\.scss$/,
       }
-    ]
-  },
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, './node_modules/bootstrap-sass/assets/stylesheets')
     ]
   },
   devtool: (process.env.NODE_ENV === "production") ? "cheap-module-source-map" : "eval-source-map"

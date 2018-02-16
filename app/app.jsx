@@ -17,7 +17,7 @@ var unsubscribe = store.subscribe(() => {
   console.log('New state', store.getState());
 });
 
-require('style!css?sourceMap!sass!applicationStyles');
+require('style-loader!css-loader?sourceMap!sass-loader!applicationStyles');
 require('font-awesome/css/font-awesome.min.css');
 
 ReactDOM.render(
