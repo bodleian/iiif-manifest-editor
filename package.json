@@ -35,6 +35,7 @@
     "test": "karma start",
     "build": "webpack",
     "watch": "webpack -w",
+    "stats": "webpack --profile --json > stats.json",
     "start": "node server.js"
   },
   "dependencies": {
