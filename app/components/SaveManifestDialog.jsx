@@ -9,14 +9,12 @@ var SendManifestToUri = require('SendManifestToUri');
 var SaveManifestDialog = React.createClass({
   getInitialState: function() {
     return {
-      saveManifestLocation: 'local',
-      localRemoteToggleIcon: 'off'
+      saveManifestLocation: 'local'
     };
   },
-  toggleLocalRemoteSave: function() {
+  toggleSaveManifestLocation: function() {
     this.setState({
-      saveManifestLocation: this.state.saveManifestLocation == 'local' ? 'remote' : 'local',
-      localRemoteToggleIcon: this.state.localRemoteToggleIcon == 'off' ? 'on' : 'off'
+      saveManifestLocation: this.state.saveManifestLocation == 'local' ? 'remote' : 'local'
     });
   },
   render: function() {
@@ -29,7 +27,14 @@ var SaveManifestDialog = React.createClass({
               <h4 className="modal-title">Save Manifest</h4>
             </div>
             <div className="modal-body">
-              <a onClick={this.toggleLocalRemoteSave} className="toggle-local-remote-save" title="Save manifest: {this.state.saveManifestLocation}"><i className={"fa fa-toggle-" + this.state.localRemoteToggleIcon}></i> Save manifest: {this.state.saveManifestLocation}</a>
+              <form className="form-inline" id="saveManifestLocationToggle">
+                <label className="radio-inline" htmlFor="saveManifestLocal">
+                  <input id="saveManifestLocal" type="radio" name="saveOption" value="local" onChange={this.toggleSaveManifestLocation} checked={this.state.saveManifestLocation === 'local'} /> Download manifest
+                </label>
+                <label className="radio-inline" htmlFor="saveManifestRemote">
+                  <input id="saveManifestRemote" type="radio" name="saveOption" value="remote" onChange={this.toggleSaveManifestLocation} checked={this.state.saveManifestLocation === 'remote'} /> Store manifest remotely
+                </label>
+              </form>
               {(() => {
                 if(this.state.saveManifestLocation == 'local') {
                   return (

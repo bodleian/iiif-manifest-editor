@@ -18,15 +18,11 @@
   }
 }
 
-.toggle-local-remote-save {
-    font-size: 1.6rem;
-    text-decoration: none;
-    cursor: pointer;
-
-    i {
-      font-size: 2rem;
-    }
-    &:hover {
-      text-decoration: none;
-    }
+#saveManifestLocationToggle {
+  margin-bottom: 30px;
+  
+  label {
+    line-height: 2.2rem;
+    margin-right: 20px;
+  }
 }

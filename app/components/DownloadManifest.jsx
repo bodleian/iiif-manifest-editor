@@ -22,11 +22,10 @@ var DownloadManifest = React.createClass({
   render: function() {
     return (
       <div>
-        <h3>Download Manifest</h3>
         <label htmlFor="manifestFilename">Manifest file name: </label>
         <input type='text' name="manifestFilename" ref='manifestFilename' className="form-control" placeholder="Enter a filename for the manifest" defaultValue="manifest.json" />
         <br />
-        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.setManifestFilename}><i className="fa fa-download"></i> Download</button>
+        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.setManifestFilename}><i className="fa fa-download"></i> Download Manifest</button>
       </div>
     );
   }
