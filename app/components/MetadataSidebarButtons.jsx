@@ -7,11 +7,13 @@ var SaveManifestDialog = require('SaveManifestDialog');
 var ValidateManifestDialog = require('ValidateManifestDialog');
 var OpenSourceManifestDialog = require('OpenSourceManifestDialog');
 var OnScreenHelp = require('OnScreenHelp');
+var uuid = require('uuid');
 
 var MetadataSidebarButtons = React.createClass({
   getInitialState: function() {
     return {
-      helpSection: ''
+      helpSection: '',
+      validateManifestDialogId: uuid()
     }
   },
   showHelp: function(helpSection) {
@@ -33,6 +35,11 @@ var MetadataSidebarButtons = React.createClass({
     var $validateManifestDialog = $(ReactDOM.findDOMNode(this.refs.validateManifestDialog));
     $validateManifestDialog.modal({
       backdrop: 'static'
+    });
+    // set the id of validateManifestDialog to a unique value so that the 
+    // dialog knows to re-validate the manifest whenever it is opened
+    this.setState({
+      validateManifestDialogId: uuid()
     });
   },
   showOpenSourceManifestDialog: function() {
@@ -85,7 +92,7 @@ var MetadataSidebarButtons = React.createClass({
             })()}
             <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
             <SaveManifestDialog ref="saveManifestDialog" />
-            <ValidateManifestDialog ref="validateManifestDialog" />
+            <ValidateManifestDialog ref="validateManifestDialog" uuid={this.state.validateManifestDialogId} />
           </span>
         </div>
         {(() => {
