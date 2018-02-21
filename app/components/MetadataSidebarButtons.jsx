@@ -4,6 +4,7 @@ var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var SaveManifestDialog = require('SaveManifestDialog');
+var ValidateManifestDialog = require('ValidateManifestDialog');
 var OpenSourceManifestDialog = require('OpenSourceManifestDialog');
 var OnScreenHelp = require('OnScreenHelp');
 
@@ -25,6 +26,12 @@ var MetadataSidebarButtons = React.createClass({
   openSaveManifestDialog: function() {
     var $saveManifestDialog = $(ReactDOM.findDOMNode(this.refs.saveManifestDialog));
     $saveManifestDialog.modal({
+      backdrop: 'static'
+    });
+  },
+  openValidateManifestDialog: function() {
+    var $validateManifestDialog = $(ReactDOM.findDOMNode(this.refs.validateManifestDialog));
+    $validateManifestDialog.modal({
       backdrop: 'static'
     });
   },
@@ -64,6 +71,7 @@ var MetadataSidebarButtons = React.createClass({
                     <ul className="dropdown-menu pull-left">
                       <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
                       <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+                      <li onClick={this.openValidateManifestDialog}><i className="fa fa-check hidden-sm hidden-xs"></i> Validate Manifest</li>
                       <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
                       <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
                     </ul>
@@ -77,6 +85,7 @@ var MetadataSidebarButtons = React.createClass({
             })()}
             <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
             <SaveManifestDialog ref="saveManifestDialog" />
+            <ValidateManifestDialog ref="validateManifestDialog" />
           </span>
         </div>
         {(() => {

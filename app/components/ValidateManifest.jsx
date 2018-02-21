@@ -83,7 +83,6 @@ var ValidateManifest = React.createClass({
     return (
       <div>
         <h3>Validate Manifest</h3>
-        <button type="button" className="btn btn-default" onClick={this.validateManifest}><i className={this.state.isValidatingManifest ? "fa fa-circle-o-notch fa-spin" : "fa fa-check-circle"}></i> Validate Manifest</button>
         <div className="validation-status-message">
           {this.displayValidationMessage()}
         </div>

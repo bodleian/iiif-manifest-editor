@@ -4,7 +4,6 @@ var axios = require('axios');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var DownloadManifest = require('DownloadManifest');
-var ValidateManifest = require('ValidateManifest');
 var SendManifestToUri = require('SendManifestToUri');
 
 var SaveManifestDialog = React.createClass({
@@ -30,8 +29,6 @@ var SaveManifestDialog = React.createClass({
               <h4 className="modal-title">Save Manifest</h4>
             </div>
             <div className="modal-body">
-              <ValidateManifest />
-              <hr />
               <a onClick={this.toggleLocalRemoteSave} className="toggle-local-remote-save" title="Save manifest: {this.state.saveManifestLocation}"><i className={"fa fa-toggle-" + this.state.localRemoteToggleIcon}></i> Save manifest: {this.state.saveManifestLocation}</a>
               {(() => {
                 if(this.state.saveManifestLocation == 'local') {
