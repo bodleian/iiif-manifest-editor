@@ -172,7 +172,7 @@ var ThumbnailStripCanvas = React.createClass({
           </ul>
         </span>
         <div style={canvasStyle} className={this.setActiveClass()} onClick={this.handleCanvasClick}>
-          <LazyLoad offsetHorizontal={600}>
+          <LazyLoad offsetHorizontal={600} offsetVertical={400}>
             <img onLoad={this.updateCanvasWidth} className={this.setSelectedClass()} src={this.getMainImage(canvas)} data-canvas-index={this.props.canvasIndex} alt={this.getMainImageLabel(canvas)} />
           </LazyLoad>
           <div className="canvas-label" title={this.getMainImageLabel(canvas)}>
