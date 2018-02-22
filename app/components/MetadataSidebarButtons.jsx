@@ -7,6 +7,7 @@ var SaveManifestDialog = require('SaveManifestDialog');
 var ValidateManifestDialog = require('ValidateManifestDialog');
 var OpenSourceManifestDialog = require('OpenSourceManifestDialog');
 var OnScreenHelp = require('OnScreenHelp');
+var SettingsDialog = require('SettingsDialog');
 var uuid = require('uuid');
 
 var MetadataSidebarButtons = React.createClass({
@@ -22,6 +23,12 @@ var MetadataSidebarButtons = React.createClass({
     });
     var $onScreenHelp = $(ReactDOM.findDOMNode(this.refs.onScreenHelp));
     $onScreenHelp.modal({
+      backdrop: 'static'
+    });
+  },
+  showSettings: function() {
+    var $settingsDialog = $(ReactDOM.findDOMNode(this.refs.settingsDialog));
+    $settingsDialog.modal({
       backdrop: 'static'
     });
   },
@@ -67,6 +74,7 @@ var MetadataSidebarButtons = React.createClass({
       <div className="metadata-sidebar-controls">
         <div className="row">
           <OnScreenHelp ref="onScreenHelp" section={this.state.helpSection} />
+          <SettingsDialog ref="settingsDialog" />
           <a onClick={this.hideSidebar} className="hide-sidebar btn btn-default hidden-xs" title="Hide metadata panel"><i className="fa fa-chevron-right"></i></a>
           <span className="metadata-sidebar-buttons">
             <button onClick={this.openSaveManifestDialog} className="btn btn-default metadata-sidebar-button"><i className="fa fa-download hidden-sm hidden-xs"></i> Save Manifest</button>
@@ -90,6 +98,7 @@ var MetadataSidebarButtons = React.createClass({
                 );
               }
             })()}
+            <a className="btn btn-default metadata-sidebar-button" onClick={() => this.showSettings()} ><i className="fa fa-gear"></i></a>
             <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
             <SaveManifestDialog ref="saveManifestDialog" />
             <ValidateManifestDialog ref="validateManifestDialog" uuid={this.state.validateManifestDialogId} />
