@@ -20,7 +20,7 @@ var SettingsDialog = React.createClass({
 
     // TODO: Save settings to local storage
   },
-  validateEndpoint: function(uri) {
+  validateEndpoint: function(serverEndpointUri) {
     this.setState({
       isValidatingServerEndpoint: true
     });
@@ -28,15 +28,15 @@ var SettingsDialog = React.createClass({
     var _this = this;
 
     // store test manifest
-    this.storeTestManifest(uri)
-      .then(function(response) {
-        console.log('1. test passed: ', response);
+    this.storeTestManifest(serverEndpointUri)
+      .then(function(manifestUri) {
+        console.log('1. test passed: ', manifestUri);
         _this.setState({
           canStoreManifest: 'Yes'
         });
 
         // get test manifest
-        _this.getTestManifest(uri)
+        _this.getTestManifest(manifestUri)
           .then(function(response) {
             console.log('2. test passed: ', response);
             _this.setState({
@@ -44,7 +44,7 @@ var SettingsDialog = React.createClass({
             });
 
             // update test manifest
-            _this.updateTestManifest(uri)
+            _this.updateTestManifest(manifestUri)
               .then(function(response) {
                 console.log('3. test passed: ', response);
                 _this.setState({
@@ -91,48 +91,31 @@ var SettingsDialog = React.createClass({
   storeTestManifest: function(uri) {
     console.log('storing manifest');
 
+    var _this = this;
     return new Promise(function(resolve, reject) {
-      if(true) {
-        setTimeout(function() {
-          resolve('storing manifest passed');
-        }, 3000);
-      }
-      else {
-        reject(Error('storing manifest failed'));
-      }
-    });
+      axios.post(uri, _this.props.manifestData)
+        .then(function(response) {
+          // check if it returns a unique id
+          if(typeof response.data.uri !== 'string') {
+            reject('Server endpoint did not return a valid ID');
+          } else {
+            console.log('axios post request successful: ', response.data.uri);
+            resolve(response.data.uri);
+          }
+        })
+        .catch(function(error) {
+          reject('Storing manifest failed with error: ' + error);
+        });
 
-      // var that = this;
-      // axios.post(uri, this.props.manifestData)  // does this block?
-      //   .then(function(storeTestManifestResponse) {
-
-      //     // check if it returns a unique ID
-      //     if(typeof storeTestManifestResponse.data.uri !== 'string') {
-      //       that.setState({
-      //         validationError: 'Server endpoint did not return a valid ID',
-      //         canStoreManifest: "false"
-      //       });
-      //     } else {
-      //       // test manifest successfully stored and ID returned
-      //       that.setState({
-      //         canStoreManifest: "Yes"
-      //       });
-      //     })
-      //   .catch(function(storeManifestError) {
-      //     that.setState({
-      //       validationError: 'Storing manifest failed with error: ' + storeManifestError,
-      //     });
-      //     // validation failed
-      //     that.setState({
-      //       canStoreManifest: "No"
-      //     });
-      //   });
-      // if (true) {
-      //   resolve("Stuff worked!");
+      // if(true) {
+      //   setTimeout(function() {
+      //     resolve('storing manifest passed');
+      //   }, 3000);
       // }
       // else {
-      //   reject(Error("It broke"));
+      //   reject(Error('storing manifest failed'));
       // }
+    });
   },
   getTestManifest: function(uri) {
     return new Promise(function(resolve, reject) {
