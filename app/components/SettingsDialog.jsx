@@ -6,6 +6,8 @@ var {connect} = require('react-redux');
 var SettingsDialog = React.createClass({
   getInitialState: function() {
     return {
+      isValidEndpointName: undefined,
+      isValidEndpointUri: undefined,
       isValidatingServerEndpoint: false,
       validationError: undefined,
       isValidEndpoint: undefined,
@@ -16,14 +18,29 @@ var SettingsDialog = React.createClass({
   },
   saveSettings: function() {
     this.setState({
+      isValidEndpointName: undefined,
+      isValidEndpointUri: undefined,
       isValidatingServerEndpoint: false,
       isValidEndpoint: undefined,
       canStoreManifest: undefined,
       canGetManifest: undefined,
       canUpdateManifest: undefined
     });
-
-    this.validateEndpoint(this.refs.serverEndpointUri.value);
+    // require name field to be set
+    if(this.refs.serverEndpointName.value === '') {
+      this.setState({
+        isValidEndpointName: false
+      });
+    }
+    // require server endpoint URI field to be set
+    if(this.refs.serverEndpointUri.value === '') {
+      this.setState({
+        isValidEndpointUri: false
+      });
+    }
+    if(this.refs.serverEndpointName.value !== '' && this.refs.serverEndpointUri.value !== '') {
+      this.validateEndpoint(this.refs.serverEndpointUri.value);
+    }
   },
   validateEndpoint: function(serverEndpointUri) {
     this.setState({
@@ -178,11 +195,17 @@ var SettingsDialog = React.createClass({
               <form>
                 <div className="form-group">
                   <label htmlFor="serverEndpointName">Server Endpoint Name:</label>
-                  <input type="text" className="form-control" id="serverEndpointName" placeholder="Choose a name for your server endpoint" />
+                  <input type="text" className="form-control" id="serverEndpointName" ref="serverEndpointName" placeholder="Choose a name for your server endpoint" />
+                  {this.state.isValidEndpointName === false &&
+                    <span className="error">Please enter a name for your server endpoint</span>
+                  }
                 </div>
                 <div className="form-group">
                   <label htmlFor="serverEndpointUri">Server Endpoint URI</label>
                   <input type="text" className="form-control" id="serverEndpointUri" ref="serverEndpointUri" placeholder="Server endpoint URI" />
+                  {this.state.isValidEndpointUri === false &&
+                    <span className="error">Please enter a valid URI for your server endpoint</span>
+                  }
                 </div>
                 <div className="server-endpoint-validation-message">
                   {this.displayValidationMessage()}
