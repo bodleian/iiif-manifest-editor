@@ -125,7 +125,7 @@ var SettingsDialog = React.createClass({
       if(this.state.isValidEndpoint) {
         return(
           <div className="alert alert-success">
-            <div><i className="fa fa-check-circle"></i> This Manifest is valid!</div>
+            <div><i className="fa fa-check-circle"></i> This server endpoint is valid!</div>
             <ul>
               <li><i className="fa fa-check"></i> Can store manifest: {this.state.canStoreManifest}</li>
               <li><i className="fa fa-check"></i> Can get manifest: {this.state.canGetManifest}</li>
@@ -149,7 +149,7 @@ var SettingsDialog = React.createClass({
     } else {
       if(this.state.isValidatingServerEndpoint) {
         return(
-          <div className="validate-manifest-indicator"><i className="fa fa-circle-o-notch fa-spin"></i> Validating server endpoint...</div>
+          <div className="validate-server-endpoint-indicator"><i className="fa fa-circle-o-notch fa-spin"></i> Validating server endpoint...</div>
         );
       } else {
         return '';

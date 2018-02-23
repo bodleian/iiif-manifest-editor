@@ -1,0 +1,13 @@
+.server-endpoint-validation-message {
+  max-height: 250px;
+  margin: 20px 10px 5px 10px;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+
+  .validate-server-endpoint-indicator {
+  text-align: center;
+    i {
+      font-size: 2rem;
+    }
+  }
+}
