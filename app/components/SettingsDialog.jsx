@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
 var {connect} = require('react-redux');
-var actions = require('actions');
 
 var SettingsDialog = React.createClass({
   getInitialState: function() {
@@ -16,21 +15,25 @@ var SettingsDialog = React.createClass({
     };
   },
   saveSettings: function() {
-    this.validateEndpoint(this.refs.serverEndpointUri.value);
+    this.setState({
+      isValidatingServerEndpoint: false,
+      isValidEndpoint: undefined,
+      canStoreManifest: undefined,
+      canGetManifest: undefined,
+      canUpdateManifest: undefined
+    });
 
-    // TODO: Save settings to local storage
+    this.validateEndpoint(this.refs.serverEndpointUri.value);
   },
   validateEndpoint: function(serverEndpointUri) {
     this.setState({
       isValidatingServerEndpoint: true
     });
 
-    var _this = this;
-
     // store test manifest
-    this.storeTestManifest(serverEndpointUri)
+    var _this = this;
+    this.storeTestManifest(serverEndpointUri, this.props.manifestData)
       .then(function(manifestUri) {
-        console.log('1. test passed: ', manifestUri);
         _this.setState({
           canStoreManifest: 'Yes'
         });
@@ -38,15 +41,13 @@ var SettingsDialog = React.createClass({
         // get test manifest
         _this.getTestManifest(manifestUri)
           .then(function(response) {
-            console.log('2. test passed: ', response);
             _this.setState({
               canGetManifest: 'Yes'
             });
 
             // update test manifest
-            _this.updateTestManifest(manifestUri)
+            _this.updateTestManifest(manifestUri, _this.props.manifestData)
               .then(function(response) {
-                console.log('3. test passed: ', response);
                 _this.setState({
                   isValidEndpoint: true,
                   isValidatingServerEndpoint: false,
@@ -54,134 +55,67 @@ var SettingsDialog = React.createClass({
                   canUpdateManifest: 'Yes'
                 });
 
+                // TODO: delete test manifest
+
               }, function(error) {
-                console.log('3. test failed: ', error);
                 _this.setState({
                   isValidatingServerEndpoint: false,
                   isValidEndpoint: false,
                   canUpdateManifest: 'No'
                 });
               });
-
-
           }, function(error) {
-            console.log('2. test failed: ', error);
             _this.setState({
               isValidatingServerEndpoint: false,
               isValidEndpoint: false,
               canGetManifest: 'No'
             });
-
           });
-
       }, function(error) {
-        console.log('1. test failed: ', error);
         _this.setState({
           isValidatingServerEndpoint: false,
           isValidEndpoint: false,
           canStoreManifest: 'No'
         });
       });
-    // var deleteManifestStatus = this.deleteTestManifest(uri);  // TODO: delete test manifest?
-
-    // this.setState({
-    //   isValidEndpoint: storeManifestStatus && getManifestStatus && updateManifestStatus
-    // });
   },
-  storeTestManifest: function(uri) {
-    console.log('storing manifest');
-
-    var _this = this;
+  storeTestManifest: function(uri, manifestData) {
     return new Promise(function(resolve, reject) {
-      axios.post(uri, _this.props.manifestData)
+      axios.post(uri, manifestData)
         .then(function(response) {
           // check if it returns a unique id
           if(typeof response.data.uri !== 'string') {
             reject('Server endpoint did not return a valid ID');
           } else {
-            console.log('axios post request successful: ', response.data.uri);
             resolve(response.data.uri);
           }
         })
         .catch(function(error) {
           reject('Storing manifest failed with error: ' + error);
         });
-
-      // if(true) {
-      //   setTimeout(function() {
-      //     resolve('storing manifest passed');
-      //   }, 3000);
-      // }
-      // else {
-      //   reject(Error('storing manifest failed'));
-      // }
     });
   },
-  getTestManifest: function(uri) {
+  getTestManifest: function(manifestUri) {
     return new Promise(function(resolve, reject) {
-      if(true) {
-        setTimeout(function() {
-          resolve('getting manifest passed');
-        }, 3000);
-      }
-      else {
-        reject(Error('getting manifest failed'));
-      }
+      axios.get(manifestUri)
+        .then(function(response) {
+          resolve();
+        })
+        .catch(function(error) {
+          reject('Getting manifest failed with error: ' + getManifestError);
+        });
     });
-
-
-    // // get stored test manifest from returned id
-    // axios.get(storeTestManifestResponse.data.uri)
-    //   .then(function(getManifestResponse){
-    //     // successfully returned stored manifest
-    //     that.setState({
-    //       canGetManifest: "Yes"
-    //     });
-    //   .catch(function(getManifestError) {
-    //     // could not GET stored test manifest
-    //     that.setState({
-    //       validationError: 'Getting manifest failed with error: ' + getManifestError,
-    //     });
-    //     that.setState({
-    //       canGetManifest: "No"
-    //     });
-    //   });
-    // }
   },
-  updateTestManifest: function(uri) {
+  updateTestManifest: function(manifestUri, manifestData) {
     return new Promise(function(resolve, reject) {
-      if(false) {
-        setTimeout(function() {
-          resolve('updating manifest passed');
-        }, 3000);
-      }
-      else {
-        reject(Error('updating manifest failed'));
-      }
+      axios.put(manifestUri, manifestData, { headers: { 'Content-Type': 'application/json' } })
+        .then(function(response) {
+          resolve();
+        })
+        .catch(function(error) {
+          reject('Updating the manifest failed with error: ' + error);
+        });
     });
-
-    // // update stored test manifest
-    // axios.put(storeTestManifestResponse.data.uri, that.props.manifestData, {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   }
-    // })
-    //   .then(function(updateManifestResponse) {
-    //     // successfully updated manifest
-    //     that.setState({
-    //       canUpdateManifest: "Yes"
-    //     });
-    //   })
-    //   .catch(function(updateManifestError) {
-    //     // could not update stored test manifest
-    //     that.setState({
-    //       validationError: 'Updating the manifest failed with error: ' + updateManifestError,
-    //     });
-    //     that.setState({
-    //       canUpdateManifest: "No"
-    //     });
-    //   });
-    // })
   },
   deleteTestManifest: function(uri) {
     return true;
