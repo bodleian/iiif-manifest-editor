@@ -62,9 +62,9 @@ var MetadataSidebarButtons = React.createClass({
     this.props.dispatch(actions.setShowMetadataSidebar(false));
   },
   openExitConfirmationDialog: function(targetRoute) {
-    if(confirm('This will lose your changes. Are you sure you want to proceed? If you want to save your changes, click "Cancel" and then "Save" to download the current manifest.')) {
-      window.location = targetRoute;
-    }
+    // if(confirm('This will lose your changes. Are you sure you want to proceed? If you want to save your changes, click "Cancel" and then "Save" to download the current manifest.')) {
+    //   window.location = targetRoute;
+    // }
   },
   switchToView: function(viewRoute) {
     window.location = viewRoute;
