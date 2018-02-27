@@ -221,6 +221,80 @@ var SettingsDialog = React.createClass({
       }
     }
   },
+  displayServerEndpointConfiguration: function() {
+    if(this.state.savedServerEndpoint === '' ) {
+      return(
+        <div>
+          <p>
+            Configure a server endpoint to store your manifest remotely. 
+            Choose a name and indicate the URI. Click "Save Settings" to store your 
+            settings to the browser's local storage. Before the endpoint settings are
+            saved, the endpoint will be validated. It needs to support GET, POST and PUT
+            requests in order to retrieve, store and update manifests.
+          </p>
+          <br />
+          <form>
+            <div className="form-group">
+              <label htmlFor="serverEndpointName">Server Endpoint Name:</label>
+              <input type="text" className="form-control" id="serverEndpointName" ref="serverEndpointName" placeholder="Choose a name for your server endpoint" />
+              {this.state.isValidEndpointName === false &&
+                <span className="error">Please enter a name for your server endpoint</span>
+              }
+            </div>
+            <div className="form-group">
+              <label htmlFor="serverEndpointUri">Server Endpoint URI</label>
+              <input type="text" className="form-control" id="serverEndpointUri" ref="serverEndpointUri" placeholder="Server endpoint URI" />
+              {this.state.isValidEndpointUri === false &&
+                <span className="error">Please enter a valid URI for your server endpoint</span>
+              }
+            </div>
+              <div className="server-endpoint-validation-message">
+                {this.displayValidationMessage()}
+                {this.renderLocalStorageSavedEndpointErrorMessage()}
+              </div>
+              <button type="submit" className="btn btn-primary" onClick={this.saveSettings}><i className="fa fa-save"></i> Save Settings</button>
+            </form>
+          </div>
+      );
+    } else {
+      return '';
+    }
+  },
+  displayConfiguredServerEndpointFromLocalStorage: function() {
+    if(this.state.savedServerEndpoint !== '') {
+      return(
+        <div>
+          <p>The Following Server Endpoint has been Configured</p>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>URI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="active">
+                <td>{this.state.savedServerEndpoint.serverEndpointName}</td>
+                <td>{this.state.savedServerEndpoint.serverEndpointUri}</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="javascript:;" className="btn btn-danger" onClick={this.deleteConfiguredServerEndpoint}><i className="fa fa-trash"></i> Delete Configured Endpoint</a>
+        </div>
+      );
+    } else {
+      return '';
+    }
+  },
+  deleteConfiguredServerEndpoint: function() {
+    if(localStorage) {    
+      localStorage.removeItem('savedServerEndpoint');
+    }
+    this.setState({
+      savedServerEndpoint: '',
+      isValidEndpoint: undefined
+    });
+  },
   render: function() {
     return (
       <div className="modal fade">
@@ -232,35 +306,8 @@ var SettingsDialog = React.createClass({
             </div>
             <div className="modal-body">
               <h4>Server Endpoint Settings</h4>
-              <p>
-                Configure a server endpoint to store your manifest remotely. 
-                Choose a name and indicate the URI. Click "Save Settings" to store your 
-                settings to the browser's local storage. Before the endpoint settings are
-                saved, the endpoint will be validated. It needs to support GET, POST and PUT
-                requests in order to retrieve, store and update manifests.
-              </p>
-              <br />
-              <form>
-                <div className="form-group">
-                  <label htmlFor="serverEndpointName">Server Endpoint Name:</label>
-                  <input type="text" className="form-control" id="serverEndpointName" ref="serverEndpointName" placeholder="Choose a name for your server endpoint" />
-                  {this.state.isValidEndpointName === false &&
-                    <span className="error">Please enter a name for your server endpoint</span>
-                  }
-                </div>
-                <div className="form-group">
-                  <label htmlFor="serverEndpointUri">Server Endpoint URI</label>
-                  <input type="text" className="form-control" id="serverEndpointUri" ref="serverEndpointUri" placeholder="Server endpoint URI" />
-                  {this.state.isValidEndpointUri === false &&
-                    <span className="error">Please enter a valid URI for your server endpoint</span>
-                  }
-                </div>
-                <div className="server-endpoint-validation-message">
-                  {this.displayValidationMessage()}
-                  {this.renderLocalStorageSavedEndpointErrorMessage()}
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={this.saveSettings}><i className="fa fa-save"></i> Save Settings</button>
-              </form>
+              {this.displayServerEndpointConfiguration()}
+              {this.displayConfiguredServerEndpointFromLocalStorage()}              
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-close"></i> Close</button>
