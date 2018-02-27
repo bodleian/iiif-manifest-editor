@@ -241,8 +241,8 @@ var SettingsDialog = React.createClass({
               }
             </div>
             <div className="form-group">
-              <label htmlFor="serverEndpointUri">Server Endpoint URI</label>
-              <input type="text" className="form-control" id="serverEndpointUri" ref="serverEndpointUri" placeholder="Server endpoint URI" />
+              <label htmlFor="serverEndpointUri">Server Endpoint URI:</label>
+              <input type="text" className="form-control" id="serverEndpointUri" ref="serverEndpointUri" placeholder="Enter a URI that supports storing the Manifest JSON" />
               {this.state.isValidEndpointUri === false &&
                 <span className="error">Please enter a valid URI for your server endpoint</span>
               }
@@ -306,7 +306,7 @@ var SettingsDialog = React.createClass({
             <div className="modal-body">
               <h4>Server Endpoint Settings</h4>
               {this.displayServerEndpointConfiguration()}
-              {this.displayConfiguredServerEndpointFromLocalStorage()}              
+              {this.displayConfiguredServerEndpointFromLocalStorage()}
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-close"></i> Close</button>
