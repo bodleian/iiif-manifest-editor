@@ -6,10 +6,12 @@ var actions = require('actions');
 
 var SendManifestToUri = React.createClass({
   getInitialState: function() {
+    var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
     return {
       isSendingManifest: false,
       serverResponse: undefined,
-      remoteManifestUri: undefined
+      remoteManifestUri: undefined,
+      savedServerEndpoint: savedServerEndpoint
     };
   },
   sendManifestToUri: function() {
@@ -18,25 +20,24 @@ var SendManifestToUri = React.createClass({
       serverResponse: undefined,
       remoteManifestUri: undefined
     });
-    var that = this;
-    // Store generated manifest JSON on myjson.com
-    // TODO: support arbitrary endpoints, get URI from user input
-    axios.post("https://api.myjson.com/bins", this.props.manifestData)
-      .then(function(myJsonResponse) {
+    var _this = this;
+    // Store generated manifest JSON on configured server endpoint
+    axios.post(this.state.savedServerEndpoint.serverEndpointUri, this.props.manifestData)
+      .then(function(serverResponse) {
         // update Manifest URI (@id property) with returned bin ID from myjson.com
-        that.props.dispatch(actions.updateMetadataFieldValueAtPath(myJsonResponse.data.uri, '@id'));
-        that.setState({
+        _this.props.dispatch(actions.updateMetadataFieldValueAtPath(serverResponse.data.uri, '@id'));
+        _this.setState({
           isSendingManifest: false,
-          serverResponse: myJsonResponse,
-          remoteManifestUri: myJsonResponse.data.uri
+          serverResponse: serverResponse,
+          remoteManifestUri: serverResponse.data.uri
         });
         // Update manifest on myJson with new ID
-        that.updateRemoteManifestWithId(myJsonResponse.data.uri);
+        _this.updateRemoteManifestWithId(serverResponse.data.uri);
       })
-      .catch(function(myJsonRequestError) {
-        that.setState({
+      .catch(function(serverError) {
+        _this.setState({
           isSendingManifest: false,
-          serverResponse: myJsonRequestError,
+          serverResponse: serverError,
           remoteManifestUri: undefined
         });
       });
@@ -46,24 +47,24 @@ var SendManifestToUri = React.createClass({
       isSendingManifest: true,
       serverResponse: undefined,
     });
-    var that = this;
+    var _this = this;
     // Use PUT method to update manifest on myJson bin – PUT /bins/:id
     axios.put(manifestId, this.props.manifestData, {
       headers: {
         'Content-Type': 'application/json',
       }
     })
-      .then(function(myJsonResponse) {
-        that.setState({
+      .then(function(serverResponse) {
+        _this.setState({
           isSendingManifest: false,
-          serverResponse: myJsonResponse
+          serverResponse: serverResponse
         });
       })
-      .catch(function(myJsonRequestError) {
+      .catch(function(serverError) {
         console.log("Updating the manifest failed");
-        that.setState({
+        _this.setState({
           isSendingManifest: false,
-          serverResponse: myJsonRequestError
+          serverResponse: serverError
         });
       });
   },
@@ -107,16 +108,46 @@ var SendManifestToUri = React.createClass({
       }
     }
   },
+  displayConfiguredServerEndpointFromLocalStorage: function() {
+    if(this.state.savedServerEndpoint !== '') {
+      return(
+        <div>
+          <p>The Following Server Endpoint has been Configured</p>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>URI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="active">
+                <td>{this.state.savedServerEndpoint.serverEndpointName}</td>
+                <td>{this.state.savedServerEndpoint.serverEndpointUri}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
+          <div className="remote-manifest-status-message">
+            {this.displayServerResponse()}
+          </div>
+        </div>
+      );
+    } else {
+      return(
+        <div className="alert alert-info">
+          No Server Endpoint has been configured yet. Please click on the &nbsp;
+          <a href="javascript:;" className="btn btn-default"><i className="fa fa-gear"></i></a> 
+          &nbsp; button in the sidebar to configure a Server Endpoint for storing manifests remotely.
+        </div>
+      );
+    }
+  },
   render: function() {
     return (
       <div>
-        <label htmlFor="remoteEndpoint">Server URI: </label>
-        <input type='text' name="remoteEndpoint" ref='remoteEndpoint' className="form-control" placeholder="Enter a URI that stores the manifest JSON" defaultValue="https://api.myjson.com/bins" />
-        <br />
-        <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
-        <div className="remote-manifest-status-message">
-          {this.displayServerResponse()}
-        </div>
+        {this.displayConfiguredServerEndpointFromLocalStorage()}
       </div>
     );
   }
