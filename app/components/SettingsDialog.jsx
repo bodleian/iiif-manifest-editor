@@ -5,6 +5,7 @@ var {connect} = require('react-redux');
 
 var SettingsDialog = React.createClass({
   getInitialState: function() {
+    var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
     return {
       isValidEndpointName: undefined,
       isValidEndpointUri: undefined,
@@ -14,7 +15,8 @@ var SettingsDialog = React.createClass({
       canStoreManifest: undefined,
       returnsManifestId: undefined,
       canGetManifest: undefined,
-      canUpdateManifest: undefined
+      canUpdateManifest: undefined,
+      savedServerEndpoint: savedServerEndpoint,
     };
   },
   saveSettings: function() {
@@ -71,11 +73,28 @@ var SettingsDialog = React.createClass({
                 _this.setState({
                   isValidEndpoint: true,
                   isValidatingServerEndpoint: false,
+                  savedServerEndpoint: { 'serverEndpointUri': serverEndpointUri, 'serverEndpointName': _this.refs.serverEndpointName.value },
                   isValidEndpoint: true,
                   canUpdateManifest: 'Yes'
                 });
 
                 // TODO: delete test manifest
+                
+                // Save valid server endpoint to localStorage
+                if(localStorage) {
+                  try {
+                    localStorage.setItem('savedServerEndpoint', JSON.stringify(
+                      {
+                        'serverEndpointName': _this.refs.serverEndpointName.value,
+                        'serverEndpointUri': serverEndpointUri
+                      }
+                    ));
+                    
+                  } catch(e) {
+                    _this.displayErrorMessage();
+                    // TODO: handle error saving endpoint to local storage
+                  }
+                }
 
               }, function(error) {
                 _this.setState({
@@ -142,6 +161,27 @@ var SettingsDialog = React.createClass({
   },
   deleteTestManifest: function(uri) {
     return true;
+  },
+  renderLocalStorageSavedEndpointErrorMessage: function() {
+    return (
+      <div id="local-storage-saved-endpoint-error-message" className="alert alert-danger" role="alert" ref="LocalStorageSavedEndpointErrorMessage">
+        <button type="button" className="close" onClick={this.hideErrorMessage} aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Unable to store the configured server endpoint to the browser's local storage.
+      </div>
+    );
+  },
+  displayErrorMessage: function() {
+    var $LocalStorageSavedEndpointErrorMessage = $(ReactDOM.findDOMNode(this.refs.LocalStorageSavedEndpointErrorMessage));
+    $LocalStorageSavedEndpointErrorMessage.fadeIn();
+    setTimeout(function() {
+      $LocalStorageSavedEndpointErrorMessage.fadeOut();
+    }, 10000);
+  },
+  hideErrorMessage: function() {
+    var $localStorageErrorMessage = $(ReactDOM.findDOMNode(this.refs.LocalStorageSavedEndpointErrorMessage));
+    $localStorageErrorMessage.fadeOut();
   },
   displayValidationMessage: function() {
     if(this.state.isValidEndpoint !== undefined) {
@@ -217,6 +257,7 @@ var SettingsDialog = React.createClass({
                 </div>
                 <div className="server-endpoint-validation-message">
                   {this.displayValidationMessage()}
+                  {this.renderLocalStorageSavedEndpointErrorMessage()}
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={this.saveSettings}><i className="fa fa-save"></i> Save Settings</button>
               </form>
