@@ -12,6 +12,7 @@ var SettingsDialog = React.createClass({
       validationError: undefined,
       isValidEndpoint: undefined,
       canStoreManifest: undefined,
+      returnsManifestId: undefined,
       canGetManifest: undefined,
       canUpdateManifest: undefined
     };
@@ -23,6 +24,7 @@ var SettingsDialog = React.createClass({
       isValidatingServerEndpoint: false,
       isValidEndpoint: undefined,
       canStoreManifest: undefined,
+      returnsManifestId: undefined,
       canGetManifest: undefined,
       canUpdateManifest: undefined
     });
@@ -52,7 +54,8 @@ var SettingsDialog = React.createClass({
     this.storeTestManifest(serverEndpointUri, this.props.manifestData)
       .then(function(manifestUri) {
         _this.setState({
-          canStoreManifest: 'Yes'
+          canStoreManifest: 'Yes',
+          returnsManifestId: 'Yes',
         });
 
         // get test manifest
@@ -92,7 +95,10 @@ var SettingsDialog = React.createClass({
         _this.setState({
           isValidatingServerEndpoint: false,
           isValidEndpoint: false,
-          canStoreManifest: 'No'
+          canStoreManifest: 'No',
+          returnsManifestId: 'No',
+          canGetManifest: 'Not tested',
+          canUpdateManifest: 'Not tested'
         });
       });
   },
@@ -145,6 +151,7 @@ var SettingsDialog = React.createClass({
             <div><i className="fa fa-check-circle"></i> This server endpoint is valid!</div>
             <ul>
               <li><i className="fa fa-check"></i> Can store manifest: {this.state.canStoreManifest}</li>
+              <li><i className="fa fa-check"></i> Returns a manifest id: {this.state.returnsManifestId}</li>
               <li><i className="fa fa-check"></i> Can get manifest: {this.state.canGetManifest}</li>
               <li><i className="fa fa-check"></i> Can update manifest: {this.state.canUpdateManifest}</li>
             </ul>
@@ -157,6 +164,7 @@ var SettingsDialog = React.createClass({
           <div>{this.state.validationError}</div>
           <ul>
             <li><i className="fa fa-times"></i> Can store manifest: {this.state.canStoreManifest}</li>
+            <li><i className="fa fa-times"></i> Returns a manifest id: {this.state.returnsManifestId}</li>
             <li><i className="fa fa-times"></i> Can get manifest: {this.state.canGetManifest}</li>
             <li><i className="fa fa-times"></i> Can update manifest: {this.state.canUpdateManifest}</li>
           </ul>
