@@ -43,10 +43,10 @@ var SettingsDialog = React.createClass({
       });
     }
     if(this.refs.serverEndpointName.value !== '' && this.refs.serverEndpointUri.value !== '') {
-      this.validateEndpoint(this.refs.serverEndpointUri.value);
+      this.validateEndpoint(this.refs.serverEndpointUri.value, this.refs.serverEndpointName.value);
     }
   },
-  validateEndpoint: function(serverEndpointUri) {
+  validateEndpoint: function(serverEndpointUri, serverEndpointName) {
     this.setState({
       isValidatingServerEndpoint: true
     });
@@ -73,7 +73,7 @@ var SettingsDialog = React.createClass({
                 _this.setState({
                   isValidEndpoint: true,
                   isValidatingServerEndpoint: false,
-                  savedServerEndpoint: { 'serverEndpointUri': serverEndpointUri, 'serverEndpointName': _this.refs.serverEndpointName.value },
+                  savedServerEndpoint: { 'serverEndpointName': serverEndpointName, 'serverEndpointUri': serverEndpointUri },
                   isValidEndpoint: true,
                   canUpdateManifest: 'Yes'
                 });
@@ -85,14 +85,13 @@ var SettingsDialog = React.createClass({
                   try {
                     localStorage.setItem('savedServerEndpoint', JSON.stringify(
                       {
-                        'serverEndpointName': _this.refs.serverEndpointName.value,
+                        'serverEndpointName': serverEndpointName,
                         'serverEndpointUri': serverEndpointUri
                       }
                     ));
                     
                   } catch(e) {
                     _this.displayErrorMessage();
-                    // TODO: handle error saving endpoint to local storage
                   }
                 }
 
