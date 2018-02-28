@@ -14,6 +14,12 @@ var SendManifestToUri = React.createClass({
       savedServerEndpoint: savedServerEndpoint
     };
   },
+  componentWillReceiveProps: function(nextProps) {
+    var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
+    this.setState({
+      savedServerEndpoint: savedServerEndpoint
+    });
+  },
   sendManifestToUri: function() {
     this.setState({
       isSendingManifest: true,
@@ -108,46 +114,45 @@ var SendManifestToUri = React.createClass({
       }
     }
   },
-  displayConfiguredServerEndpointFromLocalStorage: function() {
-    if(this.state.savedServerEndpoint !== '') {
-      return(
-        <div>
-          <p>The Following Server Endpoint has been Configured</p>
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>URI</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="active">
-                <td>{this.state.savedServerEndpoint.serverEndpointName}</td>
-                <td>{this.state.savedServerEndpoint.serverEndpointUri}</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
-          <div className="remote-manifest-status-message">
-            {this.displayServerResponse()}
-          </div>
-        </div>
-      );
-    } else {
-      return(
-        <div className="alert alert-info">
-          No Server Endpoint has been configured yet. Please click on the &nbsp;
-          <a href="javascript:;" className="btn btn-default"><i className="fa fa-gear"></i></a> 
-          &nbsp; button in the sidebar to configure a Server Endpoint for storing manifests remotely.
-        </div>
-      );
-    }
-  },
   render: function() {
     return (
       <div>
-        {this.displayConfiguredServerEndpointFromLocalStorage()}
+        {(() => {
+          if(this.state.savedServerEndpoint !== '') {
+            return(
+              <div>
+                <p>The Following Server Endpoint has been Configured</p>
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>URI</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="active">
+                      <td>{this.state.savedServerEndpoint.serverEndpointName}</td>
+                      <td>{this.state.savedServerEndpoint.serverEndpointUri}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
+                <div className="remote-manifest-status-message">
+                  {this.displayServerResponse()}
+                </div>
+              </div>
+            );
+          } else {
+            return(
+              <div className="alert alert-info">
+                No Server Endpoint has been configured yet. Please click on the &nbsp;
+                <a className="btn btn-default"><i className="fa fa-gear"></i></a> 
+                &nbsp; button in the sidebar to configure a Server Endpoint for storing manifests remotely.
+              </div>
+            );
+          }
+        })()}
       </div>
     );
   }

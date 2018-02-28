@@ -9,8 +9,14 @@ var SendManifestToUri = require('SendManifestToUri');
 var SaveManifestDialog = React.createClass({
   getInitialState: function() {
     return {
-      saveManifestLocation: 'local'
+      saveManifestLocation: 'local',
+      saveManifestDialogId: undefined
     };
+  },
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      saveManifestDialogId: nextProps.uuid
+    });
   },
   toggleSaveManifestLocation: function() {
     this.setState({
@@ -42,7 +48,7 @@ var SaveManifestDialog = React.createClass({
                   );
                 } else {
                   return (
-                    <SendManifestToUri />
+                    <SendManifestToUri uuid={this.state.saveManifestDialogId} />
                   );
                 }
               })()}
