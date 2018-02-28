@@ -87,16 +87,19 @@ var MetadataSidebarButtons = React.createClass({
             {(() => {
               if(window.location.hash.startsWith('#/edit?')) {
                 return (
-                  <span className="manifest-actions-menu dropdown">
-                    <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
-                    <ul className="dropdown-menu pull-left">
-                      <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
-                      <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
-                      <li onClick={this.openValidateManifestDialog}><i className="fa fa-check hidden-sm hidden-xs"></i> Validate Manifest</li>
-                      <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
-                      <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
-                    </ul>
-                  </span>
+                  <div className="edit-view-sidebar-buttons-container">
+                    <span className="manifest-actions-menu dropdown">
+                      <button className="btn btn-default btn-transparent dropdown-toggle" data-toggle="dropdown" title="Show Manifest Actions"><i className="fa fa-caret-down hidden-sm hidden-xs"></i> Manifest Actions</button>
+                      <ul className="dropdown-menu pull-left">
+                        <li onClick={() => this.openExitConfirmationDialog('#/new')}><i className="fa fa-file hidden-sm hidden-xs"></i> New Manifest</li>
+                        <li onClick={() => this.openExitConfirmationDialog('#/open')}><i className="fa fa-folder-open hidden-sm hidden-xs"></i> Open Manifest</li>
+                        <li onClick={this.openValidateManifestDialog}><i className="fa fa-check hidden-sm hidden-xs"></i> Validate Manifest</li>
+                        <li onClick={() => this.switchToView('#/canvases')}><i className="fa fa-picture-o hidden-sm hidden-xs"></i> Import Canvases</li>
+                        <li onClick={() => this.openExitConfirmationDialog('#/')}><i className="fa fa-close hidden-sm hidden-xs"></i> Close Manifest</li>
+                      </ul>
+                    </span>
+                    <a className="btn btn-default metadata-sidebar-button" onClick={() => this.showSettings()} ><i className="fa fa-gear"></i></a>
+                  </div>
                 );
               } else {
                 return (
@@ -104,7 +107,6 @@ var MetadataSidebarButtons = React.createClass({
                 );
               }
             })()}
-            <a className="btn btn-default metadata-sidebar-button" onClick={() => this.showSettings()} ><i className="fa fa-gear"></i></a>
             <a className="help-icon pull-right" href="javascript:;" onClick={() => this.showHelp('Sidebar')} ><i className="fa fa-question-circle-o"></i></a>
             <SaveManifestDialog ref="saveManifestDialog" uuid={this.state.saveManifestDialogId} />
             <ValidateManifestDialog ref="validateManifestDialog" uuid={this.state.validateManifestDialogId} />

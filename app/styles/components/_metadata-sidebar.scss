@@ -38,6 +38,10 @@
     .metadata-sidebar-buttons {
       text-align: right;
 
+      .edit-view-sidebar-buttons-container {
+        display: inline-block;
+      }
+
       .metadata-sidebar-button {
         margin-left: 5px;
       }
