@@ -95,21 +95,24 @@ var SettingsDialog = React.createClass({
                   }
                 }
 
-              }, function(error) {
+              })
+              .catch(function(error) {
                 _this.setState({
                   isValidatingServerEndpoint: false,
                   isValidEndpoint: false,
                   canUpdateManifest: 'No'
                 });
               });
-          }, function(error) {
+          })
+          .catch(function(error) {
             _this.setState({
               isValidatingServerEndpoint: false,
               isValidEndpoint: false,
               canGetManifest: 'No'
             });
           });
-      }, function(error) {
+      })
+      .catch(function(error) {
         _this.setState({
           isValidatingServerEndpoint: false,
           isValidEndpoint: false,
@@ -143,7 +146,7 @@ var SettingsDialog = React.createClass({
           resolve();
         })
         .catch(function(error) {
-          reject('Getting manifest failed with error: ' + getManifestError);
+          reject('Getting manifest failed with error: ' + error);
         });
     });
   },
