@@ -14,7 +14,7 @@ var store = require('configureStore').configure();
 
 // subscribe to changes
 var unsubscribe = store.subscribe(() => {
-  console.log('New state', store.getState());
+  // console.log('New state', store.getState());
 });
 
 require('style-loader!css-loader?sourceMap!sass-loader!applicationStyles');

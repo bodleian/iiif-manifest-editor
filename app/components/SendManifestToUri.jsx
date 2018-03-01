@@ -67,7 +67,6 @@ var SendManifestToUri = React.createClass({
         });
       })
       .catch(function(serverError) {
-        console.log("Updating the manifest failed");
         _this.setState({
           isSendingManifest: false,
           serverResponse: serverError
