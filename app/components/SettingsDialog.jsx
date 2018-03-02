@@ -19,7 +19,8 @@ var SettingsDialog = React.createClass({
       savedServerEndpoint: savedServerEndpoint,
     };
   },
-  saveSettings: function() {
+  saveSettings: function(e) {
+    e.preventDefault();
     this.setState({
       isValidEndpointName: undefined,
       isValidEndpointUri: undefined,
