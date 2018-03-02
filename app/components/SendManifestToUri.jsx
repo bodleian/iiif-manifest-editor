@@ -30,14 +30,14 @@ var SendManifestToUri = React.createClass({
     // Store generated manifest JSON on configured server endpoint
     axios.post(this.state.savedServerEndpoint.serverEndpointUri, this.props.manifestData)
       .then(function(serverResponse) {
-        // update Manifest URI (@id property) with returned bin ID from myjson.com
+        // update Manifest URI (@id property) with returned bin ID from configured server endpoint
         _this.props.dispatch(actions.updateMetadataFieldValueAtPath(serverResponse.data.uri, '@id'));
         _this.setState({
           isSendingManifest: false,
           serverResponse: serverResponse,
           remoteManifestUri: serverResponse.data.uri
         });
-        // Update manifest on myJson with new ID
+        // Update manifest on configured server endpoint with new ID
         _this.updateRemoteManifestWithId(serverResponse.data.uri);
       })
       .catch(function(serverError) {
@@ -54,7 +54,7 @@ var SendManifestToUri = React.createClass({
       serverResponse: undefined,
     });
     var _this = this;
-    // Use PUT method to update manifest on myJson bin – PUT /bins/:id
+    // Use PUT method to update manifest on configured server endpoint
     axios.put(manifestId, this.props.manifestData, {
       headers: {
         'Content-Type': 'application/json',
@@ -63,14 +63,15 @@ var SendManifestToUri = React.createClass({
       .then(function(serverResponse) {
         _this.setState({
           isSendingManifest: false,
-          serverResponse: serverResponse
+          serverResponse: serverResponse,
+          remoteManifestUri: manifestId
         });
       })
       .catch(function(serverError) {
         _this.setState({
           isSendingManifest: false,
-          serverResponse: serverError
-        });
+          serverResponse: 'This manifest can not be updated. Try clicking the "Store Manifest on Server" button first'
+         });
       });
   },
   resetValidationStatus: function() {
@@ -99,7 +100,7 @@ var SendManifestToUri = React.createClass({
         return(
         <div className="alert alert-danger">
           <div><i className="fa fa-times-circle-o"></i> Storing the manifest failed with the following error:</div>
-          <div>{this.state.serverResponse.error}</div>
+          <div>{this.state.serverResponse}</div>
         </div>
         );
       }
@@ -113,14 +114,23 @@ var SendManifestToUri = React.createClass({
       }
     }
   },
+  renderUpdateManifestOnServerButton: function() {
+    if(this.state.savedServerEndpoint !== '' && this.props.manifestData['@id'].startsWith(this.state.savedServerEndpoint.serverEndpointUri)) {
+      return(
+        <button type="button" className="btn btn-success" onClick={() => this.updateRemoteManifestWithId(this.props.manifestData['@id'])}><i className="fa fa-refresh"></i> Update Manifest on Server</button>
+      );
+    } else {
+      return '';
+    }
+  },
   render: function() {
     return (
       <div>
         {(() => {
           if(this.state.savedServerEndpoint !== '') {
             return(
-              <div>
-                <p>The Following Server Endpoint has been Configured</p>
+              <div className="send-manifest-to-uri-container">
+                <p>The following server endpoint has been configured:</p>
                 <table className="table table-bordered">
                   <thead>
                     <tr>
@@ -137,6 +147,7 @@ var SendManifestToUri = React.createClass({
                 </table>
                 <br />
                 <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
+                {this.renderUpdateManifestOnServerButton()}
                 <div className="remote-manifest-status-message">
                   {this.displayServerResponse()}
                 </div>
