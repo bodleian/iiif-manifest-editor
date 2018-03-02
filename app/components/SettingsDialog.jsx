@@ -72,7 +72,6 @@ var SettingsDialog = React.createClass({
             _this.updateTestManifest(manifestUri, _this.props.manifestData)
               .then(function(response) {
                 _this.setState({
-                  isValidEndpoint: true,
                   isValidatingServerEndpoint: false,
                   savedServerEndpoint: { 'serverEndpointName': serverEndpointName, 'serverEndpointUri': serverEndpointUri },
                   isValidEndpoint: true,
@@ -259,13 +258,9 @@ var SettingsDialog = React.createClass({
                 <span className="error">Please enter a valid URI for your server endpoint</span>
               }
             </div>
-              <div className="server-endpoint-validation-message">
-                {this.displayValidationMessage()}
-                {this.renderLocalStorageSavedEndpointErrorMessage()}
-              </div>
-              <button type="submit" className="btn btn-primary" onClick={this.saveSettings}><i className="fa fa-save"></i> Save Settings</button>
-            </form>
-          </div>
+            <button type="submit" className="btn btn-primary" onClick={this.saveSettings}><i className="fa fa-save"></i> Save Settings</button>
+          </form>
+        </div>
       );
     } else {
       return '';
@@ -319,6 +314,10 @@ var SettingsDialog = React.createClass({
               <h4>Server Endpoint Settings</h4>
               {this.displayServerEndpointConfiguration()}
               {this.displayConfiguredServerEndpointFromLocalStorage()}
+              <div className="server-endpoint-validation-message">
+                {this.displayValidationMessage()}
+                {this.renderLocalStorageSavedEndpointErrorMessage()}
+              </div>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-close"></i> Close</button>
