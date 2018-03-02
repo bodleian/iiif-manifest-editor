@@ -17,7 +17,8 @@ var SendManifestToUri = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
     this.setState({
-      savedServerEndpoint: savedServerEndpoint
+      savedServerEndpoint: savedServerEndpoint,
+      serverResponse: undefined
     });
   },
   sendManifestToUri: function() {
