@@ -77,7 +77,12 @@ export var manifestReducer = (state = stateDefaults, action) => {
       while(stack.length > 1) {
         object = object[stack.shift()];
       }
-      object[stack.shift()].push(action.metadataFieldObject);
+      // create the metadata list element if it does not exist
+      var metadataKey = stack.shift();
+      if(object[metadataKey] == undefined) {
+        object[metadataKey] = [];
+      }
+      object[metadataKey].push(action.metadataFieldObject);
 
       // update the manifesto object with the updated manifest data by re-creating the entire manifesto object
       var updatedManifestoObject = manifesto.create(JSON.stringify(updatedManifestData));
