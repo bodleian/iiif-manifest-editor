@@ -167,6 +167,7 @@ var CanvasMetadataPanel = React.createClass({
       var canvasWidthPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/width";
       var canvasHeightPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/height";
       var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
+      var canvasRelatedPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/related";
       return (
         <div className="metadata-sidebar-panel">
           <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" onSubmitHandler={this.handleImageAnnotationChoice} canvas={canvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
@@ -207,6 +208,12 @@ var CanvasMetadataPanel = React.createClass({
             <dt className="metadata-field-label">Image Annotation URI</dt> 
             <dd className="metadata-field-value">
               <EditableTextArea fieldValue={image !== undefined ? image.id : 'N/A'} path={canvasImageIdPath} onUpdateHandler={this.updateImageAnnotationForCanvasWithId}/>
+            </dd>
+          </dl>
+          <dl>
+            <dt className="metadata-field-label">Related</dt> 
+            <dd className="metadata-field-value">
+              <EditableTextArea fieldName="canvasRelated" fieldValue={canvas.__jsonld.related} path={canvasRelatedPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
             </dd>
           </dl>
         </div>

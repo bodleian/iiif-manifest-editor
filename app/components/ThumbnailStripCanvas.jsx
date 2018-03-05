@@ -84,7 +84,8 @@ var ThumbnailStripCanvas = React.createClass({
       "label": "Empty canvas",
       "height": 0,
       "width": 0,
-      "images": []
+      "images": [],
+      "related": ""
     };
     dispatch(actions.addEmptyCanvasAtIndex(emptyCanvas, canvasIndex));
   },
