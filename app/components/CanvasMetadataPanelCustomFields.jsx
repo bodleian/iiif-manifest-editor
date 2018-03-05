@@ -18,13 +18,15 @@ var CanvasMetadataPanelCustomFields = React.createClass({
   },
   componentWillMount: function() {
     // initialize the active metadata field list with the fields defined in the metadata block of the canvas
-    var sequence = this.props.manifestoObject.getSequenceByIndex(0);
-    var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-    var canvasMetadataFields = canvas.__jsonld.metadata;
-    if(canvasMetadataFields.length > 0) {
-      this.setState({
-        activeMetadataFields: canvasMetadataFields
-      });
+    if(this.props.selectedCanvasId !== undefined) {
+      var sequence = this.props.manifestoObject.getSequenceByIndex(0);
+      var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
+      var canvasMetadataFields = canvas.__jsonld.metadata;
+      if(canvasMetadataFields !== undefined && canvasMetadataFields.length > 0) {
+        this.setState({
+          activeMetadataFields: canvasMetadataFields
+        });
+      }
     }
   },
   addMetadataField: function(metadataFieldLabel, metadataFieldValue, path) {
@@ -78,75 +80,88 @@ var CanvasMetadataPanelCustomFields = React.createClass({
     });
   },
   render: function() {
-    // get the index of the selected canvas
-    var _this = this;
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-    var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
-    var canvasMetadataPath = "sequences/0/canvases/" + selectedCanvasIndex + "/metadata";
-    return (
-      <div>
-        <MetadataFieldDialog ref="metadataFieldDialog" metadataField={this.state.selectedMetadataFieldToViewJson} />
-        {
-          Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
-            var metadataField = _this.state.activeMetadataFields[fieldIndex];
-            return (
-              <dl key={fieldIndex}>
-                <dt className="metadata-field-label">
+    if(canvas !== null) {
+      var selectedCanvasIndex = sequence.getCanvasIndexById(canvas.id);
+      var canvasMetadataPath = "sequences/0/canvases/" + selectedCanvasIndex + "/metadata";
+      var _this = this;
+      return (
+        <div>
+          <MetadataFieldDialog ref="metadataFieldDialog" metadataField={this.state.selectedMetadataFieldToViewJson} />
+          {
+            Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
+              var metadataField = _this.state.activeMetadataFields[fieldIndex];
+              return (
+                <dl key={fieldIndex}>
+                  <dt className="metadata-field-label">
+                    {(() => {
+                      if(typeof metadataField.label === 'string' || metadataField.label instanceof String) {
+                        return (
+                          <EditableTextArea fieldValue={metadataField.label.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                        );
+                      } else {
+                        return (
+                          <span>{Utils.getMetadataField('label', metadataField.label)}</span>
+                        );
+                      }
+                    })()}
+                  </dt>
                   {(() => {
-                    if(typeof metadataField.label === 'string' || metadataField.label instanceof String) {
+                    if(metadataField.value === undefined) {
                       return (
-                        <EditableTextArea fieldValue={metadataField.label.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                        <dd className="metadata-field-value">N/A</dd>
                       );
                     } else {
                       return (
-                        <span>{Utils.getMetadataField('label', metadataField.label)}</span>
+                        <dd className="metadata-field-value">
+                          {(() => {
+                            if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
+                              return (
+                                <EditableTextArea fieldValue={metadataField.value.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/value"} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                              );
+                            } else {
+                              return (
+                                <span><a href="javascript:;" title="View JSON metadata" onClick={() => _this.viewJsonMetadata(metadataField.label, JSON.stringify(metadataField.value, null, 2))}>View JSON metadata</a></span>
+                              );
+                            }
+                          })()}                    
+                        </dd>
                       );
                     }
-                  })()}
-                </dt>
-                {(() => {
-                  if(metadataField.value === undefined) {
+                  })()}                    
+                  {(() => {
                     return (
-                      <dd className="metadata-field-value">N/A</dd>
-                    );
-                  } else {
-                    return (
-                      <dd className="metadata-field-value">
-                        {(() => {
-                          if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
-                            return (
-                              <EditableTextArea fieldValue={metadataField.value.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/value"} onUpdateHandler={_this.updateMetadataFieldValue}/>
-                            );
-                          } else {
-                            return (
-                              <span><a href="javascript:;" title="View JSON metadata" onClick={() => _this.viewJsonMetadata(metadataField.label, JSON.stringify(metadataField.value, null, 2))}>View JSON metadata</a></span>
-                            );
-                          }
-                        })()}                    
+                      <dd className="metadata-field-delete">
+                        <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(canvasMetadataPath, fieldIndex)}>
+                          <span className="fa fa-times-circle"></span>
+                        </a>
                       </dd>
                     );
-                  }
-                })()}                    
-                {(() => {
-                  return (
-                    <dd className="metadata-field-delete">
-                      <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(canvasMetadataPath, fieldIndex)}>
-                        <span className="fa fa-times-circle"></span>
-                      </a>
-                    </dd>
-                  );
-                })()}
-              </dl>
-            );
-          })
-        }
-        <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('Label', 'Value', canvasMetadataPath)}>
-          <span className="fa fa-plus"></span> Add metadata field
-        </button>
-      </div>
-    );
+                  })()}
+                </dl>
+              );
+            })
+          }
+          <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('Label', 'Value', canvasMetadataPath)}>
+            <span className="fa fa-plus"></span> Add metadata field
+          </button>
+        </div>
+      );
+    } else if(this.props.manifestoObject.getSequenceByIndex(0).getCanvases().length < 1) {
+      return (
+        <div>
+          This sequence does not have any canvases.
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          The selected canvas has been deleted.
+        </div>
+      );
+    }
   }
 });
 
