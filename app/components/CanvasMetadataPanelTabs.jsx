@@ -1,6 +1,6 @@
 var React = require('react');
-var CanvasMetadataPanelPredefinedFields = require('./CanvasMetadataPanelPredefinedFields');
-var CanvasMetadataPanelCustomFields = require('./CanvasMetadataPanelCustomFields');
+var CanvasMetadataPanelPredefinedFields = require('CanvasMetadataPanelPredefinedFields');
+var CanvasMetadataPanelCustomFields = require('CanvasMetadataPanelCustomFields');
 
 var CanvasMetadataPanelTabs = React.createClass({
   render: function() {

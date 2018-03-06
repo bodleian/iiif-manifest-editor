@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
-var MetadataFieldDialog = require('./MetadataFieldDialog');
+var MetadataFieldDialog = require('MetadataFieldDialog');
 var Utils = require('Utils');
 
 var CanvasMetadataPanelCustomFields = React.createClass({
