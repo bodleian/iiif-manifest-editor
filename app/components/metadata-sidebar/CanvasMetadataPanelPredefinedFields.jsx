@@ -122,6 +122,11 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     var imageId = (image !== undefined) ? image.id : 'N/A';
     this.updateMetadataFieldLists('image_annotation_uri', imageId, availableMetadataFields, activeMetadataFields);
 
+    // related
+    if(this.state.selectedCanvas.__jsonld.related !== undefined) {
+      this.updateMetadataFieldLists('related', this.state.selectedCanvas.__jsonld.related, availableMetadataFields, activeMetadataFields);
+    }
+
     this.setState({
       numUniqueMetadataFields: numUniqueMetadataFields,
       numMultiValuedMetadataFields: numMultiValuedMetadataFields,
