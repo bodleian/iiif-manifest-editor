@@ -404,6 +404,34 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     // add the metadata field to the manifest data object in the store
     this.props.dispatch(actions.addMetadataFieldAtPath(availableMetadataField.name, availableMetadataField.value, availableMetadataField.addPath));
   },
+  deleteMetadataField: function(metadataFieldToDelete, index) {
+    // create copies of the metadata field lists
+    var availableMetadataFields = [...this.state.availableMetadataFields];
+    var activeMetadataFields = [...this.state.activeMetadataFields];
+
+    var numUnassignedMetadataFields = (metadataFieldToDelete.name === undefined) ? this.state.numUnassignedMetadataFields - 1 : this.state.numUnassignedMetadataFields;
+
+    // append the metadata field to delete to the list of available fields
+    if(metadataFieldToDelete.name !== undefined) {
+      metadataFieldToDelete.value = undefined;
+      availableMetadataFields.push(metadataFieldToDelete);
+    }
+
+    // delete the metadata field from the list of active fields
+    activeMetadataFields.splice(index, 1);
+
+    // update the metadata field lists in the state so that the component uses the correct values when rendering
+    this.setState({
+      numUnassignedMetadataFields: numUnassignedMetadataFields,
+      availableMetadataFields: availableMetadataFields,
+      activeMetadataFields: activeMetadataFields
+    });
+
+    // delete the metadata field to the manifest data object in the store
+    if(metadataFieldToDelete.name !== undefined) {
+      this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
+    }
+  },
   render: function() {
     var image = this.state.selectedCanvas.getImages()[0];
     if(this.state.selectedCanvas !== null) {
