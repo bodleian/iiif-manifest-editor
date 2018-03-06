@@ -32,6 +32,7 @@ module.exports = {
       __dirname,
       'node_modules',
       './app/components',
+      './app/components/metadata-sidebar',
       './app/components/ui-toolkit',
       './app/data',
       'libraries'
