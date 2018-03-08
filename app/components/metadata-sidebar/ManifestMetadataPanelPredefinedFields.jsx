@@ -61,7 +61,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           label: 'Related',
           value: undefined,
           isRequired: false,
-          isUnique: true,
+          isUnique: false,
           addPath: '',
           updatePath: 'related'
         },
