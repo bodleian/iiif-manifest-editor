@@ -271,8 +271,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     // insert the available field at the location of the deleted field
     activeMetadataFields.splice(menuIndex, 0, availableMetadataField);
 
-    // delete the available field
-    availableMetadataFields.splice(availableMetadataFieldIndex, 1);
+    // delete the available field if it should not be added multiple times
+    if(metadataFieldToDelete.isUnique) {
+      availableMetadataFields.splice(availableMetadataFieldIndex, 1);
+    }
 
     // update the metadata field lists in the state so that the component uses the correct values when rendering
     this.setState({
