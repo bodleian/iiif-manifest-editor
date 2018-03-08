@@ -109,10 +109,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
   },
   getActiveMetadataFieldIndexByFieldName: function(activeMetadataFields, fieldName) {
     var activeMetadataFieldIndex = -1;
-    Object.keys(activeMetadataFields).map(function(index) {
-      var metadataField = activeMetadataFields[index];
+    Object.keys(activeMetadataFields).map(function(fieldIndex) {
+      var metadataField = activeMetadataFields[fieldIndex];
       if(metadataField.name === fieldName) {
-        activeMetadataFieldIndex = index;
+        activeMetadataFieldIndex = fieldIndex;
       }
     });
     return activeMetadataFieldIndex;
@@ -218,10 +218,30 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       });
     }
   },
-  updateMetadataFieldValue: function(fieldValue, path, fieldName) {
+  findOccurrenceIndexForFieldName: function(fieldName, fieldIndex) {
+    // check how many times the currently updated field occurs in the UI (active fields) 
+    // and return the index of occurrence (e.g. first occurrence => 0, second occurrence => 1, etc.)
+    // this number corresponds to the array index of the multi-valued field in the store
+    var fieldIndexMapping = [];
+    var occurrenceCounter = 0;
+    this.state.activeMetadataFields.map(function(metadataField, index) {
+      // compare active field name with currently updated field name
+      if(metadataField.name === fieldName) {
+        fieldIndexMapping[index] = occurrenceCounter++;
+      }
+    });
+
+    return fieldIndexMapping[fieldIndex];
+  },
+  updateMetadataFieldValue: function(fieldValue, path, fieldName, fieldIndex) {
     // update the metadata field value to the manifest data object in the store
     if(fieldName !== undefined) {
-      this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
+      if(!this.state.activeMetadataFields[fieldIndex].isUnique) {
+        var updatePath = 'related/' + this.findOccurrenceIndexForFieldName(fieldName, fieldIndex) + '/value';
+        this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
+      } else {
+        this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
+      }
     }
   },
   deleteMetadataField: function(metadataFieldToDelete, index) {
@@ -283,8 +303,16 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       activeMetadataFields: activeMetadataFields
     });
 
-    // add the metadata field to the manifest data object in the store
-    this.props.dispatch(actions.addMetadataFieldAtPath(availableMetadataField.name, availableMetadataField.value, availableMetadataField.addPath));
+    if(!availableMetadataField.isUnique) {
+      if(availableMetadataField.name == 'related') {
+        // add the metadata field object to the list at the given path to the manifest data object in the store
+        var metadataFieldObject = { '@id': availableMetadataField.value, label: '', format: '' };
+        this.props.dispatch(actions.addMetadataFieldToListAtPath(metadataFieldObject, availableMetadataField.updatePath));
+      }
+    } else {
+      // add the metadata field to the manifest data object in the store
+      this.props.dispatch(actions.addMetadataFieldAtPath(availableMetadataField.name, availableMetadataField.value, availableMetadataField.addPath));
+    }
   },
   render: function() {
     var _this = this;
@@ -324,7 +352,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   } else {
                     return (
                       <dd className="metadata-field-value">
-                        <EditableTextArea fieldName={metadataField.name} fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                        <EditableTextArea fieldName={metadataField.name} fieldValue={metadataField.value} fieldIndex={fieldIndex} path={metadataField.updatePath} onUpdateHandler={_this.updateMetadataFieldValue}/>
                       </dd>
                     );
                   }
