@@ -237,7 +237,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     // update the metadata field value to the manifest data object in the store
     if(fieldName !== undefined) {
       if(!this.state.activeMetadataFields[fieldIndex].isUnique) {
-        var updatePath = 'related/' + this.findOccurrenceIndexForFieldName(fieldName, fieldIndex) + '/value';
+        var updatePath = 'related/' + this.findOccurrenceIndexForFieldName(fieldName, fieldIndex) + '/@id';
         this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
       } else {
         this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
