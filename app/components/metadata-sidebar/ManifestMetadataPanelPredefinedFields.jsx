@@ -3,6 +3,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
+var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
 var Utils = require('Utils');
 
 var ManifestMetadataPanelPredefinedFields = React.createClass({
@@ -226,6 +227,20 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
+  updateMetadataPropertyObjectValue: function(fieldIndex, fieldName, updatePath, propertyName, propertyValue) {
+    if(fieldName !== undefined) {
+      // update the value in the metadata field
+      var metadataFields = [...this.state.metadataFields];
+      metadataFields[fieldIndex].value[propertyName] = propertyValue;
+      this.setState({
+        metadataFields: metadataFields
+      });
+
+      // update the metadata field value to the manifest data object in the store
+      var propertyUpdatePath = updatePath + '/' + propertyName;
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath(propertyValue, propertyUpdatePath));
+    }
+  },
   deleteMetadataField: function(metadataFieldToDelete, index) {
     // delete the metadata field to the manifest data object in the store
     // TODO: which related field should be deleted from the store? Need an index! Use deleteMetadataFieldFromListAtPathAndIndex action!
@@ -331,16 +346,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                 return (
                   <dl key={fieldIndex}>
                     <dt className="metadata-field-label">{ metadataField.label }</dt>
-                    {
-                      Object.keys(metadataField.value).map(function(propertyName, propertyIndex) {
-                        var propertyValue = metadataField.value[propertyName];
-                        return (
-                          <dd key={propertyIndex} className="metadata-field-value">
-                            { propertyName } : { propertyValue }
-                          </dd>
-                        );
-                      })
-                    }
+                    <MetadataPropertyObjectValue
+                      fieldValue={metadataField.value}
+                      updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                    />
                   </dl>
                 );
               }
@@ -350,6 +359,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                     <dt className="metadata-field-label">{ metadataField.label }</dt>
                     <dd className="metadata-field-value">
                       <EditableTextArea
+                        fieldValue={metadataField.name}
                         fieldValue={metadataField.value}
                         updateHandler={_this.updateMetadataFieldValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
                       />
