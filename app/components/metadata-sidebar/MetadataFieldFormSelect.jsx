@@ -1,6 +1,6 @@
 var React = require('react');
 
-var FormSelect = React.createClass({
+var MetadataFieldFormSelect = React.createClass({
   getInitialState: function() {
     return {
       id: this.props.id,
@@ -10,11 +10,23 @@ var FormSelect = React.createClass({
       onChangeHandler: this.props.onChange
     }
   },
+  getOptionByName: function(options, name) {
+    for(var index = 0; index < options.length; index++) {
+      var option = options[index];
+      if(option.name === name) {
+        return option;
+      }
+    }
+    return undefined;
+  },
   handleChange: function(e) {
+    var selectedOptionValue = e.target.value;
     this.setState({
-      selectedOption: e.target.value
+      selectedOption: selectedOptionValue
     });
-    this.state.onChangeHandler(this.state.id, e.target.value);
+
+    var selectedOptionObject = this.getOptionByName(this.state.options, selectedOptionValue);
+    this.state.onChangeHandler(selectedOptionObject, e.target.value);
   },
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -22,13 +34,11 @@ var FormSelect = React.createClass({
     });
   },
   render: function() {
-    var that = this;
     return (
       <select value={this.state.selectedOption} onChange={this.handleChange}>
         <option value="" disabled>{this.state.placeholder}</option>
         {
-          Object.keys(this.state.options).map(function(index) {
-            var option = that.state.options[index];
+          this.state.options.map(function(option, index) {
             return (
               <option key={option.name} value={option.name}>{option.label}</option>
             );
@@ -39,4 +49,4 @@ var FormSelect = React.createClass({
   }
 });
 
-module.exports = FormSelect;
+module.exports = MetadataFieldFormSelect;

@@ -67,3 +67,28 @@ export var getMetadataField = (metadataFieldName, metadataFieldValue) => {
     return false;
   }
 }
+
+export var updateMetadataFieldValue = (currentMetadataFieldValue, metadataFieldValueToAdd) => {
+  if(currentMetadataFieldValue === undefined) {  // no type
+    // no value currently exists so use the new value directly
+    return metadataFieldValueToAdd;
+
+  } else if(Array.isArray(currentMetadataFieldValue)) {  // array types
+    // append the new value to the existing list of values
+    var newMetadataFieldValue = [];
+    for(var index in currentMetadataFieldValue) {
+      newMetadataFieldValue[index] = currentMetadataFieldValue[index];
+    }
+    newMetadataFieldValue.push(metadataFieldValueToAdd);
+
+    return newMetadataFieldValue;
+
+  } else {  // string and object types
+    // create list and append current value and new value to list
+    var newMetadataFieldValue = [];
+    newMetadataFieldValue.push(currentMetadataFieldValue);
+    newMetadataFieldValue.push(metadataFieldValueToAdd);
+
+    return newMetadataFieldValue;
+  }
+}

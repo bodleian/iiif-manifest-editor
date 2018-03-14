@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
-var FormSelect = require('FormSelect');
+var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var EditableTextArea = require('EditableTextArea');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 var ImageAnnotationChoiceDialog = require('ImageAnnotationChoiceDialog');
@@ -456,7 +456,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
                     if(metadataField.name === undefined) {
                       return (
                         <dt className="metadata-field-label">
-                          <FormSelect id={fieldIndex} options={_this.state.availableMetadataFields} placeholder="Choose field" selectedOption="" onChange={_this.updateMetadataFieldsWithSelectedOption}/>
+                          <MetadataFieldFormSelect id={fieldIndex} options={_this.state.availableMetadataFields} placeholder="Choose field" selectedOption="" onChange={_this.updateMetadataFieldsWithSelectedOption}/>
                         </dt>
                       );
                     } else {
