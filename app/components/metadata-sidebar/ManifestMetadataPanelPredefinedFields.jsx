@@ -51,7 +51,8 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           value: undefined,
           isRequired: false,
           isMultiValued: false,
-          addPath: '', updatePath: 'logo'
+          addPath: '',
+          updatePath: 'logo'
         },
         {
           name: 'related',
@@ -208,20 +209,16 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     return fieldIndexMapping[fieldIndex];
   },
   updateMetadataFieldValue: function(fieldIndex, fieldName, path, fieldValue) {
-    // update the metadata field value to the manifest data object in the store
     if(fieldName !== undefined) {
+      // update the value in the metadata field list
+      var metadataFields = [...this.state.metadataFields];
+      metadataFields[fieldIndex].value = fieldValue;
+      this.setState({
+        metadataFields: metadataFields
+      });
+
+      // update the metadata field value to the manifest data object in the store
       if(this.state.metadataFields[fieldIndex].isMultiValued) {
-        // create a copy of the metadata field list
-        var metadataFields = [...this.state.metadataFields];
-
-        // update the value in the metadata field
-        metadataFields[fieldIndex].value = fieldValue;
-
-        // update the metadata field list in the state
-        this.setState({
-          metadataFields: metadataFields
-        });
-
         var updatePath = fieldName + '/' + this.findOccurrenceIndexForFieldName(fieldName, fieldIndex) + '/@id';
         this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
       } else {
