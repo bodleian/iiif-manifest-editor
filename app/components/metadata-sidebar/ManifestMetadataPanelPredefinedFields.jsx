@@ -351,7 +351,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                     <dd className="metadata-field-value">
                       <EditableTextArea
                         fieldValue={metadataField.value}
-                        onUpdateHandler={_this.updateMetadataFieldValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                        updateHandler={_this.updateMetadataFieldValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
                       />
                     </dd>
                   </dl>

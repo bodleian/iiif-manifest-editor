@@ -7,6 +7,7 @@ var EditableTextArea = React.createClass({
   getInitialState: function() {
     return {
       editing: false,
+      fieldName: this.props.fieldName,
       fieldValue: this.props.fieldValue,
       fieldType: this.props.type !== undefined ? this.props.type : 'string',
       labelPrefix: this.props.labelPrefix
@@ -56,7 +57,7 @@ var EditableTextArea = React.createClass({
   inputLostFocus: function() {
     this.setState({ editing: false });
     // send the key and value of the text area to the update handler callback method
-    this.props.onUpdateHandler(this.state.fieldValue);
+    this.props.updateHandler(this.state.fieldName, this.state.fieldValue);
   },
   keyPressed: function(event) {
     if(event.key == 'Enter') {
