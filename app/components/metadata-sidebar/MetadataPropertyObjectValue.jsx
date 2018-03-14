@@ -17,7 +17,7 @@ var MetadataPropertyObjectValue = React.createClass({
             var propertyValue = _this.state.fieldValue[propertyIndex];
             return (
               <dd key={propertyIndex} className="metadata-field-value">
-                <span>{propertyName}</span>: <EditableTextArea fieldName={propertyName} fieldValue={propertyValue} updateHandler={_this.state.updateHandler} />
+                <EditableTextArea fieldName={propertyName} fieldValue={propertyValue} labelPrefix={propertyName + ': '} updateHandler={_this.state.updateHandler} />
               </dd>
             );
           })
