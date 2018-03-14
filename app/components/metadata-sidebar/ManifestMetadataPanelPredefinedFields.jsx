@@ -209,7 +209,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
 
     return fieldIndexMapping[fieldIndex];
   },
-  updateMetadataFieldValue: function(fieldIndex, fieldName, path, fieldValue) {
+  updateMetadataPropertyValue: function(fieldIndex, fieldName, updatePath, fieldValue) {
     if(fieldName !== undefined) {
       // update the value in the metadata field list
       var metadataFields = [...this.state.metadataFields];
@@ -219,12 +219,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       });
 
       // update the metadata field value to the manifest data object in the store
-      if(this.state.metadataFields[fieldIndex].isMultiValued) {
-        var updatePath = fieldName + '/' + this.findOccurrenceIndexForFieldName(fieldName, fieldIndex) + '/@id';
-        this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
-      } else {
-        this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
-      }
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
     }
   },
   updateMetadataPropertyObjectValue: function(fieldIndex, fieldName, updatePath, propertyName, propertyValue) {
@@ -334,10 +329,31 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                 return metadataField.value.map((propertyValue, propertyIndex) => {
                   return (
                     <dl key={fieldIndex + '-' + propertyIndex}>
-                      <dt className="metadata-field-label">{ metadataField.label }</dt>
-                      <dd className="metadata-field-value">
-                        { JSON.stringify(propertyValue) }
-                      </dd>
+                      <dt className="metadata-field-label">
+                        {metadataField.label}
+                      </dt>
+                      {(() => {
+                        if(propertyValue instanceof Object) {
+                          return (
+                            <MetadataPropertyObjectValue
+                              fieldValue={propertyValue}
+                              updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                            />
+                          );
+                        } else if(!Array.isArray(propertyValue)) {
+                          return (
+                            <dd className="metadata-field-value">
+                              <EditableTextArea
+                                fieldValue={metadataField.name}
+                                fieldValue={propertyValue}
+                                updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                              />
+                            </dd>
+                          );
+                        } else {
+                          // arrays of arrays are not supported
+                        }
+                      })()}
                     </dl>
                   );
                 });
@@ -345,7 +361,9 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               else if(metadataField.value instanceof Object) {
                 return (
                   <dl key={fieldIndex}>
-                    <dt className="metadata-field-label">{ metadataField.label }</dt>
+                    <dt className="metadata-field-label">
+                      {metadataField.label}
+                    </dt>
                     <MetadataPropertyObjectValue
                       fieldValue={metadataField.value}
                       updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
@@ -356,12 +374,14 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               else {
                 return (
                   <dl key={fieldIndex}>
-                    <dt className="metadata-field-label">{ metadataField.label }</dt>
+                    <dt className="metadata-field-label">
+                      {metadataField.label}
+                    </dt>
                     <dd className="metadata-field-value">
                       <EditableTextArea
                         fieldValue={metadataField.name}
                         fieldValue={metadataField.value}
-                        updateHandler={_this.updateMetadataFieldValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                        updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
                       />
                     </dd>
                   </dl>
