@@ -7,9 +7,8 @@ var EditableTextArea = React.createClass({
   getInitialState: function() {
     return {
       editing: false,
-      fieldName: this.props.fieldName,
       fieldValue: this.props.fieldValue,
-      fieldIndex: this.props.fieldIndex,
+      fieldType: this.props.type !== undefined ? this.props.type : 'string',
       labelPrefix: this.props.labelPrefix
     }
   },
@@ -42,19 +41,14 @@ var EditableTextArea = React.createClass({
     if(updatedValue === '') {
       updatedValue = 'N/A';
     }
-    // Check the field name to determine which field values need to be integers
-    switch (this.state.fieldName) {
-      case 'canvasWidth':
-      case 'canvasHeight':
-        // convert field value to integer
-        updatedValue = parseInt(updatedValue);
-        // Set fieldValue to 0 for non-valid and negative numbers
-        if(isNaN(updatedValue) || updatedValue < 0) {
-          updatedValue = 0;
-        }
-        break;
-      default:
-        break;
+    // check the field type to determine which field values need to be integers
+    if(this.state.fieldType == 'integer') {
+      // convert field value to integer
+      updatedValue = parseInt(updatedValue);
+      // set the field value to 0 for non-valid and negative numbers
+      if(isNaN(updatedValue) || updatedValue < 0) {
+        updatedValue = 0;
+      }
     }
     this.setState({ fieldValue: updatedValue });
     textArea.style.height = textArea.scrollHeight + 'px';
@@ -62,7 +56,7 @@ var EditableTextArea = React.createClass({
   inputLostFocus: function() {
     this.setState({ editing: false });
     // send the key and value of the text area to the update handler callback method
-    this.props.onUpdateHandler(this.state.fieldValue, this.props.path, this.state.fieldName, this.state.fieldIndex);
+    this.props.onUpdateHandler(this.state.fieldValue);
   },
   keyPressed: function(event) {
     if(event.key == 'Enter') {

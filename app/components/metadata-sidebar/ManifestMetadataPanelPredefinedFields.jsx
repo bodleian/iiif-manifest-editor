@@ -207,14 +207,14 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
 
     return fieldIndexMapping[fieldIndex];
   },
-  updateMetadataFieldValue: function(fieldValue, path, fieldName, fieldIndex) {
+  updateMetadataFieldValue: function(fieldIndex, fieldName, path, fieldValue) {
     // update the metadata field value to the manifest data object in the store
     if(fieldName !== undefined) {
       if(this.state.metadataFields[fieldIndex].isMultiValued) {
         // create a copy of the metadata field list
         var metadataFields = [...this.state.metadataFields];
 
-        // update the value in the active metadata field
+        // update the value in the metadata field
         metadataFields[fieldIndex].value = fieldValue;
 
         // update the metadata field list in the state
@@ -352,7 +352,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   <dl key={fieldIndex}>
                     <dt className="metadata-field-label">{ metadataField.label }</dt>
                     <dd className="metadata-field-value">
-                      <EditableTextArea fieldName={metadataField.name} fieldValue={metadataField.value} fieldIndex={fieldIndex} path={metadataField.updatePath} onUpdateHandler={_this.updateMetadataFieldValue}/>
+                      <EditableTextArea
+                        fieldValue={metadataField.value}
+                        onUpdateHandler={_this.updateMetadataFieldValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                      />
                     </dd>
                   </dl>
                 );
