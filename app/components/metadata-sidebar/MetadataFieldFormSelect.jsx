@@ -26,7 +26,7 @@ var MetadataFieldFormSelect = React.createClass({
     });
 
     var selectedOptionObject = this.getOptionByName(this.state.options, selectedOptionValue);
-    this.state.onChangeHandler(selectedOptionObject, e.target.value);
+    this.state.onChangeHandler(selectedOptionObject);
   },
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -40,7 +40,7 @@ var MetadataFieldFormSelect = React.createClass({
         {
           this.state.options.map(function(option, index) {
             return (
-              <option key={option.name} value={option.name}>{option.label}</option>
+              <option key={index} value={option.name}>{option.label}</option>
             );
           })
         }

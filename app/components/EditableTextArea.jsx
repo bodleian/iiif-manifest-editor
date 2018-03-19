@@ -38,10 +38,6 @@ var EditableTextArea = React.createClass({
     // dynamically adjust the height of the text area based on content that is entered
     var textArea = this.refs.textArea;
     var updatedValue = textArea.value;
-    // do not allow empty field values, use N/A instead
-    if(updatedValue === '') {
-      updatedValue = 'N/A';
-    }
     // check the field type to determine which field values need to be integers
     if(this.state.fieldType == 'integer') {
       // convert field value to integer

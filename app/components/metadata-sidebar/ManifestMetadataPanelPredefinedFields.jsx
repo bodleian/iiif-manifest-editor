@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
+var deepcopy = require('deepcopy');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
@@ -62,7 +63,8 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           isRequired: false,
           isMultiValued: true,
           addPath: '',
-          updatePath: 'related'
+          updatePath: 'related',
+          propertyValueTemplate: { '@id': undefined, label: undefined, format: undefined }
         },
         {
           name: 'seeAlso',
@@ -180,11 +182,12 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       var stubMetadataRecord = {
         name: undefined,
         label: undefined,
-        value: 'N/A',
+        value: undefined,
         isRequired: undefined,
         isMultiValued: undefined,
         addPath: undefined,
-        updatePath: undefined
+        updatePath: undefined,
+        propertyValueTemplate: undefined
       };
       metadataFields.push(stubMetadataRecord);
 
@@ -194,45 +197,68 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       });
     }
   },
-  findOccurrenceIndexForFieldName: function(fieldName, fieldIndex) {
-    // check how many times the currently updated field occurs in the UI (active fields) 
-    // and return the index of occurrence (e.g. first occurrence => 0, second occurrence => 1, etc.)
-    // this number corresponds to the array index of the multi-valued field in the store
-    var fieldIndexMapping = [];
-    var occurrenceCounter = 0;
-    this.state.activeMetadataFields.map(function(metadataField, index) {
-      // compare active field name with currently updated field name
-      if(metadataField.name === fieldName) {
-        fieldIndexMapping[index] = occurrenceCounter++;
-      }
-    });
+  updateMetadataFieldWithSelectedOption: function(selectedOptionObject) {
+    // update the property value in the metadata list
+    var metadataFields = [...this.state.metadataFields];
 
-    return fieldIndexMapping[fieldIndex];
-  },
-  updateMetadataPropertyValue: function(fieldIndex, fieldName, updatePath, fieldValue) {
-    if(fieldName !== undefined) {
-      // update the value in the metadata field list
-      var metadataFields = [...this.state.metadataFields];
-      metadataFields[fieldIndex].value = fieldValue;
-      this.setState({
-        metadataFields: metadataFields
-      });
+    // find the existing field by name
+    var activeMetadataField = this.getMetadataFieldByName(metadataFields, selectedOptionObject.name);
 
-      // update the metadata field value to the manifest data object in the store
-      this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
+    // set the default value of the property value based on whether the field is multi-valued
+    var defaultFieldValue = '';
+    if(activeMetadataField.isMultiValued) {
+      // Note: The following code assumes that the 'propertyValueTemplate' is set for multi-valued fields.
+      defaultFieldValue = deepcopy(activeMetadataField.propertyValueTemplate);
     }
+
+    // add a new property with a default value if one doesn't already exist
+    var newMetadataFieldValue = Utils.addMetadataFieldValue(activeMetadataField.value, defaultFieldValue);
+    activeMetadataField.value = newMetadataFieldValue;
+
+    // delete the empty stub metadata record
+    var stubRecordFieldIndex = this.getMetadataFieldIndexByFieldName(metadataFields, undefined);
+    metadataFields.splice(stubRecordFieldIndex, 1);
+
+    // save the updated metadata list to the state so the component re-renders
+    this.setState({ metadataFields: metadataFields });
+
+    // update the property value in the store
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
   },
-  updateMetadataPropertyObjectValue: function(fieldIndex, fieldName, updatePath, propertyName, propertyValue) {
-    if(fieldName !== undefined) {
+  updateMetadataPropertyValue: function(propertyIndex, updatePath, propertyName, propertyValue) {
+    // update the property value in the metadata list
+    var metadataFields = [...this.state.metadataFields];
+
+    // find the existing field by name
+    var activeMetadataField = this.getMetadataFieldByName(metadataFields, propertyName);
+
+    // update the existing property with the given value if one already exists
+    var newMetadataPropertyValue = Utils.updateMetadataFieldValue(activeMetadataField.value, propertyValue, propertyIndex);
+    activeMetadataField.value = newMetadataPropertyValue;
+
+    // save the updated metadata list to the state so the component re-renders
+    this.setState({ metadataFields: metadataFields });
+
+    // update the property value in the store
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
+  },
+  updateMetadataPropertyObjectValue: function(fieldIndex, updatePath, propertyIndex, propertyName, propertyValue) {
+    if(propertyName !== undefined) {
       // update the value in the metadata field
       var metadataFields = [...this.state.metadataFields];
-      metadataFields[fieldIndex].value[propertyName] = propertyValue;
+      if(propertyIndex !== -1) {
+        metadataFields[fieldIndex].value[propertyIndex][propertyName] = propertyValue;
+      } else {
+        metadataFields[fieldIndex].value[propertyName] = propertyValue;
+      }
       this.setState({
         metadataFields: metadataFields
       });
 
       // update the metadata field value to the manifest data object in the store
-      var propertyUpdatePath = updatePath + '/' + propertyName;
+      var propertyUpdatePath = (propertyIndex !== -1)
+        ? updatePath + '/' + propertyIndex + '/' + propertyName
+        : updatePath + '/' + propertyName;
       this.props.dispatch(actions.updateMetadataFieldValueAtPath(propertyValue, propertyUpdatePath));
     }
   },
@@ -262,46 +288,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       metadataFields: metadataFields
     });
   },
-  updateMetadataFieldWithSelectedOption: function(selectedMetadataField, selectedFieldName) {
-    // create a copy of the metadata field list
-    var metadataFields = [...this.state.metadataFields];
-
-    // delete the selected metadata field from the list of metadata fields
-    var fieldIndex = this.getMetadataFieldIndexByFieldName(metadataFields, selectedFieldName);
-    metadataFields.splice(fieldIndex, 1);
-
-    // copy the properties of the selected metadata field to the empty stub metadata record
-    var stubMetadataRecord = this.getMetadataFieldByName(metadataFields, undefined);
-    for(var index in selectedMetadataField) {
-      stubMetadataRecord[index] = selectedMetadataField[index];
-    }
-
-    // set the value of the selected metadata field based on the field type
-    if(stubMetadataRecord.isMultiValued) {
-      // TODO: refactor this logic for each type of multi-valued field, not just 'related'
-
-      // add the new metadata value
-      var metadataFieldValueToAdd = { '@id': 'A', label: 'B', format: 'C' };
-      var newMetadataFieldValue = Utils.updateMetadataFieldValue(stubMetadataRecord.value, metadataFieldValueToAdd);
-      stubMetadataRecord.value = newMetadataFieldValue;
-
-      // add the metadata field object to the list at the given path to the manifest data object in the store
-      this.props.dispatch(actions.updateMetadataFieldValueAtPath(stubMetadataRecord.value, stubMetadataRecord.updatePath));
-    } else {
-      // add the metadata field to the manifest data object in the store
-      stubMetadataRecord.value = 'N/A';
-      this.props.dispatch(actions.addMetadataFieldAtPath(stubMetadataRecord.name, stubMetadataRecord.value, stubMetadataRecord.addPath));
-    }
-
-    // update the metadata field list in the state
-    this.setState({
-      metadataFields: metadataFields
-    });
-  },
   render: function() {
     // get the list of available metadata fields that can be added
     var availableFieldsToAdd = this.state.metadataFields.filter(function(field) {
-      return field.value === undefined || field.isMultiValued;
+      return field.name !== undefined && (field.value === undefined || field.isMultiValued);
     });
 
     var _this = this;
@@ -321,7 +311,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   <dt className="metadata-field-label">
                     <MetadataFieldFormSelect id={fieldIndex} options={availableFieldsToAdd} placeholder="Choose field" selectedOption="" onChange={_this.updateMetadataFieldWithSelectedOption}/>
                   </dt>
-                  <dd className="metadata-field-value">N/A</dd>
+                  <dd className="metadata-field-value"></dd>
                 </dl>
               );
             } else if(metadataField.value !== undefined) {
@@ -336,17 +326,18 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                         if(propertyValue instanceof Object) {
                           return (
                             <MetadataPropertyObjectValue
+                              fieldName={metadataField.name}
                               fieldValue={propertyValue}
-                              updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                              updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
                             />
                           );
                         } else if(!Array.isArray(propertyValue)) {
                           return (
                             <dd className="metadata-field-value">
                               <EditableTextArea
-                                fieldValue={metadataField.name}
+                                fieldName={metadataField.name}
                                 fieldValue={propertyValue}
-                                updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                                updateHandler={_this.updateMetadataPropertyValue.bind(this, propertyIndex, metadataField.updatePath)}
                               />
                             </dd>
                           );
@@ -366,7 +357,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                     </dt>
                     <MetadataPropertyObjectValue
                       fieldValue={metadataField.value}
-                      updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                      updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
                     />
                   </dl>
                 );
@@ -379,9 +370,9 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                     </dt>
                     <dd className="metadata-field-value">
                       <EditableTextArea
-                        fieldValue={metadataField.name}
+                        fieldName={metadataField.name}
                         fieldValue={metadataField.value}
-                        updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.name, metadataField.updatePath)}
+                        updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
                       />
                     </dd>
                   </dl>
