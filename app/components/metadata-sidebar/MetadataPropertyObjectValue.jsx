@@ -9,6 +9,11 @@ var MetadataPropertyObjectValue = React.createClass({
       updateHandler: this.props.updateHandler
     }
   },
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      fieldValue: nextProps.fieldValue
+    });
+  },
   render: function() {
     var _this = this;
     return (

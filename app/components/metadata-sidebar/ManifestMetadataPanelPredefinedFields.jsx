@@ -5,6 +5,7 @@ var deepcopy = require('deepcopy');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
+var DeleteMetadataPropertyButton = require('DeleteMetadataPropertyButton');
 var Utils = require('Utils');
 
 var ManifestMetadataPanelPredefinedFields = React.createClass({
@@ -262,31 +263,30 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       this.props.dispatch(actions.updateMetadataFieldValueAtPath(propertyValue, propertyUpdatePath));
     }
   },
-  deleteMetadataField: function(metadataFieldToDelete, index) {
-    // delete the metadata field to the manifest data object in the store
-    // TODO: which related field should be deleted from the store? Need an index! Use deleteMetadataFieldFromListAtPathAndIndex action!
-    if(metadataFieldToDelete.name !== undefined) {
-      if(metadataFieldToDelete.isMultiValued) {
-        var occurrenceIndex = this.findOccurrenceIndexForFieldName(metadataFieldToDelete.name, index);
-        this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(metadataFieldToDelete.updatePath, occurrenceIndex));
+  deleteMetadataProperty: function(fieldIndex, updatePath, propertyIndex, propertyName) {
+    if(propertyName === undefined) {
+      // delete the empty stub metadata record
+      var metadataFields = [...this.state.metadataFields];
+      metadataFields.splice(fieldIndex, 1);
+      this.setState({ metadataFields: metadataFields });
+    } else {
+      // reset the value of the metadata property
+      var metadataFields = [...this.state.metadataFields];
+      if(propertyIndex !== -1) {
+        metadataFields[fieldIndex].value[propertyIndex] = undefined;
       } else {
-        this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
+        metadataFields[fieldIndex].value = undefined;
+      }
+      this.setState({ metadataFields: metadataFields });
+
+      // delete the metadata property from the manifest data object in the store
+      if(propertyIndex !== -1) {
+        var propertyUpdatePath = updatePath + '/' + propertyIndex;
+        this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(updatePath, propertyIndex));
+      } else {
+        this.props.dispatch(actions.deleteMetadataFieldAtPath(updatePath));
       }
     }
-
-    // TODO: after the metadata field has been deleted from the store, update the value of the metadata field with the new value
-
-    // create a copy of the metadata field list
-    var metadataFields = [...this.state.metadataFields];
-
-    // TODO: find the field to delete in the metadata field list
-
-    // TODO: set the value of the deleted field to 'undefined'
-
-    // update the metadata field list in the state
-    this.setState({
-      metadataFields: metadataFields
-    });
   },
   render: function() {
     // get the list of available metadata fields that can be added
@@ -309,9 +309,19 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               return (
                 <dl key={fieldIndex}>
                   <dt className="metadata-field-label">
-                    <MetadataFieldFormSelect id={fieldIndex} options={availableFieldsToAdd} placeholder="Choose field" selectedOption="" onChange={_this.updateMetadataFieldWithSelectedOption}/>
+                    <MetadataFieldFormSelect
+                      id={fieldIndex}
+                      options={availableFieldsToAdd}
+                      placeholder="Choose field"
+                      selectedOption=""
+                      onChange={_this.updateMetadataFieldWithSelectedOption}
+                    />
                   </dt>
                   <dd className="metadata-field-value"></dd>
+                  <DeleteMetadataPropertyButton
+                    property={metadataField}
+                    updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                  />
                 </dl>
               );
             } else if(metadataField.value !== undefined) {
@@ -345,6 +355,16 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                           // arrays of arrays are not supported
                         }
                       })()}
+                      {(() => {
+                        if(!metadataField.isRequired) {
+                          return (
+                            <DeleteMetadataPropertyButton
+                              property={metadataField}
+                              updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                            />
+                          );
+                        }
+                      })()}
                     </dl>
                   );
                 });
@@ -359,6 +379,16 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                       fieldValue={metadataField.value}
                       updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
                     />
+                    {(() => {
+                      if(!metadataField.isRequired) {
+                        return (
+                          <DeleteMetadataPropertyButton
+                            property={metadataField}
+                            updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                          />
+                        );
+                      }
+                    })()}
                   </dl>
                 );
               }
@@ -375,21 +405,20 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                         updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
                       />
                     </dd>
+                    {(() => {
+                      if(!metadataField.isRequired) {
+                        return (
+                          <DeleteMetadataPropertyButton
+                            property={metadataField}
+                            updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                          />
+                        );
+                      }
+                    })()}
                   </dl>
                 );
               }
             }
-            {(() => {
-              if(!metadataField.isRequired) {
-                return (
-                  <dd className="metadata-field-delete">
-                    <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(metadataField, fieldIndex)}>
-                      <span className="fa fa-times-circle"></span>
-                    </a>
-                  </dd>
-                );
-              }
-            })()}
           })
         }
         {(() => {
