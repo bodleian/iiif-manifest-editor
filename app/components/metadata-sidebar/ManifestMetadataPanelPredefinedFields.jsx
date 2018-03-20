@@ -17,9 +17,11 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           label: 'Label',
           value: undefined,
           isRequired: true,
-          isMultiValued: false,
+          isMultiValued: true,
+          isMultiLingual: true,
           addPath: '',
-          updatePath: 'label'
+          updatePath: 'label',
+          propertyValueTemplate: { '@value': undefined, '@language': undefined }
         },
         {
           name: 'description',
@@ -37,9 +39,11 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           label: 'Attribution',
           value: undefined,
           isRequired: false,
-          isMultiValued: false,
+          isMultiValued: true,
+          isMultiLingual: true,
           addPath: '',
-          updatePath: 'attribution'
+          updatePath: 'attribution',
+          propertyValueTemplate: { '@value': undefined, '@language': undefined }
         },
         {
           name: 'license',

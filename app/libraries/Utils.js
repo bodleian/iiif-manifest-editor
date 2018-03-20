@@ -17,14 +17,22 @@ export var getLanguageLabelFromIsoCode = (isoCode, defaultLabel = '[Unknown Lang
 
 export var getTranslatedPropertyName = (fieldName, propertyName) => {
   var propertyNameMap = {
+    'label': {
+      '@value': 'Label',
+      '@language': 'Language'
+    },
+    'description': {
+      '@value': 'Description',
+      '@language': 'Language'
+    },
+    'attribution': {
+      '@value': 'Attribution',
+      '@language': 'Language'
+    },
     'related': {
       '@id': 'URL',
       'label': 'Label',
       'format': 'Format'
-    },
-    'description': {
-      '@value': 'Localized Description',
-      '@language': 'Language'
     }
   }
   return propertyNameMap[fieldName] !== undefined && propertyNameMap[fieldName][propertyName] !== undefined ? propertyNameMap[fieldName][propertyName] : propertyName;
