@@ -1,3 +1,20 @@
+export var getLanguageLabelFromIsoCode = (isoCode, defaultLabel = '[Unknown Language]') => {
+  var languageLabelMap = {
+    'de': 'German',
+    'deu': 'German',
+    'de-DE': 'German',
+    'en': 'English',
+    'eng': 'English',
+    'en-US': 'English',
+    'en-UK': 'English',
+    'fr': 'French',
+    'fra': 'French',
+    'it': 'Italian',
+    'ita': 'Italian'
+  }
+  return languageLabelMap[isoCode] !== undefined ? languageLabelMap[isoCode] : defaultLabel;
+}
+
 export var getLocalizedPropertyValue = (propertyValue) => {
   // Return strings directly
   if(typeof propertyValue === 'string' || propertyValue instanceof String) {

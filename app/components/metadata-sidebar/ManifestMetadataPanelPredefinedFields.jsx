@@ -26,9 +26,11 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           label: 'Description',
           value: undefined,
           isRequired: false,
-          isMultiValued: false,
+          isMultiValued: true,
+          isMultiLingual: true,
           addPath: '',
-          updatePath: 'description'
+          updatePath: 'description',
+          propertyValueTemplate: { '@value': undefined, '@language': undefined }
         },
         {
           name: 'attribution',
@@ -130,7 +132,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       this.updateFieldValueInList('label', this.props.manifestoObject.getLabel(), metadataFields);
     }
     if(this.props.manifestoObject.getDescription()) {  // description
-      this.updateFieldValueInList('description', this.props.manifestoObject.getDescription(), metadataFields);
+      this.updateFieldValueInList('description', this.props.manifestData.description, metadataFields);
     }
     if(this.props.manifestoObject.getAttribution()) {  // attribution
       this.updateFieldValueInList('attribution', this.props.manifestoObject.getAttribution(), metadataFields);
@@ -207,7 +209,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
 
     // set the default value of the property value based on whether the field is multi-valued
     var defaultFieldValue = '';
-    if(activeMetadataField.isMultiValued) {
+    if(activeMetadataField.propertyValueTemplate !== undefined) {
       // Note: The following code assumes that the 'propertyValueTemplate' is set for multi-valued fields.
       defaultFieldValue = deepcopy(activeMetadataField.propertyValueTemplate);
     }
@@ -288,6 +290,9 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
+  renderLanguage: function(metadataField, propertyValue) {
+    return metadataField.isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
+  },
   render: function() {
     // get the list of available metadata fields that can be added
     var availableFieldsToAdd = this.state.metadataFields.filter(function(field) {
@@ -330,7 +335,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   return (
                     <dl key={fieldIndex + '-' + propertyIndex}>
                       <dt className="metadata-field-label">
-                        {metadataField.label}
+                        {metadataField.label}{ _this.renderLanguage(metadataField, propertyValue) }
                       </dt>
                       {(() => {
                         if(propertyValue instanceof Object) {
