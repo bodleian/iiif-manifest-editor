@@ -290,8 +290,8 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
-  renderLanguage: function(metadataField, propertyValue) {
-    return metadataField.isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
+  renderTranslatedLanguage: function(isMultiLingual, propertyValue) {
+    return isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
   },
   render: function() {
     // get the list of available metadata fields that can be added
@@ -335,7 +335,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   return (
                     <dl key={fieldIndex + '-' + propertyIndex}>
                       <dt className="metadata-field-label">
-                        {metadataField.label}{ _this.renderLanguage(metadataField, propertyValue) }
+                        {metadataField.label}{ _this.renderTranslatedLanguage(metadataField.isMultiLingual, propertyValue) }
                       </dt>
                       {(() => {
                         if(propertyValue instanceof Object) {
@@ -378,9 +378,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                 return (
                   <dl key={fieldIndex}>
                     <dt className="metadata-field-label">
-                      {metadataField.label}
+                      {metadataField.label}{ _this.renderTranslatedLanguage(metadataField.isMultiLingual, metadataField.value) }
                     </dt>
                     <MetadataPropertyObjectValue
+                      fieldName={metadataField.name}
                       fieldValue={metadataField.value}
                       updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
                     />

@@ -1,5 +1,6 @@
 var React = require('react');
 var EditableTextArea = require('EditableTextArea');
+var Utils = require('Utils');
 
 var MetadataPropertyObjectValue = React.createClass({
   getInitialState: function() {
@@ -23,7 +24,7 @@ var MetadataPropertyObjectValue = React.createClass({
             var propertyValue = _this.state.fieldValue[propertyName];
             return (
               <dd key={propertyIndex} className="metadata-field-value">
-                <EditableTextArea fieldName={propertyName} fieldValue={propertyValue} labelPrefix={propertyName + ': '} updateHandler={_this.state.updateHandler} />
+                <EditableTextArea fieldName={propertyName} fieldValue={propertyValue} labelPrefix={Utils.getTranslatedPropertyName(_this.state.fieldName, propertyName) + ': '} updateHandler={_this.state.updateHandler} />
               </dd>
             );
           })
