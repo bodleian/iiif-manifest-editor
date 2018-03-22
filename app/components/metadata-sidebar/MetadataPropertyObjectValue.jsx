@@ -7,7 +7,7 @@ var MetadataPropertyObjectValue = React.createClass({
     return {
       fieldName: this.props.fieldName,
       fieldValue: this.props.fieldValue,
-      updateHandler: this.props.updateHandler
+      updateHandler: this.props.updateValueHandler
     }
   },
   componentWillReceiveProps: function(nextProps) {
@@ -24,7 +24,12 @@ var MetadataPropertyObjectValue = React.createClass({
             var propertyValue = _this.state.fieldValue[propertyName];
             return (
               <dd key={propertyIndex} className="metadata-field-value">
-                <EditableTextArea fieldName={propertyName} fieldValue={propertyValue} labelPrefix={Utils.getTranslatedPropertyName(_this.state.fieldName, propertyName) + ': '} updateHandler={_this.state.updateHandler} />
+                <EditableTextArea
+                  fieldName={propertyName}
+                  fieldValue={propertyValue}
+                  labelPrefix={Utils.getTranslatedPropertyName(_this.state.fieldName, propertyName) + ': '}
+                  updateHandler={_this.state.updateHandler}
+                />
               </dd>
             );
           })

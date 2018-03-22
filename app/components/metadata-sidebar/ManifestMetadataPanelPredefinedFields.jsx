@@ -4,10 +4,9 @@ var actions = require('actions');
 var deepcopy = require('deepcopy');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
 var EditableMetadataPropertyCard = require('EditableMetadataPropertyCard');
+var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
+var EditableMixedMetadataPropertyCard = require('EditableMixedMetadataPropertyCard');
 var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
-var EditableTextArea = require('EditableTextArea');
-var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
-var DeleteMetadataPropertyButton = require('DeleteMetadataPropertyButton');
 var Utils = require('Utils');
 
 var ManifestMetadataPanelPredefinedFields = React.createClass({
@@ -319,7 +318,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                 <EmptyMetadataPropertyCard
                   key={fieldIndex}
                   labelOptions={availablePropertiesToAdd}
-                  selectLabelHandler={_this.updateMetadataFieldWithSelectedOption}
+                  updateLabelHandler={_this.updateMetadataFieldWithSelectedOption}
                   deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
                 />
               );
@@ -327,69 +326,32 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               if(Array.isArray(metadataField.value)) {
                 return metadataField.value.map((propertyValue, propertyIndex) => {
                   return (
-                    <dl key={fieldIndex + '-' + propertyIndex}>
-                      <dt className="metadata-field-label">
-                        {metadataField.label}{ _this.renderTranslatedLanguage(metadataField.isMultiLingual, propertyValue) }
-                      </dt>
-                      {(() => {
-                        if(propertyValue instanceof Object) {
-                          return (
-                            <MetadataPropertyObjectValue
-                              fieldName={metadataField.name}
-                              fieldValue={propertyValue}
-                              updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
-                            />
-                          );
-                        } else if(!Array.isArray(propertyValue)) {
-                          return (
-                            <dd className="metadata-field-value">
-                              <EditableTextArea
-                                fieldName={metadataField.name}
-                                fieldValue={propertyValue}
-                                updateHandler={_this.updateMetadataPropertyValue.bind(this, propertyIndex, metadataField.updatePath)}
-                              />
-                            </dd>
-                          );
-                        } else {
-                          // arrays of arrays are not supported
-                        }
-                      })()}
-                      {(() => {
-                        if(!metadataField.isRequired) {
-                          return (
-                            <DeleteMetadataPropertyButton
-                              property={metadataField}
-                              updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
-                            />
-                          );
-                        }
-                      })()}
-                    </dl>
+                    <EditableMixedMetadataPropertyCard
+                      key={fieldIndex + '-' + propertyIndex}
+                      name={metadataField.name}
+                      label={metadataField.label}
+                      value={propertyValue}
+                      isRequired={metadataField.isRequired}
+                      isMultiLingual={metadataField.isMultiLingual}
+                      updateValueHandler={_this.updateMetadataPropertyValue.bind(this, propertyIndex, metadataField.updatePath)}
+                      updateObjectValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
+                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                    />
                   );
                 });
               }
               else if(metadataField.value instanceof Object) {
                 return (
-                  <dl key={fieldIndex}>
-                    <dt className="metadata-field-label">
-                      {metadataField.label}{ _this.renderTranslatedLanguage(metadataField.isMultiLingual, metadataField.value) }
-                    </dt>
-                    <MetadataPropertyObjectValue
-                      fieldName={metadataField.name}
-                      fieldValue={metadataField.value}
-                      updateHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
-                    />
-                    {(() => {
-                      if(!metadataField.isRequired) {
-                        return (
-                          <DeleteMetadataPropertyButton
-                            property={metadataField}
-                            updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
-                          />
-                        );
-                      }
-                    })()}
-                  </dl>
+                  <EditableObjectMetadataPropertyCard
+                    key={fieldIndex}
+                    name={metadataField.name}
+                    label={metadataField.label}
+                    value={metadataField.value}
+                    isRequired={metadataField.isRequired}
+                    isMultiLingual={metadataField.isMultiLingual}
+                    updateValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                  />
                 );
               }
               else {
@@ -400,7 +362,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                     label={metadataField.label}
                     value={metadataField.value}
                     isRequired={metadataField.isRequired}
-                    updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
+                    updateValueHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
                     deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
                   />
                 );

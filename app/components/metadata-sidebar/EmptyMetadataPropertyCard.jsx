@@ -12,7 +12,7 @@ var EmptyMetadataPropertyCard = React.createClass({
             options={this.props.labelOptions}
             placeholder="Choose field"
             selectedOption=""
-            onChange={this.props.selectLabelHandler}
+            onChange={this.props.updateLabelHandler}
           />
         </dt>
 

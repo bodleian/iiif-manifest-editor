@@ -1,9 +1,10 @@
 var React = require('react');
 var { connect } = require('react-redux');
-var EditableTextArea = require('EditableTextArea');
+var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
 var DeleteMetadataPropertyButton = require('DeleteMetadataPropertyButton');
+var Utils = require('Utils');
 
-var EditableMetadataPropertyCard = React.createClass({
+var EditableObjectMetadataPropertyCard = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.value
@@ -16,20 +17,22 @@ var EditableMetadataPropertyCard = React.createClass({
     }
   },
 
+  renderTranslatedLanguage: function(isMultiLingual, propertyValue) {
+    return isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
+  },
+
   render: function() {
     return (
       <dl>
         <dt className="metadata-field-label">
-          {this.props.label}
+          {this.props.label}{this.renderTranslatedLanguage(this.props.isMultiLingual, this.state.value)}
         </dt>
 
-        <dd className="metadata-field-value">
-          <EditableTextArea
-            fieldName={this.props.name}
-            fieldValue={this.state.value}
-            updateHandler={this.props.updateValueHandler}
-          />
-        </dd>
+        <MetadataPropertyObjectValue
+          fieldName={this.props.name}
+          fieldValue={this.state.value}
+          updateValueHandler={this.props.updateValueHandler}
+        />
 
         {(() => {
           if(!this.props.isRequired) {
@@ -45,4 +48,4 @@ var EditableMetadataPropertyCard = React.createClass({
   }
 });
 
-module.exports = connect()(EditableMetadataPropertyCard);
+module.exports = connect()(EditableObjectMetadataPropertyCard);
