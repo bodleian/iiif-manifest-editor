@@ -3,6 +3,7 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 var deepcopy = require('deepcopy');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
+var EditableMetadataPropertyCard = require('EditableMetadataPropertyCard');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
@@ -403,28 +404,15 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               }
               else {
                 return (
-                  <dl key={fieldIndex}>
-                    <dt className="metadata-field-label">
-                      {metadataField.label}
-                    </dt>
-                    <dd className="metadata-field-value">
-                      <EditableTextArea
-                        fieldName={metadataField.name}
-                        fieldValue={metadataField.value}
-                        updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
-                      />
-                    </dd>
-                    {(() => {
-                      if(!metadataField.isRequired) {
-                        return (
-                          <DeleteMetadataPropertyButton
-                            property={metadataField}
-                            updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
-                          />
-                        );
-                      }
-                    })()}
-                  </dl>
+                  <EditableMetadataPropertyCard
+                    key={fieldIndex}
+                    name={metadataField.name}
+                    label={metadataField.label}
+                    value={metadataField.value}
+                    isRequired={metadataField.isRequired}
+                    updateHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                  />
                 );
               }
             }
