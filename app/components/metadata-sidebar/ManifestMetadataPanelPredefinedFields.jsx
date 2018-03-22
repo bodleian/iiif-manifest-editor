@@ -1,11 +1,11 @@
 var React = require('react');
-var {connect} = require('react-redux');
+var { connect } = require('react-redux');
 var actions = require('actions');
 var deepcopy = require('deepcopy');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
 var EditableMetadataPropertyCard = require('EditableMetadataPropertyCard');
+var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
 var EditableTextArea = require('EditableTextArea');
-var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
 var DeleteMetadataPropertyButton = require('DeleteMetadataPropertyButton');
 var Utils = require('Utils');
@@ -300,8 +300,8 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     return isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
   },
   render: function() {
-    // get the list of available metadata fields that can be added
-    var availableFieldsToAdd = this.state.metadataFields.filter(function(field) {
+    // get the list of available metadata properties that can be added
+    var availablePropertiesToAdd = this.state.metadataFields.filter(function(field) {
       return field.name !== undefined && (field.value === undefined || field.isMultiValued);
     });
 
@@ -316,22 +316,12 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           this.state.metadataFields.map((metadataField, fieldIndex) => {
             if(metadataField.name === undefined) {
               return (
-                <dl key={fieldIndex}>
-                  <dt className="metadata-field-label">
-                    <MetadataFieldFormSelect
-                      id={fieldIndex}
-                      options={availableFieldsToAdd}
-                      placeholder="Choose field"
-                      selectedOption=""
-                      onChange={_this.updateMetadataFieldWithSelectedOption}
-                    />
-                  </dt>
-                  <dd className="metadata-field-value"></dd>
-                  <DeleteMetadataPropertyButton
-                    property={metadataField}
-                    updateHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
-                  />
-                </dl>
+                <EmptyMetadataPropertyCard
+                  key={fieldIndex}
+                  labelOptions={availablePropertiesToAdd}
+                  selectLabelHandler={_this.updateMetadataFieldWithSelectedOption}
+                  deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                />
               );
             } else if(metadataField.value !== undefined) {
               if(Array.isArray(metadataField.value)) {
@@ -419,7 +409,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           })
         }
         {(() => {
-          if(Object.keys(availableFieldsToAdd).length > 0) {
+          if(Object.keys(availablePropertiesToAdd).length > 0) {
             return (
               <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={_this.addMetadataField}>
                 <span className="fa fa-plus"></span> Add metadata field

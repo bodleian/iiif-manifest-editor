@@ -1,6 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var {connect} = require('react-redux');
+var { connect } = require('react-redux');
 
 var DeleteMetadataPropertyButton = React.createClass({
   render: function() {

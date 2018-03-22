@@ -3,7 +3,6 @@ var React = require('react');
 var MetadataFieldFormSelect = React.createClass({
   getInitialState: function() {
     return {
-      id: this.props.id,
       options: this.props.options,
       placeholder: this.props.placeholder,
       selectedOption: this.props.selectedOption,
