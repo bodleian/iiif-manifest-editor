@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var deepcopy = require('deepcopy');
+var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
 var EditableTextArea = require('EditableTextArea');
 var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
 var MetadataPropertyObjectValue = require('MetadataPropertyObjectValue');
@@ -306,12 +307,10 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     var _this = this;
     return (
       <div>
-        <dl>
-          <dt className="metadata-field-label">Manifest URI</dt>
-          <dd className="metadata-field-value">
-            <a href={this.props.manifestoObject.id} target="_blank">{this.props.manifestoObject.id}</a>
-          </dd>
-        </dl>
+        <LinkedMetadataPropertyCard
+          label="Manifest URI"
+          value={this.props.manifestoObject.id}
+        />
         {
           this.state.metadataFields.map((metadataField, fieldIndex) => {
             if(metadataField.name === undefined) {
