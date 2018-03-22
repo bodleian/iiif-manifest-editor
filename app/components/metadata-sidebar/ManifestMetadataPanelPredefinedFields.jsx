@@ -2,11 +2,10 @@ var React = require('react');
 var { connect } = require('react-redux');
 var actions = require('actions');
 var deepcopy = require('deepcopy');
+var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
 var EditableMetadataPropertyCard = require('EditableMetadataPropertyCard');
 var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
-var EditableMixedMetadataPropertyCard = require('EditableMixedMetadataPropertyCard');
-var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
 var Utils = require('Utils');
 
 var ManifestMetadataPanelPredefinedFields = React.createClass({
@@ -325,19 +324,36 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
             } else if(metadataField.value !== undefined) {
               if(Array.isArray(metadataField.value)) {
                 return metadataField.value.map((propertyValue, propertyIndex) => {
-                  return (
-                    <EditableMixedMetadataPropertyCard
-                      key={fieldIndex + '-' + propertyIndex}
-                      name={metadataField.name}
-                      label={metadataField.label}
-                      value={propertyValue}
-                      isRequired={metadataField.isRequired}
-                      isMultiLingual={metadataField.isMultiLingual}
-                      updateValueHandler={_this.updateMetadataPropertyValue.bind(this, propertyIndex, metadataField.updatePath)}
-                      updateObjectValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
-                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
-                    />
-                  );
+                  if(propertyValue instanceof Object) {
+                    return (
+                      <EditableObjectMetadataPropertyCard
+                        key={fieldIndex + '-' + propertyIndex}
+                        name={metadataField.name}
+                        label={metadataField.label}
+                        value={propertyValue}
+                        isRequired={metadataField.isRequired}
+                        isMultiLingual={metadataField.isMultiLingual}
+                        updateValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
+                        deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                      />
+                    );
+                  }
+                  else if(Array.isArray(propertyValue)) {
+                    // arrays of arrays are not supported
+                  }
+                  else {
+                    return (
+                      <EditableMetadataPropertyCard
+                        key={fieldIndex + '-' + propertyIndex}
+                        name={metadataField.name}
+                        label={metadataField.label}
+                        value={propertyValue}
+                        isRequired={metadataField.isRequired}
+                        updateValueHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
+                        deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                      />
+                    );
+                  }
                 });
               }
               else if(metadataField.value instanceof Object) {
