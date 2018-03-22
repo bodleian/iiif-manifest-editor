@@ -4,7 +4,7 @@ var actions = require('actions');
 var deepcopy = require('deepcopy');
 var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
-var EditableMetadataPropertyCard = require('EditableMetadataPropertyCard');
+var EditablePrimitiveMetadataPropertyCard = require('EditablePrimitiveMetadataPropertyCard');
 var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
 var Utils = require('Utils');
 
@@ -343,7 +343,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                   }
                   else {
                     return (
-                      <EditableMetadataPropertyCard
+                      <EditablePrimitiveMetadataPropertyCard
                         key={fieldIndex + '-' + propertyIndex}
                         name={metadataField.name}
                         label={metadataField.label}
@@ -372,7 +372,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
               }
               else {
                 return (
-                  <EditableMetadataPropertyCard
+                  <EditablePrimitiveMetadataPropertyCard
                     key={fieldIndex}
                     name={metadataField.name}
                     label={metadataField.label}

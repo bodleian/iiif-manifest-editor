@@ -3,7 +3,7 @@ var { connect } = require('react-redux');
 var EditableTextArea = require('EditableTextArea');
 var DeleteMetadataPropertyButton = require('DeleteMetadataPropertyButton');
 
-var EditableMetadataPropertyCard = React.createClass({
+var EditablePrimitiveMetadataPropertyCard = React.createClass({
   getInitialState: function() {
     return {
       value: this.props.value
@@ -45,4 +45,4 @@ var EditableMetadataPropertyCard = React.createClass({
   }
 });
 
-module.exports = connect()(EditableMetadataPropertyCard);
+module.exports = connect()(EditablePrimitiveMetadataPropertyCard);
