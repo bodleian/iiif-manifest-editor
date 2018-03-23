@@ -76,7 +76,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/label',
-        handler: this.saveMetadataFieldToStore
+        updateStoreHandler: this.saveMetadataFieldToStore
       },
       {
         name: 'width',
@@ -86,7 +86,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/width',
-        handler: this.saveMetadataFieldToStore
+        updateStoreHandler: this.saveMetadataFieldToStore
       },
       {
         name: 'height',
@@ -96,7 +96,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/height',
-        handler: this.saveMetadataFieldToStore
+        updateStoreHandler: this.saveMetadataFieldToStore
       },
       {
         name: 'image_uri',
@@ -106,7 +106,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: '',
-        handler: this.handleImageUri
+        updateStoreHandler: this.handleImageUri
       },
       {
         name: 'image_annotation_uri',
@@ -116,7 +116,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/images/0',
-        handler: this.updateImageAnnotationForCanvasWithId
+        updateStoreHandler: this.updateImageAnnotationForCanvasWithId
       },
       {
         name: 'related',
@@ -127,7 +127,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/related',
         propertyValueTemplate: { '@id': undefined, label: undefined, format: undefined },
-        handler: this.saveMetadataFieldToStore
+        updateStoreHandler: this.saveMetadataFieldToStore
       }
     ];
   },
@@ -341,7 +341,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     this.setState({ metadataFields: metadataFields });
 
     // update the property value in the store
-    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
+    activeMetadataField.updateStoreHandler(activeMetadataField.value, activeMetadataField.updatePath);
   },
 
   updateMetadataPropertyValue: function(propertyIndex, updatePath, propertyName, propertyValue) {
@@ -359,7 +359,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     this.setState({ metadataFields: metadataFields });
 
     // update the property value in the store
-    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
+    activeMetadataField.updateStoreHandler(activeMetadataField.value, activeMetadataField.updatePath);
   },
 
   updateMetadataPropertyObjectValue: function(fieldIndex, updatePath, propertyIndex, propertyName, propertyValue) {
@@ -379,7 +379,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       var propertyUpdatePath = (propertyIndex !== -1)
         ? updatePath + '/' + propertyIndex + '/' + propertyName
         : updatePath + '/' + propertyName;
-      this.props.dispatch(actions.updateMetadataFieldValueAtPath(propertyValue, propertyUpdatePath));
+      metadataFields[fieldIndex].updateStoreHandler(propertyValue, propertyUpdatePath);
     }
   },
 
