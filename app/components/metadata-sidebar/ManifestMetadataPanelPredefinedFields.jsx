@@ -294,9 +294,6 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
-  renderTranslatedLanguage: function(isMultiLingual, propertyValue) {
-    return isMultiLingual && propertyValue['@language'] ? ': ' + Utils.getLanguageLabelFromIsoCode(propertyValue['@language']) : '';
-  },
   render: function() {
     // get the list of available metadata properties that can be added
     var availablePropertiesToAdd = this.state.metadataFields.filter(function(field) {
