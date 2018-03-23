@@ -1,10 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var {connect} = require('react-redux');
+var { connect } = require('react-redux');
 var actions = require('actions');
 var axios = require('axios');
-var MetadataFieldFormSelect = require('MetadataFieldFormSelect');
-var EditableTextArea = require('EditableTextArea');
+var deepcopy = require('deepcopy');
+var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
+var EditablePrimitiveMetadataPropertyCard = require('EditablePrimitiveMetadataPropertyCard');
+var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
 var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
 var ImageAnnotationChoiceDialog = require('ImageAnnotationChoiceDialog');
 var uuid = require('uuid');
@@ -14,128 +16,49 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
   getInitialState: function() {
     return {
       selectedCanvas: this.getSelectedCanvas(this.props.selectedCanvasId),
-      numUniqueMetadataFields: undefined,
-      numMultiValuedMetadataFields: undefined,
-      numUnassignedMetadataFields: undefined,
-      availableMetadataFields: this.getAvailableMetadataFieldsForCanvas(this.props.selectedCanvasId),
-      activeMetadataFields: []
+      metadataFields: this.getMetadataFieldsForCanvas(this.props.selectedCanvasId)
     }
   },
+
   componentWillReceiveProps: function(nextProps) {
     if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
       this.setState({
         selectedCanvas: this.getSelectedCanvas(nextProps.selectedCanvasId),
-        numUniqueMetadataFields: undefined,
-        numMultiValuedMetadataFields: undefined,
-        numUnassignedMetadataFields: undefined,
-        availableMetadataFields: this.getAvailableMetadataFieldsForCanvas(nextProps.selectedCanvasId),
-        activeMetadataFields: []
-      }, () => {
-        this.displayActiveMetadataFields();
+        metadataFields: this.getMetadataFieldsForCanvas(nextProps.selectedCanvasId)
       });
     }
   },
-  getAvailableMetadataFieldIndexByFieldName: function(availableMetadataFields, fieldName) {
-    var availableMetadataFieldIndex = -1;
-    for(var fieldIndex = 0; fieldIndex < availableMetadataFields.length; fieldIndex++) {
-      var metadataField = availableMetadataFields[fieldIndex];
+
+  getMetadataFieldByName: function(metadataFields, fieldName) {
+    for(var fieldIndex = 0; fieldIndex < metadataFields.length; fieldIndex++) {
+      var metadataField = metadataFields[fieldIndex];
       if(metadataField.name === fieldName) {
-        availableMetadataFieldIndex = fieldIndex;
+        return metadataField;
+      }
+    }
+    return undefined;
+  },
+
+  getMetadataFieldIndexByFieldName: function(metadataFields, fieldName) {
+    var metadataFieldIndex = -1;
+    for(var fieldIndex = 0; fieldIndex < metadataFields.length; fieldIndex++) {
+      var metadataField = metadataFields[fieldIndex];
+      if(metadataField.name === fieldName) {
+        metadataFieldIndex = fieldIndex;
         break;
       }
     }
-    return availableMetadataFieldIndex;
+    return metadataFieldIndex;
   },
-  getActiveMetadataFieldIndexByFieldName: function(activeMetadataFields, fieldName) {
-    var activeMetadataFieldIndex = -1;
-    Object.keys(activeMetadataFields).map(function(index) {
-      var metadataField = activeMetadataFields[index];
-      if(metadataField.name === fieldName) {
-        activeMetadataFieldIndex = index;
-      }
-    });
-    return activeMetadataFieldIndex;
-  },
-  updateMetadataFieldLists: function(fieldName, fieldValue, availableMetadataFields, activeMetadataFields) {
-    // find the available metadata field based on the field name
-    var availableMetadataFieldIndex = this.getAvailableMetadataFieldIndexByFieldName(availableMetadataFields, fieldName);
-    if(availableMetadataFieldIndex !== -1) {
-      // append the metadata field to the list of active fields and update its value
-      var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
-      availableMetadataField.value = fieldValue;
-      activeMetadataFields.push(availableMetadataField);
 
-      // delete the metadata field from the list of available fields if it is unique
-      if(availableMetadataField.isUnique) {
-        availableMetadataFields.splice(availableMetadataFieldIndex, 1);
-      }
-    } else {
-      // find the active metadata field based on the field name and update its value
-      var activeMetadataFieldIndex = this.getActiveMetadataFieldIndexByFieldName(activeMetadataFields, fieldName);
-      if(activeMetadataFieldIndex !== -1) {
-        var activeMetadataField = activeMetadataFields[activeMetadataFieldIndex];
-        activeMetadataField.value = fieldValue;
-      }
-    }
-  },
-  componentDidMount: function() {
-    this.displayActiveMetadataFields();
-  },
   getSelectedCanvas: function(canvasId) {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(canvasId);
     return canvas;
   },
-  displayActiveMetadataFields: function() {
-    // create copies of the metadata field lists
-    var availableMetadataFields = [...this.state.availableMetadataFields];
-    var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    var numUniqueMetadataFields =  availableMetadataFields.filter(function(field) { return !field.isUnique }).length;
-    var numMultiValuedMetadataFields = availableMetadataFields.filter(function(field) { return field.isUnique }).length;
-
-    // add the following fields to the active metadata fields list to display it in the canvas metadata panel
-
-    // canvas label
-    if(this.state.selectedCanvas.getLabel()) {
-      this.updateMetadataFieldLists('label', this.state.selectedCanvas.getLabel(), availableMetadataFields, activeMetadataFields);
-    }
-
-    // canvas width
-    if(this.state.selectedCanvas.getWidth()) {
-      this.updateMetadataFieldLists('width', this.state.selectedCanvas.getWidth().toString(), availableMetadataFields, activeMetadataFields);
-    }
-
-    // canvas height
-    if(this.state.selectedCanvas.getHeight()) {
-      this.updateMetadataFieldLists('height', this.state.selectedCanvas.getHeight().toString(), availableMetadataFields, activeMetadataFields);
-    }
-
-    // image uri
-    var image = this.state.selectedCanvas.getImages()[0];
-    var resource = (image !== undefined) ? image.__jsonld.resource : undefined;
-    var resourceId = (resource !== undefined) ? resource['@id'] : 'N/A';
-    this.updateMetadataFieldLists('image_uri', resourceId, availableMetadataFields, activeMetadataFields);
-
-    // image annotation uri
-    var imageId = (image !== undefined) ? image.id : 'N/A';
-    this.updateMetadataFieldLists('image_annotation_uri', imageId, availableMetadataFields, activeMetadataFields);
-
-    // related
-    if(this.state.selectedCanvas.__jsonld.related !== undefined) {
-      this.updateMetadataFieldLists('related', this.state.selectedCanvas.__jsonld.related, availableMetadataFields, activeMetadataFields);
-    }
-
-    this.setState({
-      numUniqueMetadataFields: numUniqueMetadataFields,
-      numMultiValuedMetadataFields: numMultiValuedMetadataFields,
-      numUnassignedMetadataFields: 0,
-      availableMetadataFields: availableMetadataFields,
-      activeMetadataFields: activeMetadataFields
-    });
-  },
-  getAvailableMetadataFieldsForCanvas: function(canvasId) {
+  getMetadataFieldsForCanvas: function(canvasId) {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(canvasId);
@@ -150,7 +73,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Canvas Label',
         value: Utils.getLocalizedPropertyValue(canvas.getLabel()),
         isRequired: true,
-        isUnique: true,
+        isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/label',
         handler: this.saveMetadataFieldToStore
@@ -160,7 +83,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Canvas Width',
         value: canvas.getWidth().toString(),
         isRequired: true,
-        isUnique: true,
+        isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/width',
         handler: this.saveMetadataFieldToStore
@@ -170,7 +93,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Canvas Height',
         value: canvas.getHeight().toString(),
         isRequired: true,
-        isUnique: true,
+        isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/height',
         handler: this.saveMetadataFieldToStore
@@ -180,7 +103,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Image URI',
         value: resource !== undefined ? resource['@id'] : 'N/A',
         isRequired: true,
-        isUnique: true,
+        isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: '',
         handler: this.handleImageUri
@@ -190,7 +113,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Image Annotation URI',
         value: image !== undefined ? image.id : 'N/A',
         isRequired: true,
-        isUnique: true,
+        isMultiValued: false,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/images/0',
         handler: this.updateImageAnnotationForCanvasWithId
@@ -200,16 +123,19 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         label: 'Related',
         value: canvas.__jsonld.related,
         isRequired: false,
-        isUnique: true,
+        isMultiValued: true,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/related',
+        propertyValueTemplate: { '@id': undefined, label: undefined, format: undefined },
         handler: this.saveMetadataFieldToStore
       }
     ];
   },
-  saveMetadataFieldToStore: function(fieldValue, path, fieldName) {
+
+  saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
+
   updateImageAnnotationForCanvasWithId: function(fieldValue, path) {
     // fetch new image annotation remotely
     var {dispatch} = this.props;
@@ -231,20 +157,27 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
   },
 
   addMetadataField: function() {
-    // create copies of the metadata field lists
-    var availableMetadataFields = [...this.state.availableMetadataFields];
-    var activeMetadataFields = [...this.state.activeMetadataFields];
-    var numUnassignedMetadataFields = this.state.numUnassignedMetadataFields + 1;
+    // create a copy of the metadata field list
+    var metadataFields = [...this.state.metadataFields];
 
-    // append an empty metadata field to the active metadata list
-    if(availableMetadataFields.length > 0) {
-      var newMetadataField = { name: undefined, value: 'N/A' };
-      activeMetadataFields.push(newMetadataField);
+    // append an empty stub metadata record to the metadata list
+    if(metadataFields.length > 0) {
+      var stubMetadataRecord = {
+        // TODO: update list of properties that apply to the canvas
+        name: undefined,
+        label: undefined,
+        value: undefined,
+        isRequired: undefined,
+        isMultiValued: undefined,
+        addPath: undefined,
+        updatePath: undefined,
+        propertyValueTemplate: undefined
+      };
+      metadataFields.push(stubMetadataRecord);
 
-      // update the metadata field lists in the state
+      // update the metadata field list in the state
       this.setState({
-        numUnassignedMetadataFields: numUnassignedMetadataFields,
-        activeMetadataFields: activeMetadataFields
+        metadataFields: metadataFields
       });
     }
   },
@@ -263,19 +196,23 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       );
     }
   },
+
   isIiifImageUri: function(uri) {
     // TODO: implement more robust IIIF image URI validation
     return uri.substr(-11) === '/native.jpg' || uri.substr(-12) === '/default.jpg';
   },
+
   isInfoJsonUri: function(uri) {
     return uri.substr(-10) === '/info.json';
   },
+
   handleImageAnnotationUri: function(imageAnnotationUri) {
     var sequence = this.props.manifestoObject.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
     var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
     this.updateImageAnnotationForCanvasWithId(imageAnnotationUri, canvasImageIdPath);
   },
+
   handleImageUri: function(imageUri) {
     var {dispatch} = this.props;
     var that = this;
@@ -300,6 +237,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         });
     }
   },
+
   handleInfoJsonUri: function(infoJsonUri) {
     if(this.isInfoJsonUri(infoJsonUri)) {
       this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
@@ -307,6 +245,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       this.props.dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a valid info.json URI'));
     }
   },
+
   getInfoJsonFromImageUri: function(imageUri) {
     // extract base service uri
     var imageResourceUriParts = imageUri.split('/');
@@ -315,6 +254,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     var infoJsonUri = baseServiceUri + '/info.json';
     return infoJsonUri;
   },
+
   createImageAnnotationFromInfoJsonUri: function(infoJsonUri) {
     var {dispatch} = this.props;
     var that = this;
@@ -356,6 +296,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not valid'));
       });
   },
+
   openImageAnnotationChoiceDialog: function() {
     // open the image annnotation choice modal dialog
     var $imageAnnotationDialog = $(ReactDOM.findDOMNode(this.refs.imageAnnotationDialog));
@@ -363,6 +304,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       backdrop: 'static'
     });
   },
+
   handleImageAnnotationChoice: function(selectedMethod, uri) {
     if(selectedMethod == "imageAnnotation") {
       this.handleImageAnnotationUri(uri);
@@ -372,131 +314,205 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       this.handleInfoJsonUri(uri);
     }
   },
-  updateMetadataFieldsWithSelectedOption: function(menuIndex, selectedFieldName) {
-    // create copies of the metadata field lists
-    var availableMetadataFields = [...this.state.availableMetadataFields];
-    var activeMetadataFields = [...this.state.activeMetadataFields];
 
-    var metadataFieldToDelete = activeMetadataFields[menuIndex];
-    var numUnassignedMetadataFields = (metadataFieldToDelete.name === undefined) ? this.state.numUnassignedMetadataFields - 1 : this.state.numUnassignedMetadataFields;
+  updateMetadataFieldWithSelectedOption: function(selectedOptionObject) {
+    // update the property value in the metadata list
+    var metadataFields = [...this.state.metadataFields];
 
-    // delete the selected menu at the given index in the active list of metadata fields
-    activeMetadataFields.splice(menuIndex, 1);
+    // find the existing field by name
+    var activeMetadataField = this.getMetadataFieldByName(metadataFields, selectedOptionObject.name);
 
-    // find the available metadata field based on the field name
-    var availableMetadataFieldIndex = this.getAvailableMetadataFieldIndexByFieldName(availableMetadataFields, selectedFieldName);
-    var availableMetadataField = availableMetadataFields[availableMetadataFieldIndex];
-    availableMetadataField.value = 'N/A';
-
-    // insert the available field at the location of the deleted field
-    activeMetadataFields.splice(menuIndex, 0, availableMetadataField);
-
-    // delete the available field
-    availableMetadataFields.splice(availableMetadataFieldIndex, 1);
-
-    // update the metadata field lists in the state so that the component uses the correct values when rendering
-    this.setState({
-      numUnassignedMetadataFields: numUnassignedMetadataFields,
-      availableMetadataFields: availableMetadataFields,
-      activeMetadataFields: activeMetadataFields
-    });
-
-    // add the metadata field to the manifest data object in the store
-    this.props.dispatch(actions.addMetadataFieldAtPath(availableMetadataField.name, availableMetadataField.value, availableMetadataField.addPath));
-  },
-  deleteMetadataField: function(metadataFieldToDelete, index) {
-    // create copies of the metadata field lists
-    var availableMetadataFields = [...this.state.availableMetadataFields];
-    var activeMetadataFields = [...this.state.activeMetadataFields];
-
-    var numUnassignedMetadataFields = (metadataFieldToDelete.name === undefined) ? this.state.numUnassignedMetadataFields - 1 : this.state.numUnassignedMetadataFields;
-
-    // append the metadata field to delete to the list of available fields
-    if(metadataFieldToDelete.name !== undefined) {
-      metadataFieldToDelete.value = undefined;
-      availableMetadataFields.push(metadataFieldToDelete);
+    // set the default value of the property value based on whether the field is multi-valued
+    var defaultFieldValue = '';
+    if(activeMetadataField.propertyValueTemplate !== undefined) {
+      // Note: The following code assumes that the 'propertyValueTemplate' is set for multi-valued fields.
+      defaultFieldValue = deepcopy(activeMetadataField.propertyValueTemplate);
     }
 
-    // delete the metadata field from the list of active fields
-    activeMetadataFields.splice(index, 1);
+    // add a new property with a default value if one doesn't already exist
+    var newMetadataFieldValue = Utils.addMetadataFieldValue(activeMetadataField.value, defaultFieldValue);
+    activeMetadataField.value = newMetadataFieldValue;
 
-    // update the metadata field lists in the state so that the component uses the correct values when rendering
-    this.setState({
-      numUnassignedMetadataFields: numUnassignedMetadataFields,
-      availableMetadataFields: availableMetadataFields,
-      activeMetadataFields: activeMetadataFields
-    });
+    // delete the empty stub metadata record
+    var stubRecordFieldIndex = this.getMetadataFieldIndexByFieldName(metadataFields, undefined);
+    metadataFields.splice(stubRecordFieldIndex, 1);
 
-    // delete the metadata field to the manifest data object in the store
-    if(metadataFieldToDelete.name !== undefined) {
-      this.props.dispatch(actions.deleteMetadataFieldAtPath(metadataFieldToDelete.updatePath));
+    // save the updated metadata list to the state so the component re-renders
+    this.setState({ metadataFields: metadataFields });
+
+    // update the property value in the store
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
+  },
+
+  updateMetadataPropertyValue: function(propertyIndex, updatePath, propertyName, propertyValue) {
+    // update the property value in the metadata list
+    var metadataFields = [...this.state.metadataFields];
+
+    // find the existing field by name
+    var activeMetadataField = this.getMetadataFieldByName(metadataFields, propertyName);
+
+    // update the existing property with the given value if one already exists
+    var newMetadataPropertyValue = Utils.updateMetadataFieldValue(activeMetadataField.value, propertyValue, propertyIndex);
+    activeMetadataField.value = newMetadataPropertyValue;
+
+    // save the updated metadata list to the state so the component re-renders
+    this.setState({ metadataFields: metadataFields });
+
+    // update the property value in the store
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(activeMetadataField.value, activeMetadataField.updatePath));
+  },
+
+  updateMetadataPropertyObjectValue: function(fieldIndex, updatePath, propertyIndex, propertyName, propertyValue) {
+    if(propertyName !== undefined) {
+      // update the value in the metadata field
+      var metadataFields = [...this.state.metadataFields];
+      if(propertyIndex !== -1) {
+        metadataFields[fieldIndex].value[propertyIndex][propertyName] = propertyValue;
+      } else {
+        metadataFields[fieldIndex].value[propertyName] = propertyValue;
+      }
+      this.setState({
+        metadataFields: metadataFields
+      });
+
+      // update the metadata field value to the manifest data object in the store
+      var propertyUpdatePath = (propertyIndex !== -1)
+        ? updatePath + '/' + propertyIndex + '/' + propertyName
+        : updatePath + '/' + propertyName;
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath(propertyValue, propertyUpdatePath));
     }
   },
+
+  deleteMetadataProperty: function(fieldIndex, updatePath, propertyIndex, propertyName) {
+    if(propertyName === undefined) {
+      // delete the empty stub metadata record
+      var metadataFields = [...this.state.metadataFields];
+      metadataFields.splice(fieldIndex, 1);
+      this.setState({ metadataFields: metadataFields });
+    } else {
+      // reset the value of the metadata property
+      var metadataFields = [...this.state.metadataFields];
+      if(propertyIndex !== -1) {
+        metadataFields[fieldIndex].value[propertyIndex] = undefined;
+      } else {
+        metadataFields[fieldIndex].value = undefined;
+      }
+      this.setState({ metadataFields: metadataFields });
+
+      // delete the metadata property from the manifest data object in the store
+      if(propertyIndex !== -1) {
+        var propertyUpdatePath = updatePath + '/' + propertyIndex;
+        this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(updatePath, propertyIndex));
+      } else {
+        this.props.dispatch(actions.deleteMetadataFieldAtPath(updatePath));
+      }
+    }
+  },
+
   render: function() {
+    // get the list of available metadata properties that can be added
+    var availablePropertiesToAdd = this.state.metadataFields.filter(function(field) {
+      return field.name !== undefined && (field.value === undefined || field.isMultiValued);
+    });
+
     var image = this.state.selectedCanvas.getImages()[0];
     if(this.state.selectedCanvas !== null) {
       var _this = this;
       return (
         <div className="metadata-sidebar-panel">
+
           <ImageAnnotationChoiceDialog ref="imageAnnotationDialog" onSubmitHandler={this.handleImageAnnotationChoice} canvas={this.state.selectedCanvas} addOrReplace={image !== undefined ? 'replace' : 'add'} />
           <MetadataSidebarCanvas canvasId={this.props.selectedCanvasId}/>
           <div className="row">
             <div className="col-md-12">
-              <button onClick={this.openImageAnnotationChoiceDialog} className="btn btn-default center-block add-replace-image-on-canvas-button"><i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}</button>
+              <button onClick={this.openImageAnnotationChoiceDialog} className="btn btn-default center-block add-replace-image-on-canvas-button">
+                <i className={image !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {image !== undefined ? 'Replace Image on Canvas' : 'Add Image to Canvas'}
+              </button>
             </div>
           </div>
+
           <hr/>
+
           {this.displayImageAnnotationFetchErrors()}
+
           {
-            Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
-              var metadataField = _this.state.activeMetadataFields[fieldIndex];
-              return (
-                <dl key={fieldIndex}>
-                  {(() => {
-                    if(metadataField.name === undefined) {
+            this.state.metadataFields.map((metadataField, fieldIndex) => {
+              if(metadataField.name === undefined) {
+                return (
+                  <EmptyMetadataPropertyCard
+                    key={fieldIndex}
+                    labelOptions={availablePropertiesToAdd}
+                    updateLabelHandler={_this.updateMetadataFieldWithSelectedOption}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                  />
+                );
+              } else if(metadataField.value !== undefined) {
+                if(Array.isArray(metadataField.value)) {
+                  return metadataField.value.map((propertyValue, propertyIndex) => {
+                    if(propertyValue instanceof Object) {
                       return (
-                        <dt className="metadata-field-label">
-                          <MetadataFieldFormSelect id={fieldIndex} options={_this.state.availableMetadataFields} placeholder="Choose field" selectedOption="" onChange={_this.updateMetadataFieldsWithSelectedOption}/>
-                        </dt>
-                      );
-                    } else {
-                      return (
-                        <dt className="metadata-field-label">
-                          {metadataField.label}
-                        </dt>
-                      );
-                    }
-                  })()}
-                  {(() => {
-                    if(metadataField.name === undefined) {
-                      return (
-                        <dd className="metadata-field-value">N/A</dd>
-                      );
-                    } else {
-                      return (
-                        <dd className="metadata-field-value">
-                          <EditableTextArea fieldName={metadataField.name} fieldValue={metadataField.value} path={metadataField.updatePath} onUpdateHandler={metadataField.handler}/>
-                        </dd>
+                        <EditableObjectMetadataPropertyCard
+                          key={fieldIndex + '-' + propertyIndex}
+                          name={metadataField.name}
+                          label={metadataField.label}
+                          value={propertyValue}
+                          isRequired={metadataField.isRequired}
+                          isMultiLingual={metadataField.isMultiLingual}
+                          updateValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, propertyIndex)}
+                          deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                        />
                       );
                     }
-                  })()}
-                  {(() => {
-                    if(!metadataField.isRequired) {
+                    else if(Array.isArray(propertyValue)) {
+                      // arrays of arrays are not supported
+                    }
+                    else {
                       return (
-                        <dd className="metadata-field-delete">
-                          <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(metadataField, fieldIndex)}>
-                            <span className="fa fa-times-circle"></span>
-                          </a>
-                        </dd>
+                        <EditablePrimitiveMetadataPropertyCard
+                          key={fieldIndex + '-' + propertyIndex}
+                          name={metadataField.name}
+                          label={metadataField.label}
+                          value={propertyValue}
+                          isRequired={metadataField.isRequired}
+                          updateValueHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
+                          deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, propertyIndex, metadataField.name)}
+                        />
                       );
                     }
-                  })()}
-                </dl>
-              );
+                  });
+                }
+                else if(metadataField.value instanceof Object) {
+                  return (
+                    <EditableObjectMetadataPropertyCard
+                      key={fieldIndex}
+                      name={metadataField.name}
+                      label={metadataField.label}
+                      value={metadataField.value}
+                      isRequired={metadataField.isRequired}
+                      isMultiLingual={metadataField.isMultiLingual}
+                      updateValueHandler={_this.updateMetadataPropertyObjectValue.bind(this, fieldIndex, metadataField.updatePath, -1)}
+                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                    />
+                  );
+                }
+                else {
+                  return (
+                    <EditablePrimitiveMetadataPropertyCard
+                      key={fieldIndex}
+                      name={metadataField.name}
+                      label={metadataField.label}
+                      value={metadataField.value}
+                      isRequired={metadataField.isRequired}
+                      updateValueHandler={_this.updateMetadataPropertyValue.bind(this, fieldIndex, metadataField.updatePath)}
+                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
+                    />
+                  );
+                }
+              }
             })
           }
           {(() => {
-            if(Object.keys(_this.state.availableMetadataFields).length != _this.state.numUnassignedMetadataFields) {
+            if(Object.keys(availablePropertiesToAdd).length > 0) {
               return (
                 <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={_this.addMetadataField}>
                   <span className="fa fa-plus"></span> Add metadata field
