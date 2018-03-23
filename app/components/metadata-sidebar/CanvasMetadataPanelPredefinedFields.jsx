@@ -19,7 +19,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       metadataFields: this.getMetadataFieldsForCanvas(this.props.selectedCanvasId)
     }
   },
-
   componentWillReceiveProps: function(nextProps) {
     if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
       this.setState({
@@ -28,7 +27,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       });
     }
   },
-
   getMetadataFieldByName: function(metadataFields, fieldName) {
     for(var fieldIndex = 0; fieldIndex < metadataFields.length; fieldIndex++) {
       var metadataField = metadataFields[fieldIndex];
@@ -38,7 +36,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     }
     return undefined;
   },
-
   getMetadataFieldIndexByFieldName: function(metadataFields, fieldName) {
     var metadataFieldIndex = -1;
     for(var fieldIndex = 0; fieldIndex < metadataFields.length; fieldIndex++) {
@@ -50,14 +47,12 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     }
     return metadataFieldIndex;
   },
-
   getSelectedCanvas: function(canvasId) {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(canvasId);
     return canvas;
   },
-
   getMetadataFieldsForCanvas: function(canvasId) {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
@@ -131,11 +126,9 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       }
     ];
   },
-
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
-
   updateImageAnnotationForCanvasWithId: function(fieldValue, path) {
     // fetch new image annotation remotely
     var {dispatch} = this.props;
@@ -155,7 +148,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'Error loading image annotation. Please provide a valid image annotation URI.'));
       });
   },
-
   addMetadataField: function() {
     // create a copy of the metadata field list
     var metadataFields = [...this.state.metadataFields];
@@ -181,7 +173,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       });
     }
   },
-
   displayImageAnnotationFetchErrors: function() {
     var {error} = this.props;
     if(error !== undefined && error.type === 'FETCH_IMAGE_ANNOTATION_ERROR') {
@@ -196,23 +187,19 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       );
     }
   },
-
   isIiifImageUri: function(uri) {
     // TODO: implement more robust IIIF image URI validation
     return uri.substr(-11) === '/native.jpg' || uri.substr(-12) === '/default.jpg';
   },
-
   isInfoJsonUri: function(uri) {
     return uri.substr(-10) === '/info.json';
   },
-
   handleImageAnnotationUri: function(imageAnnotationUri) {
     var sequence = this.props.manifestoObject.getSequenceByIndex(0);
     var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
     var canvasImageIdPath = "sequences/0/canvases/" + sequence.getCanvasIndexById(canvas.id) + "/images/0";
     this.updateImageAnnotationForCanvasWithId(imageAnnotationUri, canvasImageIdPath);
   },
-
   handleImageUri: function(imageUri) {
     var {dispatch} = this.props;
     var that = this;
@@ -237,7 +224,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         });
     }
   },
-
   handleInfoJsonUri: function(infoJsonUri) {
     if(this.isInfoJsonUri(infoJsonUri)) {
       this.createImageAnnotationFromInfoJsonUri(infoJsonUri);
@@ -245,7 +231,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       this.props.dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not a valid info.json URI'));
     }
   },
-
   getInfoJsonFromImageUri: function(imageUri) {
     // extract base service uri
     var imageResourceUriParts = imageUri.split('/');
@@ -254,7 +239,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     var infoJsonUri = baseServiceUri + '/info.json';
     return infoJsonUri;
   },
-
   createImageAnnotationFromInfoJsonUri: function(infoJsonUri) {
     var {dispatch} = this.props;
     var that = this;
@@ -296,7 +280,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         dispatch(actions.setError('FETCH_IMAGE_ANNOTATION_ERROR', 'The URI you entered is not valid'));
       });
   },
-
   openImageAnnotationChoiceDialog: function() {
     // open the image annnotation choice modal dialog
     var $imageAnnotationDialog = $(ReactDOM.findDOMNode(this.refs.imageAnnotationDialog));
@@ -304,7 +287,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       backdrop: 'static'
     });
   },
-
   handleImageAnnotationChoice: function(selectedMethod, uri) {
     if(selectedMethod == "imageAnnotation") {
       this.handleImageAnnotationUri(uri);
@@ -314,7 +296,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       this.handleInfoJsonUri(uri);
     }
   },
-
   updateMetadataFieldWithSelectedOption: function(selectedOptionObject) {
     // update the property value in the metadata list
     var metadataFields = [...this.state.metadataFields];
@@ -343,7 +324,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     // update the property value in the store
     activeMetadataField.updateStoreHandler(activeMetadataField.value, activeMetadataField.updatePath);
   },
-
   updateMetadataPropertyValue: function(propertyIndex, updatePath, propertyName, propertyValue) {
     // update the property value in the metadata list
     var metadataFields = [...this.state.metadataFields];
@@ -361,7 +341,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     // update the property value in the store
     activeMetadataField.updateStoreHandler(activeMetadataField.value, activeMetadataField.updatePath);
   },
-
   updateMetadataPropertyObjectValue: function(fieldIndex, updatePath, propertyIndex, propertyName, propertyValue) {
     if(propertyName !== undefined) {
       // update the value in the metadata field
@@ -382,7 +361,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       metadataFields[fieldIndex].updateStoreHandler(propertyValue, propertyUpdatePath);
     }
   },
-
   deleteMetadataProperty: function(fieldIndex, updatePath, propertyIndex, propertyName) {
     if(propertyName === undefined) {
       // delete the empty stub metadata record
@@ -408,7 +386,6 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
-
   render: function() {
     // get the list of available metadata properties that can be added
     var availablePropertiesToAdd = this.state.metadataFields.filter(function(field) {
