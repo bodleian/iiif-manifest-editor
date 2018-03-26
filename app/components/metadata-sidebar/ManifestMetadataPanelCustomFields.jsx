@@ -1,18 +1,13 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var {connect} = require('react-redux');
+var { connect } = require('react-redux');
 var actions = require('actions');
-var EditableTextArea = require('EditableTextArea');
-var MetadataFieldDialog = require('MetadataFieldDialog');
+var EditablePrimitiveMetadataPropertyCard = require('EditablePrimitiveMetadataPropertyCard');
+var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
 var Utils = require('Utils');
 
 var ManifestMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
     return {
-      selectedMetadataFieldToViewJson: {
-        label: undefined,
-        value: undefined
-      },
       metadataFields: []
     }
   },
@@ -44,7 +39,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     // update the metadata field value for the manifest data object in the store
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, updatePath));
   },
-  deleteMetadataField: function(path, fieldIndex) {
+  deleteMetadataProperty: function(path, fieldIndex) {
     // create a copy of the metadata field list
     var metadataFields = [...this.state.metadataFields];
 
@@ -59,83 +54,77 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     // delete the metadata field at the given path and index from the manifest data object in the store
     this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(path, fieldIndex));
   },
-  viewJsonMetadata: function(metadataFieldLabel, metadataFieldValue) {
-    // set the selected metadata field in the state to display the metadata field dialog with the correct data
-    this.setState({
-      selectedMetadataFieldToViewJson: {
-        label: metadataFieldLabel,
-        value: metadataFieldValue
-      }
-    });
-
-    // open the metadata field dialog
-    var $metadataFieldDialog = $(ReactDOM.findDOMNode(this.refs.metadataFieldDialog));
-    $metadataFieldDialog.modal({
-      backdrop: 'static'
-    });
-  },
   render: function() {
     var _this = this;
     return (
       <div>
-        <MetadataFieldDialog ref="metadataFieldDialog" metadataField={this.state.selectedMetadataFieldToViewJson} />
         {
           this.state.metadataFields.map((metadataField, fieldIndex) => {
-            return (
-              <dl key={fieldIndex}>
-                <dt className="metadata-field-label">
-                  {(() => {
-                    if(typeof metadataField.label === 'string' || metadataField.label instanceof String) {
-                      return (
-                        <EditableTextArea
-                          fieldValue={metadataField.label.toString()}
-                          updateHandler={_this.updateMetadataPropertyValue.bind(this, "metadata/" + fieldIndex + "/label")}
-                        />
-                      );
-                    } else {
-                      return (
-                        <span>{Utils.getMetadataField('label', metadataField.label)}</span>
-                      );
-                    }
-                  })()}
-                </dt>
-                {(() => {
-                  if(metadataField.value === undefined) {
+            if(metadataField.value !== undefined) {
+              if(Array.isArray(metadataField.value)) {
+                return metadataField.value.map((propertyValue, propertyIndex) => {
+                  if(propertyValue instanceof Object) {
                     return (
-                      <dd className="metadata-field-value">N/A</dd>
-                    );
-                  } else {
-                    return (
-                      <dd className="metadata-field-value">
-                        {(() => {
-                          if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
-                            return (
-                              <EditableTextArea
-                                fieldValue={metadataField.value.toString()}
-                                updateHandler={_this.updateMetadataPropertyValue.bind(this, "metadata/" + fieldIndex + "/value")}
-                              />
-                            );
-                          } else {
-                            return (
-                              <span><a href="javascript:;" title="View JSON metadata" onClick={() => _this.viewJsonMetadata(metadataField.label, JSON.stringify(metadataField.value, null, 2))}>View JSON metadata</a></span>
-                            );
-                          }
-                        })()}                    
-                      </dd>
+                      <EditableObjectMetadataPropertyCard
+                        key={fieldIndex + '-' + propertyIndex}
+                        name={metadataField.name}
+                        label={Utils.getMetadataField('label', metadataField.label)}
+                        value={propertyValue}
+                        isMultiLingual={true}
+                        isEditableLabel
+                        updateLabelHandler={false}
+                        updateValueHandler={false}
+                        deleteHandler={false}
+                      />
                     );
                   }
-                })()}                    
-                {(() => {
-                  return (
-                    <dd className="metadata-field-delete">
-                      <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField('metadata', fieldIndex)}>
-                        <span className="fa fa-times-circle"></span>
-                      </a>
-                    </dd>
-                  );
-                })()}
-              </dl>
-            );
+                  else if(Array.isArray(propertyValue)) {
+                    // arrays of arrays are not supported
+                  }
+                  else {
+                    return (
+                      <EditablePrimitiveMetadataPropertyCard
+                        key={fieldIndex + '-' + propertyIndex}
+                        name={metadataField.name}
+                        label={Utils.getMetadataField('label', metadataField.label)}
+                        value={propertyValue}
+                        isEditableLabel
+                        updateLabelHandler={false}
+                        updateValueHandler={false}
+                        deleteHandler={false}
+                      />
+                    );
+                  }
+                });
+              }
+              else if(metadataField.value instanceof Object) {
+                return (
+                  <EditableObjectMetadataPropertyCard
+                    key={fieldIndex}
+                    label={metadataField.label}
+                    value={metadataField.value}
+                    isMultiLingual={true}
+                    isEditableLabel
+                    updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'metadata/' + fieldIndex + '/label')}
+                    updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'metadata/' + fieldIndex + '/value')}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, 'metadata', fieldIndex)}
+                  />
+                );
+              }
+              else {
+                return (
+                  <EditablePrimitiveMetadataPropertyCard
+                    key={fieldIndex}
+                    label={metadataField.label}
+                    value={metadataField.value}
+                    isEditableLabel
+                    updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'metadata/' + fieldIndex + '/label')}
+                    updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'metadata/' + fieldIndex + '/value')}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, 'metadata', fieldIndex)}
+                  />
+                );
+              }
+            }
           })
         }
         <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('Label', 'Value', 'metadata')}>
