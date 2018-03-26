@@ -121,7 +121,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
         isMultiValued: true,
         addPath: canvasPathPrefix,
         updatePath: canvasPathPrefix + '/related',
-        propertyValueTemplate: { '@id': undefined, label: undefined, format: undefined },
+        propertyValueTemplate: { '@id': '', label: '', format: '' },
         updateStoreHandler: this.saveMetadataFieldToStore
       }
     ];
