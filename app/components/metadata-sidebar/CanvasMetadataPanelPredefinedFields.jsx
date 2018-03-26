@@ -371,7 +371,7 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       // reset the value of the metadata property
       var metadataFields = [...this.state.metadataFields];
       if(propertyIndex !== -1) {
-        metadataFields[fieldIndex].value[propertyIndex] = undefined;
+        metadataFields[fieldIndex].value.splice(propertyIndex, 1);
       } else {
         metadataFields[fieldIndex].value = undefined;
       }
