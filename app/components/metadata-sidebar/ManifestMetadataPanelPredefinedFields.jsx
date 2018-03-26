@@ -204,7 +204,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       });
     }
   },
-  updateMetadataFieldWithSelectedOption: function(selectedOptionObject) {
+  updateMetadataFieldWithSelectedOption: function(fieldIndex, selectedOptionObject) {
     // update the property value in the metadata list
     var metadataFields = [...this.state.metadataFields];
 
@@ -223,8 +223,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     activeMetadataField.value = newMetadataFieldValue;
 
     // delete the empty stub metadata record
-    var stubRecordFieldIndex = this.getMetadataFieldIndexByFieldName(metadataFields, undefined);
-    metadataFields.splice(stubRecordFieldIndex, 1);
+    metadataFields.splice(fieldIndex, 1);
 
     // save the updated metadata list to the state so the component re-renders
     this.setState({ metadataFields: metadataFields });
@@ -314,7 +313,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
                 <EmptyMetadataPropertyCard
                   key={fieldIndex}
                   labelOptions={availablePropertiesToAdd}
-                  updateLabelHandler={_this.updateMetadataFieldWithSelectedOption}
+                  updateLabelHandler={_this.updateMetadataFieldWithSelectedOption.bind(this, fieldIndex)}
                   deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, metadataField.updatePath, -1, metadataField.name)}
                 />
               );
