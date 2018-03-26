@@ -20,7 +20,22 @@ var EditablePrimitiveMetadataPropertyCard = React.createClass({
     return (
       <dl>
         <dt className="metadata-field-label">
-          {this.props.label}
+          {(() => {
+            if(this.props.isEditableLabel) {
+              return (
+                <EditableTextArea
+                  fieldValue={this.props.label}
+                  updateHandler={this.props.updateLabelHandler}
+                />
+              );
+            } else {
+              return (
+                <div>
+                  {this.props.label}
+                </div>
+              );
+            }
+          })()}
         </dt>
 
         <dd className="metadata-field-value">
