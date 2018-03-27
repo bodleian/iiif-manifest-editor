@@ -23,16 +23,11 @@ var ManifestMetadataPanelCustomFields = React.createClass({
     this.props.dispatch(actions.addMetadataFieldToListAtPath(fieldValue, addPath));
   },
   updateMetadataPropertyValue: function(fieldType, updatePath, fieldName, fieldValue) {
-    var newUpdatePath = (fieldType == 'object') ? updatePath + '/' + fieldName : updatePath;
-    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, newUpdatePath));
+    var modifiedUpdatePath = (fieldType === 'object') ? updatePath + '/' + fieldName : updatePath;
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, modifiedUpdatePath));
   },
-  deleteMetadataProperty: function(fieldIndex, updatePath, propertyIndex) {
-    if(propertyIndex !== -1) {
-      var propertyUpdatePath = updatePath + '/' + propertyIndex;
-      this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(updatePath, propertyIndex));
-    } else {
-      this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(updatePath, fieldIndex));
-    }
+  deleteMetadataProperty: function(fieldIndex, deletePath) {
+    this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(deletePath, fieldIndex));
   },
   render: function() {
     var _this = this;
@@ -55,8 +50,8 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                         isMultiLingual={true}
                         isEditableLabel
                         updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', 'metadata/' + fieldIndex + '/label')}
-                        updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'object', 'metadata/' + fieldIndex + '/value', propertyIndex, propertyName)}
-                        deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata/' + fieldIndex + '/value', propertyIndex)}
+                        updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'object', 'metadata/' + fieldIndex + '/value/' + propertyIndex)}
+                        deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata/' + fieldIndex + '/value')}
                       />
                     );
                   }
@@ -73,7 +68,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                     isEditableLabel
                     updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', 'metadata/' + fieldIndex + '/label')}
                     updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'object', 'metadata/' + fieldIndex + '/value')}
-                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata', -1)}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata')}
                   />
                 );
               }
@@ -86,7 +81,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
                     isEditableLabel
                     updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', 'metadata/' + fieldIndex + '/label')}
                     updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'string', 'metadata/' + fieldIndex + '/value')}
-                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata', -1)}
+                    deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, 'metadata')}
                   />
                 );
               }
