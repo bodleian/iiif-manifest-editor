@@ -8,7 +8,13 @@ var Utils = require('Utils');
 var ManifestMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
     return {
-      metadataFields: this.props.manifestData.metadata
+      metadataFields: Array.isArray(this.props.manifestData.metadata) ? this.props.manifestData.metadata : []
+    }
+  },
+  componentWillMount: function() {
+    // if the 'metadata' field in the store is not an array, initialize it to an empty array
+    if(!Array.isArray(this.props.manifestData.metadata)) {
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath([], 'metadata'));
     }
   },
   componentDidUpdate: function(prevProps, prevState) {
