@@ -33,6 +33,10 @@ export var getTranslatedPropertyName = (fieldName, propertyName) => {
       '@id': 'URL',
       'label': 'Label',
       'format': 'Format'
+    },
+    'undefined': {  // custom fields do not have the field name set
+      '@value': 'Value',
+      '@language': 'Language'
     }
   }
   return propertyNameMap[fieldName] !== undefined && propertyNameMap[fieldName][propertyName] !== undefined ? propertyNameMap[fieldName][propertyName] : propertyName;
