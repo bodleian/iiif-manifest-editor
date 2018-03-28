@@ -7,24 +7,27 @@ var Utils = require('Utils');
 
 var CanvasMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
-    var canvas = null;
-    var canvasIndex = -1;
-    if(this.props.selectedCanvasId !== undefined) {
-      var manifest = this.props.manifestoObject;
-      var sequence = manifest.getSequenceByIndex(0);
-      canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-      canvasIndex = sequence.getCanvasIndexById(canvas.id);
-    }
+    var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
     return {
       metadataFields: Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
     }
   },
+  componentWillMount: function() {
+    // Note: If the 'metadata' block contains anything other than an array, this is considered invalid data.
+    // The manifest editor can only render a valid list of key/value pairs.
+    // The original data is not lost and can always be viewed in the original manifest that was loaded.
+    var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
+    if(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata === undefined) {
+      var addPath = 'sequences/0/canvases/' + canvasIndex;
+      this.props.dispatch(actions.addMetadataFieldAtPath('metadata', [], addPath));
+    } else if(!Array.isArray(this.props.manifestData.metadata)) {
+      var updatePath = 'sequences/0/canvases/' + canvasIndex + '/metadata';
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath([], updatePath));
+    }
+  },
   componentWillReceiveProps(nextProps) {
+    var canvasIndex = this.getCanvasIndexByCanvasId(nextProps.manifestoObject, nextProps.selectedCanvasId);
     if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
-      var manifest = nextProps.manifestoObject;
-      var sequence = manifest.getSequenceByIndex(0);
-      var canvas = sequence.getCanvasById(nextProps.selectedCanvasId);
-      var canvasIndex = sequence.getCanvasIndexById(canvas.id);
       this.setState({
         metadataFields: nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata
       })
@@ -34,6 +37,17 @@ var CanvasMetadataPanelCustomFields = React.createClass({
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
     return sequence.getCanvasById(canvasId);
+  },
+  getCanvasIndexByCanvasId: function(manifestoObject, canvasId) {
+    var canvasIndex = undefined;
+    if(canvasId !== undefined) {
+      var sequence = manifestoObject.getSequenceByIndex(0);
+      var canvas = sequence.getCanvasById(canvasId);
+      if(canvas !== undefined) {
+        canvasIndex = sequence.getCanvasIndexById(canvasId);
+      }
+    }
+    return canvasIndex;
   },
   addMetadataProperty: function(fieldLabel, fieldValue, addPath) {
     this.props.dispatch(actions.addMetadataFieldToListAtPath(fieldValue, addPath));
