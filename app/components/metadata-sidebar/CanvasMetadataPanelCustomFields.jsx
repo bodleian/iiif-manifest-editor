@@ -8,41 +8,28 @@ var Utils = require('Utils');
 var CanvasMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
     var canvas = null;
-    var canvasMetadataFields = [];
-    if(this.props.selectedCanvasId !== undefined) {
-      canvas = this.getCanvasById(this.props.selectedCanvasId);
-      canvasMetadataFields = canvas.__jsonld.metadata;
-    }
-    return {
-      metadataFields: canvas !== null && Array.isArray(canvasMetadataFields) ? canvasMetadataFields : []
-    }
-  },
-  componentWillMount: function() {
-    // initialize the metadata field list with the fields defined in the 'metadata' block of the canvas
+    var canvasIndex = -1;
     if(this.props.selectedCanvasId !== undefined) {
       var manifest = this.props.manifestoObject;
       var sequence = manifest.getSequenceByIndex(0);
-      var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
-      var canvasMetadataFields = canvas.__jsonld.metadata;
-      if(canvas !== null) {
-        var canvasIndex = sequence.getCanvasIndexById(canvas.id);
-        var canvasMetadataPath = "sequences/0/canvases/" + canvasIndex + "/metadata";
-        if(canvasMetadataFields !== undefined && canvasMetadataFields.length > 0) {
-          this.props.dispatch(actions.updateMetadataFieldValueAtPath(canvasMetadataFields, canvasMetadataPath));
-        } else {
-          this.props.dispatch(actions.updateMetadataFieldValueAtPath([], canvasMetadataPath));
-        }
-      }
+      canvas = sequence.getCanvasById(this.props.selectedCanvasId);
+      canvasIndex = sequence.getCanvasIndexById(canvas.id);
+    }
+    return {
+      metadataFields: Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
     }
   },
-  // componentDidUpdate: function(prevProps, prevState) {
-    // update the metadata field list with the value of the 'metadata' block of the canvas
-    // if(currentCanvasMetadataFields !== previousCanvasMetadataFields) {
-    //   this.setState({
-    //     metadataFields: currentCanvasMetadataFields
-    //   });
-    // }
-  // },
+  componentWillReceiveProps(nextProps) {
+    if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
+      var manifest = nextProps.manifestoObject;
+      var sequence = manifest.getSequenceByIndex(0);
+      var canvas = sequence.getCanvasById(nextProps.selectedCanvasId);
+      var canvasIndex = sequence.getCanvasIndexById(canvas.id);
+      this.setState({
+        metadataFields: nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata
+      })
+    }
+  },
   getCanvasById: function(canvasId) {
     var manifest = this.props.manifestoObject;
     var sequence = manifest.getSequenceByIndex(0);
