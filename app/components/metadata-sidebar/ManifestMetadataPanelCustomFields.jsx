@@ -14,6 +14,9 @@ var ManifestMetadataPanelCustomFields = React.createClass({
   componentWillMount: function() {
     // if the 'metadata' field in the store is not an array, initialize it to an empty array
     if(!Array.isArray(this.props.manifestData.metadata)) {
+      // Note: If the 'metadata' block contains anything other than an array, this is considered invalid data.
+      // The manifest editor can only render a valid list of key/value pairs.
+      // The original data is not lost and can always be viewed in the original manifest that was loaded.
       this.props.dispatch(actions.updateMetadataFieldValueAtPath([], 'metadata'));
     }
   },
