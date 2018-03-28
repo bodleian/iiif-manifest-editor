@@ -54,77 +54,80 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
     return canvas;
   },
   getMetadataFieldsForCanvas: function(canvasId) {
-    var manifest = this.props.manifestoObject;
-    var sequence = manifest.getSequenceByIndex(0);
-    var canvas = sequence.getCanvasById(canvasId);
-    var canvasIndex = sequence.getCanvasIndexById(canvas.id);
-    var image = canvas.getImages()[0];
-    var resource = image !== undefined ? image.__jsonld.resource : undefined;
-    var canvasPathPrefix = 'sequences/0/canvases/' + canvasIndex;
+    if(canvasId !== undefined) {
+      var manifest = this.props.manifestoObject;
+      var sequence = manifest.getSequenceByIndex(0);
+      var canvas = sequence.getCanvasById(canvasId);
+      var canvasIndex = sequence.getCanvasIndexById(canvas.id);
+      var image = canvas.getImages()[0];
+      var resource = image !== undefined ? image.__jsonld.resource : undefined;
+      var canvasPathPrefix = 'sequences/0/canvases/' + canvasIndex;
 
-    return [
-      {
-        name: 'label',
-        label: 'Canvas Label',
-        value: Utils.getLocalizedPropertyValue(canvas.getLabel()),
-        isRequired: true,
-        isMultiValued: false,
-        addPath: canvasPathPrefix,
-        updatePath: canvasPathPrefix + '/label',
-        updateStoreHandler: this.saveMetadataFieldToStore
-      },
-      {
-        name: 'width',
-        label: 'Canvas Width',
-        value: canvas.getWidth().toString(),
-        isRequired: true,
-        isMultiValued: false,
-        addPath: canvasPathPrefix,
-        updatePath: canvasPathPrefix + '/width',
-        updateStoreHandler: this.saveMetadataFieldToStore
-      },
-      {
-        name: 'height',
-        label: 'Canvas Height',
-        value: canvas.getHeight().toString(),
-        isRequired: true,
-        isMultiValued: false,
-        addPath: canvasPathPrefix,
-        updatePath: canvasPathPrefix + '/height',
-        updateStoreHandler: this.saveMetadataFieldToStore
-      },
-      {
-        name: 'image_uri',
-        label: 'Image URI',
-        value: resource !== undefined ? resource['@id'] : 'N/A',
-        isRequired: true,
-        isMultiValued: false,
-        addPath: canvasPathPrefix,
-        updatePath: '',
-        updateStoreHandler: this.handleImageUri
-      },
-      {
-        name: 'image_annotation_uri',
-        label: 'Image Annotation URI',
-        value: image !== undefined ? image.id : 'N/A',
-        isRequired: true,
-        isMultiValued: false,
-        addPath: canvasPathPrefix,
-        updatePath: canvasPathPrefix + '/images/0',
-        updateStoreHandler: this.updateImageAnnotationForCanvasWithId
-      },
-      {
-        name: 'related',
-        label: 'Related',
-        value: canvas.__jsonld.related,
-        isRequired: false,
-        isMultiValued: true,
-        addPath: canvasPathPrefix,
-        updatePath: canvasPathPrefix + '/related',
-        propertyValueTemplate: { '@id': '', label: '', format: '' },
-        updateStoreHandler: this.saveMetadataFieldToStore
-      }
-    ];
+      return [
+        {
+          name: 'label',
+          label: 'Canvas Label',
+          value: Utils.getLocalizedPropertyValue(canvas.getLabel()),
+          isRequired: true,
+          isMultiValued: false,
+          addPath: canvasPathPrefix,
+          updatePath: canvasPathPrefix + '/label',
+          updateStoreHandler: this.saveMetadataFieldToStore
+        },
+        {
+          name: 'width',
+          label: 'Canvas Width',
+          value: canvas.getWidth().toString(),
+          isRequired: true,
+          isMultiValued: false,
+          addPath: canvasPathPrefix,
+          updatePath: canvasPathPrefix + '/width',
+          updateStoreHandler: this.saveMetadataFieldToStore
+        },
+        {
+          name: 'height',
+          label: 'Canvas Height',
+          value: canvas.getHeight().toString(),
+          isRequired: true,
+          isMultiValued: false,
+          addPath: canvasPathPrefix,
+          updatePath: canvasPathPrefix + '/height',
+          updateStoreHandler: this.saveMetadataFieldToStore
+        },
+        {
+          name: 'image_uri',
+          label: 'Image URI',
+          value: resource !== undefined ? resource['@id'] : 'N/A',
+          isRequired: true,
+          isMultiValued: false,
+          addPath: canvasPathPrefix,
+          updatePath: '',
+          updateStoreHandler: this.handleImageUri
+        },
+        {
+          name: 'image_annotation_uri',
+          label: 'Image Annotation URI',
+          value: image !== undefined ? image.id : 'N/A',
+          isRequired: true,
+          isMultiValued: false,
+          addPath: canvasPathPrefix,
+          updatePath: canvasPathPrefix + '/images/0',
+          updateStoreHandler: this.updateImageAnnotationForCanvasWithId
+        },
+        {
+          name: 'related',
+          label: 'Related',
+          value: canvas.__jsonld.related,
+          isRequired: false,
+          isMultiValued: true,
+          addPath: canvasPathPrefix,
+          updatePath: canvasPathPrefix + '/related',
+          propertyValueTemplate: { '@id': '', label: '', format: '' },
+          updateStoreHandler: this.saveMetadataFieldToStore
+        }
+      ];
+    }
+    return [];
   },
   saveMetadataFieldToStore: function(fieldValue, path) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
@@ -392,9 +395,9 @@ var CanvasMetadataPanelPredefinedFields = React.createClass({
       return field.name !== undefined && (field.value === undefined || field.isMultiValued);
     });
 
-    var image = this.state.selectedCanvas.getImages()[0];
     if(this.state.selectedCanvas !== null) {
       var _this = this;
+      var image = this.state.selectedCanvas.getImages()[0];
       return (
         <div className="metadata-sidebar-panel">
 

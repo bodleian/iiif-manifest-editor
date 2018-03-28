@@ -9,7 +9,7 @@ var CanvasMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
     var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
     return {
-      metadataFields: Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
+      metadataFields: canvasIndex !== undefined && Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
     }
   },
   componentWillMount: function() {
@@ -17,24 +17,28 @@ var CanvasMetadataPanelCustomFields = React.createClass({
     // The manifest editor can only render a valid list of key/value pairs.
     // The original data is not lost and can always be viewed in the original manifest that was loaded.
     var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
-    if(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata === undefined) {
-      var addPath = 'sequences/0/canvases/' + canvasIndex;
-      this.props.dispatch(actions.addMetadataFieldAtPath('metadata', [], addPath));
-    } else if(!Array.isArray(this.props.manifestData.metadata)) {
-      var updatePath = 'sequences/0/canvases/' + canvasIndex + '/metadata';
-      this.props.dispatch(actions.updateMetadataFieldValueAtPath([], updatePath));
-    }
+    if(canvasIndex !== undefined) {
+      if(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata === undefined) {
+        var addPath = 'sequences/0/canvases/' + canvasIndex;
+        this.props.dispatch(actions.addMetadataFieldAtPath('metadata', [], addPath));
+      } else if(!Array.isArray(this.props.manifestData.metadata)) {
+        var updatePath = 'sequences/0/canvases/' + canvasIndex + '/metadata';
+        this.props.dispatch(actions.updateMetadataFieldValueAtPath([], updatePath));
+      }
 
-    this.setState({
-      metadataFields: this.props.manifestData.sequences[0].canvases[canvasIndex].metadata
-    })
+      this.setState({
+        metadataFields: Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
+      });
+    }
   },
   componentWillReceiveProps(nextProps) {
     var canvasIndex = this.getCanvasIndexByCanvasId(nextProps.manifestoObject, nextProps.selectedCanvasId);
-    if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
-      this.setState({
-        metadataFields: nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata
-      })
+    if(canvasIndex !== undefined) {
+      if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
+        this.setState({
+          metadataFields: Array.isArray(nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata) ? nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata : []
+        });
+      }
     }
   },
   getCanvasById: function(canvasId) {
