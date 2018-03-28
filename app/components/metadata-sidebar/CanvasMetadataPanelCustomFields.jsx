@@ -24,6 +24,10 @@ var CanvasMetadataPanelCustomFields = React.createClass({
       var updatePath = 'sequences/0/canvases/' + canvasIndex + '/metadata';
       this.props.dispatch(actions.updateMetadataFieldValueAtPath([], updatePath));
     }
+
+    this.setState({
+      metadataFields: this.props.manifestData.sequences[0].canvases[canvasIndex].metadata
+    })
   },
   componentWillReceiveProps(nextProps) {
     var canvasIndex = this.getCanvasIndexByCanvasId(nextProps.manifestoObject, nextProps.selectedCanvasId);
