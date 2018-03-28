@@ -1,83 +1,62 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var {connect} = require('react-redux');
+var { connect } = require('react-redux');
 var actions = require('actions');
-var EditableTextArea = require('EditableTextArea');
-var MetadataFieldDialog = require('MetadataFieldDialog');
+var EditablePrimitiveMetadataPropertyCard = require('EditablePrimitiveMetadataPropertyCard');
+var EditableObjectMetadataPropertyCard = require('EditableObjectMetadataPropertyCard');
 var Utils = require('Utils');
 
 var CanvasMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
+    var canvas = null;
+    var canvasMetadataFields = [];
+    if(this.props.selectedCanvasId !== undefined) {
+      canvas = this.getCanvasById(this.props.selectedCanvasId);
+      canvasMetadataFields = canvas.__jsonld.metadata;
+    }
     return {
-      selectedMetadataFieldToViewJson: {
-        label: undefined,
-        value: undefined
-      },
-      activeMetadataFields: []
+      metadataFields: canvas !== null && Array.isArray(canvasMetadataFields) ? canvasMetadataFields : []
     }
   },
   componentWillMount: function() {
-    // initialize the active metadata field list with the fields defined in the metadata block of the canvas
+    // initialize the metadata field list with the fields defined in the 'metadata' block of the canvas
     if(this.props.selectedCanvasId !== undefined) {
-      var sequence = this.props.manifestoObject.getSequenceByIndex(0);
+      var manifest = this.props.manifestoObject;
+      var sequence = manifest.getSequenceByIndex(0);
       var canvas = sequence.getCanvasById(this.props.selectedCanvasId);
       var canvasMetadataFields = canvas.__jsonld.metadata;
-      if(canvasMetadataFields !== undefined && canvasMetadataFields.length > 0) {
-        this.setState({
-          activeMetadataFields: canvasMetadataFields
-        });
+      if(canvas !== null) {
+        var canvasIndex = sequence.getCanvasIndexById(canvas.id);
+        var canvasMetadataPath = "sequences/0/canvases/" + canvasIndex + "/metadata";
+        if(canvasMetadataFields !== undefined && canvasMetadataFields.length > 0) {
+          this.props.dispatch(actions.updateMetadataFieldValueAtPath(canvasMetadataFields, canvasMetadataPath));
+        } else {
+          this.props.dispatch(actions.updateMetadataFieldValueAtPath([], canvasMetadataPath));
+        }
       }
     }
   },
-  addMetadataField: function(metadataFieldLabel, metadataFieldValue, path) {
-    // create a copy of the active metadata field list
-    var activeMetadataFields = [...this.state.activeMetadataFields];
-
-    // append the metadata field to the list of active metadata fields in the state
-    var metadataFieldObject = { label: metadataFieldLabel, value: metadataFieldValue };
-    activeMetadataFields.push(metadataFieldObject);
-
-    // update the active metadata field list in the state so that the component uses the correct values when rendering
-    this.setState({
-      activeMetadataFields: activeMetadataFields
-    });
-
-    // add the metadata field object to the list at the given path to the manifest data object in the store
-    this.props.dispatch(actions.addMetadataFieldToListAtPath(metadataFieldObject, path));
+  // componentDidUpdate: function(prevProps, prevState) {
+    // update the metadata field list with the value of the 'metadata' block of the canvas
+    // if(currentCanvasMetadataFields !== previousCanvasMetadataFields) {
+    //   this.setState({
+    //     metadataFields: currentCanvasMetadataFields
+    //   });
+    // }
+  // },
+  getCanvasById: function(canvasId) {
+    var manifest = this.props.manifestoObject;
+    var sequence = manifest.getSequenceByIndex(0);
+    return sequence.getCanvasById(canvasId);
   },
-  updateMetadataFieldValue: function(fieldValue, path) {
-    // update the metadata field value for the manifest data object in the store
-    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
+  addMetadataProperty: function(fieldLabel, fieldValue, addPath) {
+    this.props.dispatch(actions.addMetadataFieldToListAtPath(fieldValue, addPath));
   },
-  deleteMetadataField: function(path, fieldIndex) {
-    // create a copy of the active metadata field list
-    var activeMetadataFields = [...this.state.activeMetadataFields];
-
-    // delete the metadata field from the list of active fields
-    activeMetadataFields.splice(fieldIndex, 1);
-
-    // update the active metadata field list in the state so that the component uses the correct values when rendering
-    this.setState({
-      activeMetadataFields: activeMetadataFields
-    });
-
-    // delete the metadata field at the given path and index from the manifest data object in the store
-    this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(path, fieldIndex));
+  updateMetadataPropertyValue: function(fieldType, updatePath, fieldName, fieldValue) {
+    var modifiedUpdatePath = (fieldType === 'object') ? updatePath + '/' + fieldName : updatePath;
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, modifiedUpdatePath));
   },
-  viewJsonMetadata: function(metadataFieldLabel, metadataFieldValue) {
-    // set the selected metadata field in the state to display the metadata field dialog with the correct data
-    this.setState({
-      selectedMetadataFieldToViewJson: {
-        label: metadataFieldLabel,
-        value: metadataFieldValue
-      }
-    });
-
-    // open the metadata field dialog
-    var $metadataFieldDialog = $(ReactDOM.findDOMNode(this.refs.metadataFieldDialog));
-    $metadataFieldDialog.modal({
-      backdrop: 'static'
-    });
+  deleteMetadataProperty: function(fieldIndex, deletePath) {
+    this.props.dispatch(actions.deleteMetadataFieldFromListAtPathAndIndex(deletePath, fieldIndex));
   },
   render: function() {
     var manifest = this.props.manifestoObject;
@@ -89,63 +68,67 @@ var CanvasMetadataPanelCustomFields = React.createClass({
       var _this = this;
       return (
         <div>
-          <MetadataFieldDialog ref="metadataFieldDialog" metadataField={this.state.selectedMetadataFieldToViewJson} />
           {
-            Object.keys(this.state.activeMetadataFields).map(function(fieldIndex) {
-              var metadataField = _this.state.activeMetadataFields[fieldIndex];
-              return (
-                <dl key={fieldIndex}>
-                  <dt className="metadata-field-label">
-                    {(() => {
-                      if(typeof metadataField.label === 'string' || metadataField.label instanceof String) {
-                        return (
-                          <EditableTextArea fieldValue={metadataField.label.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/label"} onUpdateHandler={_this.updateMetadataFieldValue}/>
-                        );
-                      } else {
-                        return (
-                          <span>{Utils.getMetadataField('label', metadataField.label)}</span>
-                        );
-                      }
-                    })()}
-                  </dt>
-                  {(() => {
-                    if(metadataField.value === undefined) {
+            this.state.metadataFields.map((metadataField, fieldIndex) => {
+              if(metadataField.value !== undefined) {
+                if(Array.isArray(metadataField.value)) {
+                  return metadataField.value.map((propertyValue, propertyIndex) => {
+                    // array of objects is supported => e.g. { "label": "", "value": [{}, {}, {}] }
+                    // Note: array of strings is not supported => e.g. { "label": "", "value": ["", "", ""] }
+                    // Note: array of arrays is not supported => e.g. { "label": "", "value": [ [ {}, {}, {} ] ] }
+                    if(propertyValue instanceof Object) {
                       return (
-                        <dd className="metadata-field-value">N/A</dd>
-                      );
-                    } else {
-                      return (
-                        <dd className="metadata-field-value">
-                          {(() => {
-                            if(typeof metadataField.value === 'string' || metadataField.value instanceof String) {
-                              return (
-                                <EditableTextArea fieldValue={metadataField.value.toString()} path={canvasMetadataPath + "/" + fieldIndex + "/value"} onUpdateHandler={_this.updateMetadataFieldValue}/>
-                              );
-                            } else {
-                              return (
-                                <span><a href="javascript:;" title="View JSON metadata" onClick={() => _this.viewJsonMetadata(metadataField.label, JSON.stringify(metadataField.value, null, 2))}>View JSON metadata</a></span>
-                              );
-                            }
-                          })()}                    
-                        </dd>
+                        <EditableObjectMetadataPropertyCard
+                          key={fieldIndex + '-' + propertyIndex}
+                          label={Utils.getMetadataField('label', metadataField.label)}
+                          value={propertyValue}
+                          isMultiLingual={true}
+                          isEditableLabel
+                          updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', canvasMetadataPath + '/' + fieldIndex + '/label')}
+                          updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'object', canvasMetadataPath + '/' + fieldIndex + '/value/' + propertyIndex)}
+                          deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, canvasMetadataPath + '/' + fieldIndex + '/value')}
+                        />
                       );
                     }
-                  })()}                    
-                  {(() => {
-                    return (
-                      <dd className="metadata-field-delete">
-                        <a href="javascript:;" title={"Delete " + metadataField.label + " field"} onClick={() => _this.deleteMetadataField(canvasMetadataPath, fieldIndex)}>
-                          <span className="fa fa-times-circle"></span>
-                        </a>
-                      </dd>
-                    );
-                  })()}
-                </dl>
-              );
+                  });
+                }
+                else if(metadataField.value instanceof Object) {
+                  // object is supported => e.g. { "label": "", "value": {} }
+                  return (
+                    <EditableObjectMetadataPropertyCard
+                      key={fieldIndex}
+                      label={metadataField.label}
+                      value={metadataField.value}
+                      isMultiLingual={true}
+                      isEditableLabel
+                      updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', canvasMetadataPath + '/' + fieldIndex + '/label')}
+                      updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'object', canvasMetadataPath + '/' + fieldIndex + '/value')}
+                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, canvasMetadataPath)}
+                    />
+                  );
+                }
+                else {
+                  return (
+                    <EditablePrimitiveMetadataPropertyCard
+                      key={fieldIndex}
+                      label={metadataField.label}
+                      value={metadataField.value}
+                      isEditableLabel
+                      updateLabelHandler={_this.updateMetadataPropertyValue.bind(this, 'string', canvasMetadataPath + '/' + fieldIndex + '/label')}
+                      updateValueHandler={_this.updateMetadataPropertyValue.bind(this, 'string', canvasMetadataPath + '/' + fieldIndex + '/value')}
+                      deleteHandler={_this.deleteMetadataProperty.bind(this, fieldIndex, canvasMetadataPath)}
+                    />
+                  );
+                }
+              }
             })
           }
-          <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataField('Label', 'Value', canvasMetadataPath)}>
+          <button type="button" className="btn btn-default add-metadata-field-button" title="Add metadata field" onClick={() => _this.addMetadataProperty('Label', { 'label': 'Label', 'value': 'Value' }, canvasMetadataPath)}>
             <span className="fa fa-plus"></span> Add metadata field
+          </button>
+
+          <button type="button" className="btn btn-default" title="Add language metadata field" onClick={() => _this.addMetadataProperty('Label', { 'label': 'Label', 'value': { '@value': '', '@language': '' } }, canvasMetadataPath)}>
+            <span className="fa fa-plus"></span> Add language metadata field
           </button>
         </div>
       );
