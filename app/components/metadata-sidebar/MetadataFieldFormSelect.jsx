@@ -4,9 +4,7 @@ var MetadataFieldFormSelect = React.createClass({
   getInitialState: function() {
     return {
       options: this.props.options,
-      placeholder: this.props.placeholder,
-      selectedOption: this.props.selectedOption,
-      onChangeHandler: this.props.onChange
+      selectedOption: this.props.selectedOption
     }
   },
   getOptionByName: function(options, name) {
@@ -20,22 +18,21 @@ var MetadataFieldFormSelect = React.createClass({
   },
   handleChange: function(e) {
     var selectedOptionValue = e.target.value;
-    this.setState({
-      selectedOption: selectedOptionValue
-    });
+    this.setState({ selectedOption: selectedOptionValue });
 
     var selectedOptionObject = this.getOptionByName(this.state.options, selectedOptionValue);
-    this.state.onChangeHandler(selectedOptionObject);
+    this.props.onChange(selectedOptionObject);
   },
   componentWillReceiveProps(nextProps) {
     this.setState({
-      options: nextProps.options
+      options: nextProps.options,
+      selectedOption: ""
     });
   },
   render: function() {
     return (
       <select value={this.state.selectedOption} onChange={this.handleChange}>
-        <option value="" disabled>{this.state.placeholder}</option>
+        <option value="" disabled>{this.props.placeholder}</option>
         {
           this.state.options.map(function(option, index) {
             return (
