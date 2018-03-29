@@ -80,7 +80,8 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           isRequired: false,
           isMultiValued: false,
           addPath: '',
-          updatePath: 'seeAlso'
+          updatePath: 'seeAlso',
+          propertyValueTemplate: { '@id': undefined, format: undefined, profile: undefined }
         },
         {
           name: 'viewingDirection',
@@ -151,7 +152,7 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       this.updateFieldValueInList('related', this.props.manifestData.related, metadataFields);
     }
     if(this.props.manifestData.seeAlso) {  // see also
-      this.updateFieldValueInList('seeAlso', this.props.manifestData.seeAlso.toString(), metadataFields);
+      this.updateFieldValueInList('seeAlso', this.props.manifestData.seeAlso, metadataFields);
     }
     if(this.props.manifestData.viewingDirection) {  // viewing direction
       this.updateFieldValueInList('viewingDirection', this.props.manifestData.viewingDirection, metadataFields);
@@ -278,7 +279,11 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       // reset the value of the metadata property
       var metadataFields = [...this.state.metadataFields];
       if(propertyIndex !== -1) {
-        metadataFields[fieldIndex].value[propertyIndex] = undefined;
+        metadataFields[fieldIndex].value.splice(propertyIndex, 1);
+        // set empty arrays to undefined so the field can be included in the list of available fields to add
+        if(metadataFields[fieldIndex].value.length == 0) {
+          metadataFields[fieldIndex].value = undefined;
+        }
       } else {
         metadataFields[fieldIndex].value = undefined;
       }
