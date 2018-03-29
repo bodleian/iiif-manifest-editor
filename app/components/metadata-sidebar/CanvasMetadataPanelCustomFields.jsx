@@ -7,44 +7,34 @@ var Utils = require('Utils');
 
 var CanvasMetadataPanelCustomFields = React.createClass({
   getInitialState: function() {
-    var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
     return {
-      metadataFields: canvasIndex !== undefined && Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
+      metadataFields: this.getMetadataPropertyForCanvasWithId(this.props.manifestoObject, this.props.manifestData, this.props.selectedCanvasId)
     }
   },
   componentWillMount: function() {
-    // Note: If the 'metadata' block contains anything other than an array, this is considered invalid data.
-    // The manifest editor can only render a valid list of key/value pairs.
-    // The original data is not lost and can always be viewed in the original manifest that was loaded.
-    var canvasIndex = this.getCanvasIndexByCanvasId(this.props.manifestoObject, this.props.selectedCanvasId);
+    var canvasIndex = this.getCanvasIndexByCanvasId(this.props.selectedCanvasId);
     if(canvasIndex !== undefined) {
-      if(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata === undefined) {
-        var addPath = 'sequences/0/canvases/' + canvasIndex;
+      var metadataProperty = this.getMetadataPropertyForCanvasWithId(this.props.manifestoObject, this.props.manifestData, this.props.selectedCanvasId);
+      if(metadataProperty === undefined) {
+        var addPath = 'sequences/0/canvases/' + this.getCanvasIndexByCanvasId(this.props.selectedCanvasId);
         this.props.dispatch(actions.addMetadataFieldAtPath('metadata', [], addPath));
-      } else if(!Array.isArray(this.props.manifestData.metadata)) {
+        this.setState({ metadataFields: [] });
+      } else {
         var updatePath = 'sequences/0/canvases/' + canvasIndex + '/metadata';
-        this.props.dispatch(actions.updateMetadataFieldValueAtPath([], updatePath));
-      }
-
-      this.setState({
-        metadataFields: Array.isArray(this.props.manifestData.sequences[0].canvases[canvasIndex].metadata) ? this.props.manifestData.sequences[0].canvases[canvasIndex].metadata : []
-      });
-    }
-  },
-  componentWillReceiveProps(nextProps) {
-    var canvasIndex = this.getCanvasIndexByCanvasId(nextProps.manifestoObject, nextProps.selectedCanvasId);
-    if(canvasIndex !== undefined) {
-      if(this.props.selectedCanvasId !== nextProps.selectedCanvasId) {
-        this.setState({
-          metadataFields: Array.isArray(nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata) ? nextProps.manifestData.sequences[0].canvases[canvasIndex].metadata : []
-        });
+        this.props.dispatch(actions.updateMetadataFieldValueAtPath(metadataProperty, updatePath));
+        this.setState({ metadataFields: metadataProperty });
       }
     }
   },
-  getCanvasById: function(canvasId) {
-    var manifest = this.props.manifestoObject;
-    var sequence = manifest.getSequenceByIndex(0);
-    return sequence.getCanvasById(canvasId);
+  componentWillReceiveProps: function(nextProps) {
+    // Note: The panel needs to re-render whenever the current canvas changes or when a new metadata field is added for the current canvas.
+    // For whatever reason, the "current prop", "previous prop", and "next prop" are always equal in every update lifecycle method.
+    // In order to recognize that a metadata field has been updated in the panel, the metadata fields in the state are compared with the metadata fields in the new prop.
+    var updatedMetadataProperty = this.getMetadataPropertyForCanvasWithId(nextProps.manifestoObject, nextProps.manifestData, nextProps.selectedCanvasId);
+    if(this.props.selectedCanvasId !== nextProps.selectedCanvasId ||
+       JSON.stringify(this.state.metadataFields) !== JSON.stringify(updatedMetadataProperty)) {
+      this.setState({ metadataFields: updatedMetadataProperty });
+    }
   },
   getCanvasIndexByCanvasId: function(manifestoObject, canvasId) {
     var canvasIndex = undefined;
@@ -56,6 +46,20 @@ var CanvasMetadataPanelCustomFields = React.createClass({
       }
     }
     return canvasIndex;
+  },
+  getMetadataPropertyForCanvasWithId: function(manifestoObject, manifestData, canvasId) {
+    if(canvasId !== undefined) {
+      var canvasIndex = this.getCanvasIndexByCanvasId(manifestoObject, canvasId);
+      if(canvasIndex !== undefined) {
+        var metadataProperty = manifestData.sequences[0].canvases[canvasIndex].metadata;
+
+        // Note: If the 'metadata' block contains anything other than an array, this is considered invalid data.
+        // The manifest editor can only render a valid list of key/value pairs.
+        // The original data is not lost and can always be viewed in the original manifest that was loaded.
+        return metadataProperty !== undefined && Array.isArray(metadataProperty) ? metadataProperty : [];
+      }
+    }
+    return undefined;
   },
   addMetadataProperty: function(fieldLabel, fieldValue, addPath) {
     this.props.dispatch(actions.addMetadataFieldToListAtPath(fieldValue, addPath));
