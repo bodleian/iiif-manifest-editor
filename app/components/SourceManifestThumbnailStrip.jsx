@@ -51,13 +51,13 @@ var SourceManifestThumbnailStrip = React.createClass({
       if(draggedCanvasIndex < this.state.selectedCanvasStartIndex || draggedCanvasIndex > this.state.selectedCanvasEndIndex) {
         var canvas = canvases[draggedCanvasIndex];
         // populate the 'related' field on the newly added canvas with a reference to the original source manifest
-        canvas.__jsonld.related = this.props.sourceManifestId;
+        canvas.__jsonld.related = { '@id': this.props.manifestoObject.id, label: this.props.manifestoObject.getLabel(), format: '' };
         rawCanvasData.push(canvas.__jsonld);
       } else {
         for(var canvasIndex = this.state.selectedCanvasStartIndex; canvasIndex <= this.state.selectedCanvasEndIndex; canvasIndex++) {
           var canvas = canvases[canvasIndex];
           // populate the 'related' field on the newly added canvas with a reference to the original source manifest
-          canvas.__jsonld.related = this.props.sourceManifestId;
+          canvas.__jsonld.related = { '@id': this.props.manifestoObject.id, label: this.props.manifestoObject.getLabel(), format: '' };
           rawCanvasData.push(canvas.__jsonld);
         }
       }
@@ -70,7 +70,7 @@ var SourceManifestThumbnailStrip = React.createClass({
         canvas = canvases[draggedCanvasIndex];
       }
       // populate the 'related' field on the newly added canvas with a reference to the original source manifest
-      canvas.__jsonld.related = this.props.sourceManifestId;
+      canvas.__jsonld.related = { '@id': this.props.manifestoObject.id, label: this.props.manifestoObject.getLabel(), format: '' };
       rawCanvasData.push(canvas.__jsonld);
     }
 
@@ -78,7 +78,7 @@ var SourceManifestThumbnailStrip = React.createClass({
     else if(this.state.selectedCanvasStartIndex === undefined && this.state.selectedCanvasEndIndex === undefined) {
       var canvas = canvases[draggedCanvasIndex];
       // populate the 'related' field on the newly added canvas with a reference to the original source manifest
-      canvas.__jsonld.related = this.props.sourceManifestId;
+      canvas.__jsonld.related = { '@id': this.props.manifestoObject.id, label: this.props.manifestoObject.getLabel(), format: '' };
       rawCanvasData.push(canvas.__jsonld);
     }
 
