@@ -1,7 +1,10 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var { connect } = require('react-redux');
 var actions = require('actions');
 var deepcopy = require('deepcopy');
+var MetadataSidebarCanvas = require('MetadataSidebarCanvas');
+var CanvasSelectorDialog = require('CanvasSelectorDialog');
 var EmptyMetadataPropertyCard = require('EmptyMetadataPropertyCard');
 var LinkedMetadataPropertyCard = require('LinkedMetadataPropertyCard');
 var EditablePrimitiveMetadataPropertyCard = require('EditablePrimitiveMetadataPropertyCard');
@@ -298,6 +301,25 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
       }
     }
   },
+  openCanvasSelectorDialog: function() {
+    // open the canvas selector modal dialog
+    var $canvasSelectorDialog = $(ReactDOM.findDOMNode(this.refs.canvasSelectorDialog));
+    $canvasSelectorDialog.modal({
+      backdrop: 'static'
+    });
+  },
+  handleCanvasSelection: function(selectedCanvasId) {
+    // TODO: save the selected canvas in the store
+
+    // TODO: ensure the selected canvas id is defined before dispatching
+
+    // TODO: either add or update depending on whether the "thumbnail" property exists or not
+    // but how would you know this in advance? maybe when the selected canvas id is undefined
+    // which means you can't support an undefined value in the dropdown menu
+
+    console.log('Inside [handleCanvasSelection]', selectedCanvasId);
+    this.props.dispatch(actions.updateMetadataFieldValueAtPath(selectedCanvasId, 'thumbnail/@id'));
+  },
   render: function() {
     // get the list of available metadata properties that can be added
     var availablePropertiesToAdd = this.state.metadataFields.filter(function(field) {
@@ -305,12 +327,27 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     });
 
     var _this = this;
+    var thumbnailCanvasId = (this.props.manifestData.thumbnail !== undefined && this.props.manifestData.thumbnail['@id'] !== undefined) ? this.props.manifestData.thumbnail['@id'] : undefined;
+
     return (
       <div>
+        <CanvasSelectorDialog ref="canvasSelectorDialog" onSubmitHandler={this.handleCanvasSelection} canvas={thumbnailCanvasId} addOrReplace={thumbnailCanvasId !== undefined ? 'replace' : 'add'} />
+        <MetadataSidebarCanvas canvasId={thumbnailCanvasId}/>
+        <div className="row">
+          <div className="col-md-12">
+            <button onClick={this.openCanvasSelectorDialog} className="btn btn-default center-block add-replace-image-on-canvas-button">
+              <i className={thumbnailCanvasId !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {thumbnailCanvasId !== undefined ? 'Replace Thumbnail Image' : 'Add Thumbnail Image'}
+            </button>
+          </div>
+        </div>
+
+        <hr/>
+
         <LinkedMetadataPropertyCard
           label="Manifest URI"
           value={this.props.manifestoObject.id}
         />
+
         {
           this.state.metadataFields.map((metadataField, fieldIndex) => {
             if(metadataField.name === undefined) {
