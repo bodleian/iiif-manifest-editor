@@ -309,16 +309,15 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
     });
   },
   handleCanvasSelection: function(selectedCanvasId) {
-    // TODO: save the selected canvas in the store
-
-    // TODO: ensure the selected canvas id is defined before dispatching
-
-    // TODO: either add or update depending on whether the "thumbnail" property exists or not
-    // but how would you know this in advance? maybe when the selected canvas id is undefined
-    // which means you can't support an undefined value in the dropdown menu
-
-    console.log('Inside [handleCanvasSelection]', selectedCanvasId);
-    this.props.dispatch(actions.updateMetadataFieldValueAtPath(selectedCanvasId, 'thumbnail/@id'));
+    // add the 'thumbnail' property if it doesn't exist and update its '@id' property value
+    if(this.props.manifestData.thumbnail == undefined) {
+      this.props.dispatch(actions.addMetadataFieldAtPath('thumbnail', '', ''));
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath({ '@id': selectedCanvasId }, 'thumbnail'));
+    }
+    // update the '@id' property value; Note: this will add the '@id' property if it doesn't exist
+    else {
+      this.props.dispatch(actions.updateMetadataFieldValueAtPath(selectedCanvasId, 'thumbnail/@id'));
+    }
   },
   render: function() {
     // get the list of available metadata properties that can be added
