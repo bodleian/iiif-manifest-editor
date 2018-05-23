@@ -327,11 +327,29 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
 
     var _this = this;
     var thumbnailCanvasId = (this.props.manifestData.thumbnail !== undefined && this.props.manifestData.thumbnail['@id'] !== undefined) ? this.props.manifestData.thumbnail['@id'] : undefined;
+    var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(thumbnailCanvasId);
 
     return (
       <div>
         <CanvasSelectorDialog ref="canvasSelectorDialog" onSubmitHandler={this.handleCanvasSelection} canvas={thumbnailCanvasId} addOrReplace={thumbnailCanvasId !== undefined ? 'replace' : 'add'} />
-        <MetadataSidebarCanvas canvasId={thumbnailCanvasId}/>
+        {(() => {
+          if(thumbnailCanvasId !== undefined && canvas == null) {
+            return (
+              <div className="alert alert-danger manifest-thumbnail-message">
+                The preview thumbnail for this manifest is invalid because it does not exist in the sequence.
+              </div>
+            );
+          } else if(thumbnailCanvasId == undefined) {
+            return (
+              <p className="manifest-thumbnail-message">There is no preview thumbnail for this manifest.</p>
+            );
+          } else {
+            return (
+              <MetadataSidebarCanvas canvasId={thumbnailCanvasId} />
+            );
+          }
+        })()}
+
         <div className="row">
           <div className="col-md-12">
             <button onClick={this.openCanvasSelectorDialog} className="btn btn-default center-block add-replace-image-on-canvas-button">

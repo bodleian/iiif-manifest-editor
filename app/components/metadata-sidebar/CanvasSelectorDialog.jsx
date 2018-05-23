@@ -8,7 +8,7 @@ var CanvasSelectorDialog = React.createClass({
   getInitialState: function() {
     return { 
       showHelp: false,
-      selectedCanvasId: this.props.canvas !== undefined ? this.props.canvas : ''
+      selectedCanvasId: this.props.canvas !== undefined ? this.props.canvas : this.props.manifestData.sequences[0].canvases[0]['@id']
     };
   },
   showHelp: function() {
@@ -54,9 +54,8 @@ var CanvasSelectorDialog = React.createClass({
 
               <form className="canvas-selector-dropdown-menu form-inline">
                 <div className="form-group">
-                  <label>Select a canvas:</label>
+                  <label>Select a manifest thumbnail from the sequence:</label>
                   <select ref="canvasSelectionDropdownMenu" className="form-control" onChange={this.updateSelectedCanvas} defaultValue={this.state.selectedCanvasId}>
-                    <option key="-1" value="">[Empty canvas]</option>
                     {
                       canvases.map(function(canvas, canvasIndex) {
                         return (
