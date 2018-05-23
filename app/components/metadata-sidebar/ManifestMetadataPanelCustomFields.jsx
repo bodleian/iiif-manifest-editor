@@ -102,7 +102,7 @@ var ManifestMetadataPanelCustomFields = React.createClass({
           <span className="fa fa-plus"></span> Add metadata field
         </button>
 
-        <button type="button" className="btn btn-default" title="Add language metadata field" onClick={() => _this.addMetadataProperty('Label', { 'label': 'Label', 'value': { '@value': '', '@language': '' } }, 'metadata')}>
+        <button type="button" className="btn btn-default add-metadata-field-button" title="Add language metadata field" onClick={() => _this.addMetadataProperty('Label', { 'label': 'Label', 'value': { '@value': '', '@language': '' } }, 'metadata')}>
           <span className="fa fa-plus"></span> Add language metadata field
         </button>
       </div>
