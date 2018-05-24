@@ -59,7 +59,7 @@ var Viewer = React.createClass({
       backdrop: 'static'
     });
   },
-  saveMetadataFieldToStore: function(fieldValue, path) {
+  saveMetadataFieldToStore: function(path, fieldName, fieldValue) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   getOpenSeadragonConf: function() {
@@ -162,7 +162,7 @@ var Viewer = React.createClass({
         {(() => {
           if(this.props.selectedCanvasId !== undefined && sequenceLength > 0) {
             return (
-              <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldValue={canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas'} path={canvasLabelPath} onUpdateHandler={this.saveMetadataFieldToStore}/>
+              <EditableTextArea classNames="viewer-canvas-label" labelPrefix="Canvas Label:" fieldName="label" fieldValue={canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas'} updateHandler={this.saveMetadataFieldToStore.bind(this, canvasLabelPath)}/>
             );
           } else if(sequenceLength < 1) {
             return (
