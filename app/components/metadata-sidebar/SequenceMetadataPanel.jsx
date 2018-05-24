@@ -5,7 +5,7 @@ var EditableTextArea = require('EditableTextArea');
 var Utils = require('Utils');
 
 var SequenceMetadataPanel = React.createClass({
-  saveMetadataFieldToStore: function(fieldValue, path) {
+  saveMetadataFieldToStore: function(path, fieldName, fieldValue) {
     this.props.dispatch(actions.updateMetadataFieldValueAtPath(fieldValue, path));
   },
   render: function() {
@@ -16,7 +16,7 @@ var SequenceMetadataPanel = React.createClass({
         <dl>
           <dt className="metadata-field-label">Sequence Label</dt>
           <dd className="metadata-field-value">
-            <EditableTextArea fieldValue={Utils.getLocalizedPropertyValue(sequence.getLabel())} path="sequences/0/label" onUpdateHandler={this.saveMetadataFieldToStore}/>
+            <EditableTextArea fieldName="label" fieldValue={Utils.getLocalizedPropertyValue(sequence.getLabel())} updateHandler={this.saveMetadataFieldToStore.bind(this, 'sequences/0/label')}/>
           </dd>
         </dl>
         <div className="row">
@@ -26,8 +26,8 @@ var SequenceMetadataPanel = React.createClass({
                 Set Viewing Direction <span className="caret"></span>
               </button>
               <ul className="dropdown-menu" role="menu">
-                <li><a href="javascript:;" onClick={() => this.saveMetadataFieldToStore('left-to-right', 'viewingDirection')}>Left to Right</a></li>
-                <li><a href="javascript:;" onClick={() => this.saveMetadataFieldToStore('right-to-left', 'viewingDirection')}>Right to Left</a></li>
+                <li><a className={this.props.manifestData.viewingDirection == 'left-to-right' ? 'checked' : ''} href="javascript:;" onClick={() => this.saveMetadataFieldToStore('viewingDirection', 'viewingDirection', 'left-to-right')}>Left to Right</a></li>
+                <li><a className={this.props.manifestData.viewingDirection == 'right-to-left' ? 'checked' : ''} href="javascript:;" onClick={() => this.saveMetadataFieldToStore('viewingDirection', 'viewingDirection', 'right-to-left')}>Right to Left</a></li>
               </ul>
             </div>
           </div>

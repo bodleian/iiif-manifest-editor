@@ -82,6 +82,16 @@
   }
 
   #metadata-accordion {
+    .checked:before {
+      content: "\f00c";
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: -15px;
+      margin-right: 5px;
+    }
 
     #bulk-actions-panel-heading {
       background-color: #444;
