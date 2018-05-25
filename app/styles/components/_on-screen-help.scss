@@ -1,12 +1,14 @@
 
 .on-screen-help {
-	h3 {
-		margin-top: 10px;
-		margin-bottom: 20px;
+	padding: 30px;
+	text-align: justify;
+	
+	p, h2, h3, h4 {
+		line-height: 150%;
 	}
 
-	h4 {
-		margin-top: 20px;
+	h3, h4, h5 {
+		margin: 25px 0 10px 0;
 	}
 
 	li {
