@@ -13,23 +13,42 @@ module.exports = function(props) {
 
   		<h4>Predefined Fields</h4>
   		<p>
-  	  	Predefined fields are top-level manifest metadata properties such as <i>label</i>, <i>description</i>, <i>attribution</i> etc.
-  	  	"Predefined" here means that the <i>Label</i> of each field is predefined and can be selected from a drop-down list.
-  	  	To remove a property, click on the <i className="fa fa-times-circle"></i> button to the right of each property box. To add a property, 
-  	  	click on the "Add metadata field" button. This will open a drop-down menu that lets you choose from a number of predefined fields. 
+  	  	Predefined fields are top-level manifest metadata properties such as <i>label</i>, 
+        <i>description</i>, <i>attribution</i> etc.
+  	  	"Predefined" here means that the <i>Label</i> of each field is predefined and can 
+        be selected from a drop-down list.
+  	  	To remove a property, click on the <i className="fa fa-times-circle"></i> button to the 
+        right of each property box. To add a property, click on the "Add metadata field" button. 
+        This will open a drop-down menu that lets you choose from a number of predefined fields. 
   	  	Only fields that are not yet added to the current manifest will be available for selection. 
-  	  	Editable fields have a <i className="fa fa-pencil-square-o"></i> icon. Click on the field value to edit it.
+  	  	Editable fields have a <i className="fa fa-pencil-square-o"></i> icon. Click on the field 
+        value to edit it.
   		</p>
+      <h5>Manifest Thumbnail Image</h5>
+      <p>
+        At the top of the predefined fields, you can select a "Manifest Thumbnail" image from all 
+        available canvases in the sequence. The manifest thumbnail image should be a title page or a
+        significant image to represent the manifest. 
+      </p>
   	  
   		<h4>Custom fields</h4>
   		<p>
-  	 	Custom fields are value/label pairs that will be stored in the "metadata" section of the manifest. 
-  	 	"Custom" here means that the <i>Label</i> for each field is not predefined and can be set to any string.
-  	 	Click the "Add metadata field button" to add a custom field. This will add a new box with "Label" 
-      for the label of the new property and "Value" for the value:
+  	 	  Custom fields are value/label pairs that will be stored in the "metadata" section of the manifest. 
+  	 	  "Custom" here means that the <i>Label</i> for each field is not predefined and can be set to 
+        any string.
+  	 	  Click the "Add metadata field button" to add a custom field. This will add a new box with "Label" 
+        for the label of the new property and "Value" for the value:
   		</p>
   		<p>To edit the <i>label</i>, click on it, replace the default text of "Label" with the name for 
       the metadata field (e.g. "Date") and hit enter. Do the same for the <i>value</i> field.</p>
+
+      <p>
+        You can also add a language-specific custom field by clicking on the "Add language metadata field"
+        button. In addition to the "Label" and "Value" fields there is a "Language" field. Specify the 
+        language for the metadata field as a two-letter&nbsp;
+        <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO-639-1 code</a>&nbsp;
+        such as "en" for English.
+      </p>
 
       <p><strong>For more information see:</strong> <br />
         <img src="./img/IIIF-logo-colored-text.png" height="15" alt="IIIF Logo"/> <a href="http://iiif.io/api/presentation/2.1/#descriptive-properties" target="_blank">http://iiif.io/api/presentation/2.1/#descriptive-properties</a>
