@@ -28,7 +28,7 @@
     "url": "https://github.com/bodleian/iiif-manifest-editor/issues"
   },
   "engines": {
-    "node": ">=8.1.4"
+    "node": "8.1.x"
   },
   "main": "index.js",
   "scripts": {
