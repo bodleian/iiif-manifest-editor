@@ -10,7 +10,7 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
 
 ## Online Demo
 You can find an instance of the IIIF Manifest Editor at:
-[http://iiif.bodleian.ox.ac.uk/manifest-editor/](http://iiif.bodleian.ox.ac.uk/manifest-editor/)
+[https://iiif.bodleian.ox.ac.uk/manifest-editor/](http://iiif.bodleian.ox.ac.uk/manifest-editor/)
 
 
 ## How to set up the application ##
