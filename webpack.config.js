@@ -22,6 +22,7 @@ module.exports = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
     new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   output: {
     path: __dirname,
@@ -83,5 +84,5 @@ module.exports = {
       }
     ]
   },
-  devtool: (process.env.NODE_ENV === "production") ? "cheap-module-source-map" : "eval-source-map"
+  devtool: (process.env.NODE_ENV === "production") ? "source-map" : "eval-source-map"
 };
