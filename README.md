@@ -11,7 +11,7 @@ See this Wiki page for instructions on how to use the IIIF manifest editor:
 ## Online Demo
 You can find online demos of the IIIF Manifest Editor here:
 * [https://iiif.bodleian.ox.ac.uk/manifest-editor/](http://iiif.bodleian.ox.ac.uk/manifest-editor/)
-* [https://iiif-manifest-editor.herokuapp.com/](https://iiif-manifest-editor.herokuapp.com/)
+* [https://iiif-manifest-editor.textandbytes.com/](https://iiif-manifest-editor.textandbytes.com/)
 
 ## How to set up the application ##
 
