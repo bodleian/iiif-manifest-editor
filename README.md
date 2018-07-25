@@ -30,7 +30,8 @@ You can find online demos of the IIIF Manifest Editor here:
 ## How to run the application ##
 
 * Run webpack to generate the bundle file either once or dynamically on file changes:
-  * `npm run build`: This builds the bundle file once
+  * `npm run build`: This builds the bundle file once for use in development
+  * `npm run build-prod`: This builds a much smaller bundle file for use in production
   * `npm run watch`: This builds the bundle file dynamically on all file changes
   * Note: when changing webpack.config.js, webpack needs to be restarted
 * Start the server: `npm run start`
