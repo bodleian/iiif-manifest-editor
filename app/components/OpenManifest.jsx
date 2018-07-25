@@ -160,7 +160,7 @@ var OpenManifest = React.createClass({
             <div className="row open-manifest-button-container">
               <div className="col-md-12">
                 <Link to="/" className="btn btn-default open-manifest-cancel-button"><i className="fa fa-ban"></i> Cancel</Link>
-                <button type="submit" className="btn btn-default"><i className="fa fa-folder-open"></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : (this.props.isFetchingRemoteManifest ? ' Loading...' : ' Open')}</button>
+                <button type="submit" className="btn btn-default"><i className={this.props.isFetchingLocalManifest || this.props.isFetchingRemoteManifest ? 'fa fa-circle-o-notch fa-spin fa-fw' : 'fa fa-folder-open'}></i>{this.props.isFetchingLocalManifest ? ' Uploading...' : (this.props.isFetchingRemoteManifest ? ' Loading...' : ' Open')}</button>
               </div>
             </div>
           </form>
