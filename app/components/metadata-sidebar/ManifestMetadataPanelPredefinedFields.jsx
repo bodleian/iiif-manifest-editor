@@ -351,13 +351,19 @@ var ManifestMetadataPanelPredefinedFields = React.createClass({
           }
         })()}
 
-        <div className="row">
-          <div className="col-md-12">
-            <button onClick={this.openCanvasSelectorDialog} className="btn btn-default center-block add-replace-image-on-canvas-button">
-              <i className={thumbnailCanvasId !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {thumbnailCanvasId !== undefined ? 'Replace Manifest Thumbnail' : 'Add Manifest Thumbnail'}
-            </button>
-          </div>
-        </div>
+        {(() => {
+          if(this.props.manifestData.sequences[0].canvases.length > 0) {
+            return(
+              <div className="row">
+                <div className="col-md-12">
+                  <button onClick={this.openCanvasSelectorDialog} className="btn btn-default center-block add-replace-image-on-canvas-button">
+                    <i className={thumbnailCanvasId !== undefined ? 'fa fa-refresh' : 'fa fa-plus-circle'}></i> {thumbnailCanvasId !== undefined ? 'Replace Manifest Thumbnail' : 'Add Manifest Thumbnail'}
+                  </button>
+                </div>
+              </div>
+            );
+          }
+        })()}
 
         <hr/>
 
