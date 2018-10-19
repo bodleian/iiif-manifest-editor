@@ -39,6 +39,7 @@ var NewManifest = React.createClass({
 
     this.props.dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(emptyManifest))));
     this.props.dispatch(actions.setManifestData(emptyManifest));
+    this.props.dispatch(actions.setSelectedCanvasId(undefined));
     window.location = '#/edit';  // redirect to edit manifest
   },
   render: function() {
