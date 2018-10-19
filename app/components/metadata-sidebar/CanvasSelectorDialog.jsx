@@ -27,7 +27,12 @@ var CanvasSelectorDialog = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    this.props.onSubmitHandler(this.state.selectedCanvasId);
+    if(this.state.selectedCanvasId != undefined) {
+      this.props.onSubmitHandler(this.state.selectedCanvasId);
+    } else if(this.props.manifestData.sequences[0].canvases.length > 0) {
+      // if no canvas was selected from dropdown menu, use the first one if there is at least one canvas in the sequence
+      this.props.onSubmitHandler(this.props.manifestData.sequences[0].canvases[0]['@id']);
+    }
 
     // close modal window
     var $imageAnnotationChoiceDialog = $(ReactDOM.findDOMNode(this));
