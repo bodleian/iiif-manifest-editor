@@ -6,9 +6,15 @@ var Utils = require('Utils');
 
 var CanvasSelectorDialog = React.createClass({
   getInitialState: function() {
+    var selectedCanvasId = undefined;
+    if(this.props.canvas !== undefined) {
+      selectedCanvasId = this.props.canvas;
+    } else if(this.props.manifestData.sequences[0].canvases.length > 0) {
+      selectedCanvasId = this.props.manifestData.sequences[0].canvases[0]['@id'];
+    }
     return { 
       showHelp: false,
-      selectedCanvasId: this.props.canvas !== undefined ? this.props.canvas : this.props.manifestData.sequences[0].canvases[0]['@id']
+      selectedCanvasId: selectedCanvasId
     };
   },
   showHelp: function() {
