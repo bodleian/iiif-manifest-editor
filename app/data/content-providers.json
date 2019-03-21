@@ -60,6 +60,12 @@
       "logo": "textgrid-logo.svg"
     },
     {
+      "@id": "https://trin-sites-pub.trin.cam.ac.uk/manuscripts/tccmss.json",
+      "@type": "sc:Collection",
+      "label": "Trinity College",
+      "logo": "trinity-college-logo.png"
+    },
+    {
       "@id": "https://digital.library.villanova.edu/Collection/vudl:3/IIIF",
       "@type": "sc:Collection",
       "label": "Villanova University",
