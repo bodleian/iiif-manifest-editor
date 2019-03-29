@@ -30,11 +30,24 @@
   }
 
   .content-provider-item {
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    min-height: 50px;
+    cursor: pointer;
+    transition: box-shadow .2s;
+
+    &:hover {
+      border: 1px solid #ccc;
+      box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    }
+
     .content-provider-logo {
-      max-width: 300px;
-      max-height: 40px;
+      max-width: 400px;
+      max-height: 45px;
       margin-right: 10px;
     }
-    margin-bottom: 20px;
   }
 }

@@ -115,16 +115,15 @@ var DiscoverManifestsDialog = React.createClass({
                 if(!this.state.selectedContentProvider) {
                   return (
                     <div>
-                      <h4>Select Content Provider</h4>
+                      <h3>Select Content Provider:</h3>
                       <div className="content-providers-list">
                         <div>
                           {
                             iiifCollections.collections.map((collection, index) => 
-                              <div className="content-provider-item" key={index}>
-                                <a onClick={() => this.loadManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>
-                                  <img src={"./img/logos/" + collection.logo} alt={collection.label} className="content-provider-logo" />
+                              <div onClick={() => this.loadManifestsFromContentProvider(collection['@id'], collection.label)} className="content-provider-item" key={index}>
+                                <a>
+                                  <img src={"./img/logos/" + collection.logo} alt={collection.label} title={collection.label} className="content-provider-logo" />
                                 </a>
-                                <a onClick={() => this.loadManifestsFromContentProvider(collection['@id'], collection.label)} style={{cursor: 'pointer'}}>{collection.label}</a>
                               </div>
                             )
                           }
