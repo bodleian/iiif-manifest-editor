@@ -29,6 +29,12 @@
       "logo": "e-codices.png"
     },
     {
+      "@id": "https://fragmentarium.ms/metadata/iiif/collection.json",
+      "@type": "sc:Collection",
+      "label": "Fragmentarium",
+      "logo": "fragmentarium-logo.png"
+    },
+    {
       "@id": "https://view.nls.uk/collections/top.json",
       "@type": "sc:Collection",
       "label": "National Library of Scotland",
