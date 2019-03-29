@@ -11,10 +11,10 @@
       "logo": "biblissima.png"
     },
     {
-      "@id": "https://iiif.bodleian.ox.ac.uk/iiif/collection/All",
+      "@id": "https://iiif.bodleian.ox.ac.uk/iiif/collection/top",
       "@type": "sc:Collection",
       "label": "Bodleian Libraries, Oxford",
-      "logo": "bodleian.jpg"
+      "logo": "bodleian.png"
     },
     {
       "@id": "https://iiif.durham.ac.uk/manifests/trifle/collection/index",
