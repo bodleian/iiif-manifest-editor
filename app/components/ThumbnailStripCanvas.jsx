@@ -70,7 +70,7 @@ var ThumbnailStripCanvas = React.createClass({
   getMainImage: function(canvas) {
     return canvas.getImages().length > 0 
       ? canvas.getCanonicalImageUri(this.getThumbnailCanvasWidth(canvas)) 
-      : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
+      : '/img/empty-canvas.png';
   },
   getMainImageLabel: function(canvas) {
     return canvas !== null ? Utils.getLocalizedPropertyValue(canvas.getLabel()) : 'Empty canvas';

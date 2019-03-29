@@ -7,7 +7,7 @@ var MetadataSidebarCanvas = React.createClass({
   getMainImage: function(canvas) {
     return canvas !== null && canvas.getImages().length > 0 
       ? canvas.getCanonicalImageUri(100)
-      : 'https://placeholdit.imgix.net/~text?txtsize=20&txt=Empty+Canvas&w=100&h=150';
+      : '/img/empty-canvas.png';
   },
   render: function() {
     var canvas = this.props.manifestoObject.getSequenceByIndex(0).getCanvasById(this.props.canvasId);
