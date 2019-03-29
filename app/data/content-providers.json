@@ -53,13 +53,6 @@
       "logo": "scta.png"
     },
     {
-      "@id": "https://labs2.artstor.org/iiif/ssc/manifest.json",
-      "@type": "sc:Collection",
-      "label": "Shared Shelf Commons",
-      "description": "IIIF Manifests showcasing collections from Shared Shelf Commons",
-      "logo": "ssc.png"
-    },
-    {
       "@id": "https://textgridlab.org/1.0/iiif/manifests/collection.json",
       "@type": "sc:Collection",
       "label": "TextGrid",
@@ -82,18 +75,6 @@
       "@type": "sc:Collection",
       "label": "Wellcome Library",
       "logo": "wellcome.png"
-    },
-    {
-      "@id": "https://manifests.ydc2.yale.edu/manifest",
-      "@type": "sc:Collection",
-      "label": "Yale",
-      "logo": "yale.gif"
-    },
-    {
-      "@id": "https://manifests.britishart.yale.edu/collection/top",
-      "@type": "sc:Collection",
-      "label": "Yale Center for British Art",
-      "logo": "yale-center-for-british-art.png"
     }
   ]
 }
