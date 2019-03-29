@@ -17,6 +17,12 @@
       "logo": "bodleian.png"
     },
     {
+      "@id": "https://cudl.lib.cam.ac.uk/iiif/collection/all",
+      "@type": "sc:Collection",
+      "label": "Cambridge University Library IIIF Collections",
+      "logo": "cambridge-university.png"
+    },
+    {
       "@id": "https://iiif.durham.ac.uk/manifests/trifle/collection/index",
       "@type": "sc:Collection",
       "label": "Durham University",
