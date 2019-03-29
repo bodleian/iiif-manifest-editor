@@ -44,7 +44,7 @@
       "@id": "https://dms-data.stanford.edu/data/manifests/Parker/collection.json",
       "@type": "sc:Collection",
       "label": "Parker Library On the Web",
-      "logo": "parker-stanford.png"
+      "logo": "parker-corpus-christi-college.png"
     },
     {
       "@id": "https://scta.info/iiif/scta/collection",
