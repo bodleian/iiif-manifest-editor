@@ -14,7 +14,8 @@ var DiscoverManifestsDialog = React.createClass({
       manifestList: undefined,
       subCollectionsList: undefined,
       isLoading: false,
-      filterChars: ""
+      filterChars: "",
+      errorMessage: undefined
     };
   },
   loadManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
@@ -40,7 +41,12 @@ var DiscoverManifestsDialog = React.createClass({
           filterChars: ""
         });
       }
-    })
+    }).catch((error) => {
+      this.setState({
+        isLoading: false,
+        errorMessage: "Error while loading IIIF Collection: " + error
+      });
+    });
   },
   loadSubCollectionsManifestsFromContentProvider: function(collectionListUrl, selectedContentProvider) {
     this.setState({
@@ -66,7 +72,11 @@ var DiscoverManifestsDialog = React.createClass({
         }
       })
       .catch(function(error) {
-        console.log(error);
+        _this.setState({
+          isLoading: false,
+          filterChars: "",
+          errorMessage: "Error while loading IIIF Collection: " + error
+        });
       });
   },
   resetSelectedContentProvider: function() {
@@ -74,7 +84,8 @@ var DiscoverManifestsDialog = React.createClass({
       selectedContentProvider: false,
       manifestList: undefined,
       subCollectionsList: undefined,
-      filterChars: ""
+      filterChars: "",
+      errorMessage: undefined
     });
   },
   selectManifest: function(selectedManifestUrl) {
@@ -91,6 +102,18 @@ var DiscoverManifestsDialog = React.createClass({
     if(this.state.isLoading) {
       return(
         <div className="discover-loading-indicator"><i className="fa fa-circle-o-notch fa-spin"></i> Loading...</div>
+      );
+    } else {
+      return '';
+    }
+  },
+  displayErrorMessage: function() {
+    if(this.state.errorMessage) {
+      return(
+        <div>
+          <a onClick={() => this.resetSelectedContentProvider()} style={{cursor: 'pointer'}}><i className="fa fa-arrow-left"></i> List of Content Providers</a>
+          <div className="collection-loading-error"><br />{ this.state.errorMessage}</div>
+        </div>
       );
     } else {
       return '';
@@ -169,6 +192,7 @@ var DiscoverManifestsDialog = React.createClass({
                 }
               })()}
               {this.displayLoadingIndicator()}
+              {this.displayErrorMessage()}
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal"><i className="fa fa-close"></i> Close</button>

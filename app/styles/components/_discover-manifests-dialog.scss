@@ -29,6 +29,11 @@
     font-size: 120%;
   }
 
+  .collection-loading-error {
+    text-align: center;
+    color: $iiifRed;
+  }
+
   .content-provider-item {
     margin-bottom: 10px;
     border: 1px solid #eee;
