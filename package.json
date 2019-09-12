@@ -45,6 +45,7 @@
     "deepcopy": "^0.6.3",
     "express": "^4.16.2",
     "font-awesome": "^4.6.3",
+    "fs-extra": "^8.1.0",
     "json-loader": "^0.5.7",
     "manifesto.js": "0.2.1",
     "multer": "^1.1.0",
