@@ -65,7 +65,7 @@
       "logo": "textgrid-logo.svg"
     },
     {
-      "@id": "https://trin-sites-pub.trin.cam.ac.uk/manuscripts/tccmss.json",
+      "@id": "https://mss-cat.trin.cam.ac.uk/manuscripts/tccmss.json",
       "@type": "sc:Collection",
       "label": "Trinity College",
       "logo": "trinity-college-logo.png"
