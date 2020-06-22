@@ -146,6 +146,13 @@ var SendManifestToUri = React.createClass({
                     </tr>
                   </tbody>
                 </table>
+                {(() => {
+                  if(this.state.savedServerEndpoint.serverEndpointUri === 'https://jsonstorage.net/api/items') {
+                    return(
+                      <div>Please note that your content on JsonStorage.net is publicly visible and the service might not be suitable for long-term storage of IIIF manifests.</div>
+                      );
+                    }
+                  })()}
                 <br />
                 <button type="button" className="btn btn-primary" onClick={this.sendManifestToUri}><i className="fa fa-cloud-upload"></i> Store Manifest on Server</button>
                 {this.renderUpdateManifestOnServerButton()}

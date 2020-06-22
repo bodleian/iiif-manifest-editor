@@ -223,9 +223,9 @@ var SettingsDialog = React.createClass({
       }
     }
   },
-  prefillMyJsonSettings: function() {
-    this.refs.serverEndpointName.value = 'myjson';
-    this.refs.serverEndpointUri.value = 'https://api.myjson.com/bins'
+  prefillRemoteJsonSettings: function() {
+    this.refs.serverEndpointName.value = 'JsonStorage.net';
+    this.refs.serverEndpointUri.value = 'https://jsonstorage.net/api/items'
   },
   displayServerEndpointConfiguration: function() {
     if(this.state.savedServerEndpoint === '' ) {
@@ -238,9 +238,8 @@ var SettingsDialog = React.createClass({
             saved, the endpoint will be validated. It needs to support GET, POST and PUT
             requests in order to retrieve, store and update manifests. Download and install&nbsp; 
             <a href="https://github.com/textandbytes/iiif-manifest-store" target="_blank">
-            IIIF Manifest Store</a> or <a href="javascript:;" onClick={this.prefillMyJsonSettings}>
-            click here to use myjson.com</a> to try this feature. Please note that myjson.com 
-            is a beta service and not suitable for long-term storage of IIIF manifests.
+            IIIF Manifest Store</a> or <a href="javascript:;" onClick={this.prefillRemoteJsonSettings}>
+            click here to use JsonStorage.net</a> to try this feature. Please note that your content on JsonStorage.net is publicly visible and the service might not be suitable for long-term storage of IIIF manifests.
           </p>
           <br />
           <form>
