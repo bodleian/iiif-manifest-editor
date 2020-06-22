@@ -19,11 +19,11 @@ var ValidateManifestDialog = React.createClass({
       validatorResponse: undefined
     });
     var that = this;
-    // Store generated manifest JSON on myjson.com so we can point the IIIF Validator to it
-    axios.post("https://api.myjson.com/bins", this.props.manifestData)
-      .then(function(myJsonResponse) {
-        // returned bin ID from myjson.com
-        var uriToValidate = myJsonResponse.data.uri;
+    // Store generated manifest JSON on JsonStorage.net so we can point the IIIF Validator to it
+    axios.post("https://jsonstorage.net/api/items", this.props.manifestData)
+      .then(function(jsonStorageResponse) {
+        // returned bin ID from JsonStorage.net
+        var uriToValidate = jsonStorageResponse.data.uri;
         var baseUriValidator = "https://iiif.io/api/presentation/validator/service/validate?url=";
         var validatorOptions = "&version=2.0&format=json";
         axios.get(baseUriValidator + uriToValidate + validatorOptions)
@@ -41,8 +41,8 @@ var ValidateManifestDialog = React.createClass({
         });
 
       })
-      .catch(function(myJsonRequestError) {
-        console.log('myJson error: ', myJsonRequestError);
+      .catch(function(jsonStorageRequestError) {
+        console.log('jsonStorage request error: ', jsonStorageRequestError);
       });
   },
   resetValidationStatus: function() {
