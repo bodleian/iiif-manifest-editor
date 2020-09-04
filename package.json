@@ -78,7 +78,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.9",
     "mocha": "^3.5.3",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "react-addons-test-utils": "15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
