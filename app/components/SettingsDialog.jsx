@@ -225,7 +225,7 @@ var SettingsDialog = React.createClass({
   },
   prefillRemoteJsonSettings: function() {
     this.refs.serverEndpointName.value = 'JsonStorage.net';
-    this.refs.serverEndpointUri.value = 'https://jsonstorage.net/api/items'
+    this.refs.serverEndpointUri.value = 'https://api.jsonstorage.net/v1/json'
   },
   displayServerEndpointConfiguration: function() {
     if(this.state.savedServerEndpoint === '' ) {
@@ -239,7 +239,10 @@ var SettingsDialog = React.createClass({
             requests in order to retrieve, store and update manifests. Download and install&nbsp; 
             <a href="https://github.com/textandbytes/iiif-manifest-store" target="_blank">
             IIIF Manifest Store</a> or <a href="javascript:;" onClick={this.prefillRemoteJsonSettings}>
-            click here to use JsonStorage.net</a> to try this feature. Please note that your content on JsonStorage.net is publicly visible and the service might not be suitable for long-term storage of IIIF manifests.
+            click here to use JsonStorage.net</a> to try this feature. 
+            Please note that this is for demonstration purposes only. Your content on JsonStorage.net is publicly
+            visible and <b>the service is not suitable for long-term storage of IIIF manifests. DO NOT USE JsonStorage.net 
+            as your main manifest storage solution.</b>
           </p>
           <br />
           <form>
